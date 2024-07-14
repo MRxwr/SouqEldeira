@@ -1,0 +1,179 @@
+/* -> Start Section : Root */
+:root {
+    --pt-main-color: #295CA5; 
+    --font-main: 'Tajawal', sans-serif;
+}
+
+
+
+
+[type=email], [type=number], [type=tel], [type=url] {
+    direction: ltr;
+    direction: rtl;
+}
+/* -> End Section : Root */
+
+.owl-theme .owl-nav
+{
+	font-family: 'Lato', sans-serif; 
+}
+
+.form-select {
+  padding: 0.375rem 0.75rem 0.375rem 2.25rem;
+  -moz-padding-start: calc(0.75rem - 3px);
+  background-position: left 0.75rem center;
+}
+
+
+.form-check {
+    padding-left:0em;
+    padding-right: 1.5em; 
+}
+
+.form-check .form-check-input {
+    float: right;
+    margin-left: -1.5em;
+}
+
+
+
+#sidebar
+{
+    left: auto;
+    right: -300px;
+}
+
+#sidebar.active {
+    left: auto;
+    right: 0;
+}
+
+#sidebar .sidebar-menu li a i {
+    margin-right: 0;
+    margin-left: 1rem;
+}
+
+#sidebar .sidebar-menu .have-sub-menu::after
+{
+	right: auto;
+	left:0;
+	transform: rotate(0deg);
+}
+
+#sidebar .sidebar-element1 .element1-start .change-language .language
+{
+	font-size:18px;
+	font-family: 'Lato', sans-serif;
+	color:#181a20;
+}
+#sidebar .sidebar-element1 .element1-start .change-language .language .langimg 
+{
+	margin-right:0px;  
+	margin-left:10px;
+}
+
+footer .footer-sec3 .application-links a i {
+    margin-left: 10px;
+}
+
+.card-ad.card-feature .feature-label:after {   
+    right: auto;
+    left: -15px;
+    border-right: 0px solid transparent;
+    border-left: 15px solid transparent; 
+}
+
+.advanced-search i
+{
+	margin-right:0rem; 
+	margin-left:1rem;
+}
+
+.contact-details .data i {
+    margin-right: 0px; 
+    margin-left: 15px; 
+}
+
+#sidebar .sidebar-header .profile .avatar
+{
+    margin-right: 0px;
+    margin-left: 10px;
+}
+
+
+.modal-bottom .btn-close-modal
+{
+	left:auto; 
+	right:20px; 
+}
+
+.modal-bottom .btn-close-modal i:before
+{
+    content: "\f285"; 
+}
+
+.advanced-search a i {
+    margin-right: 0rem;
+    margin-left: 1rem; 
+}
+
+.input-group-select-with-icon .form-select {
+    padding-right: 50px;
+    padding-left: 0px; 
+}
+
+.search-ads-options .div .title {
+    margin-right: 0px; 
+    margin-left: 10px;
+}
+
+.scroll-top
+{
+	right:auto;
+	left:15px; 
+}
+
+.accordion-flush .accordion-item .accordion-button
+{  
+  text-align:right;    
+}
+
+.carousel 
+{
+	direction:ltr; 
+}
+
+.home-about .right-bg
+{
+	right: -80px;
+}
+
+.home-about .left-bg
+{ 
+	left: -80px;
+}
+
+.input-group-select-with-icon .labelIcon {
+  
+    border-radius: 0 0.25rem 0.25rem 0;    
+}
+
+
+.notification-list .notification-list_content .notification-list_img img {
+    margin-right: 0px;
+    margin-left: 20px; 
+}
+.notification-list--unread {
+	border-left:0; 
+    border-right: 2px solid var(--pt-main-color);
+}
+
+@media (max-width: 768px)
+{
+	.bi::before, [class^="bi-"]::before, [class*=" bi-"]::before
+	{
+		vertical-align: -0.35em;
+		vertical-align: -0.35em;
+		line-height:0; 
+	} 
+} 

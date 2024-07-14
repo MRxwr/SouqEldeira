@@ -1,0 +1,10 @@
+.card-ad.card-feature .feature-label:after {
+	    right: auto;
+	    left: -14.7px; 
+	    border-top: 35.9px solid #F3D60E; 
+} 
+
+.notification-list .notification-list_content .notification-list_img img {
+	    margin-right: 0px; 
+	    margin-left: 10px;
+}
