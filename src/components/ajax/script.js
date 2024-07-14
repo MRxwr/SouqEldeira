@@ -35,7 +35,10 @@ var getSidebar = function (){
     var html='';
     var menu='';
     var lgout='';
-    if (isLoggedIn === 'true') {
+    if (isLoggedIn === 'true') { //AddAd
+        
+        $('#add-ad-btn').html('<a href="/add-ad" class="btn btn-primary btn-border-radius-1 btn-new-ad"><i class="bi bi-plus-lg"></i> <span>'+AddAd+'</span></a>');
+
          html +='<div class="profile">';
          html +='<div class="avatar">';
          html +='<a href="/profile" class="d-block">';
@@ -77,6 +80,7 @@ var getSidebar = function (){
         menu +='<li>';
         menu +='<a href="/login"><i class="bi bi-box-arrow-right"></i>'+Login+'</a>';
         menu +='</li>';
+        $('#add-ad-btn').html('');
     }
 
     $('#sidebarHeader').html(html);

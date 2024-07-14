@@ -9,7 +9,6 @@ window.onload = function() {
            if(response.status){
             var data = response.data;
                 console.log(data);
-               
                 $('#Content').html(html);
             }
          

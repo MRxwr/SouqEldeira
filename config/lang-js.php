@@ -1,4 +1,5 @@
 <script>
+    
     var MyProfile="<?php echo Trans('app','My Profile'); ?>";
     var Login="<?php echo Trans('app','Login'); ?>";
     var MyAds="<?php echo Trans('app','My Ads'); ?>";
@@ -14,5 +15,6 @@
     var RegularAd ="<?php echo Trans('app','Regular Ad'); ?>";
     var SpecialAd ="<?php echo Trans('app','Special Ad'); ?>";
     var ExpireData ="<?php echo Trans('app','Expire Data'); ?>";
+    var AddAd ="<?php echo Trans('app','Add Ad'); ?>";
     
 </script>

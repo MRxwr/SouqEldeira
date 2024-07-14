@@ -45,7 +45,7 @@
 		                <li><a href="/search-view?SaleType=SALE" class="rounded"><?php echo Trans('app','Sale'); ?></a></li>
 		                <li><a href="/search-view?SaleType=EXCHANGE" class="rounded"><?php echo Trans('app','Allowance'); ?></a></li>
 		                <li><a href="/search-view?SaleType=RENT" class="rounded"><?php echo Trans('app','Rent'); ?></a></li>
-		                <!-- <li><a href="ads-list" class="rounded"><?php echo Trans('app','Request'); ?></a></li> -->
+		                <li><a href="/search-view?SaleType=REQUEST" class="rounded"><?php echo Trans('app','Request'); ?></a></li>
 		              </ul>
 		            </div>
           		</li>

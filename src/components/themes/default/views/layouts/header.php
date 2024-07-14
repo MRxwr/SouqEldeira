@@ -14,8 +14,8 @@
 			<a href="/" class="logo"><img src="assets/img/logo-1.png"></a>
 		  </div> 
 		  
-		  <div class="col-3 col-md-3 text-end navbar-area-btn">
-		  	<a href="/add-ad" class="btn btn-primary btn-border-radius-1 btn-new-ad"><i class="bi bi-plus-lg"></i> <span><?php echo Trans('app','Add Ad'); ?></span></a>
+		  <div class="col-3 col-md-3 text-end navbar-area-btn" id="add-ad-btn">
+		  	
 		  </div>
 		  
 		</div>

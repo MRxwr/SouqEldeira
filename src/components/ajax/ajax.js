@@ -1,12 +1,15 @@
 var ajax_base_url = 'https://www.souqeldeira.com/api/';
 var pay_redirect_to  = 'http://souqeldeiradev.assima.com.kw/success';
 var currency='KD';
-
+ // This could be dynamically set
  var makeAjaxRequest = function(url, method = 'GET', data = null, successCallback = null, errorCallback = null, headers = {}) {
-    const options = {
+  const dynamicAcceptLanguage =$('html').attr('lang');
+  const options = {
       method: method,
       headers: {
         'Content-Type': 'application/json', // Default content type, modify as needed
+        'Accept': 'application/json',
+        'Accept-Language': dynamicAcceptLanguage, // Dynamic value for Accept-Language
         ...headers, // Merge with additional headers
       },
     };
@@ -174,4 +177,7 @@ var loadAreaRegion = function(){
        },
        customHeaders
      );
+}
+var loadFooterContent = function(){
+  
 }
