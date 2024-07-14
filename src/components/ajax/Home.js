@@ -74,7 +74,7 @@ var LoadHomeApi = function(){
             if (clients.length > 0) {
                 var html ='';
                   clients.forEach(item => {
-                     html +='<div class="item"><a href="office-view?slug?'+item.id+'"><img src="'+item.images+'" class="w-100"></a></div>';
+                     html +='<div class="item"><a href="office-view?slug='+item.id+'"><img src="'+item.images+'" class="w-100"></a></div>';
                   });
                   $('#officesSlider').html(html);
                   var owl = $('.owl-carousel-offices');
