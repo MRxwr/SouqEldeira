@@ -7,9 +7,9 @@ window.onload = function() {
        {},
        response => {
            if(response.status){
-            var data = response.data;
+            var data = response.data.terms_condition.original;
                 console.log(data);
-                $('#Content').html(html);
+                $('#Content').html(data);
             }
          
        },

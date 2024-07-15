@@ -181,7 +181,7 @@ var loadFooterContent = function(){
   makeAjaxRequest(
      ajax_base_url + endpoint,
      'POST',
-     { saleId: 'ALL',townId:410, per_page : 20 },
+     { saleId: 'ALL',townId:40, per_page : 20 },
      response => {
       if(response.status){
         console.log(response);
