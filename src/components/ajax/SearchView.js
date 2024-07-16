@@ -37,7 +37,7 @@ var loadSearchResult = function(per_page){
            makeAjaxRequest(
               ajax_base_url + endpoint,
               'POST',
-              { saleId: type,per_page : per_page },
+              { saleId: type,townId:region,propertyType:propertyType,priceFrom:priceFrom,priceTo:priceTo,per_page : per_page },
               response => {
                   if(response.status){
                       console.log(loadId);

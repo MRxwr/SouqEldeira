@@ -175,41 +175,37 @@ var loadAreaRegion = function(){
        customHeaders
      );
 }
-var loadFooterContent = function(){
-  var endpoint ='search';
-  const customHeaders = {};
-  makeAjaxRequest(
-     ajax_base_url + endpoint,
-     'POST',
-     { saleId: 'ALL',townId:40, per_page : 20 },
-     response => {
-      if(response.status){
-        console.log(response);
-         // var lists = response.data.governorates;
-              
-             // if (Array.isArray(lists)) {
-                 // const dropdown = document.getElementById('governoratesRegion');
-                 // var html = '';
-                  // lists.forEach(governorate => {
-                  //   const optgroup = document.createElement('optgroup');
-                  //   optgroup.label = governorate.governorateName;
-                  //   governorate.towns.forEach(town => {
-                      
-                  //   });
-                    
-                  // });
-                  
-                  
-              //} else {
-             // console.error('response.data is not an array.');
-             // }
-              //$('#saleType').html(html);
-          }
-     },
-     error => {
-       console.error('Error:', error);
-     },
-     customHeaders
-   );
+var loadFooterContent = function(townId=7){
+      makeAjaxRequest(
+        ajax_base_url + endpoint,
+        'POST',
+        {},
+        
+        response => {
+            if(response.status){
+            var lists = response.data.sales;
+                // console.log(lists);
+                if (Array.isArray(lists)) {
+                    var html = '';
+                    lists.forEach(item => {
+                        html += '<div class="radio-btn">';
+                        html += '<input type="radio" id="aSale' + item.saleId +'" name="SaleType" value="' + item.saleId + '" />';
+                        html += '<label for="aSale'+ item.saleId +'">' + item.SaleName + '</label>';
+                        html += '</div>';
+                    });
+                // Your further logic with the generated HTML
+                } else {
+                console.error('response.data is not an array.');
+                }
+                $('#saleType').html(html);
+            }
+          
+        },
+        error => {
+          console.error('Error:', error);
+        },
+        customHeaders
+      );
 }
+
 loadFooterContent();
