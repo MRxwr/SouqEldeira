@@ -9,68 +9,8 @@
 		  </div>
 		  
 		  <div class="col-md-12 mt-4">
-		  	<div class="footer-sec2 text-start">
+		  	<div class="footer-sec2 text-start" id="FooterCityMnu">
 		  		
-		  		<div class="category-menu">
-			  		<h5 class="mb-2"><a href="ads-list.php" class="d-block text-start"><?php echo Trans('app','Properties for rent in Kuwait'); ?></a></h5>
-			  		<ul>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for rent'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for rent'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for rent'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for rent'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for rent'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for rent'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for rent'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for rent'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for rent'); ?></a></li>
-			  		</ul>
-		  		</div>
-		  		
-		  		<div class="category-menu">
-			  		<h5 class="mb-2"><a href="ads-list.php" class="d-block text-start"><?php echo Trans('app','Properties for sale in Kuwait'); ?></a></h5>
-			  		<ul>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for sale'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for sale'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for sale'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for sale'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for sale'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for sale'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for sale'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for sale'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for sale'); ?></a></li>
-			  		</ul>
-		  		</div>
-		  		
-		  		<div class="category-menu">
-			  		<h5 class="mb-2"><a href="ads-list.php" class="d-block text-start"><?php echo Trans('app','Real estate for allowance in Kuwait'); ?></a></h5>
-			  		<ul>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for allowance'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for allowance'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for allowance'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for allowance'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for allowance'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for allowance'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for allowance'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for allowance'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for allowance'); ?></a></li>
-			  		</ul>
-		  		</div>
-		  		
-		  		
-		  		<div class="category-menu">
-			  		<h5 class="mb-2"><a href="ads-list.php" class="d-block text-start"><?php echo Trans('app','Properties to request in Kuwait'); ?></a></h5>
-			  		<ul>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for request'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for request'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for request'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for request'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for request'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for request'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for request'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for request'); ?></a></li>
-			  			<li><a href="ads-list.php"><?php echo Trans('app','Houses for request'); ?></a></li>
-			  		</ul>
-		  		</div>
 		  		
 		  	</div>
 		  </div>

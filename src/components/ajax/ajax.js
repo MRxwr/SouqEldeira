@@ -58,7 +58,6 @@ var currency='KD';
             var lists = response;
                 console.log(response.data);  
             }
-         
        },
        error => {
          console.error('Error:', error);
@@ -91,8 +90,7 @@ var currency='KD';
                 }
                 $('#saleType').html(html);
             }
-         
-       },
+         },
        error => {
          console.error('Error:', error);
        },
@@ -128,7 +126,6 @@ var loadBuildingType = function(){
                 }
                
             }
-         
        },
        error => {
          console.error('Error:', error);
@@ -176,6 +173,8 @@ var loadAreaRegion = function(){
      );
 }
 var loadFooterContent = function(townId=7){
+    var endpoint ='saleType';
+    const customHeaders = {};
       makeAjaxRequest(
         ajax_base_url + endpoint,
         'POST',
@@ -183,21 +182,30 @@ var loadFooterContent = function(townId=7){
         
         response => {
             if(response.status){
+              var html = '';
             var lists = response.data.sales;
                 // console.log(lists);
                 if (Array.isArray(lists)) {
-                    var html = '';
                     lists.forEach(item => {
-                        html += '<div class="radio-btn">';
-                        html += '<input type="radio" id="aSale' + item.saleId +'" name="SaleType" value="' + item.saleId + '" />';
-                        html += '<label for="aSale'+ item.saleId +'">' + item.SaleName + '</label>';
-                        html += '</div>';
+                      beforeHtml ='';
+                      beforeHtml += '<div class="category-menu">';
+                      beforeHtml += '<h5 class="mb-2"><a href="/search-view?SaleType=' + item.saleId + '" class="d-block text-start">Properties for ' + item.SaleName + ' in Kuwait</a></h5>';
+                      afterHtml = '</div>';
+                       // Usage
+                       getTownPropertyType(item.saleId,item.SaleName, townId, beforeHtml,afterHtml, function(finalHtml) {
+                        if (finalHtml) {
+                          $('#FooterCityMnu').append(finalHtml); // Append the concatenated HTML to the element
+                          console.log(finalHtml);
+                          // Do something with the concatenated HTML stored in exhtml
+                        } 
+                      });
                     });
+                    //console.log(html);
                 // Your further logic with the generated HTML
                 } else {
                 console.error('response.data is not an array.');
                 }
-                $('#saleType').html(html);
+                //$('#FooterCityMnu').html(html);
             }
           
         },
@@ -206,6 +214,40 @@ var loadFooterContent = function(townId=7){
         },
         customHeaders
       );
+}
+var getTownPropertyType = function(saleId,saleType, townId = 7, beforeHtml = '',afterHtml = '', callback) {
+  var endpoint = 'buildingType';
+  const customHeaders = {};
+  makeAjaxRequest(
+    ajax_base_url + endpoint,
+    'POST',
+    {},
+    response => {
+      if (response.status) {
+        var lists = response.data.buildingType;
+        if (Array.isArray(lists)) {
+          var newHtml = '<ul>'; // Start the unordered list
+            lists.forEach(item => {
+              newHtml += '<li><a href="/search-view?SaleType=' + saleId + '&propertyRegion=' + townId + '&propertyType=' + item.typeId + '"> ' + item.typeName + ' for ' + saleType + '</a></li>';
+            });
+            newHtml += '</ul>'; // End the unordered list
+          // Concatenate the existing HTML with the new HTML
+          var finalHtml = beforeHtml + newHtml +afterHtml ;
+          callback(finalHtml);
+        } else {
+          console.error('response.data is not an array.');
+          callback(finalHtml);
+        }
+      } else {
+        callback(finalHtml);
+      }
+    },
+    error => {
+      console.error('Error:', error);
+      callback(finalHtml);
+    },
+    customHeaders
+  );
 }
 
 loadFooterContent();
