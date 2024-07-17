@@ -38,6 +38,7 @@ var currency='KD';
         }
       });
   }
+  
   var getURLParameters = function () {
     const urlParams = new URLSearchParams(window.location.search);
     const params = {};
@@ -54,11 +55,11 @@ var currency='KD';
        'POST',
        {},
        response => {
-           if(response.status){
+          if(response.status){
             var lists = response;
                 console.log(response.data);  
             }
-       },
+         },
        error => {
          console.error('Error:', error);
        },
@@ -143,7 +144,7 @@ var loadAreaRegion = function(){
        response => {
         if(response.status){
             var lists = response.data.governorates;
-               / // console.log(lists);
+                // console.log(lists);
                 if (Array.isArray(lists)) {
                     const dropdown = document.getElementById('governoratesRegion');
                     var html = '';
@@ -179,7 +180,6 @@ var loadFooterContent = function(townId=7){
         ajax_base_url + endpoint,
         'POST',
         {},
-        
         response => {
             if(response.status){
               var html = '';
