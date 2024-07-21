@@ -31,12 +31,13 @@ var getSidebar = function (){
     if (userData !== null && userData.trim() !== '') {
             userData = JSON.parse(userData);
         }
-    console.log(userData);
+    //console.log(userData);
     var html='';
     var menu='';
     var lgout='';
     if (isLoggedIn === 'true') { //AddAd
-        
+        $('#Regular_Ad').text(userData.adv_normal_count);
+        $('#Special_Ad').text(userData.adv_star_count);
         $('#add-ad-btn').html('<a href="/add-ad" class="btn btn-primary btn-border-radius-1 btn-new-ad"><i class="bi bi-plus-lg"></i> <span>'+AddAd+'</span></a>');
 
          html +='<div class="profile">';

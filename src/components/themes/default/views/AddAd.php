@@ -34,11 +34,11 @@
 				  	<div class="main-radio-btn">			  		
 				  		<div class="radio-btn">
 					  		<input id="aRegular" type="radio" name="is_featured" value="0" />
-					  		<label for="aRegular"><?php echo Trans('app','Regular Ad'); ?> (1)</label> 
+					  		<label for="aRegular"><?php echo Trans('app','Regular Ad'); ?> <span id="Regular_Ad">(0)</span></label> 
 					  	</div>
 					  	<div class="radio-btn">
 					  		<input id="aSpecial" type="radio" name="is_featured" value="1" checked />
-					  		<label for="aSpecial"><?php echo Trans('app','Special Ad'); ?> (9)</label>  
+					  		<label for="aSpecial"><?php echo Trans('app','Special Ad'); ?> <span id="Special_Ad">(0)</span></label>  
 					  	</div>
 				 	</div>
 				 </div> 

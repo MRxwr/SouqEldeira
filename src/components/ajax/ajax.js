@@ -62,6 +62,7 @@ var currency='KD';
                 $('#twitter').attr('href', 'tel:'+data.twitter); 
                 $('#instagram').attr('href', 'tel:'+data.instagram);
                 $('#youtube').attr('href', 'tel:'+data.youtube);
+                
             }
          },
        error => {
