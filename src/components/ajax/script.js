@@ -31,7 +31,7 @@ var getSidebar = function (){
     if (userData !== null && userData.trim() !== '') {
             userData = JSON.parse(userData);
         }
-    //console.log(userData);
+    console.log(userData);
     var html='';
     var menu='';
     var lgout='';
@@ -55,7 +55,7 @@ var getSidebar = function (){
          html +='<div class="">';
          html +='<a href="/notifications" class="notifications">';
          html +='<i class="bi bi-bell"></i> ';
-         html +='<span class="badge badge-light">9</span>';				  
+         html +='<span class="badge badge-light">'+userData.NumbersOfNotification+'</span>';				  
          html +='</a>'; 
          html +='</div>';
          menu +='<li>';
@@ -73,7 +73,7 @@ var getSidebar = function (){
         html +='<div class="">';
         html +='<a href="/notifications" class="notifications">';
         html +='<i class="bi bi-bell"></i> ';
-        html +='<span class="badge badge-light">9</span>';				  
+        html +='<span class="badge badge-light">0</span>';				  
         html +='</a> ';
         html +='</div>';
 
@@ -102,9 +102,6 @@ var chnageMeta = function(title='',description='',keywords=''){
     }
   
 }
-
-
-
 
 var getMessage =function(){
     var alert_type = localStorage.getItem('alert_type');

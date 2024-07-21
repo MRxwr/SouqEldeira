@@ -58,19 +58,19 @@
 					
 					<ul class="socila-links list-unstyled my-4">
 				        <li>
-				            <a href=""><i class="bi bi-envelope"></i></a>
+				            <a href="" id="envelope"><i class="bi bi-envelope"></i></a>
 				        </li>
 				        <li>
-				            <a href=""><i class="bi bi-instagram"></i></a>
+				            <a href="" id="instagram"><i class="bi bi-instagram"></i></a>
 				        </li>
 				        <li>
-				            <a href=""><i class="bi bi-twitter-x"></i></a>
+				            <a href="" id="twitter"><i class="bi bi-twitter-x"></i></a>
 				        </li>
 				        <li>
-				            <a href=""><i class="bi bi-facebook"></i></a>
+				            <a href="" id="facebook"><i class="bi bi-facebook"></i></a>
 				        </li>
 				        <li>
-				            <a href=""><i class="bi bi-telephone-fill"></i></a>
+				            <a href="" id="telephone"><i class="bi bi-telephone-fill"></i></a>
 				        </li>
 				    </ul>
 					

@@ -56,8 +56,12 @@ var currency='KD';
        {},
        response => {
           if(response.status){
-            var lists = response;
-                console.log(response.data);  
+            var data = response.data;
+                console.log(response.data); 
+                $('#facebook').attr('href', 'tel:'+data.facebook);
+                $('#twitter').attr('href', 'tel:'+data.twitter); 
+                $('#instagram').attr('href', 'tel:'+data.instagram);
+                $('#youtube').attr('href', 'tel:'+data.youtube);
             }
          },
        error => {
@@ -76,10 +80,12 @@ var currency='KD';
        response => {
           if(response.status){
             var data = response.data;
-                console.log(response.data);  
+                //console.log(response.data);  
                 $('#footeremail_no').attr('href', 'mailto:'+data.email);
                 $('#footeremail_no').text(data.email);
+                $('#envelope').attr('href', 'mailto:'+data.email);
                 $('#footerphone_no').attr('href', 'tel:'+data.phone);
+                $('#telephone').attr('href', 'tel:'+data.phone);
                 $('#footerphone_no').text(data.phone);
                 $('#googleplay_url').attr('href', data.android);
                 $('#applestore_url').attr('href', data.apple);
