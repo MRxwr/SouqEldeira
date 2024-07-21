@@ -31,12 +31,12 @@
 						<div>
 							<i class="bi bi-telephone"></i> <?php echo Trans('app','Phone'); ?>
 							<br>
-							<a href="tel:66004080">66004080</a>
+							<a href="tel:66004080" id="footerphone_no">66004080</a>
 						</div>
 						<div>
 							<i class="bi bi-envelope"></i> <?php echo Trans('app','Email'); ?>
 							<br>
-							<a href="mailto:info@souqeldeira.com">info@souqeldeira.com</a>
+							<a href="mailto:info@souqeldeira.com" id="footeremail_no">info@souqeldeira.com</a>
 						</div>
 					</div>
 				</div>
@@ -44,8 +44,8 @@
 					
 					<h3><?php echo Trans('app','Applications'); ?></h3>
 					<div class="application-links text-center">
-						<a href=""><i class="bi bi-google-play"></i><span><?php echo Trans('app','Google Store'); ?></span></a>
-						<a href=""><i class="bi bi-apple"></i><span><?php echo Trans('app','Apple Store'); ?></span></a>
+						<a href="" id="googleplay_url"><i class="bi bi-google-play"></i><span><?php echo Trans('app','Google Store'); ?></span></a>
+						<a href="" id="applestore_url"><i class="bi bi-apple"></i><span><?php echo Trans('app','Apple Store'); ?></span></a>
 					</div>
 					<hr class="res"> 
 				</div>

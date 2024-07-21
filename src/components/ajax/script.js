@@ -468,3 +468,4 @@ $(document).ready(function() {
 
   });
   getSettings();
+  getFooterSettings();

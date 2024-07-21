@@ -11,17 +11,16 @@ var getLogout = function() {
         body: formdata,
         redirect: 'follow'
       };
-
     fetch(ajax_base_url+"logout", requestOptions)
     .then(response => response.json())
     .then(result => {
-    if (result.status === true) {
-        localStorage.setItem('isLoggedIn', 'false');
-        // Optionally, store the user data or token in localStorage
-        localStorage.setItem('userData', '');
-        localStorage.setItem('userToken', '');
-        window.location.href = '/login';    
-        } else {
+     if (result.status === true) {
+            localStorage.setItem('isLoggedIn', 'false');
+            // Optionally, store the user data or token in localStorage
+            localStorage.setItem('userData', '');
+            localStorage.setItem('userToken', '');
+            window.location.href = '/login';    
+        }else {
             localStorage.setItem('isLoggedIn', 'false');
             // Optionally, store the user data or token in localStorage
             localStorage.setItem('userData', '');

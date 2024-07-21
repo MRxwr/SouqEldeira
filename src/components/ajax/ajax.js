@@ -66,6 +66,32 @@ var currency='KD';
        customHeaders
      );
   }
+  var getFooterSettings = function(){
+    var endpoint ='settings/footer';
+    const customHeaders = {};
+    makeAjaxRequest(
+       ajax_base_url + endpoint,
+       'POST',
+       {},
+       response => {
+          if(response.status){
+            var data = response.data;
+                console.log(response.data);  
+                $('#footeremail_no').attr('href', 'mailto:'+data.email);
+                $('#footeremail_no').text(data.email);
+                $('#footerphone_no').attr('href', 'tel:'+data.phone);
+                $('#footerphone_no').text(data.phone);
+                $('#googleplay_url').attr('href', data.android);
+                $('#applestore_url').attr('href', data.apple);
+                
+            }
+         },
+       error => {
+         console.error('Error:', error);
+       },
+       customHeaders
+     );
+  }
   var loadProperType = function(){
     var endpoint ='saleType';
     const customHeaders = {};

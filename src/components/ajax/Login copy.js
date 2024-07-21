@@ -22,13 +22,13 @@ $(document).ready(function() {
         if (result.status === true) {
                 // Example using localStorage:
                 localStorage.setItem('isLoggedIn', 'true');
-                
                 // Optionally, store the user data or token in localStorage
                 localStorage.setItem('userData', JSON.stringify(result.data));
                 localStorage.setItem('userToken', result.data.token);
                 isLoggedIn();
             } else {
                 console.error('Login failed:', result.error);
+                localStorage.setItem('isLoggedIn', 'false');
             }
         })
         .catch(error => console.log('error', error));
