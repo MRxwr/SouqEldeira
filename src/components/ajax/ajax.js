@@ -62,7 +62,6 @@ var currency='KD';
                 $('#twitter').attr('href', 'tel:'+data.twitter); 
                 $('#instagram').attr('href', 'tel:'+data.instagram);
                 $('#youtube').attr('href', 'tel:'+data.youtube);
-                
             }
          },
        error => {
@@ -89,8 +88,7 @@ var currency='KD';
                 $('#telephone').attr('href', 'tel:'+data.phone);
                 $('#footerphone_no').text(data.phone);
                 $('#googleplay_url').attr('href', data.android);
-                $('#applestore_url').attr('href', data.apple);
-                
+                $('#applestore_url').attr('href', data.apple); 
             }
          },
        error => {
@@ -158,7 +156,6 @@ var loadBuildingType = function(){
                 } else {
                 console.error('response.data is not an array.');
                 }
-               
             }
        },
        error => {

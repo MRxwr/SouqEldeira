@@ -144,7 +144,7 @@ var getError = function(errors){
         if (Array.isArray(value) && value.length > 0) {
           // Log each text in the array
           value.forEach(function(text) {
-            console.log(text);
+            //console.log(text);
             html +='<li>'+text+'</li>';
           });
         }
@@ -298,17 +298,14 @@ const adDetails=function(data){
      htmlBot +='<p>'+data.description.original+'</p>';
      htmlBot +='<div class="contact">';
      htmlBot +='<a href="'+data.whatsapp+'" class="btn btn-default btn-border-radius-1 py-2 btn-wts"><i class="bi bi-whatsapp"></i></a>';
-    
      htmlBot +='<a href="" class="btn btn-default btn-border-radius-1 py-2 btn-call"><i class="bi bi-telephone"></i> '+Call+'</a> ';  
      htmlBot +='</div>';
      htmlBot +='</div>';
-     htmlBot +='<div class="col-sm-6">';
-         
+     htmlBot +='<div class="col-sm-6">'; 
      htmlBot +='<div id="carouselExampleCaptions" class="ad-in-view-carousel carousel slide" data-bs-ride="carousel">';
 
      htmlBot +='<div class="carousel-inner">';
                
-    
      if (data.images.hasOwnProperty('main')) {
         htmlBot +='<div class="carousel-item active bg-1">';
         htmlBot +='<object>';
@@ -347,9 +344,7 @@ const adDetails=function(data){
     //  htmlBot +='</a> ';
     //  htmlBot +='</div>';
              
-     htmlBot +='</div>';
-           
-           
+     htmlBot +='</div>'; 
      htmlBot +='<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">';
      htmlBot +='<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
      htmlBot +='<span class="visually-hidden">Previous</span>';
@@ -358,9 +353,7 @@ const adDetails=function(data){
      htmlBot +='<span class="carousel-control-next-icon" aria-hidden="true"></span>';
      htmlBot +='<span class="visually-hidden">Next</span>';
      htmlBot +='</button>';
-           
-           
-          
+              
      htmlBot +='<div class="carousel-indicators">';
      if (data.images.hasOwnProperty('main')) {
         htmlBot +='<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"><img class="d-block w-100" src="'+data.images.main+'" class="img-fluid"></button>';
@@ -374,23 +367,17 @@ const adDetails=function(data){
      //htmlBot +='<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"><img class="d-block w-100" src="assets/img/items/item-2.png" class="img-fluid"></button>';
      //htmlBot +='<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"><img class="d-block w-100" src="assets/img/items/item-3.png" class="img-fluid"></button>';
      //htmlBot +='<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"><img class="d-block w-100" src="assets/img/items/item.png" class="img-fluid"></button>';
-     htmlBot +='</div> ';
-           
-     htmlBot +='</div>';
-          
+     htmlBot +='</div> ';     
+     htmlBot +='</div>';  
      htmlBot +='</div>';
      htmlBot +='</div>';
      $('#ad-bot-details').html(htmlBot);
-
-
-
 }
 
 $(document).ready(function() {
     // Handle click event on elements with the specified class
     $(document.body).on("click", ".card-feature", function() {
       // Get the data-id attribute value
-   
       var dataId = $(this).data("id");
       var loadId = '';
       //var divId =$('#'+loadId);
@@ -411,7 +398,6 @@ $(document).ready(function() {
                   adDetails(response.data);
                   var location = response.data.location;
                   if (location.length > 0) {
-                    
                     $('#SameRegionAds'),text(location.town_title);
                   }
                   var similarAds = response.data.similarAds
@@ -463,7 +449,6 @@ $(document).ready(function() {
         .catch(error => console.log('error', error));
         
     });
-
   });
   getSettings();
   getFooterSettings();
