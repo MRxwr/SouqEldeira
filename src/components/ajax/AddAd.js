@@ -57,7 +57,11 @@ $('#add-ad-form').submit(function(e) {
         //formdata.append("telegram", $("#telegram").val());
         //formdata.append("website", $("#website").val());
     if (file1Input.files.length > 0) {
+        const galleryFiles = file1Input.files;
         formdata.append('image',file1Input.files[0]);
+        for (let i = 0; i < galleryFiles.length; i++) {
+            formData.append('gallery[]', galleryFiles[i]);
+        }
     }
     var requestOptions = {
         method: 'POST',
