@@ -31,11 +31,12 @@ var getSidebar = function (){
     if (userData !== null && userData.trim() !== '') {
             userData = JSON.parse(userData);
         }
-    //console.log(userData);
+    console.log(userData);
     var html='';
     var menu='';
     var lgout='';
     if (isLoggedIn === 'true') { //AddAd
+        var socials = userData.socials;
         $('#Regular_Ad').text(userData.adv_normal_count);
         $('#Special_Ad').text(userData.adv_star_count);
         $('#add-ad-btn').html('<a href="/add-ad" class="btn btn-primary btn-border-radius-1 btn-new-ad"><i class="bi bi-plus-lg"></i> <span>'+AddAd+'</span></a>');
@@ -65,6 +66,12 @@ var getSidebar = function (){
          menu +='<li>';
          menu +='<a class="logout" href="/logout"><i class="bi bi-box-arrow-right"></i>'+lnLogout+'</a>';
          menu +='</li>' 
+         $('#uemail').attr('href', 'mailto:'+userData.email);
+         $('#ufacebook').attr('href', socials.facebook);
+         $('#utwitter').attr('href', +socials.twitter); 
+         $('#uinstagram').attr('href', +socials.instagram);
+         $('#uyoutube').attr('href', +socials.youtube);
+         $('#utelephone').attr('href', 'tel:'+userData.phone);
     } else {
         html +='<div class="">';
         html +='<a href="/">';

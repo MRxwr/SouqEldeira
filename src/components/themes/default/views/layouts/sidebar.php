@@ -61,39 +61,23 @@
 		        <li>
 		            <a href="/contact"><i class="bi bi-envelope-arrow-up"></i><?php echo Trans('app','Contact Us'); ?></a>
 		        </li>
-		        
-		        
-		        
 		    </ul>
 			
 		</div>
 		
 		<div class="sidebar-element2">
-			
 			<div class="sidebar-contact-whatsapp mb-3">
-				<a href="" class="btn btn-default btn-border-radius-1 w-100 py-2">
+				<a href="" id="whatsapp" class="btn btn-default btn-border-radius-1 w-100 py-2">
 					<i class="bi bi-whatsapp"></i> <?php echo Trans('app','Contact us via WhatsApp'); ?>
 				</a>
 		    </div>
-			
 			<ul class="socila-links list-unstyled mb-3">
-		        <li>
-		            <a href=""><i class="bi bi-envelope"></i></a>
-		        </li>
-		        <li>
-		            <a href=""><i class="bi bi-instagram"></i></a>
-		        </li>
-		        <li>
-		            <a href=""><i class="bi bi-twitter-x"></i></a>
-		        </li>
-		        <li>
-		            <a href=""><i class="bi bi-facebook"></i></a>
-		        </li>
-		        <li>
-		            <a href=""><i class="bi bi-telephone"></i></a>
-		        </li>
-		    </ul>
-		    
+		        <li><a href="" id="uemail"><i class="bi bi-envelope"></i></a></li>
+		        <li><a href="" id="uinstagram"><i class="bi bi-instagram"></i></a></li>
+		        <li><a href="" id="utwitter"><i class="bi bi-twitter-x"></i></a></li>
+		        <li><a href="" id="ufacebook"><i class="bi bi-facebook"></i></a></li>
+		        <li><a href="" id="utelephone"><i class="bi bi-telephone"></i></a></li>
+		    </ul>  
 		</div>
 		
 	</div>
