@@ -72,6 +72,7 @@ var getSidebar = function (){
          $('#uinstagram').attr('href', +socials.instagram);
          $('#uyoutube').attr('href', +socials.youtube);
          $('#utelephone').attr('href', 'tel:'+userData.phone);
+         $('#whatsapp').attr('href', 'https://wa.me/965'+userData.phone);
     } else {
         html +='<div class="">';
         html +='<a href="/">';
@@ -90,7 +91,6 @@ var getSidebar = function (){
         menu +='</li>';
         $('#add-ad-btn').html('');
     }
-
     $('#sidebarHeader').html(html);
     $('#sidebarMenu li:eq(1)').after(menu);
     $('#sidebarMenu li:eq(10)').after(lgout);
@@ -161,6 +161,8 @@ var getError = function(errors){
 }
 
 var myListAds= function(lists){
+    var TownText ='';
+    var PropertyType='';
     var html ='';
     lists.forEach(item => {
         html +='<div class="col-lg-12">';
@@ -173,6 +175,12 @@ var myListAds= function(lists){
         }
        
         html +='<div class="row g-0"> ';
+        if(TownText==''){
+            TownText = item.location.town_title;
+        }
+        if(PropertyType==''){
+            PropertyType = item.type.human;
+        }
         if(item.is_featured){
           
         html +='<div class="col-4 col-sm-3 position-relative">';    

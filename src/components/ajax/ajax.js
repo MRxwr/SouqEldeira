@@ -225,7 +225,7 @@ var loadFooterContent = function(townId=7){
                        getTownPropertyType(item.saleId,item.SaleName, townId, beforeHtml,afterHtml, function(finalHtml) {
                         if (finalHtml) {
                           $('#FooterCityMnu').append(finalHtml); // Append the concatenated HTML to the element
-                          console.log(finalHtml);
+                          //console.log(finalHtml);
                           // Do something with the concatenated HTML stored in exhtml
                         } 
                       });

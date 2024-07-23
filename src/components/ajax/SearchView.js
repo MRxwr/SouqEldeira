@@ -17,6 +17,7 @@ var loadSearchResult = function(per_page){
 
   // Check if the element with class 'make-ajax-call' exists
   var elements = document.querySelectorAll('.load-ajax-call');
+  var TownText ='';
   // Loop through each element
       elements.forEach(function(element) {
           // Your code for each element goes here
