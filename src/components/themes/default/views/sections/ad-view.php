@@ -42,13 +42,11 @@
 				      	<img src="assets/img/items/item.png" class="d-block w-100 h-100" alt="...">
 			       </a>      
 			    </div>
-			    
 			    <div class="carousel-item bg-2">      
 			       <a href="assets/img/items/item-2.png" data-toggle="lightbox" data-gallery="mixedgallery">
 			       		<img src="assets/img/items/item-2.png" class="d-block w-100 h-100" alt="...">
 			       </a> 
 			    </div>
-			    
 			    <div class="carousel-item bg-3">      
 			       <a href="assets/img/items/item-3.png" data-toggle="lightbox" data-gallery="mixedgallery">
 				      	<img src="assets/img/items/item-3.png" class="d-block w-100 h-100" alt="...">

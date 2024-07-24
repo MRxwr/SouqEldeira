@@ -161,6 +161,7 @@ var getError = function(errors){
 }
 
 var myListAds= function(lists){
+    var parameters = getURLParameters();
     var TownText ='';
     var PropertyType='';
     var html ='';
@@ -180,6 +181,7 @@ var myListAds= function(lists){
         }
         if(PropertyType==''){
             PropertyType = item.type.human;
+
         }
         if(item.is_featured){
           
@@ -273,6 +275,17 @@ var myListAds= function(lists){
   html +='</div>';
                    
     });
+    if(parameters.SaleType==''){
+        $('#dataTitle').text('All');
+    }else{
+        $('#dataTitle').text(parameters.SaleType);
+    }
+    //alert(parameters.propertyRegion);
+    if(parameters.propertyRegion=='' || parameters.propertyRegion=='Area or Region'){
+        $('#dataRegion').text('All Regions');
+    }else{
+        $('#dataRegion').text(TownText);
+    }
    return html;
 }
 const adDetails=function(data){
@@ -313,7 +326,7 @@ const adDetails=function(data){
      htmlBot +='<p>'+data.description.original+'</p>';
      htmlBot +='<div class="contact">';
      htmlBot +='<a href="'+data.whatsapp+'" class="btn btn-default btn-border-radius-1 py-2 btn-wts"><i class="bi bi-whatsapp"></i></a>';
-     htmlBot +='<a href="" class="btn btn-default btn-border-radius-1 py-2 btn-call"><i class="bi bi-telephone"></i> '+Call+'</a> ';  
+     htmlBot +='<a href="tel:'+data.phone+'" class="btn btn-default btn-border-radius-1 py-2 btn-call"><i class="bi bi-telephone"></i> '+Call+'</a> ';  
      htmlBot +='</div>';
      htmlBot +='</div>';
      htmlBot +='<div class="col-sm-6">'; 

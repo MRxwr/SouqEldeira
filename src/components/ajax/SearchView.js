@@ -38,16 +38,20 @@ var loadSearchResult = function(per_page){
            makeAjaxRequest(
               ajax_base_url + endpoint,
               'POST',
-              { saleId: type,townId:region,propertyType:propertyType,priceFrom:priceFrom,priceTo:priceTo,per_page : per_page },
+              { saleId: type,townId:region,building_type_id:propertyType,priceFrom:priceFrom,priceTo:priceTo,per_page : per_page },
               response => {
                   if(response.status){
                       console.log(loadId);
                       var listData = response.data.data;
+                      var total = response.data.total
+                      $('#total_ads').text(total+(total>1?' Ads':' Ad'));
                        if (listData.length > 0) {
                           var Mylist = myListAds(listData);
                           if(Mylist) {
                             $('#'+loadId).html('<div class="row gy-3">'+Mylist+'</div>') 
                           }   
+                         }else{
+                           $('#'+loadId).html('<div class="row gy-3">No Data</div>') 
                          }
                    }
               },

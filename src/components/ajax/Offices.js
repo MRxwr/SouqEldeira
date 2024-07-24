@@ -26,9 +26,8 @@ window.onload = function() {
                             if(Mylist) {
                                 $('#'+loadId).html(Mylist);
                             }    
-                           }
+                        }
                      }
-                  
                 },
                 error => {
                   console.error('Error:', error);
@@ -39,8 +38,10 @@ window.onload = function() {
 };
 
 var ListOffices= function(lists){
+    console.log(lists);
     var html ='';
     lists.forEach(item => {
+        var socials = item.socials
         html +='<div class="col-6 col-lg-4">';
         html +='<div class="card card-office text-center">';
         html +='<a class="card-img" href="office-view?slug='+item.id+'">';
@@ -50,10 +51,10 @@ var ListOffices= function(lists){
         html +='<h5 class="card-title fw-bold"><a href="office-view?slug='+item.id+'">'+item.name+'</a></h5>';
         html +='<div class="card-social">';
             html +='<ul>';
-                html +='<li><a href=""><i class="bi bi-facebook"></i></a></li>';
-                html +='<li><a href=""><i class="bi bi-twitter-x"></i></a></li>';
-                html +='<li><a href=""><i class="bi bi-instagram"></i></a></li>';
-                html +='<li><a href=""><i class="bi bi-envelope"></i></a></li>';
+                html +='<li><a href="'+socials.facebook+'"><i class="bi bi-facebook"></i></a></li>';
+                html +='<li><a href="'+socials.twitter+'"><i class="bi bi-twitter-x"></i></a></li>';
+                html +='<li><a href="'+socials.instagram+'"><i class="bi bi-instagram"></i></a></li>';
+                html +='<li><a href="'+socials.telegram+'"><i class="bi bi-telegram"></i></a></li>';
             html +='</ul>';
         html +='</div>';
         html +='<div class="mx-0"> ';

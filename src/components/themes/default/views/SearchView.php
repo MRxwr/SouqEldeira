@@ -13,22 +13,16 @@
 	        	</div> 
 	        	<div class="div">
 	        		<span class="title"><?php echo Trans('app','Type'); ?></span>
-	        		<span class="data" id="dataTitle">
-	        			<span><?php echo Trans('app','Sale'); ?><span> 
-	        		</span>
+	        		<span class="data" id="dataTitle"></span>
 	        	</div>
 	        	<div class="div">
 	        		<span class="title"><?php echo Trans('app','Region'); ?></span>
-	        		<span class="data" id="dataRegion">
-	        			<span><?php echo Trans('app','Khiran'); ?></span>
-	        			<span><?php echo Trans('app','Khiran'); ?></span>
-	        			<span><?php echo Trans('app','Khiran'); ?></span>
-	        		</span>
+	        		<span class="data" id="dataRegion"></span>
 	        	</div>
 	        </div>
 			
 			<div class="search-title mb-3 mt-2">  
-				<h4><i class="bi bi-search"></i><?php echo Trans('app','Search Result'); ?><span>(115 <?php echo Trans('app','Ad'); ?>)</span></h4>
+				<h4><i class="bi bi-search"></i><?php echo Trans('app','Search Result'); ?><span id="total_ads">(0 <?php echo Trans('app','Ad'); ?>)</span></h4>
 			</div>
 			
 			<div class="ads-section">

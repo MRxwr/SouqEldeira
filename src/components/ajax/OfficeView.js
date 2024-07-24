@@ -13,7 +13,6 @@ window.onload = function() {
                   'POST',
                   { id: adId},
                   response => {
-                    
                       if(response.status){
                         var html ='';
                         var data = response.data.office;
@@ -30,7 +29,7 @@ window.onload = function() {
                           html +='<li><a href="'+data.socials.facebook+'"><i class="bi bi-facebook"></i></a></li>';
                           html +='<li><a href="'+data.socials.twitter+'"><i class="bi bi-twitter-x"></i></a></li>';
                           html +='<li><a href="'+data.socials.instagram+'"><i class="bi bi-instagram"></i></a></li>';
-                          html +='<li><a href="'+data.socials.facebook+'"><i class="bi bi-envelope"></i></a></li>';
+                          html +='<li><a href="'+data.socials.telegram+'"><i class="bi bi-telegram"></i></a></li>';
                           html +='</ul>';
                           html +='</div>';
                           html +='<div class="mx-0">'; 
@@ -39,14 +38,13 @@ window.onload = function() {
                           html +='<span>'+data.socials.website+'</span>';
                           html +='</a>';
                           html +='</div>';
-                            
                           html +='<div class="office-side-desc"> '; 
                           html +='<div class="office-description my-3"> ';
                           //html +='<h3 class="mb-2">'+Description+'</h3>';
                           //html +='<p>office-description</p> ';
                           html +='</div>';
                           html +='<div class="mx-0"> ';
-                          html +='<a href="#" class="btn btn-primary px-4"><i class="bi bi-telephone-fill mx-2"></i>'+Call+'</a>';
+                          html +='<a href="tel:'+data.phone+'" class="btn btn-primary px-4"><i class="bi bi-telephone-fill mx-2"></i>'+Call+'</a>';
                           html +='</div>';
                           html +='</div>';
                             
