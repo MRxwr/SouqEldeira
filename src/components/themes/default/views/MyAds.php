@@ -136,7 +136,7 @@
 						</div> 
 						
 						<div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="#" id="view-more-ads" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View More'); ?></a>
 					    </div>
 						
 					</div>
@@ -154,7 +154,7 @@
 						</div> 
 						
 						<div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="#" id="My-Ended-view-more"  class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
 					    </div>
 
 					</div>
@@ -170,7 +170,7 @@
 						  <h4 class="mb-4"><?php echo Trans('app','Favourite'); ?></h4>	  	  
 						  <?php include 'sections/Ads-Favourite-list.php'; ?>
 						  <div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="" class="view-all"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="" id="Favourite-view-more" class="view-all"><?php echo Trans('app','View All'); ?></a>
 						  </div>
 						</div>
 					</div> 

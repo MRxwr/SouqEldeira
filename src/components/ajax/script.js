@@ -85,7 +85,6 @@ var getSidebar = function (){
         html +='<span class="badge badge-light">0</span>';				  
         html +='</a> ';
         html +='</div>';
-
         menu +='<li>';
         menu +='<a href="/login"><i class="bi bi-box-arrow-right"></i>'+Login+'</a>';
         menu +='</li>';

@@ -1,60 +1,32 @@
+document.getElementById('view-more-ads').addEventListener('click', function(event) {
+    event.preventDefault(); 
+    per_page = per_page+5;
+    // Your custom JavaScript logic here
+    MyAdsLoad(per_page,'cuurrent-ads');
+  });
+  document.getElementById('My-Ended-view-more').addEventListener('click', function(event) {
+    event.preventDefault(); 
+    per_page = per_page+5;
+    // Your custom JavaScript logic here
+    MyAdsLoad(per_page,'ended-ads');
+  });
+  document.getElementById('Favourite-view-more').addEventListener('click', function(event) {
+    event.preventDefault(); 
+    per_page = per_page+5;
+    // Your custom JavaScript logic here
+    MyAdsLoad(per_page,'MyFavouriteAds');
+  });
+  
+			
+			
 window.onload = function() {
     isLoggedOut();
-    // Check if the element with class 'make-ajax-call' exists
-    var elements = document.querySelectorAll('.load-ajax-call');
-    // Loop through each element
-    elements.forEach(function(element) {
-        // Your code for each element goes here
-        // For example, you can perform an AJAX call for each element
-       
-        var per_page =10;
-        var loadId = element.id;
-        var divId =$('#'+loadId);
-        var endpoint =divId.attr('data-endpoint');
-        var type =divId.attr('data-type');
-        var userToken = localStorage.getItem('userToken');
-        const customHeaders = {
-            'Authorization': 'Bearer '+userToken,
-        };
-         makeAjaxRequest(
-            ajax_base_url + endpoint,
-            'POST',
-            { type: type , per_page:per_page},
-            response => {
-                if(response.status){
-                   console.log(loadId);
-                   var listData = response.data[0].data;
-                    if (listData.length > 0) {
-                        if(loadId =='cuurrent-ads' ){
-                           var Mylist = myListAds(listData);   
-                           $('#'+loadId).html(Mylist) 
-                        }
-                        if(loadId =='ended-ads' ){
-                            var Myendlist = myEndedAds(listData);   
-                            $('#'+loadId).html(Myendlist) 
-                         }
-                         if(loadId =='MyFavouriteAds' ){
-                            if (listData.length > 0) {
-                                var Mylist = myListAds(listData);
-                                  if(Mylist) {
-                                      $('#'+loadId).html('<div class="row gy-3">'+Mylist+'</div>') 
-                                  }  
-                               }
-                         }
-                      }
-                }
-               
-            },
-            error => {
-              console.error('Error:', error);
-            },
-            customHeaders
-          );
-    });
+    MyAdsLoad(per_page ,'cuurrent-ads');
+    MyAdsLoad(per_page ,'ended-ads');
+    MyAdsLoad(per_page ,'MyFavouriteAds');
     $('body').on('click', '.delete', function(event) {
         // Retrieve the data-item-id attribute to get the ID of the clicked element
         var itemId = $(this).attr('data-id');
-       
         var endpoint ='my-ads/delete';
         var userToken = localStorage.getItem('userToken');
         const customHeaders = {
@@ -75,8 +47,7 @@ window.onload = function() {
                         var message=   result.message;
                     }
                     setMessage('error','Error:'+message)   
-                }
-               
+                } 
             },
             error => {
               console.error('Error:', error);
@@ -167,6 +138,58 @@ window.onload = function() {
     });
     
 };
+
+var MyAdsLoad = function(per_page=10 ,loadId){ 
+    // Check if the element with class 'make-ajax-call' exists
+        var divId =$('#'+loadId);   
+        var endpoint =divId.attr('data-endpoint');
+        var type =divId.attr('data-type');
+        var userToken = localStorage.getItem('userToken');
+        const customHeaders = {
+            'Authorization': 'Bearer '+userToken,
+        };
+         makeAjaxRequest(
+            ajax_base_url + endpoint,
+            'POST',
+            { type: type , per_page:per_page},
+            response => {
+                if(response.status){
+                   console.log(loadId);
+                   var listData = response.data[0].data;
+                    if (listData.length > 0) {
+                        if(loadId =='cuurrent-ads' ){
+                           var Mylist = myListAds(listData);   
+                           $('#'+loadId).html(Mylist) 
+                        }
+                        if(loadId =='ended-ads' ){
+                            var Myendlist = myEndedAds(listData);   
+                            $('#'+loadId).html(Myendlist) 
+                         }
+                         if(loadId =='MyFavouriteAds' ){
+                            if (listData.length > 0) {
+                                var Mylist = myListAds(listData);
+                                  if(Mylist) {
+                                      $('#'+loadId).html('<div class="row gy-3">'+Mylist+'</div>') 
+                                  }  
+                               }
+                         }
+                      }
+                  }else{
+                      if(result.errors ){
+                          var message=   result.message + getError(result.errors);
+                      }else{
+                          var message=   result.message;
+                      }
+                      setMessage('error','Error:'+message)
+                  }
+            },
+            error => {
+              console.error('Error:', error);
+            },
+            customHeaders
+          );
+    
+}
 $(document).on("click", ".paynow", function() {
 // Retrieve the value of the data-id attribute
 var dataId = $(this).data("id");

@@ -23,7 +23,7 @@ window.onload = function() {
                         newHtml += '</div>'; // End the unordered list
                     });
                 
-               // $('#Content').html(data);
+                $('#accordionFlushExample').html(newHtml);
             }
        },
        error => {
