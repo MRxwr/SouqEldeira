@@ -1,3 +1,4 @@
+var per_page =10;
 document.getElementById('view-more-ads').addEventListener('click', function(event) {
     event.preventDefault(); 
     per_page = per_page+5;
@@ -139,7 +140,7 @@ window.onload = function() {
     
 };
 
-var MyAdsLoad = function(per_page=10 ,loadId){ 
+var MyAdsLoad = function(per_page ,loadId){ 
     // Check if the element with class 'make-ajax-call' exists
         var divId =$('#'+loadId);   
         var endpoint =divId.attr('data-endpoint');
@@ -158,21 +159,34 @@ var MyAdsLoad = function(per_page=10 ,loadId){
                    var listData = response.data[0].data;
                     if (listData.length > 0) {
                         if(loadId =='cuurrent-ads' ){
-                           var Mylist = myListAds(listData);   
-                           $('#'+loadId).html(Mylist) 
-                        }
+                           var Mylist = myListAds(listData);  
+                           if(Mylist){
+                               $('#'+loadId).html('<div class="row gy-3">'+Mylist+'</div>')
+                           } else{
+                               $('#'+loadId).html('<div class="row gy-3">Data not found!!</div>')
+                           }
+                           //$('#'+loadId).html(Mylist); 
+                          }
                         if(loadId =='ended-ads' ){
-                            var Myendlist = myEndedAds(listData);   
-                            $('#'+loadId).html(Myendlist) 
+                            var Myendlist = myEndedAds(listData);  
+                            if(Myendlist){
+                                $('#'+loadId).html(Myendlist);
+                            }else{
+                                $('#'+loadId).html('<div class="row gy-3">Data not found!!</div>')
+                            }
                          }
                          if(loadId =='MyFavouriteAds' ){
                             if (listData.length > 0) {
                                 var Mylist = myListAds(listData);
                                   if(Mylist) {
                                       $('#'+loadId).html('<div class="row gy-3">'+Mylist+'</div>') 
+                                  }else{
+                                    $('#'+loadId).html('<div class="row gy-3">Data not found!!</div>')
                                   }  
                                }
                          }
+                      }else{
+                          $('#'+loadId).html('<div class="row gy-3">Data not found!!</div>')
                       }
                   }else{
                       if(result.errors ){
