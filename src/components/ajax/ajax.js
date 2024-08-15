@@ -90,6 +90,33 @@ var currency='KD';
                 $('#googleplay_url').attr('href', data.android);
                 $('#applestore_url').attr('href', data.apple); 
                 console.log(data.footer_content);
+                var ln=$('html').attr('lang');
+                if (Array.isArray(data.footer_content)) {
+                 var lists = data.footer_content;
+                  lists.forEach(item => {
+                    var slg='title_'+ln;
+                    contentHtml ='';
+                      contentHtml += '<div class="category-menu">';
+                      contentHtml += '<h5 class="mb-2"><a href="/search-view?SaleType=' + item.propertyType+'" class="d-block text-start">Properties for ' + item.slg + ' in Kuwait</a></h5>';
+                      var items = lists.items;
+                        if (Array.isArray(items)) {
+                          var contentHtml = '<ul>'; // Start the unordered list
+                          items.forEach(dipitem => {
+                            contentHtml += '<li><a href="/search-view?SaleType=' + saleId + '&propertyRegion=' + townId + '&propertyType=' + item.typeId + '"> ' + item.typeName + ' for ' + saleType + '</a></li>';
+                            });
+                            contentHtml += '</ul>'; // End the unordered list
+                          // Concatenate the existing HTML with the new HTML
+                          var finalHtml = beforeHtml + newHtml +afterHtml ;
+                          callback(finalHtml);
+                        }
+                     contentHtml = '</div>';
+                     // Usage
+                  });
+                  //console.log(html);
+              // Your further logic with the generated HTML
+              } else {
+              console.error('response.data is not an array.');
+              }
             }
          },
        error => {
