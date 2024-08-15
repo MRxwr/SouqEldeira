@@ -89,6 +89,7 @@ var currency='KD';
                 $('#footerphone_no').text(data.phone);
                 $('#googleplay_url').attr('href', data.android);
                 $('#applestore_url').attr('href', data.apple); 
+                console.log(data.footer_content);
             }
          },
        error => {

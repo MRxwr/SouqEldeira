@@ -1,5 +1,4 @@
 $(document).ready(function() {
-   
     $('#login-form').submit(function(e) {
         // Prevent the default form submission
         e.preventDefault();
@@ -17,8 +16,6 @@ $(document).ready(function() {
         fetch(ajax_base_url+"login", requestOptions)
         .then(response => response.json())
         .then(result => {
-            // Assuming the API returns a JSON response with a status field
-        //console.log(result);
         if (result.status === true) {
                 // Example using localStorage:
                 localStorage.setItem('isLoggedIn', 'true');
