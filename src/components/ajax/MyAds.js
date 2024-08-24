@@ -65,8 +65,8 @@ window.onload = function() {
             myHeaders.append("Authorization", "Bearer " + userToken);
        
         var formdata = new FormData();
-        formdata.append("count", $("form#BuySpecial .count").val());
-        formdata.append("type",'nomal');
+        formdata.append("count", $("form#BuyRegular .count").val());
+        formdata.append("type",'normal');
         formdata.append("redirect_to", pay_redirect_to);
         var requestOptions = {
             method: 'POST',
@@ -118,7 +118,7 @@ window.onload = function() {
         .then(response => response.json())
         .then(result => {
             // Assuming the API returns a JSON response with a status field
-        //console.log(result);
+            //console.log(result);
         if (result.status === true) {
                if(result.data.redirect_gateway!==null){
                   var url = result.data.redirect_gateway;
@@ -296,7 +296,7 @@ var myEndedAds= function(lists){
         html +='<div class="viewers"><i class="bi bi-eye"></i>'+item.views+'</div>';
         //html +='<div class="status"><span class="published ad-status-type"><i class="bi bi-check"></i></span></div>';
         html +='<div class="actions">';
-        html +='<a href="javascript:void(0);" class="republish" data-id="'+item.id+'"><i class="bi bi-arrow-repeat"></i> Republish</a>';
+        html +='<a href="javascript:void(0);" class="republish" data-id="'+item.id+'"><i class="bi bi-arrow-repeat"></i> Republish <span id="loadingIndicator" class="spinner-border spinner-border-sm loadingIndicator" role="status" aria-hidden="true" style="display:none;"></span></a>';
         //html +='<a href="#!" class="update"><i class="bi bi-pencil-square"></i></a>';
         //html +='<a href="#!" class="delete"><i class="bi bi-trash3"></i></a>';
         html +='</div> ';
@@ -360,7 +360,7 @@ var getSubcription = function(){
                 html +='<span class="content">'+ExpireData+' : '+item.expire_time+' Days</span>';
                 html +='</div>';
                 html +='<div class="buy">';
-                html +='<a href="javascript:void(0)" class="btn btn-primary py-0 btn-sm paynow" data-id="'+item.id+'">'+Pay+'</a>';  
+                html +='<a href="javascript:void(0)" class="btn btn-primary py-0 btn-sm paynow" data-id="'+item.id+'"><span id="loadingIndicator" class="loadingIndicator spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display:none;"></span>'+Pay+'</a>';  
                 html +='</div>';
                 html +='</div>';
                 html +='</div>';

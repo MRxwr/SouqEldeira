@@ -34,12 +34,15 @@
 						<div class="add-ads-balance-big">
 						<div class="row d-felx align-items-center add-ads-balance mt-4">
 							
-							<div class="col-md-4 col-lg-4 col-form">   
+							<div class="col-md-4 col-lg-4 col-form"> 
+								<div id="progressContainer" style="display:none;">
+									<div id="progressBar" style="width: 0%; height: 20px; background-color: #4caf50;"></div>
+								</div>  
 								<div class="buy-ad">
 									<span><?php echo Trans('app','Buy Regular Ad'); ?></span>
 									<form class="buy-ad-form buy-ad-regular" id="BuyRegular"> 
 								        <div class="form-outline">
-								        	<input type="number" min="1" class="form-control count" name="quantity" placeholder="<?php echo Trans('app','Qt'); ?>" required />
+								        	<input type="number" min="1" class="form-control count" name="quantity" placeholder="<?php echo Trans('app','Qt'); ?>" value="1" required />
 								        </div> 
 								        <div class="text-center">(x <span id="pp_normal">1</span> <?php echo Trans('app','Dinar'); ?>)</div> 
 			      						<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Pay'); ?></button> 
@@ -50,7 +53,7 @@
 									<span><?php echo Trans('app','Buy Special Ad'); ?></span>
 									<form class="buy-ad-form special-ad-regular" id="BuySpecial">
 								        <div class="form-outline">
-								        	<input type="number" min="1"  class="form-control count" name="quantity" placeholder="<?php echo Trans('app','Qt'); ?>"  required/>
+								        	<input type="number" min="1"  class="form-control count" name="quantity" placeholder="<?php echo Trans('app','Qt'); ?>" value="1"  required/>
 								        </div> 
 								        <div class="text-center">(x <span id="pp_premium">1</span> <?php echo Trans('app','Dinar'); ?>)</div> 
 			      						<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Pay'); ?></button>
