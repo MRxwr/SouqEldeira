@@ -67,7 +67,14 @@ var loadMyadDetail = function(){
                           $("#phone").val(data.phone);
                           $("#description").val(data.description.htmlLess);
                           $("#file1Input").html('<img src="'+data.images.main+'" style="width:100%"/>');
-                         
+                          if(data.images.other){
+                            var items = data.images.other;
+                            var pkey=2;
+                            items.forEach(dipitem => {
+                                $("#file"+pkey+"Input").html('<img src="'+dipitem+'" style="width:100%"/>');
+                                pkey++;
+                            });
+                          }
                        }
                   },
                   error => {
@@ -100,6 +107,13 @@ $('#edit-ad-form').submit(function(e) {
         formdata.append("phone", $("#phone").val());
     if (file1Input.files.length > 0) {
         formdata.append('image',file1Input.files[0]);
+    }
+    if (file1Input.files.length > 0) {
+        const galleryFiles = file1Input.files;
+        formdata.append('image',file1Input.files[0]);
+        for (let i = 0; i < galleryFiles.length; i++) {
+            formData.append('gallery[]', galleryFiles[i]);
+        }
     }
     var requestOptions = {
         method: 'POST',

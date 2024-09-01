@@ -215,16 +215,15 @@ var myListAds= function(lists){
     
         html +='<div class="carousel-item">';
         html +='<object>';
-       
         html +='</a>'; 
         html +='</object> ';
         html +='</div>';
         html +='<div class="carousel-item">';
-        html +='<object>';
-        html +='<a href="assets/img/items/item-3.png" data-toggle="lightbox" data-gallery="mixedgallery"> ';
-        html +='<img src="assets/img/items/item-3.png" class="d-block w-100 h-100" alt="...">';
-        html +='</a> ';
-        html +='</object> ';
+          html +='<object>';
+            html +='<a href="assets/img/items/item-3.png" data-toggle="lightbox" data-gallery="mixedgallery"> ';
+            html +='<img src="assets/img/items/item-3.png" class="d-block w-100 h-100" alt="...">';
+            html +='</a> ';
+          html +='</object> ';
         html +='</div>';
         html +='</div>';
         html +='<button class="carousel-control-prev" type="button" data-bs-target="#carouselAdMainImages" data-bs-slide="prev">';
@@ -237,9 +236,9 @@ var myListAds= function(lists){
         html +='</button>';
         html +='</div>';      
         html +='</div>';
+
     }else{
         html +='<div class="col-4 col-sm-3 position-relative">';
-        
         if (item.images.hasOwnProperty('main')) {
             html +='<img src="'+item.images.main+'" class="card-img h-100" alt="...">';
         }else{
@@ -304,11 +303,12 @@ const adDetails=function(data){
     htmlTop +='</div>';
     htmlTop +='<div class="col-sm-7"> '; 
     htmlTop +='<div class="ad-top-details-items">';
-    if(data.is_favorite){
+
+     if(data.is_favorite){
         htmlTop +='<div class="text-success"><span class="sp1 text-success"><i class="bi bi-heart"></i> </span> <span class="sp2 text-success">'+Favourite+'</span></div>';
-    }else{
+     }else{
         htmlTop +='<div class="make_favourite"  data-id="'+data.id+'"><span class="sp1"><i class="bi bi-heart"></i> </span> <span class="sp2">'+Favourite+'</span></div>';
-    }
+     }
     
     htmlTop +='<div class=""><span class="sp1"><i class="bi bi-clock"></i> </span> <span class="sp2">'+data.created_at.human+'</span></div>';
     htmlTop +='<div class=""><span class="sp1"><i class="bi bi-eye"></i>   </span> <span class="sp2">'+data.views+'</span></div>';
@@ -383,14 +383,13 @@ const adDetails=function(data){
               
      htmlBot +='<div class="carousel-indicators">';
      if (data.images.hasOwnProperty('main')) {
-        htmlBot +='<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"><img class="d-block w-100" src="'+data.images.main+'" class="img-fluid"></button>';
-        
-        //html +='<img src="'+item.images.main+'" class="card-img h-100" alt="...">';
+         htmlBot +='<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"><img class="d-block w-100" src="'+data.images.main+'" class="img-fluid"></button>';
+         // html +='<img src="'+item.images.main+'" class="card-img h-100" alt="...">';
         }else{
             htmlBot +='<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"><img class="d-block w-100" src="'+data.images+'" class="img-fluid"></button>';
         
         }
-    
+
      //htmlBot +='<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"><img class="d-block w-100" src="assets/img/items/item-2.png" class="img-fluid"></button>';
      //htmlBot +='<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"><img class="d-block w-100" src="assets/img/items/item-3.png" class="img-fluid"></button>';
      //htmlBot +='<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"><img class="d-block w-100" src="assets/img/items/item.png" class="img-fluid"></button>';
