@@ -2,7 +2,7 @@ var per_page =5;
 window.onload = function() {
   const params = getURLParameters();
 $('#dataTitle').text(params.SaleType);
-$('#dataRegion').text(params.propertyRegion);
+
   loadSearchResult(per_page)
 };
 document.getElementById('searchLoad').addEventListener('click', function(event) {
@@ -44,6 +44,7 @@ var loadSearchResult = function(per_page){
                       console.log(loadId);
                       var listData = response.data.data;
                       var total = response.data.total
+                      $('#dataRegion').text(params.propertyRegion);
                       $('#total_ads').text(total+(total>1?' Ads':' Ad'));
                        if (listData.length > 0) {
                           var Mylist = myListAds(listData);
