@@ -51,6 +51,7 @@ window.onload = function() {
                   html +='<div class="notification-list_feature-img notifyview" data-id="'+item.id+'">';
                     html +='<i class="bi bi-bell"></i> ';
                   html +='</div>';
+                  
                   html +='</div>';
                 });
                  $('#NotificationList').html(html);
@@ -69,6 +70,7 @@ window.onload = function() {
   $(document).on("click", ".notifyview", function() {
     var dataId = $(this).data("id");
     var endpoint ='notifications/view';
+
     var userToken = localStorage.getItem('userToken');
     const customHeaders = {
           'Authorization': 'Bearer '+userToken,
@@ -78,14 +80,14 @@ window.onload = function() {
         'POST',
         { id: dataId},
         response => {
-          if (result.status === true) {
-              setMessage('success','Success:'+result.message);
+          if (response.status === true) {
+              setMessage('success','Success:'+response.message);
               location.reload();
           } else {
-              if(result.errors ){
-                  var message=   result.message + getError(result.errors);
+              if(response.errors ){
+                  var message=   response.message + getError(response.errors);
               }else{
-                  var message=   result.message;
+                  var message=   response.message;
               }
               setMessage('error','Error:'+message)
           }

@@ -394,14 +394,14 @@ $(document).on("click", ".republish", function() {
         'POST',
         { id: dataId},
         response => {
-          if (result.status === true) {
-              setMessage('success','Success:'+result.message);
+          if (response.status === true) {
+              setMessage('success','Success:'+response.message);
               location.reload();
           } else {
-              if(result.errors ){
-                  var message=   result.message + getError(result.errors);
+              if(response.errors ){
+                  var message=   response.message + getError(response.errors);
               }else{
-                  var message=   result.message;
+                  var message=   response.message;
               }
               setMessage('error','Error:'+message)
           }
