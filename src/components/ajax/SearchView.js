@@ -1,7 +1,7 @@
 var per_page =5;
 window.onload = function() {
   const params = getURLParameters();
-$('#dataTitle').text(params.propertyType);
+$('#dataTitle').text(params.SaleType);
 $('#dataRegion').text(params.propertyRegion);
   loadSearchResult(per_page)
 };

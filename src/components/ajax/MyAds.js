@@ -296,7 +296,7 @@ var myEndedAds= function(lists){
         html +='<div class="viewers"><i class="bi bi-eye"></i>'+item.views+'</div>';
         //html +='<div class="status"><span class="published ad-status-type"><i class="bi bi-check"></i></span></div>';
         html +='<div class="actions">';
-        html +='<a href="javascript:void(0);" class="republish" data-id="'+item.id+'"><i class="bi bi-arrow-repeat"></i> Republish <span id="loadingIndicator" class="spinner-border spinner-border-sm loadingIndicator" role="status" aria-hidden="true" style="display:none;"></span></a>';
+        html +='<a href="javascript:void(0);" class="republish" data-id="'+item.id+'"><i class="bi bi-arrow-repeat"></i> Republish </a>';
         //html +='<a href="#!" class="update"><i class="bi bi-pencil-square"></i></a>';
         //html +='<a href="#!" class="delete"><i class="bi bi-trash3"></i></a>';
         html +='</div> ';

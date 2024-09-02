@@ -48,7 +48,7 @@ window.onload = function() {
                   html +='<p class="text-muted"><small>'+ item.created_at.human+'</small></p>';
                   html +='</div>';
                   html +='</div>';
-                  html +='<div class="notification-list_feature-img">';
+                  html +='<div class="notification-list_feature-img notifyview" data-id="'+item.id+'">';
                     html +='<i class="bi bi-bell"></i> ';
                   html +='</div>';
                   html +='</div>';
@@ -65,3 +65,34 @@ window.onload = function() {
         customHeaders
       );
   }
+
+  $(document).on("click", ".notifyview", function() {
+    var dataId = $(this).data("id");
+    var endpoint ='notifications/view';
+    var userToken = localStorage.getItem('userToken');
+    const customHeaders = {
+          'Authorization': 'Bearer '+userToken,
+      };
+     makeAjaxRequest(
+        ajax_base_url + endpoint,
+        'POST',
+        { id: dataId},
+        response => {
+          if (result.status === true) {
+              setMessage('success','Success:'+result.message);
+              location.reload();
+          } else {
+              if(result.errors ){
+                  var message=   result.message + getError(result.errors);
+              }else{
+                  var message=   result.message;
+              }
+              setMessage('error','Error:'+message)
+          }
+        },
+        error => {
+          console.error('Error:', error);
+        },
+        customHeaders
+      );
+});
