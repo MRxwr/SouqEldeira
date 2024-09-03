@@ -32,9 +32,11 @@ window.onload = function() {
                 var html ='';
                 NotificationsList.forEach(item => {
                   if(item.isRead == false){
-                    var ReadClass='notification-list_unread';
+                    var ReadClass='notification-list--unread';
+                    var actionLink =''
                   }else{
                     var ReadClass='';
+                    var iconLink ='<i class="bi bi-trash"></i>'
                   }
                   //console.log(item);
                   html +='<div class="notification-list '+ReadClass+'">';
@@ -48,9 +50,18 @@ window.onload = function() {
                   html +='<p class="text-muted"><small>'+ item.created_at.human+'</small></p>';
                   html +='</div>';
                   html +='</div>';
-                  html +='<div class="notification-list_feature-img notifyview" data-id="'+item.id+'">';
+                  if(item.isRead == false){
+                    html +='<div class="notification-list_feature-img notifyview" data-id="'+item.id+'">';
                     html +='<i class="bi bi-bell"></i> ';
-                  html +='</div>';
+                    html +='</div>';
+                  }else{
+                    html +='<div class="notification-list_feature-img notifytrash" data-id="'+item.id+'">';
+                    html +='<i class="bi bi-trash3"></i> ';
+                    html +='</div>';
+                  }
+                  // html +='<div class="notification-list_feature-img notifyview" data-id="'+item.id+'">';
+                  //   html +='<i class="bi bi-bell"></i> ';
+                  // html +='</div>';
                   
                   html +='</div>';
                 });
@@ -97,4 +108,35 @@ window.onload = function() {
         },
         customHeaders
       );
+});
+$(document).on("click", ".notifytrash", function() {
+  var dataId = $(this).data("id");
+  var endpoint ='notifications/delete';
+
+  var userToken = localStorage.getItem('userToken');
+  const customHeaders = {
+        'Authorization': 'Bearer '+userToken,
+    };
+   makeAjaxRequest(
+      ajax_base_url + endpoint,
+      'POST',
+      { id: dataId},
+      response => {
+        if (response.status === true) {
+            setMessage('success','Success:'+response.message);
+            location.reload();
+        } else {
+            if(response.errors ){
+                var message=   response.message + getError(response.errors);
+            }else{
+                var message=   response.message;
+            }
+            setMessage('error','Error:'+message)
+        }
+      },
+      error => {
+        console.error('Error:', error);
+      },
+      customHeaders
+    );
 });
