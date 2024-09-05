@@ -44,7 +44,8 @@ var loadSearchResult = function(per_page){
                       console.log(loadId);
                       var listData = response.data.data;
                       var total = response.data.total
-                      $('#dataRegion').text(params.propertyRegion);
+                      var  regiondetails = response.data.regiondetails.name_en
+                      $('#dataRegion').text(regiondetails);
                       $('#total_ads').text(total+(total>1?' Ads':' Ad'));
                        if (listData.length > 0) {
                           var Mylist = myListAds(listData);
