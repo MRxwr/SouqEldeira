@@ -22,7 +22,6 @@ var loadSearchResult = function(per_page){
       elements.forEach(function(element) {
           // Your code for each element goes here
           // For example, you can perform an AJAX call for each element
-          
           var loadId = element.id;
           var divId =$('#'+loadId);
           var endpoint =divId.attr('data-endpoint');

@@ -24,15 +24,6 @@ if (isset($_POST['forget']) && !empty($_POST['username']))
 		<?php include 'layouts/alert.php'; ?>
 		<div class="col-md-11 mx-auto">
 		<div class="guest-form-action">
-		
-
-		
-		
-
-
-
-
-  
     <div class="form-container">
 	
 		<div class="mb-4 text-center">
@@ -40,7 +31,7 @@ if (isset($_POST['forget']) && !empty($_POST['username']))
 		</div>
 
 		
-	    <?php if($verify === 0) { ?>  
+	     
 		<form id="forget-password-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
 			
 		  <div class="mb-0 text-start form-title-as-label">
@@ -53,18 +44,25 @@ if (isset($_POST['forget']) && !empty($_POST['username']))
 		  </div>
   
 		  <!-- Submit button -->
-		  <button type="submit" name="forget" class="btn btn-primary btn-block w-100 mb-4 py-2"><?php echo Trans('app','Send Activation Code'); ?></button>
+		  <button type="submit" name="forget" id="forgetPasswordBtn" class="btn btn-primary btn-block w-100 mb-4 py-2"><?php echo Trans('app','Send Activation Code'); ?></button>
 
 		</form>
-		<?php } ?>
 		
-		<?php if($verify === 1) { ?>
-		<form id="forget-password-verify-form" method="post">
+		
+		
+		<form id="forget-password-verify-form" method="post" style="display:none;">
 		
 		  <div class="mb-0 text-start form-title-as-label"> 
 			<h5><?php echo Trans('app','Verification Code'); ?></h5>
 		  </div>
-		  
+		  <!-- Email input -->
+		  <div class="form-outline mb-4">
+			<input type="text" class="form-control" name="username" placeholder="<?php echo Trans('app','Phone number or E-mail address'); ?>" />
+		  </div>
+		  <!-- Email input -->
+		  <div class="form-outline mb-4">
+			<input type="text" class="form-control" name="password" placeholder="<?php echo Trans('app','password'); ?>" />
+		  </div>
 		  <!-- Email input -->
 		  <div class="form-outline"> 
 			<input type="text" class="form-control" name="code" placeholder="<?php echo Trans('app','Please Enter Verification Code'); ?>" />
@@ -74,12 +72,11 @@ if (isset($_POST['forget']) && !empty($_POST['username']))
 		  	<span id="timerOTP"></span>
 		  	<a href="#!"><?php echo Trans('app','Re-send'); ?></a>
 		  </div> 
- 
 		  <!-- Submit button -->
 		  <button type="submit" name="verify" class="btn btn-primary btn-block w-100 mb-4 py-2"><?php echo Trans('app','Verification'); ?></button> 
 
 		</form>
-		<?php } ?>
+		
 	</div>
 </div>
 </div>
