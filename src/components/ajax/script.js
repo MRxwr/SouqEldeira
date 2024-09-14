@@ -44,7 +44,7 @@ var getSidebar = function (){
          html +='<div class="profile">';
          html +='<div class="avatar">';
          html +='<a href="/profile" class="d-block">';
-         html +='<img src="'+userData.avatar+'" class="img-fluid" alt="...">';
+         html +='<img src="'+userData.avatar+'" class="img-fluid" alt="..." style="border-radius: 50px;">';
          html +='</a>';
          html +='</div>';
         
@@ -55,7 +55,7 @@ var getSidebar = function (){
         
          html +='</div>';
          html +='<div class="">';
-         html +='<a href="/notifications" class="notifications">';
+         html +='<a href="/notifications" class="notifications" style="padding: 10px;">';
          html +='<i class="bi bi-bell"></i> ';
          html +='<span class="badge badge-light">'+userData.NumbersOfNotification+'</span>';				  
          html +='</a>'; 
@@ -76,11 +76,11 @@ var getSidebar = function (){
     } else {
         html +='<div class="">';
         html +='<a href="/">';
-        html +='<img src="assets/img/logo-1.png">';
+        html +='<img src="assets/img/logo-1.png" style="border-radius: 50px;">';
         html +='</a>';
         html +='</div>';
         html +='<div class="">';
-        html +='<a href="/notifications" class="notifications">';
+        html +='<a href="/notifications" class="notifications" style="padding: 10px;">';
         html +='<i class="bi bi-bell"></i> ';
         html +='<span class="badge badge-light">0</span>';				  
         html +='</a> ';
