@@ -24,7 +24,7 @@
 				
 			</div>
 			
-		</div>   
+		</div>    
 		
 		</div>
 		<!-- End page-content -->
