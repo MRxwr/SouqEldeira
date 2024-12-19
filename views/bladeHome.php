@@ -6,7 +6,7 @@
 			   <i class="bi bi-exclamation-circle"></i> <?php echo Trans('app','A message from the manager to manage the website'); ?>
 			</div>  
     		 
-    		<form class="search-area" action="search-view.php">
+    		<form class="" action="search-view.php">
     		<div class="search-area-row"> 
     			 
     			<div class="row">
@@ -107,7 +107,7 @@
     		
     	</div> 
         
-        <div class="homePageSecondContent">
+        <div class="homePageSecondContent my-3">
         	<div class="container container-project">
 		        <div class="alert alert-primary welcome-message" role="alert">
 				   <i class="bi bi-exclamation-circle"></i> <?php echo Trans('app','A message from the manager to manage the website'); ?>
