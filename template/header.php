@@ -1,4 +1,5 @@
 <?php include 'admin/includes/config.php'; ?>
+<?php include 'admin/includes/functions.php'; ?>
 <?php include 'admin/includes/language.php'; ?>
 
 <!DOCTYPE html>
