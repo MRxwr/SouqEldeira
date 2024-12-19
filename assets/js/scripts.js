@@ -88,7 +88,7 @@ function timer(remaining) {
   
   m = m < 10 ? '0' + m : m;
   s = s < 10 ? '0' + s : s;
-  document.getElementById('timerOTP').innerHTML = m + ':' + s;
+  //document.getElementById('timerOTP').innerHTML = m + ':' + s;
   remaining -= 1;
   
   if(remaining >= 0 && timerOn) {
