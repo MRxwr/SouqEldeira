@@ -128,7 +128,7 @@
       </div>
       <div class="modal-body">
       	<div class="container container-project">
-        <?php require_once __DIR__ . '/ad-view.php';  ?>   
+        <?php require_once __DIR__ . 'views/bladeAdView.php';  ?>   
         </div>  
       </div>
      
