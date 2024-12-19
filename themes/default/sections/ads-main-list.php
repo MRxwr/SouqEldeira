@@ -1,5 +1,5 @@
 <div class="ads-main-list">
-<div class="row gy-3">
+<div class="row gy-3"> 
   	
 	<div class="col-lg-12">
   		<a style="cursor: pointer" class="card card-ad card-feature" data-bs-toggle="modal" data-bs-target="#ad_modal">
