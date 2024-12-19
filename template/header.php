@@ -1,3 +1,6 @@
+<?php include 'admin/includes/config.php'; ?>
+<?php include 'admin/includes/language.php'; ?>
+
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION['lang']; ?>" dir="<?php echo $_SESSION['dir']; ?>">
     <head>
