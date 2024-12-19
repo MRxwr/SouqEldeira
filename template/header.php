@@ -30,14 +30,14 @@
     	<link rel="stylesheet" href="assets/components/owl-carousel/v-2.3.4/dist/assets/owl.theme.default.min.css">
 
         <!-- Theme Css  -->
-		<link href="assets/css/style.css?v=<?php echo $config['v'] ?>" rel="stylesheet" />
+		<link href="assets/css/style.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
         <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
-     	<link href="assets/css/style-rtl.css?v=<?php echo $config['v'] ?>" rel="stylesheet" />
+     	<link href="assets/css/style-rtl.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
     	<?php } ?>
     	
-    	<link href="assets/css/responsive.css?v=<?php echo $config['v'] ?>" rel="stylesheet" />
+    	<link href="assets/css/responsive.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
     	<?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
-     	<link href="assets/css/responsive-rtl.css?v=<?php echo $config['v'] ?>" rel="stylesheet" />
+     	<link href="assets/css/responsive-rtl.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
     	<?php } ?>
 		
     </head>
