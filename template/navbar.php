@@ -23,5 +23,3 @@
 </div>
 </header>
 <!-- Navbar End -->
-
-<?php include 'sidebar.php'; ?> 
