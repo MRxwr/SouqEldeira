@@ -1,7 +1,3 @@
-<?php include 'config/config.php'; ?>
-<?php include 'config/language.php'; ?>
-
-
 <?php
 $verify = 0;
 if (isset($_POST['forget']) && !empty($_POST['username'])) 
@@ -12,16 +8,6 @@ if (isset($_POST['forget']) && !empty($_POST['username']))
    }
 }
 ?>
-
-
-<?php include 'themes/'.$config['theme'].'/layouts/start.php'; ?> 
-
-        <?php include 'themes/'.$config['theme'].'/layouts/header.php'; ?> 
-        
-		<!-- Start page-content -->
-		<div class="page-content my-5">
-		
-		<div class="container container-project">
 		<div class="row"> 
 		<div class="col-md-11 mx-auto">
 		<div class="guest-form-action">
@@ -94,10 +80,3 @@ if (isset($_POST['forget']) && !empty($_POST['username']))
 </div>
 </div>
 </div>
-</div>   
-      
-	    </div>
-		<!-- End page-content -->
-		
-<?php include 'themes/'.$config['theme'].'/layouts/footer.php'; ?> 
-<?php include 'themes/'.$config['theme'].'/layouts/end.php'; ?> 

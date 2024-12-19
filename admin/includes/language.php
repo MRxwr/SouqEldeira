@@ -72,7 +72,7 @@ function Trans($file,$word)
   }
   */
   
-	$data = include(__DIR__ . "/../lang/".$_SESSION["lang"]."/".$file.".php");
+	$data = include(__DIR__ . "/../../lang/".$_SESSION["lang"]."/".$file.".php");
 	if(isset($data[$word]))
 		return $data[$word];   
 	else 

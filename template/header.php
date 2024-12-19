@@ -1,3 +1,6 @@
+<?php include 'config/config.php'; ?>
+<?php include 'config/language.php'; ?>
+
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION['lang']; ?>" dir="<?php echo $_SESSION['dir']; ?>">
     <head>
@@ -50,3 +53,11 @@
         </div>
     </div>
     <!-- /End Preloader -->
+
+        <?php include 'template/navbar.php'; ?> 
+        <?php include 'template/sidebar.php'; ?> 
+        
+        <!-- Start page-content -->
+		<div class="page-content my-5">
+			
+	        <div class="container container-project">

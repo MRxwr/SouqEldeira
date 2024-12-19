@@ -1,13 +1,4 @@
-<?php include 'config/config.php'; ?>
-<?php include 'config/language.php'; ?>
 
-<?php include 'themes/'.$config['theme'].'/layouts/start.php'; ?> 
-
-        <?php include 'themes/'.$config['theme'].'/layouts/header.php'; ?> 
-        
-        <div class="page-content my-5">
-        
-        <div class="container container-project">
         	
 	      
 			
@@ -106,10 +97,3 @@
 			  
 			  
 			</div>
-			
-		</div>
-		 
-        </div> 
-      
-<?php include 'themes/'.$config['theme'].'/layouts/footer.php'; ?> 
-<?php include 'themes/'.$config['theme'].'/layouts/end.php'; ?> 

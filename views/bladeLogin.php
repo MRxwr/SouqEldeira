@@ -1,7 +1,3 @@
-<?php include 'config/config.php'; ?>
-<?php include 'config/language.php'; ?>
-
-
 <?php
 $msg = '';
 if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) 
@@ -23,15 +19,6 @@ if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['passw
    }
 }
 ?>
-
-<?php include 'themes/'.$config['theme'].'/layouts/start.php'; ?> 
-
-        <?php include 'themes/'.$config['theme'].'/layouts/header.php'; ?> 
-        
-		<!-- Start page-content -->
-		<div class="page-content my-5">
-		
-		<div class="container container-project">
 		<div class="row"> 
 		<div class="col-md-11 mx-auto">
 		<div class="guest-form-action">
@@ -166,10 +153,3 @@ if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['passw
 </div>
 </div>
 </div>
-</div>   
-      
-	    </div>
-		<!-- End page-content -->
-		
-<?php include 'themes/'.$config['theme'].'/layouts/footer.php'; ?> 
-<?php include 'themes/'.$config['theme'].'/layouts/end.php'; ?> 
