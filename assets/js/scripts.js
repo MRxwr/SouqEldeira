@@ -11,7 +11,9 @@ $(document).ready(function () {
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
- 
+    
+    
+    
     $('.advanced-search-a').on('click', function() { 
 	    $('.advanced-search-view').slideToggle('', function() {  
 	       // if ($(this).css('display') == 'block') $(this).css('display', 'flex'); // enter desired display type
@@ -27,40 +29,37 @@ $(document).ready(function () {
     
 });
 
-// $(document).ready(function() {
-//   var owl = $('.owl-carousel-offices');
-//   owl.owlCarousel({
-//     margin: 10,
-//     nav: true, 
-//     navText:["<div class='nav-btn prev-slide'><span aria-label='Previous'>›</span></div>","<div class='nav-btn next-slide'><span aria-label='Next'>‹</span></div>"],
-//     loop: true,
-//     rtl: true,
-//     responsive: {
-//       0: {
-//         items: 1
-//       },
-//       600: {
-//         items: 3
-//       },
-//       1000: {
-//         items: 5
-//       }
-//     }
-//   })
-// });
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-  // Simulate a delay (replace this with your actual content loading logic)
-  setTimeout(function() {
-      // Hide the preloader
-      document.getElementById('preloader').style.display = 'none';
-
-      // Show the content
-      //document.getElementById('content').style.display = 'block';
-  }, 2000); // Adjust the delay time as needed
+$(document).ready(function() {
+  var owl = $('.owl-carousel-offices');
+  owl.owlCarousel({
+    margin: 10,
+    nav: true, 
+    navText:["<div class='nav-btn prev-slide'><span aria-label='Previous'>›</span></div>","<div class='nav-btn next-slide'><span aria-label='Next'>‹</span></div>"],
+    loop: true,
+    rtl: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 3
+      },
+      1000: {
+        items: 5
+      }
+    }
+  })
 });
+
+
+window.onload = function () {
+    window.setTimeout(fadeout, 500);
+}
+
+function fadeout() {
+    document.querySelector('.preloader').style.opacity = '0';
+    document.querySelector('.preloader').style.display = 'none';
+}
 
 
 /*=====================================
@@ -89,7 +88,7 @@ function timer(remaining) {
   
   m = m < 10 ? '0' + m : m;
   s = s < 10 ? '0' + s : s;
- // document.getElementById('timerOTP').innerHTML = m + ':' + s;
+  document.getElementById('timerOTP').innerHTML = m + ':' + s;
   remaining -= 1;
   
   if(remaining >= 0 && timerOn) {
@@ -108,4 +107,4 @@ function timer(remaining) {
   alert('Timeout for otp');
 }
 
-//timer(120);
+timer(120);

@@ -46,7 +46,6 @@ if (empty($_SESSION["lang"]) || empty($_SESSION["dir"])) {
     $_SESSION["lang"]        = $defaultLang;
 	$_SESSION["dir"]         = $defaultDir; 
 	$_SESSION["sourceLang"]  = $sourceLang; 
-    
 } 
 
 
@@ -74,7 +73,6 @@ function Trans($file,$word)
   */
   
 	$data = include(__DIR__ . "/../lang/".$_SESSION["lang"]."/".$file.".php");
-    
 	if(isset($data[$word]))
 		return $data[$word];   
 	else 

@@ -3,6 +3,8 @@ return array
 (
 	'Entshr Front Structure' => 'هيكل الفرونت الخاص بانتشر',
 	'Standard Ui Tempelate Structure' => 'الشكل الرئيسيى',
+	
+	//
     'Add Ad' => 'أضافة إعلان',
     'Contact Us' => 'تواصل معنا',
     'Phone' => 'الهاتف',
@@ -152,6 +154,15 @@ return array
     'liked your ad' => 'اعجب بإعلانك',
     '10 mins ago' => 'منذ 10 دقائق',
     'Load More' => 'عرض المزبد',
+    'Manage' => 'تحكم',
+    'Manage' => 'تحكم',
+    'Manage' => 'تحكم',
+    'Manage' => 'تحكم',
+    'Manage' => 'تحكم',
+    'Manage' => 'تحكم',
+    'Manage' => 'تحكم',
+    'Manage' => 'تحكم',
+    'Manage' => 'تحكم',
     'Manage' => 'تحكم',
 );
 ?>

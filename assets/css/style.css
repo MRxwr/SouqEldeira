@@ -897,7 +897,6 @@ color:var(--pt-main-color);
     line-height: 38px;
     font-size: 18px;
     color:var(--pt-main-color);
-    padding: 10px;
 }
 
 .card-office .card-body
@@ -1416,7 +1415,7 @@ color:var(--pt-main-color);
     gap:20px;
 }
 
-.add-ad-images label
+.add-ad-images span
 {
 	width: 100%;
     text-align: center;
