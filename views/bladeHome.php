@@ -121,7 +121,7 @@
 			
 			<div class="ads-section">
 			  <h4 class="mb-3"><?php echo Trans('app','Latest ads for sale'); ?></h4>		  
-			  <?php require_once('template/adsMainList.php?type=1'); ?>
+			  <?php require_once 'template/adsMainList.php?type=1'; ?>
 			  <div class="d-block text-end mt-3">
 			  	<a href="" class="btn btn-primary"><?php echo Trans('app','More'); ?> ...</a>
 			  </div>
@@ -129,7 +129,7 @@
 			
 			<div class="ads-section">
 			  <h4 class="mb-3"><?php echo Trans('app','For rent the latest ads'); ?></h4>		  
-			  <?php require_once('template/adsMainList.php?type=1'); ?> 
+			  <?php require_once 'template/adsMainList.php?type=1'; ?> 
 			  <div class="d-block text-end mt-3">
 			  	<a href="" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i> </a>
 			  </div>
@@ -137,7 +137,7 @@
 			
 			<div class="ads-section">
 			  <h4 class="mb-3"><?php echo Trans('app','For the latest ads allowance'); ?></h4>		  
-			  <?php require_once('template/adsMainList.php?type=1'); ?> 
+			  <?php require_once 'template/adsMainList.php?type=1'; ?> 
 			  <div class="d-block text-end mt-3">
 			  	<a href="" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i> </a>
 			  </div>
@@ -145,7 +145,7 @@
 			
 			<div class="ads-section">
 			  <h4 class="mb-3"><?php echo Trans('app','To request the latest announcements'); ?></h4>		  
-			  <?php require_once('template/adsMainList.php?type=1'); ?> 
+			  <?php require_once 'template/adsMainList.php?type=1'; ?> 
 			  <div class="d-block text-end mt-3">
 			  	<a href="" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i> </a>
 			  </div>
