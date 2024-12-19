@@ -1,6 +1,3 @@
-<?php include 'config/config.php'; ?>
-<?php include 'config/language.php'; ?>
-
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION['lang']; ?>" dir="<?php echo $_SESSION['dir']; ?>">
     <head>
