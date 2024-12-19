@@ -171,6 +171,6 @@
         <script src="assets/components/bs5-lightbox/v-1.8.3/dist/index.bundle.min.js"></script>
         
         <!-- Core theme JS-->
-        <script src="assets/js/scripts.js?v=<?php echo $config['v'] ?>"></script>
+        <script src="assets/js/scripts.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
     </body>
 </html>
