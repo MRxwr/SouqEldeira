@@ -118,7 +118,7 @@ if( isset($_POST["updateRank"]) ){
 </div>
 </div>
 				
-				<!-- Bordered Table -->
+<!-- Bordered Table -->
 <form method="post" action="">
 <input name="updateRank" type="hidden" value="1">
 <div class="col-sm-12">
