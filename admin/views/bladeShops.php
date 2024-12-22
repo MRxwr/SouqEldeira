@@ -180,6 +180,7 @@ if( isset($_POST["updateRank"]) ){
 					<label id="instagram<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["instagram"] ?></label>
 					<label id="email<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["email"] ?></label>
 					<label id="mobile<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["mobile"] ?></label>
+					<label id="url<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["url"] ?></label>
 				</div>
 				</td>
 				</tr>
@@ -201,10 +202,17 @@ if( isset($_POST["updateRank"]) ){
 	<script>
 		$(document).on("click",".edit", function(){
 			var id = $(this).attr("id");
-			var enTitle = $("#enTitle"+id).html();
-			var arTitle = $("#arTitle"+id).html();
-			$("input[name=enTitle]").val(enTitle);
-			$("input[name=arTitle]").val(arTitle);
 			$("input[name=update]").val(id);
+			$("input[name=enTitle]").val($("#enTitle"+id).html()).focus();
+			$("input[name=arTitle]").val($("#arTitle"+id).html());
+			tinymce.get('enDetails').setContent($("#enDetails"+id).html());
+			tinymce.get('arDetails').setContent($("#arDetails"+id).html());
+			$("input[name=logo]").val($("#logo"+id).html());
+			$("input[name=facebook]").val($("#facebook"+id).html());
+			$("input[name=twitter]").val($("#twitter"+id).html());
+			$("input[name=instagram]").val($("#instagram"+id).html());
+			$("input[name=email]").val($("#email"+id).html());
+			$("input[name=mobile]").val($("#mobile"+id).html());
+			$("input[name=url]").val($("#url"+id).html());
 		})
 	</script>
