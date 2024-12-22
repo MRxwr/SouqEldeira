@@ -145,6 +145,7 @@ if( isset($_POST["updateRank"]) ){
 	<table class="table display responsive product-overview mb-30" id="myTable">
 		<thead>
 		<tr>
+		<th class="text-nowrap">#</th>
 		<th><?php echo direction("English Title","الإسم الإنجليزي") ?></th>
 		<th><?php echo direction("Arabic Title","الإسم العربي") ?></th>
 		<th class="text-nowrap"><?php echo direction("Actions","الخيارات") ?></th>
