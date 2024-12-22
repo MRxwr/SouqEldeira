@@ -68,7 +68,7 @@ if( isset($_POST["enTitle"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
-            <div class="col-md-4">
+            <div class="col-md-3">
 			<label><?php echo direction("Category","القسم") ?></label>
 				<select name="categoryId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
 					<?php
@@ -82,7 +82,7 @@ if( isset($_POST["enTitle"]) ){
 				</select>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<label><?php echo direction("Package","الباقة") ?></label>
 			<select name="packageId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
 				<?php
@@ -96,7 +96,7 @@ if( isset($_POST["enTitle"]) ){
 			</select>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<label><?php echo direction("Governate","المحافظة") ?></label>
 			<select name="governateId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
 				<?php
@@ -110,7 +110,7 @@ if( isset($_POST["enTitle"]) ){
 			</select>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<label><?php echo direction("Area","المنطقة") ?></label>
 			<select name="areaId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
 				<?php
