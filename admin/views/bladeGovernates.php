@@ -30,6 +30,13 @@ if( isset($_POST["enTitle"]) ){
 		}
 	}
 }
+
+if( isset($_POST["updateRank"]) ){
+	for( $i = 0; $i < sizeof($_POST["rank"]); $i++){
+		updateDB("governates",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
+	}
+	header("LOCATION: ?v=Governates");
+}
 ?>
 
 <div class="row">		
@@ -67,6 +74,8 @@ if( isset($_POST["enTitle"]) ){
 </div>
 				
 				<!-- Bordered Table -->
+<form method="post" action="">
+<input name="updateRank" type="hidden" value="1">
 <div class="col-sm-12">
 <div class="panel panel-default card-view">
 <div class="panel-heading">
@@ -77,11 +86,13 @@ if( isset($_POST["enTitle"]) ){
 </div>
 <div class="panel-wrapper collapse in">
 <div class="panel-body">
+<button class="btn btn-primary"><?php echo direction("Submit rank","أرسل الترتيب") ?></button> 
 <div class="table-wrap mt-40">
 <div class="table-responsive">
 	<table class="table display responsive product-overview mb-30" id="myTable">
 		<thead>
 		<tr>
+		<th>#</th>
 		<th><?php echo direction("English Title","العنوان بالإنجليزي") ?></th>
 		<th><?php echo direction("Arabic Title","العنوان بالعربي") ?></th>
 		<th class="text-nowrap"><?php echo direction("الخيارات","Actions") ?></th>
@@ -91,11 +102,15 @@ if( isset($_POST["enTitle"]) ){
 		<tbody>
 		<?php 
 		$orderBy = direction("enTitle","arTitle");
-		if( $governate = selectDB("governates","`status` = '0' ORDER BY `{$orderBy}` ASC") ){
+		if( $governate = selectDB("governates","`status` = '0' ORDER BY `rank` ASC") ){
 			for( $i = 0; $i < sizeof($governate); $i++ ){
 				$counter = $i + 1;
 				?>
 				<tr>
+                <td>
+                <input name="rank[]" class="form-control" type="number" value="<?php echo $governate[$i]["rank"] ?>">
+                <input name="id[]" class="form-control" type="hidden" value="<?php echo $governate[$i]["id"] ?>">
+                </td>
 				<td id="enTitle<?php echo $governate[$i]["id"]?>" ><?php echo $governate[$i]["enTitle"] ?></td>
 				<td id="arTitle<?php echo $governate[$i]["id"]?>" ><?php echo $governate[$i]["arTitle"] ?></td>
 				<td class="text-nowrap">
