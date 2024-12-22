@@ -103,10 +103,10 @@ if( isset($_POST["enTitle"]) ){
 				$governateId = 0;
 				$directionOfArea = direction("enTitle","arTitle");
 				if( $governates = selectDB("governates","`status` = '0' ORDER BY `rank` ASC") ){
-					$governate = selectDB("governates","`id` = '{$areas[$i]["governateId"]}'");
-					$governateTitle = direction($governate[0]["enTitle"],$governate[0]["arTitle"]);
-					echo "<optgroup label='{$governateTitle}'>";
 					for( $i = 0; $i < sizeof($governates); $i++ ){
+						$governate = selectDB("governates","`id` = '{$governates[$i]["id"]}'");
+						$governateTitle = direction($governate[0]["enTitle"],$governate[0]["arTitle"]);
+						echo "<optgroup label='{$governateTitle}'>";
 						if( $areas = selectDB("areas","`status` = '0' AND `governateId` = '{$governates[$i]["id"]}' ORDER BY `{$directionOfArea}` ASC") ){
 							for( $j = 0; $j < sizeof($areas); $j++ ){
 								$title = direction($areas[$j]["enTitle"],$areas[$j]["arTitle"]);
