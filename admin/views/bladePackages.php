@@ -90,12 +90,12 @@ if( isset($_POST["updateRank"]) ){
 			<input type="number" step="any" name="quantitySP" class="form-control" >
 			</div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
 			<label><?php echo direction("Expirey","المدة") ?></label>
 			<input type="number" step="any" name="expirey" class="form-control" >
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-6">
 			<label><?php echo direction("Color","اللون") ?></label>
 			<input type="color" name="color" class="form-control" >
 			</div>
