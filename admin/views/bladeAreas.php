@@ -113,7 +113,7 @@ if( isset($_POST["enTitle"]) ){
 				$counter = $i + 1;
 				?>
 				<tr>
-				<td><?php echo $governateTitle ?><label style="display:none" id="governateId<?php echo $areas[$i]["id"]?>"><?php echo $areas[$i]["governateId"] ?></label></td>
+				<td><?php echo $governateTitle ?><label style="display:none" id="governate<?php echo $areas[$i]["id"]?>"><?php echo $areas[$i]["governateId"] ?></label></td>
 				<td id="enTitle<?php echo $areas[$i]["id"]?>" ><?php echo $areas[$i]["enTitle"] ?></td>
 				<td id="arTitle<?php echo $areas[$i]["id"]?>" ><?php echo $areas[$i]["arTitle"] ?></td>
 				<td class="text-nowrap">
