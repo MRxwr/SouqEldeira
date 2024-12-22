@@ -93,9 +93,12 @@ if( isset($_POST["enTitle"]) ){
 		$orderBy = direction("enTitle","arTitle");
 		if( $areas = selectDB("areas","`status` = '0' ORDER BY `{$orderBy}` ASC") ){
 			for( $i = 0; $i < sizeof($areas); $i++ ){
+				$governate = selectDB("governates","`id` = '{$areas[$i]["governateId"]}'");
+				$governateTitle = direction($governate[0]["enTitle"],$governate[0]["arTitle"]);
 				$counter = $i + 1;
 				?>
 				<tr>
+				<td><?php echo $governateTitle ?><label style="display:none"><?php echo $areas[$i]["governateId"] ?></label></td>
 				<td id="enTitle<?php echo $areas[$i]["id"]?>" ><?php echo $areas[$i]["enTitle"] ?></td>
 				<td id="arTitle<?php echo $areas[$i]["id"]?>" ><?php echo $areas[$i]["arTitle"] ?></td>
 				<td class="text-nowrap">
@@ -125,6 +128,7 @@ if( isset($_POST["enTitle"]) ){
 		var id = $(this).attr("id");
 		$("input[name=update]").val(id);
 		$("input[name=enTitle]").val($("#enTitle"+id).html()).focus();
+		$("select[name=governateId]").val($("#governate"+id).html());
 		$("input[name=arTitle]").val($("#arTitle"+id).html());
 	})
 </script>
