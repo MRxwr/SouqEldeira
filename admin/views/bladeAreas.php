@@ -49,7 +49,7 @@ if( isset($_POST["enTitle"]) ){
 			<label><?php echo direction("Governate","المحافظة") ?></label>
 			<select name="governateId" class="form-control" required>
 				<?php
-				if( $governates = selectDB("governates","`status` = '0' AND `hidden` = '1'") ){
+				if( $governates = selectDB("governates","`status` = '0' ORDER BY `rank` ASC") ){
 					for( $i = 0; $i < sizeof($governates); $i++ ){
 						$title = direction($governates[$i]["enTitle"],$governates[$i]["arTitle"]);
 						echo "<option value='{$governates[$i]["id"]}'>{$title}</option>";
