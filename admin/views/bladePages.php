@@ -113,7 +113,7 @@ if( isset($_POST["enTitle"]) ){
 </div>
 				
 				<!-- Bordered Table -->
-<form method="post" action="">
+<form method="post" action="" enctype="multipart/form-data">
 <input name="updateRank" type="hidden" value="1">
 <div class="col-sm-12">
 <div class="panel panel-default card-view">
@@ -143,7 +143,7 @@ if( isset($_POST["enTitle"]) ){
 		
 		<tbody>
 		<?php 
-		if( $pages = selectDB("pages","`status` = '0' ORDER BY `section` ASC") ){
+		if( $pages = selectDB("pages","`status` = '0' ORDER BY `rank` ASC") ){
 		for( $i = 0; $i < sizeof($pages); $i++ ){
             if ($section = selectDB("pages","`id` = '{$pages[$i]["section"]}'") ){
             }else{
