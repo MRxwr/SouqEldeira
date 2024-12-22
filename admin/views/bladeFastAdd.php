@@ -107,12 +107,12 @@ if( isset($_POST["enTitle"]) ){
 						$governateTitle = direction($governate[0]["enTitle"],$governate[0]["arTitle"]);
 						if( $governate[0]["id"] != $governateId ){
 							echo "<optgroup label='{$governateTitle}'>";
+							$governateId = $governate[0]["id"];
 						}
 						$title = direction($areas[$i]["enTitle"],$areas[$i]["arTitle"]);
 						echo "<option value='{$areas[$i]["id"]}'>{$title}</option>";
 						if( $governate[0]["id"] != $governateId ){
 							echo "</optgroup>";
-							$governateId = $governate[0]["id"];
 						}
 					}
 				}
