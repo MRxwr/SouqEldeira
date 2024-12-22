@@ -1,7 +1,7 @@
 <?php 
 if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
-	if( updateDB('shops',array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
-		header("LOCATION: ?v=Shops");
+	if( updateDB('packages',array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
+		header("LOCATION: ?v=Packages");
 	}
 }
 
@@ -13,8 +13,8 @@ if( isset($_POST["enTitle"]) ){
 		$_POST["logo"] = $filenewname;
 	}
 	if ( $id == 0 ){
-		if( insertDB("shops", $_POST) ){
-			header("LOCATION: ?v=Shops");
+		if( insertDB("packages", $_POST) ){
+			header("LOCATION: ?v=Packages");
 		}else{
 		?>
 		<script>
@@ -23,8 +23,8 @@ if( isset($_POST["enTitle"]) ){
 		<?php
 		}
 	}else{
-		if( updateDB("shops", $_POST, "`id` = '{$id}'") ){
-			header("LOCATION: ?v=Shops");
+		if( updateDB("packages", $_POST, "`id` = '{$id}'") ){
+			header("LOCATION: ?v=Packages");
 		}else{
 		?>
 		<script>
@@ -37,9 +37,9 @@ if( isset($_POST["enTitle"]) ){
 
 if( isset($_POST["updateRank"]) ){
 	for( $i = 0; $i < sizeof($_POST["rank"]); $i++){
-		updateDB("shops",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
+		updateDB("packages",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
 	}
-	header("LOCATION: ?v=Shops");
+	header("LOCATION: ?v=packages");
 }
 ?>
 <div class="row">			
@@ -146,31 +146,31 @@ if( isset($_POST["updateRank"]) ){
 		
 		<tbody>
 		<?php 
-		if( $shops = selectDB("packages","`status` = '0' ORDER BY `rank` ASC") ){
-			for( $i = 0; $i < sizeof($shops); $i++ ){
+		if( $packages = selectDB("packages","`status` = '0' ORDER BY `rank` ASC") ){
+			for( $i = 0; $i < sizeof($packages); $i++ ){
 				?>
 				<tr>
 				<td>
-                    <input name="rank[]" class="form-control" type="number" value="<?php echo $shops[$i]["rank"] ?>">
-                    <input name="id[]" class="form-control" type="hidden" value="<?php echo $shops[$i]["id"] ?>">
+                    <input name="rank[]" class="form-control" type="number" value="<?php echo $packages[$i]["rank"] ?>">
+                    <input name="id[]" class="form-control" type="hidden" value="<?php echo $packages[$i]["id"] ?>">
                 </td>
-				<td id="enTitle<?php echo $shops[$i]["id"]?>" ><?php echo $shops[$i]["enTitle"] ?></td>
-				<td id="arTitle<?php echo $shops[$i]["id"]?>" ><?php echo $shops[$i]["arTitle"] ?></td>
+				<td id="enTitle<?php echo $packages[$i]["id"]?>" ><?php echo $packages[$i]["enTitle"] ?></td>
+				<td id="arTitle<?php echo $packages[$i]["id"]?>" ><?php echo $packages[$i]["arTitle"] ?></td>
 				<td class="text-nowrap">
 				
-				<a id="<?php echo $shops[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i>
+				<a id="<?php echo $packages[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i>
 				</a>
 
-				<a href="<?php echo "?v={$_GET["v"]}&delId={$shops[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger"></i>
+				<a href="<?php echo "?v={$_GET["v"]}&delId={$packages[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger"></i>
 				</a>
 				<div style="display:none">
-					<label id="enDetails<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["enDetails"] ?></label>
-					<label id="arDetails<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["arDetails"] ?></label>
-					<label id="logo<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["logo"] ?></label>
-					<label id="price<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["price"] ?></label>
-					<label id="quantity<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["quantity"] ?></label>
-					<label id="color<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["color"] ?></label>
-					<label id="type<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["type"] ?></label>
+					<label id="enDetails<?php echo $packages[$i]["id"]?>"><?php echo $packages[$i]["enDetails"] ?></label>
+					<label id="arDetails<?php echo $packages[$i]["id"]?>"><?php echo $packages[$i]["arDetails"] ?></label>
+					<label id="logo<?php echo $packages[$i]["id"]?>"><?php echo $packages[$i]["logo"] ?></label>
+					<label id="price<?php echo $packages[$i]["id"]?>"><?php echo $packages[$i]["price"] ?></label>
+					<label id="quantity<?php echo $packages[$i]["id"]?>"><?php echo $packages[$i]["quantity"] ?></label>
+					<label id="color<?php echo $packages[$i]["id"]?>"><?php echo $packages[$i]["color"] ?></label>
+					<label id="type<?php echo $packages[$i]["id"]?>"><?php echo $packages[$i]["type"] ?></label>
 				</div>
 				</td>
 				</tr>
