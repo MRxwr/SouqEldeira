@@ -45,12 +45,26 @@ if( isset($_POST["enTitle"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
-			<div class="col-md-6">
+			<div class="col-md-4">
+			<label><?php echo direction("English Title","العنوان بالإنجليزي") ?></label>
+			<select name="governateId" class="form-control" required>
+				<?php
+				if( $governates = selectDB("governates","`status` = '0' AND `hidden` = '1'") ){
+					for( $i = 0; $i < sizeof($governates); $i++ ){
+						$title = direction($governates[$i]["enTitle"],$governates[$i]["arTitle"]);
+						echo "<option value='{$governates[$i]["id"]}'>{$title}</option>";
+					}
+				}
+				?>
+			</select>
+			</div>
+
+			<div class="col-md-4">
 			<label><?php echo direction("English Title","العنوان بالإنجليزي") ?></label>
 			<input type="text" name="enTitle" class="form-control" required>
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-md-4">
 			<label><?php echo direction("Arabic Title","العنوان بالعربي") ?></label>
 			<input type="text" name="arTitle" class="form-control" required>
 			</div>
