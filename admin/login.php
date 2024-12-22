@@ -59,9 +59,6 @@ if( isset ($_GET["error"]) ) {
         <div class="sp-logo-wrap pull-left">
           <a href="index">
             <img class="brand-img mr-10" src="../logos/<?php echo $settingslogo ?>" alt="brand" />
-            <span class="brand-text"
-              ><span style="font-size: 22px;"><?php echo $settingsTitle ?></span></span
-            >
           </a>
         </div>
         <div class="clearfix"></div>
