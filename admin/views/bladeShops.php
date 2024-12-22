@@ -111,9 +111,7 @@ if( isset($_POST["updateRank"]) ){
 			<input type="file" name="logo" class="form-control" multiple>
 			</div>
 
-			<div id="images" class="col-md-12" style="display:none">
-			
-			</div>
+			<div id="images" class="col-md-12" style="display:none"></div>
 			
 			<div class="col-md-6" style="margin-top:10px">
 			<input type="submit" class="btn btn-primary" value="<?php echo direction("Submit","أرسل") ?>">
