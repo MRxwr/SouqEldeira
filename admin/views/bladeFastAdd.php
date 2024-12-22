@@ -120,22 +120,17 @@ if( isset($_POST["enTitle"]) ){
 			</select>
 			</div>
 			
-			<div class="col-md-3">
+			<div class="col-md-4">
 			<label><?php echo direction("Arabic Title","العنوان بالعربي") ?></label>
 			<input type="text" name="arTitle" class="form-control" value="" required>
 			</div>
 
-			<div class="col-md-3">
+			<div class="col-md-4">
 			<label><?php echo direction("English Title","العنوان بالإنجليزي") ?></label>
 			<input type="text" name="enTitle" class="form-control" value=""required>
 			</div>
-			
-			<div class="col-md-3">
-			<label><?php echo direction("Arabic Title","العنوان بالعربي") ?></label>
-			<input type="text" name="arTitle" class="form-control" value="" required>
-			</div>
 
-			<div class="col-md-3">
+			<div class="col-md-4">
 			<label><?php echo direction("Price","القيمة") ?></label>
 			<input type="float" step="any" min="0" name="price" class="form-control" value="0" >
 			</div>
