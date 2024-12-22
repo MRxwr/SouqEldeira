@@ -84,7 +84,7 @@ $email = $sMedia[0]["email"];
 <!-- /Row -->
 </div>
 <div class="form-actions mt-10">
-<button type="submit" class="btn btn-success  mr-10"><?php echo $save ?></button>
+<button type="submit" class="btn btn-success  mr-10"><?php echo direction("Submit","حفظ") ?></button>
 </div>
 </form>
 </div>
