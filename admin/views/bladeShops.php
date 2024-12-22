@@ -154,7 +154,7 @@ if( isset($_POST["updateRank"]) ){
 		
 		<tbody>
 		<?php 
-		if( $shops = selectDB("shops","`status` = '0'") ){
+		if( $shops = selectDB("shops","`status` = '0' order by `rank` ASC") ){
 			for( $i = 0; $i < sizeof($shops); $i++ ){
 				?>
 				<tr>
