@@ -29,7 +29,7 @@ $email = $sMedia[0]["email"];
 <form action="?v=<?php echo $_GET["v"] ?>&update=1" method="POST">
 <div class="form-body">
 <h6 class="txt-dark capitalize-font">
-<i class="zmdi zmdi-account mr-10"></i><?php echo $sMediaText ?>
+<i class="zmdi zmdi-account mr-10"></i><?php echo direction("Social Media","وسائل التواصل الاجتماعي") ?>
 </h6>
 <hr class="light-grey-hr"/>
 <div class="row">
@@ -52,7 +52,7 @@ $email = $sMedia[0]["email"];
 <div class="row">
 <div class="col-md-6">
 <div class="form-group">
-<label class="control-label mb-10">Instagram</label><br>
+<label class="control-label mb-10"><?php echo direction("Instagram","انستقرام") ?></label><br>
 <input type="text" name="instagram" class="form-control" value="<?php echo $instagram ?>"  >
 </div>
 </div>
@@ -66,14 +66,14 @@ $email = $sMedia[0]["email"];
 
 <div class="col-md-6">
 <div class="form-group">
-<label class="control-label mb-10">Email</label><br>
+<label class="control-label mb-10"><?php echo direction("Email","البريد الإلكتروني") ?></label><br>
 <input type="text" name="email" class="form-control" value="<?php echo $email ?>"  >
 </div>
 </div>
 
 <div class="col-md-6">
 <div class="form-group">
-<label class="control-label mb-10">Location</label><br>
+<label class="control-label mb-10"><?php echo direction("Location","الموقع") ?></label><br>
 <input type="text" name="location" class="form-control" value="<?php echo $location ?>"  >
 </div>
 </div>
