@@ -85,6 +85,16 @@ if( isset($_POST["updateRank"]) ){
 			<input type="number" step="any" name="quantity" class="form-control" >
 			</div>
 
+            <div class="col-md-4">
+			<label><?php echo direction("Quantity Special","الكمية الخاصة") ?></label>
+			<input type="number" step="any" name="quantitySP" class="form-control" >
+			</div>
+
+            <div class="col-md-4">
+			<label><?php echo direction("Expirey","المدة") ?></label>
+			<input type="number" step="any" name="expirey" class="form-control" >
+			</div>
+
 			<div class="col-md-4">
 			<label><?php echo direction("Color","اللون") ?></label>
 			<input type="color" name="color" class="form-control" >
@@ -171,6 +181,8 @@ if( isset($_POST["updateRank"]) ){
 					<label id="quantity<?php echo $packages[$i]["id"]?>"><?php echo $packages[$i]["quantity"] ?></label>
 					<label id="color<?php echo $packages[$i]["id"]?>"><?php echo $packages[$i]["color"] ?></label>
 					<label id="type<?php echo $packages[$i]["id"]?>"><?php echo $packages[$i]["type"] ?></label>
+					<label id="expirey<?php echo $packages[$i]["id"]?>"><?php echo $packages[$i]["expirey"] ?></label>
+					<label id="quantitySP<?php echo $packages[$i]["id"]?>"><?php echo $packages[$i]["quantitySP"] ?></label>
 				</div>
 				</td>
 				</tr>
@@ -201,6 +213,8 @@ if( isset($_POST["updateRank"]) ){
 			$("input[name=price]").val($("#price"+id).html());
 			$("input[name=quantity]").val($("#quantity"+id).html());
 			$("input[name=color]").val($("#color"+id).html());
+			$("input[name=quantitySP]").val($("#quantitySP"+id).html());
+			$("input[name=expirey]").val($("#expirey"+id).html());
 			$("#images").empty().attr("style","margin-top:10px;display:block");
 			$("#images").html("<img src='../logos/"+$("#logo"+id).html()+"' width='100' height='100'>");
 		})
