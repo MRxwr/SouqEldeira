@@ -213,6 +213,7 @@ if( isset($_POST["updateRank"]) ){
 			$("input[name=email]").val($("#email"+id).html());
 			$("input[name=mobile]").val($("#mobile"+id).html());
 			$("input[name=url]").val($("#url"+id).html());
-			$("input[name=logo]").val($("#logo"+id).html());
+			$("#images").empty().attr("style","margin-top:10px;display:block");
+			$("#images").html("<img src='../logos/"+$("#logo"+id).html()+"' width='100' height='100'>");
 		})
 	</script>
