@@ -8,8 +8,8 @@ if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 if( isset($_POST["enTitle"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
-	if( is_uploaded_file($_FILES['logo']['tmp_name'][$i]) ){
-		$filenewname = uploadImageBanner($_FILES["logo"]["tmp_name"][$i]);
+	if( is_uploaded_file($_FILES['logo']['tmp_name']) ){
+		$filenewname = uploadImageBanner($_FILES["logo"]["tmp_name"]);
 		$_POST["logo"] = $filenewname;
 	}
 	if ( $id == 0 ){
