@@ -117,7 +117,7 @@ require ("includes/checksouthead.php");
 		</div>
 	</div>
 	<!-- /Preloader -->
-    <div class="wrapper  theme-6-active pimary-color-green">
+    <div class="wrapper  theme-5-active pimary-color-green">
 		<!-- Top Menu Items -->
 		<?php require ("template/navbar.php") ?>
 		<!-- /Top Menu Items -->
