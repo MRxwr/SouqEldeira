@@ -151,7 +151,7 @@ if( isset($_POST["enTitle"]) ){
 		</thead>
 		<tbody>
 		<?php 
-		if( $products = selectDB("products","`status` = '0' AND `hidden` != '2' AND `enDetails` LIKE '' ORDER BY `id` DESC") ){
+		if( $products = selectDB("products","`status` = '0' AND `hidden` != '2' ORDER BY `id` DESC") ){
 			for( $i = 0; $i < sizeof($products); $i++ ){
 				if($image = selectDB("images","`productId` = '{$products[$i]["id"]}' ORDER BY `id` ASC")){
 				}else{
