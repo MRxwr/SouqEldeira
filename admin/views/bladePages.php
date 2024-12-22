@@ -17,6 +17,13 @@ if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 	}
 }
 
+if( isset($_POST["updateRank"]) ){
+	for( $i = 0; $i < sizeof($_POST["rank"]); $i++){
+		updateDB("categories",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
+	}
+	header("LOCATION: ?v=Categories");
+}
+
 if( isset($_POST["enTitle"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
@@ -106,6 +113,8 @@ if( isset($_POST["enTitle"]) ){
 </div>
 				
 				<!-- Bordered Table -->
+<form method="post" action="">
+<input name="updateRank" type="hidden" value="1">
 <div class="col-sm-12">
 <div class="panel panel-default card-view">
 <div class="panel-heading">
@@ -116,11 +125,13 @@ if( isset($_POST["enTitle"]) ){
 </div>
 <div class="panel-wrapper collapse in">
 <div class="panel-body">
+<button class="btn btn-primary"><?php echo direction("Submit rank","أرسل الترتيب") ?></button>
 <div class="table-wrap mt-40">
 <div class="table-responsive">
 	<table class="table display responsive product-overview mb-30" id="myTable">
 		<thead>
 		<tr>
+		<th>#</th>
 		<th><?php echo direction("Section","العنوان") ?></th>
 		<th><?php echo direction("English Title","العنوان") ?></th>
 		<th><?php echo direction("Arabic Title","الرابط") ?></th>
@@ -150,6 +161,10 @@ if( isset($_POST["enTitle"]) ){
             }
 		?>
 		<tr>
+		<td>
+		<input name="rank[]" class="form-control" type="number" value="<?php echo $counter ?>">
+		<input name="id[]" class="form-control" type="hidden" value="<?php echo $pages[$i]["id"] ?>">
+		</td>
 		<td id="section<?php echo $pages[$i]["id"]?>" ><?php echo direction($section[0]["enTitle"],$section[0]["arTitle"]) ?><label id="sectionHidden<?php echo $pages[$i]["id"]?>" style="display:none"><?php echo $pages[$i]["section"]?></label></td>
 		<td id="enTitle<?php echo $pages[$i]["id"]?>" ><?php echo $pages[$i]["enTitle"] ?></td>
 		<td id="arTitle<?php echo $pages[$i]["id"]?>" ><?php echo $pages[$i]["arTitle"] ?></td>
@@ -178,6 +193,7 @@ if( isset($_POST["enTitle"]) ){
 </div>
 </div>
 </div>
+</form>
 </div>
 	
 	<script>
