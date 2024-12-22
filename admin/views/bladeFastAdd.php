@@ -143,7 +143,8 @@ if( isset($_POST["enTitle"]) ){
 		<thead>
 			<tr>
 			<th>#</th>
-			<th><?php echo direction("Image","صورة") ?></th>
+			<th><?php echo direction("Governate","المحافظة") ?></th>
+			<th><?php echo direction("Area","المنطقة") ?></th>
 			<th><?php echo direction("English Title","العنوان بالإنجليزي") ?></th>
 			<th><?php echo direction("Arabic Title","العنوان بالعربي") ?></th>
 			<th><?php echo direction("Action","الخيارات") ?></th>
@@ -157,6 +158,8 @@ if( isset($_POST["enTitle"]) ){
 				}else{
 					$image[0]["imageurl"] = "noimage.png";
 				}
+				$area = selectDB("areas","`id` = '{$products[$i]["areaId"]}'");
+				$governate = selectDB("governates","`id` = '{$products[$i]["governateId"]}'");
 			if ( $products[$i]["hidden"] == 2 ){
 				$icon = "fa fa-eye";
 				$link = "?v={$_GET["v"]}&show={$products[$i]["id"]}";
@@ -169,7 +172,8 @@ if( isset($_POST["enTitle"]) ){
 			?>
 			<tr>
 				<td><?php echo str_pad($products[$i]["id"], 4, "0", STR_PAD_LEFT) ?></td>
-				<td><img src="../logos/<?php echo $image[0]["imageurl"] ?>" style="width: 75px; height: 75px;"></td>
+				<td><?php echo direction($governate[0]["enTitle"],$governate[0]["arTitle"]) ?></td>
+				<td><?php echo direction($area[0]["enTitle"],$area[0]["arTitle"]) ?></td>
 				<td id="enTitle<?php echo $products[$i]["id"] ?>"><?php echo $products[$i]["enTitle"] ?></td>
 				<td id="arTitle<?php echo $products[$i]["id"] ?>"><?php echo $products[$i]["arTitle"] ?></td>
 				<td class="text-nowrap">
