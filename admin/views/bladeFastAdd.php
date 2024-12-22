@@ -68,7 +68,7 @@ if( isset($_POST["enTitle"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
-            <div class="col-md-12">
+            <div class="col-md-3">
 			<label><?php echo direction("Category","القسم") ?></label>
 				<select name="categoryId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
 					<?php
@@ -82,27 +82,27 @@ if( isset($_POST["enTitle"]) ){
 				</select>
 			</div>
 
-			<div class="col-md-12">
+			<div class="col-md-3">
 			<label><?php echo direction("English Title","العنوان بالإنجليزي") ?></label>
 			<input type="text" name="enTitle" class="form-control" value=""required>
 			</div>
 			
-			<div class="col-md-12">
+			<div class="col-md-3">
 			<label><?php echo direction("Arabic Title","العنوان بالعربي") ?></label>
 			<input type="text" name="arTitle" class="form-control" value="" required>
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-3">
 			<label><?php echo direction("Price","القيمة") ?></label>
 			<input type="float" step="any" min="0" name="price" class="form-control" value="0" >
 			</div>
 
-			<div class="col-md-12">
+			<div class="col-md-6">
 			<label><?php echo direction("English Details","التفاصيل بالإنجليزي") ?></label>
 			<textarea name="enDetails" class="tinymce"></textarea>
 			</div>
 
-			<div class="col-md-12">
+			<div class="col-md-6">
 			<label><?php echo direction("Arabic Details","التفاصيل بالعربي") ?></label>
 			<textarea name="arDetails" class="tinymce"></textarea>
 			</div>
