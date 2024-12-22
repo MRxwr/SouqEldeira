@@ -56,13 +56,18 @@ if( isset($_POST["updateRank"]) ){
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
 
-            <div class="col-md-4">
+            <div class="col-md-12">
 			<label><?php echo direction("Type","النوع") ?></label>
 			<select name="type" class="selectpicker" data-style="form-control btn-default btn-outline">
                 <option value="1"><?php echo direction("Normal","عادي") ?></option>
                 <option value="2"><?php echo direction("Gold","الذهبيه") ?></option>
                 <option value="2"><?php echo direction("Diamond","الماسية") ?></option>
             </select>
+			</div>
+
+            <div class="col-md-4">
+			<label><?php echo direction("Color","اللون") ?></label>
+			<input type="color" name="color" class="form-control" >
 			</div>
 			
 			<div class="col-md-4">
@@ -75,29 +80,24 @@ if( isset($_POST["updateRank"]) ){
 			<input type="text" name="arTitle" class="form-control" required>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<label><?php echo direction("Price","السعر") ?></label>
 			<input type="number" step="any" name="price" class="form-control" >
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<label><?php echo direction("Quantity","الكمية") ?></label>
 			<input type="number" step="any" name="quantity" class="form-control" >
 			</div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
 			<label><?php echo direction("Quantity Special","الكمية الخاصة") ?></label>
 			<input type="number" step="any" name="quantitySP" class="form-control" >
 			</div>
 
-            <div class="col-md-6">
+            <div class="col-md-3">
 			<label><?php echo direction("Expirey","المدة") ?></label>
 			<input type="number" step="any" name="expirey" class="form-control" >
-			</div>
-
-			<div class="col-md-6">
-			<label><?php echo direction("Color","اللون") ?></label>
-			<input type="color" name="color" class="form-control" >
 			</div>
 
 			<div class="col-md-6">
