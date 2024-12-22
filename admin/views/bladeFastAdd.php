@@ -83,6 +83,47 @@ if( isset($_POST["enTitle"]) ){
 			</div>
 
 			<div class="col-md-3">
+			<label><?php echo direction("Governate","المحافظة") ?></label>
+			<select name="governateId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
+				<?php
+				if( $governates = selectDB("governates","`status` = '0' ORDER BY `rank` ASC") ){
+					for( $i = 0; $i < sizeof($governates); $i++ ){
+						$title = direction($governates[$i]["enTitle"],$governates[$i]["arTitle"]);
+						echo "<option value='{$governates[$i]["id"]}'>{$title}</option>";
+					}
+				}
+				?>
+			</select>
+			</div>
+
+			<div class="col-md-3">
+			<label><?php echo direction("Area","المنطقة") ?></label>
+			<select name="areaId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
+				<?php
+				if( $areas = selectDB("areas","`status` = '0' ORDER BY `governateId` ASC") ){
+					for( $i = 0; $i < sizeof($areas); $i++ ){
+						$governate = selectDB("governates","`id` = '{$areas[$i]["governateId"]}'");
+						$governateTitle = direction($governate[0]["enTitle"],$governate[0]["arTitle"]);
+						if( $governate[0]["id"] != $areas[$i]["governateId"] ){
+							echo "<optgroup label='{$governateTitle}'>";
+						}
+						$title = direction($areas[$i]["enTitle"],$areas[$i]["arTitle"]);
+						echo "<option value='{$areas[$i]["id"]}'>{$title}</option>";
+						if( $governate[0]["id"] != $areas[$i]["governateId"] ){
+							echo "</optgroup>";
+						}
+					}
+				}
+				?>
+			</select>
+			</div>
+			
+			<div class="col-md-3">
+			<label><?php echo direction("Arabic Title","العنوان بالعربي") ?></label>
+			<input type="text" name="arTitle" class="form-control" value="" required>
+			</div>
+
+			<div class="col-md-3">
 			<label><?php echo direction("English Title","العنوان بالإنجليزي") ?></label>
 			<input type="text" name="enTitle" class="form-control" value=""required>
 			</div>
@@ -212,6 +253,8 @@ if( isset($_POST["enTitle"]) ){
 						<label id="price<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["price"] ?></label>
 						<label id="image<?php echo $products[$i]["id"]?>"><?php echo json_encode($image)?></label>
 						<label id="category<?php echo $products[$i]["id"]?>"><?php echo $categories ?></label>
+						<label id="area<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["areaId"] ?></label>
+						<label id="governate<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["governateId"] ?></label>
 					</div>
 				</td>
 			</tr>
@@ -240,8 +283,10 @@ if( isset($_POST["enTitle"]) ){
 		tinymce.get('enDetails').setContent($("#enDetails"+id).html());
 		tinymce.get('arDetails').setContent($("#arDetails"+id).html());
 		$("input[name=price]").val($("#price"+id).html());
-		$("select[name=brandId] option").prop("selected", false);
-		$("select[name=brandId]").val($("#brandId"+id).html()).selectpicker('refresh');
+		$("select[name=governateId] option").prop("selected", false);
+		$("select[name=governateId]").val($("#governateId"+id).html()).selectpicker('refresh');
+		$("select[name=areaId] option").prop("selected", false);
+		$("select[name=areaId]").val($("#areaId"+id).html()).selectpicker('refresh');
 		$("select[name=categoryId] option").prop("selected", false);
 		$("select[name=categoryId]").val($("#categoryId"+id).html()).selectpicker('refresh');
 		$("#images").empty().attr("style","margin-top:10px;display:block"); // Clear the div
