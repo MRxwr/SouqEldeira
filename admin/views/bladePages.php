@@ -19,9 +19,9 @@ if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 
 if( isset($_POST["updateRank"]) ){
 	for( $i = 0; $i < sizeof($_POST["rank"]); $i++){
-		updateDB("categories",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
+		updateDB("pages",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
 	}
-	header("LOCATION: ?v=Categories");
+	header("LOCATION: ?v=Pages");
 }
 
 if( isset($_POST["enTitle"]) ){
