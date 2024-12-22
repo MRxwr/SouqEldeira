@@ -5,11 +5,11 @@ if ( isset($_GET["update"]) AND $_GET["update"] = 1 && updateDB("s_media",$_POST
 }else{
 	$sMedia = selectDB("s_media","`id` = '1'");
 }
-$whatsapp = $sMedia[0]["whatsapp"];
-$snapchat = $sMedia[0]["snapchat"];
+$mobile = $sMedia[0]["mobile"];
+$facebook = $sMedia[0]["facebook"];
 $instagram = $sMedia[0]["instagram"];
 $location = $sMedia[0]["location"];
-$tiktok = $sMedia[0]["tiktok"];
+$twitter = $sMedia[0]["twitter"];
 $email = $sMedia[0]["email"];
 ?>
 <div class="row">
@@ -35,15 +35,15 @@ $email = $sMedia[0]["email"];
 <div class="row">
 <div class="col-md-6">
 <div class="form-group">
-<label class="control-label mb-10">Whatsapp</label>
-<input type="text" name="whatsapp" class="form-control" value="<?php echo $whatsapp ?>"  >
+<label class="control-label mb-10"><?php echo direction("Mobile","الهاتف") ?></label>
+<input type="number" step="any" min="0" name="mobile" class="form-control" value="<?php echo $mobile ?>"  >
 </div>
 </div>
 <!--/span-->
 <div class="col-md-6">
 <div class="form-group">
-<label class="control-label mb-10">Snapchat</label>
-<input type="text" name="snapchat" class="form-control" value="<?php echo $snapchat ?>"  >
+<label class="control-label mb-10"><?php echo direction("Facebook","فيسبوك") ?></label>
+<input type="text" name="facebook" class="form-control" value="<?php echo $facebook ?>"  >
 </div>
 </div>
 <!--/span-->
@@ -59,8 +59,8 @@ $email = $sMedia[0]["email"];
 
 <div class="col-md-6">
 <div class="form-group">
-<label class="control-label mb-10">TikTok</label><br>
-<input type="text" name="tiktok" class="form-control" value="<?php echo $tiktok ?>"  >
+<label class="control-label mb-10"><?php echo direction("Twitter","تويتر") ?></label><br>
+<input type="text" name="twitter" class="form-control" value="<?php echo $twitter ?>"  >
 </div>
 </div>
 
