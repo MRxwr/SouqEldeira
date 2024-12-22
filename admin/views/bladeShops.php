@@ -207,12 +207,12 @@ if( isset($_POST["updateRank"]) ){
 			$("input[name=arTitle]").val($("#arTitle"+id).html());
 			tinymce.get('enDetails').setContent($("#enDetails"+id).html());
 			tinymce.get('arDetails').setContent($("#arDetails"+id).html());
-			$("input[name=logo]").val($("#logo"+id).html());
 			$("input[name=facebook]").val($("#facebook"+id).html());
 			$("input[name=twitter]").val($("#twitter"+id).html());
 			$("input[name=instagram]").val($("#instagram"+id).html());
 			$("input[name=email]").val($("#email"+id).html());
 			$("input[name=mobile]").val($("#mobile"+id).html());
 			$("input[name=url]").val($("#url"+id).html());
+			$("input[name=logo]").val($("#logo"+id).html());
 		})
 	</script>
