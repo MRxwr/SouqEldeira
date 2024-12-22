@@ -83,6 +83,20 @@ if( isset($_POST["enTitle"]) ){
 			</div>
 
 			<div class="col-md-4">
+			<label><?php echo direction("Package","الباقة") ?></label>
+			<select name="packageId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
+				<?php
+				if( $packages = selectDB("packages","`status` = '0' ORDER BY `rank` ASC") ){
+					for( $i = 0; $i < sizeof($packages); $i++ ){
+						$title = direction($packages[$i]["enTitle"],$packages[$i]["arTitle"]);
+						echo "<option value='{$packages[$i]["id"]}'>{$title}</option>";
+					}
+				}
+				?>
+			</select>
+			</div>
+
+			<div class="col-md-4">
 			<label><?php echo direction("Governate","المحافظة") ?></label>
 			<select name="governateId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
 				<?php
@@ -249,7 +263,8 @@ if( isset($_POST["enTitle"]) ){
 						<label id="arDetails<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["arDetails"] ?></label>
 						<label id="price<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["price"] ?></label>
 						<label id="image<?php echo $products[$i]["id"]?>"><?php echo json_encode($image)?></label>
-						<label id="category<?php echo $products[$i]["id"]?>"><?php echo $categories ?></label>
+						<label id="categoryId<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["categoryId"] ?></label>
+						<label id="packageId<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["packageId"] ?></label>
 						<label id="area<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["areaId"] ?></label>
 						<label id="governate<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["governateId"] ?></label>
 					</div>
@@ -286,6 +301,8 @@ if( isset($_POST["enTitle"]) ){
 		$("select[name=areaId]").val($("#areaId"+id).html()).selectpicker('refresh');
 		$("select[name=categoryId] option").prop("selected", false);
 		$("select[name=categoryId]").val($("#categoryId"+id).html()).selectpicker('refresh');
+		$("select[name=packageId] option").prop("selected", false);
+		$("select[name=packageId]").val($("#packageId"+id).html()).selectpicker('refresh');
 		$("#images").empty().attr("style","margin-top:10px;display:block"); // Clear the div
 		$.each(JSON.parse($("#image"+id).html()), function(index, value){
 			var img = $("<img>").attr({
