@@ -1,7 +1,7 @@
 <?php 
 if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
-	if( updateDB('areas',array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
-		header("LOCATION: ?v=Areas");
+	if( updateDB('governates',array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
+		header("LOCATION: ?v=Governates");
 	}
 }
 
@@ -9,8 +9,8 @@ if( isset($_POST["enTitle"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
 	if ( $id == 0 ){
-		if( insertDB("areas", $_POST) ){
-			header("LOCATION: ?v=Areas");
+		if( insertDB("governates", $_POST) ){
+			header("LOCATION: ?v=Governates");
 		}else{
 		?>
 		<script>
@@ -19,8 +19,8 @@ if( isset($_POST["enTitle"]) ){
 		<?php
 		}
 	}else{
-		if( updateDB("areas", $_POST, "`id` = '{$id}'") ){
-			header("LOCATION: ?v=Areas");
+		if( updateDB("governates", $_POST, "`id` = '{$id}'") ){
+			header("LOCATION: ?v=Governates");
 		}else{
 		?>
 		<script>
@@ -37,7 +37,7 @@ if( isset($_POST["enTitle"]) ){
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-	<h6 class="panel-title txt-dark"><?php echo direction("Area Details","تفاصيل المنطقة") ?></h6>
+	<h6 class="panel-title txt-dark"><?php echo direction("Governate Details","تفاصيل المحافظة") ?></h6>
 </div>
 	<div class="clearfix"></div>
 </div>
@@ -45,26 +45,12 @@ if( isset($_POST["enTitle"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
-			<div class="col-md-4">
-			<label><?php echo direction("Governate","المحافظة") ?></label>
-			<select name="governateId" class="form-control" required>
-				<?php
-				if( $governates = selectDB("governates","`status` = '0' AND `hidden` = '1'") ){
-					for( $i = 0; $i < sizeof($governates); $i++ ){
-						$title = direction($governates[$i]["enTitle"],$governates[$i]["arTitle"]);
-						echo "<option value='{$governates[$i]["id"]}'>{$title}</option>";
-					}
-				}
-				?>
-			</select>
-			</div>
-
-			<div class="col-md-4">
+			<div class="col-md-6">
 			<label><?php echo direction("English Title","العنوان بالإنجليزي") ?></label>
 			<input type="text" name="enTitle" class="form-control" required>
 			</div>
 			
-			<div class="col-md-4">
+			<div class="col-md-6">
 			<label><?php echo direction("Arabic Title","العنوان بالعربي") ?></label>
 			<input type="text" name="arTitle" class="form-control" required>
 			</div>
@@ -85,7 +71,7 @@ if( isset($_POST["enTitle"]) ){
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-<h6 class="panel-title txt-dark"><?php echo direction("List of Areas","قائمة المناطق") ?></h6>
+<h6 class="panel-title txt-dark"><?php echo direction("List of Governates","قائمة المحافظات") ?></h6>
 </div>
 <div class="clearfix"></div>
 </div>
@@ -105,20 +91,17 @@ if( isset($_POST["enTitle"]) ){
 		<tbody>
 		<?php 
 		$orderBy = direction("enTitle","arTitle");
-		if( $areas = selectDB("areas","`status` = '0' ORDER BY `{$orderBy}` ASC") ){
-			for( $i = 0; $i < sizeof($areas); $i++ ){
-				$governate = selectDB("governates","`id` = '{$areas[$i]["governateId"]}'");
-				$governateTitle = direction($governate[0]["enTitle"],$governate[0]["arTitle"]);
+		if( $governate = selectDB("governates","`status` = '0' ORDER BY `{$orderBy}` ASC") ){
+			for( $i = 0; $i < sizeof($governate); $i++ ){
 				$counter = $i + 1;
 				?>
 				<tr>
-				<td><?php echo $governateTitle ?><label style="display:none"><?php echo $areas[$i]["governateId"] ?></label></td>
-				<td id="enTitle<?php echo $areas[$i]["id"]?>" ><?php echo $areas[$i]["enTitle"] ?></td>
-				<td id="arTitle<?php echo $areas[$i]["id"]?>" ><?php echo $areas[$i]["arTitle"] ?></td>
+				<td id="enTitle<?php echo $governate[$i]["id"]?>" ><?php echo $governate[$i]["enTitle"] ?></td>
+				<td id="arTitle<?php echo $governate[$i]["id"]?>" ><?php echo $governate[$i]["arTitle"] ?></td>
 				<td class="text-nowrap">
-					<a id="<?php echo $areas[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i>
+					<a id="<?php echo $governate[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i>
 					</a>
-					<a href="<?php echo "?v={$_GET["v"]}&delId={$areas[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger"></i>
+					<a href="<?php echo "?v={$_GET["v"]}&delId={$governate[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger"></i>
 					</a>			
 				</td>
 				</tr>
@@ -142,7 +125,6 @@ if( isset($_POST["enTitle"]) ){
 		var id = $(this).attr("id");
 		$("input[name=update]").val(id);
 		$("input[name=enTitle]").val($("#enTitle"+id).html()).focus();
-		$("select[name=governateId]").val($("#governate"+id).html());
 		$("input[name=arTitle]").val($("#arTitle"+id).html());
 	})
 </script>
