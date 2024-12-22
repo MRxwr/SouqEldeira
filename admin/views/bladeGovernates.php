@@ -132,6 +132,7 @@ if( isset($_POST["updateRank"]) ){
 </div>
 </div>
 </div>
+</form>
 </div>
 
 </div>

@@ -8,6 +8,10 @@ if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 if( isset($_POST["enTitle"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
+	if( is_uploaded_file($_FILES['logo']['tmp_name'][$i]) ){
+		$filenewname = uploadImageBanner($_FILES["logo"]["tmp_name"][$i]);
+		$_POST["logo"] = $filenewname;
+	}
 	if ( $id == 0 ){
 		if( insertDB("shops", $_POST) ){
 			header("LOCATION: ?v=Shops");
@@ -30,13 +34,20 @@ if( isset($_POST["enTitle"]) ){
 		}
 	}
 }
+
+if( isset($_POST["updateRank"]) ){
+	for( $i = 0; $i < sizeof($_POST["rank"]); $i++){
+		updateDB("shops",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
+	}
+	header("LOCATION: ?v=Shops");
+}
 ?>
 <div class="row">			
 <div class="col-sm-12">
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-	<h6 class="panel-title txt-dark"><?php echo direction("Shop Details","تفاصيل المحل") ?></h6>
+	<h6 class="panel-title txt-dark"><?php echo direction("Office Details","تفاصيل المكتب") ?></h6>
 </div>
 	<div class="clearfix"></div>
 </div>
@@ -44,6 +55,7 @@ if( isset($_POST["enTitle"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
+			
 			<div class="col-md-6">
 			<label><?php echo direction("English Title","الإسم الإنجليزي") ?></label>
 			<input type="text" name="enTitle" class="form-control" required>
@@ -52,6 +64,55 @@ if( isset($_POST["enTitle"]) ){
 			<div class="col-md-6">
 			<label><?php echo direction("Arabic Title","الإسم العربي") ?></label>
 			<input type="text" name="arTitle" class="form-control" required>
+			</div>
+
+			<div class="col-md-6">
+			<label><?php echo direction("Mobile","الهاتف") ?></label>
+			<input type="number" step="any" maxlength="8" minlength="8" name="mobile" class="form-control" >
+			</div>
+
+			<div class="col-md-6">
+			<label><?php echo direction("Link","الرابط") ?></label>
+			<input type="text" name="url" class="form-control" >
+			</div>
+
+			<div class="col-md-3">
+			<label><?php echo direction("Facebook","فيسبوك") ?></label>
+			<input type="text" name="facebook" class="form-control" >
+			</div>
+
+			<div class="col-md-3">
+			<label><?php echo direction("Instagram","انستقرام") ?></label>
+			<input type="text" name="instagram" class="form-control" >
+			</div>
+
+			<div class="col-md-3">
+			<label><?php echo direction("Twitter","تويتر") ?></label>
+			<input type="text" name="twitter" class="form-control" >
+			</div>
+
+			<div class="col-md-3">
+			<label><?php echo direction("E-mail","البريد الإلكتروني") ?></label>
+			<input type="text" name="email" class="form-control" >
+			</div>
+
+			<div class="col-md-6">
+			<label><?php echo direction("English Details","التفاصيل بالإنجليزي") ?></label>
+			<textarea name="enDetails" class="tinymce"></textarea>
+			</div>
+
+			<div class="col-md-6">
+			<label><?php echo direction("Arabic Details","التفاصيل بالعربي") ?></label>
+			<textarea name="arDetails" class="tinymce"></textarea>
+			</div>
+
+			<div class="col-md-12">
+			<label><?php echo direction("Logo","الشعار") ?></label>
+			<input type="file" name="logo" class="form-control" multiple>
+			</div>
+
+			<div id="images" class="col-md-12" style="display:none">
+			
 			</div>
 			
 			<div class="col-md-6" style="margin-top:10px">
@@ -66,6 +127,8 @@ if( isset($_POST["enTitle"]) ){
 </div>
 				
 				<!-- Bordered Table -->
+<form method="post" action="">
+<input name="updateRank" type="hidden" value="1">
 <div class="col-sm-12">
 <div class="panel panel-default card-view">
 <div class="panel-heading">
@@ -76,6 +139,7 @@ if( isset($_POST["enTitle"]) ){
 </div>
 <div class="panel-wrapper collapse in">
 <div class="panel-body">
+<button class="btn btn-primary"><?php echo direction("Submit rank","أرسل الترتيب") ?></button> 
 <div class="table-wrap mt-40">
 <div class="table-responsive">
 	<table class="table display responsive product-overview mb-30" id="myTable">
@@ -93,6 +157,10 @@ if( isset($_POST["enTitle"]) ){
 			for( $i = 0; $i < sizeof($shops); $i++ ){
 				?>
 				<tr>
+				<td>
+                <input name="rank[]" class="form-control" type="number" value="<?php echo $shops[$i]["rank"] ?>">
+                <input name="id[]" class="form-control" type="hidden" value="<?php echo $shops[$i]["id"] ?>">
+                </td>
 				<td id="enTitle<?php echo $shops[$i]["id"]?>" ><?php echo $shops[$i]["enTitle"] ?></td>
 				<td id="arTitle<?php echo $shops[$i]["id"]?>" ><?php echo $shops[$i]["arTitle"] ?></td>
 				<td class="text-nowrap">
@@ -118,6 +186,7 @@ if( isset($_POST["enTitle"]) ){
 </div>
 </div>
 </div>
+</form>
 </div>
 	<script>
 		$(document).on("click",".edit", function(){
