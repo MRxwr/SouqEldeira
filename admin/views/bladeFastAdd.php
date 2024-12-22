@@ -100,17 +100,19 @@ if( isset($_POST["enTitle"]) ){
 			<label><?php echo direction("Area","المنطقة") ?></label>
 			<select name="areaId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
 				<?php
+				$governateId = 0;
 				if( $areas = selectDB("areas","`status` = '0' ORDER BY `governateId` ASC") ){
 					for( $i = 0; $i < sizeof($areas); $i++ ){
 						$governate = selectDB("governates","`id` = '{$areas[$i]["governateId"]}'");
 						$governateTitle = direction($governate[0]["enTitle"],$governate[0]["arTitle"]);
-						if( $governate[0]["id"] != $areas[$i]["governateId"] ){
+						if( $governate[0]["id"] != $governateId ){
 							echo "<optgroup label='{$governateTitle}'>";
 						}
 						$title = direction($areas[$i]["enTitle"],$areas[$i]["arTitle"]);
 						echo "<option value='{$areas[$i]["id"]}'>{$title}</option>";
-						if( $governate[0]["id"] != $areas[$i]["governateId"] ){
+						if( $governate[0]["id"] != $governateId ){
 							echo "</optgroup>";
+							$governateId = $governate[0]["id"];
 						}
 					}
 				}
