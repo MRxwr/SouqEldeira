@@ -171,7 +171,16 @@ if( isset($_POST["updateRank"]) ){
 
 				<a href="<?php echo "?v={$_GET["v"]}&delId={$shops[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger"></i>
 				</a>
-				
+				<div style="display:none">
+					<label id="enDetails<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["enDetails"] ?></label>
+					<label id="arDetails<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["arDetails"] ?></label>
+					<label id="logo<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["logo"] ?></label>
+					<label id="facebook<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["facebook"] ?></label>
+					<label id="twitter<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["twitter"] ?></label>
+					<label id="instagram<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["instagram"] ?></label>
+					<label id="email<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["email"] ?></label>
+					<label id="mobile<?php echo $shops[$i]["id"]?>"><?php echo $shops[$i]["mobile"] ?></label>
+				</div>
 				</td>
 				</tr>
 				<?php
