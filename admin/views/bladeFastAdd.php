@@ -98,7 +98,7 @@ if( isset($_POST["enTitle"]) ){
 
 			<div class="col-md-4">
 			<label><?php echo direction("Area","المنطقة") ?></label>
-			<select name="areaId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
+			<select name="areaId" class="form-control" required>
 				<?php
 				if( $areas = selectDB("areas","`status` = '0' ORDER BY `governateId` ASC") ){
 					for( $i = 0; $i < sizeof($areas); $i++ ){
