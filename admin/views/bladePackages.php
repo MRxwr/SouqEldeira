@@ -39,7 +39,7 @@ if( isset($_POST["updateRank"]) ){
 	for( $i = 0; $i < sizeof($_POST["rank"]); $i++){
 		updateDB("packages",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
 	}
-	header("LOCATION: ?v=packages");
+	header("LOCATION: ?v=Packages");
 }
 ?>
 <div class="row">			
