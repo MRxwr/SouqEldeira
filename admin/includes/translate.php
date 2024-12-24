@@ -1,7 +1,6 @@
 <?php
 $settingsLang = (isset($_COOKIE["CREATEkwLANG"]) && $_COOKIE["CREATEkwLANG"] == "en") ? "en" : "ar";
 $directionHTML = (isset($_COOKIE["CREATEkwLANG"]) && $_COOKIE["CREATEkwLANG"] == "en") ? "" : "rtl";
-var_dump($_COOKIE["CREATEkwLANG"]);
 if ( isset($_GET["lang"]) ){
 	$arrayLangs = ["en","ar"];
 	if ( in_array($_GET["lang"], $arrayLangs) ){
