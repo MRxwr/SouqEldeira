@@ -32,7 +32,7 @@ $socialMedia = selectDB("s_media","`id` = '1'");
 		</div>
 			<div class="text-center mt-4"> 
 			<p class="add-ad-form-text fw-bold"><?php echo Trans('app','Send us message by'); ?>
-			<a href="https://wa.me/<?php echo $socialMedia['mobile']; ?>"><?php echo Trans('app','WhatsApp'); ?></a>
+			<a href="https://wa.me/<?php echo $socialMedia[0]['mobile']; ?>"><?php echo Trans('app','WhatsApp'); ?></a>
 			<?php echo Trans('app','or'); ?>
 			<a href="?v=Contact"><?php echo Trans('app','call us'); ?></a> <?php echo Trans('app','for help'); ?></p>
 			</div>
