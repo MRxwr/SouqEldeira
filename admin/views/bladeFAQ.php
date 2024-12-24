@@ -5,7 +5,7 @@ if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 	}
 }
 
-if( isset($_POST["enTitle"]) ){
+if( isset($_POST["enQuestion"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
 	if ( $id == 0 ){
@@ -44,7 +44,7 @@ if( isset($_POST["updateRank"]) ){
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-	<h6 class="panel-title txt-dark"><?php echo direction("Governate Details","تفاصيل المحافظة") ?></h6>
+	<h6 class="panel-title txt-dark"><?php echo direction("FAQ Details","تفاصيل السؤال") ?></h6>
 </div>
 	<div class="clearfix"></div>
 </div>
@@ -53,13 +53,23 @@ if( isset($_POST["updateRank"]) ){
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
 			<div class="col-md-6">
-			<label><?php echo direction("English Title","العنوان بالإنجليزي") ?></label>
-			<input type="text" name="enTitle" class="form-control" required>
+			<label><?php echo direction("English Question","السؤال بالإنجليزي") ?></label>
+			<input type="text" name="enQuestion" class="form-control" required>
 			</div>
 			
 			<div class="col-md-6">
-			<label><?php echo direction("Arabic Title","العنوان بالعربي") ?></label>
-			<input type="text" name="arTitle" class="form-control" required>
+			<label><?php echo direction("Arabic Question","السؤال بالعربي") ?></label>
+			<input type="text" name="arQuestion" class="form-control" required>
+			</div>
+
+            <div class="col-md-6">
+			<label><?php echo direction("English Answer","الجواب بالإنجليزي") ?></label>
+			<input type="text" name="enAnswer" class="form-control" required>
+			</div>
+
+            <div class="col-md-6">
+			<label><?php echo direction("Arabic Answer","الجواب بالعربي") ?></label>
+			<input type="text" name="arAnswer" class="form-control" required>
 			</div>
 			
 			<div class="col-md-12" style="margin-top:10px">
@@ -80,7 +90,7 @@ if( isset($_POST["updateRank"]) ){
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-<h6 class="panel-title txt-dark"><?php echo direction("List of Governates","قائمة المحافظات") ?></h6>
+<h6 class="panel-title txt-dark"><?php echo direction("List of FAQs","قائمة اللأسئلة الشائعة") ?></h6>
 </div>
 <div class="clearfix"></div>
 </div>
