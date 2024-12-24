@@ -113,7 +113,7 @@ if( isset($_POST["updateRank"]) ){
 		<?php 
 		$orderBy = direction("enTitle","arTitle");
 		if( $faqs = selectDB("faq","`status` = '0' ORDER BY `rank` ASC") ){
-			for( $i = 0; $i < sizeof($governate); $i++ ){
+			for( $i = 0; $i < sizeof($faqs); $i++ ){
 				$counter = $i + 1;
 				?>
 				<tr>
