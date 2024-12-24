@@ -1,7 +1,7 @@
 <?php 
 if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
-	if( updateDB('governates',array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
-		header("LOCATION: ?v=Governates");
+	if( updateDB('faq',array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
+		header("LOCATION: ?v=FAQ");
 	}
 }
 
@@ -9,8 +9,8 @@ if( isset($_POST["enTitle"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
 	if ( $id == 0 ){
-		if( insertDB("governates", $_POST) ){
-			header("LOCATION: ?v=Governates");
+		if( insertDB("faq", $_POST) ){
+			header("LOCATION: ?v=FAQ");
 		}else{
 		?>
 		<script>
@@ -19,8 +19,8 @@ if( isset($_POST["enTitle"]) ){
 		<?php
 		}
 	}else{
-		if( updateDB("governates", $_POST, "`id` = '{$id}'") ){
-			header("LOCATION: ?v=Governates");
+		if( updateDB("faq", $_POST, "`id` = '{$id}'") ){
+			header("LOCATION: ?v=FAQ");
 		}else{
 		?>
 		<script>
@@ -33,9 +33,9 @@ if( isset($_POST["enTitle"]) ){
 
 if( isset($_POST["updateRank"]) ){
 	for( $i = 0; $i < sizeof($_POST["rank"]); $i++){
-		updateDB("governates",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
+		updateDB("faq",array("rank"=>$_POST["rank"][$i]),"`id` = '{$_POST["id"][$i]}'");
 	}
-	header("LOCATION: ?v=Governates");
+	header("LOCATION: ?v=FAQ");
 }
 ?>
 
@@ -102,27 +102,27 @@ if( isset($_POST["updateRank"]) ){
 		<tbody>
 		<?php 
 		$orderBy = direction("enTitle","arTitle");
-		if( $governate = selectDB("governates","`status` = '0' ORDER BY `rank` ASC") ){
+		if( $faqs = selectDB("faq","`status` = '0' ORDER BY `rank` ASC") ){
 			for( $i = 0; $i < sizeof($governate); $i++ ){
 				$counter = $i + 1;
 				?>
 				<tr>
                 <td>
-                <input name="rank[]" class="form-control" type="number" value="<?php echo $governate[$i]["rank"] ?>">
-                <input name="id[]" class="form-control" type="hidden" value="<?php echo $governate[$i]["id"] ?>">
+                <input name="rank[]" class="form-control" type="number" value="<?php echo $faqs[$i]["rank"] ?>">
+                <input name="id[]" class="form-control" type="hidden" value="<?php echo $faqs[$i]["id"] ?>">
                 </td>
-				<td id="enTitle<?php echo $governate[$i]["id"]?>" ><?php echo $governate[$i]["enTitle"] ?></td>
-				<td id="arTitle<?php echo $governate[$i]["id"]?>" ><?php echo $governate[$i]["arTitle"] ?></td>
+				<td><?php echo $faqs[$i]["enQuestion"] ?></td>
+				<td><?php echo $faqs[$i]["arQuestion"] ?></td>
 				<td class="text-nowrap">
-					<a id="<?php echo $governate[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i>
+					<a id="<?php echo $faqs[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i>
 					</a>
-					<a href="<?php echo "?v={$_GET["v"]}&delId={$governate[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger"></i>
+					<a href="<?php echo "?v={$_GET["v"]}&delId={$faqs[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger"></i>
 					</a>	
                     <div style="display:none">
-                        <label id="enQuestion<?php echo $governate[$i]["id"] ?>"><?php echo $governate[$i]["enQuestion"] ?>"></label>
-                        <label id="arQuestion<?php echo $governate[$i]["id"] ?>"><?php echo $governate[$i]["arQuestion"] ?>"></label>
-                        <label id="enAnswer<?php echo $governate[$i]["id"] ?>"><?php echo $governate[$i]["enAnswer"] ?>"></label>
-                        <label id="arAnswer<?php echo $governate[$i]["id"] ?>"><?php echo $governate[$i]["arAnswer"] ?>"></label>
+                        <label id="enQuestion<?php echo $faqs[$i]["id"] ?>"><?php echo $faqs[$i]["enQuestion"] ?>"></label>
+                        <label id="arQuestion<?php echo $faqs[$i]["id"] ?>"><?php echo $faqs[$i]["arQuestion"] ?>"></label>
+                        <label id="enAnswer<?php echo $faqs[$i]["id"] ?>"><?php echo $faqs[$i]["enAnswer"] ?>"></label>
+                        <label id="arAnswer<?php echo $faqs[$i]["id"] ?>"><?php echo $faqs[$i]["arAnswer"] ?>"></label>
                     </div>		
 				</td>
 				</tr>
