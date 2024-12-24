@@ -20,7 +20,7 @@ if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'",
 				</a>
 				<div class="card-body">
 				<h5 class="card-title fw-bold"><a href="?v=OfficeView&id=<?php echo $offices[0]["id"]; ?>"><?php echo direction($offices[0]["enTitle"],$offices[0]["arTitle"]); ?></a></h5>
-				<div class="card-social">
+				<div class="card-social"> 
 					<ul>
 				<?php 
 				$arraySMIcons = ["bi bi-facebook","bi bi-twitter-x","bi bi-instagram","bi bi-envelope"];
