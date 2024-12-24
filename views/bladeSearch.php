@@ -25,7 +25,7 @@
 			</div>
 			
 			<div class="ads-section">
-			  <?php include 'themes/'.$config['theme'].'/sections/ads-main-list.php'; ?>
+			  <?php include 'template/adsMainList.php'; ?>
 			  <div class="d-block text-end mt-3">
 			  	<a href="" class="btn btn-primary"><?php echo Trans('app','More'); ?> ...</a>
 			  </div>
