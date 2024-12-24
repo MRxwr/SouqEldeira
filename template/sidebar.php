@@ -4,12 +4,11 @@
 		<div class="sidebar-element1">
 			<div class="element1-start">
 				<div class="change-language">
-					<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>
 				    <?php if( $_SESSION['lang'] ==='en') { ?>   
-		        		<a class='language p-0' href='<?php echo getSign() . "lang=ar" ?>'><img src='assets/img/lang/ar.png' class='img-fluid langimg'><span>عربى</span></a> 
+		        		<a class='language p-0' href='<?php echo "http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=ar" ?>'><img src='assets/img/lang/ar.png' class='img-fluid langimg'><span>عربى</span></a> 
 					<?php } ?>
 					<?php if( $_SESSION['lang'] ==='ar') { ?> 	
-						<a class='language p-0' href='<?php echo getSign() . "lang=en" ?>'><img src='assets/img/lang/en.png' class='img-fluid langimg'><span>English</span></a>
+						<a class='language p-0' href='<?php echo "http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=en" ?>'><img src='assets/img/lang/en.png' class='img-fluid langimg'><span>English</span></a>
 		        	<?php } ?>  
 			    </div>
 			    <div id="dismiss" class="siderbar-dismiss text-end">
