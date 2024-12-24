@@ -69,7 +69,7 @@
 	</div>
 	
 	<div class="col-lg-12">
-  		<a href="ad-view.php" class="card card-ad">
+  		<a href="?v=AdView" class="card card-ad">
 	    <div class="row g-0">
 	        <div class="col-4 col-sm-3 position-relative">
 	            <img src="assets/img/items/item.png" class="card-img h-100" alt="...">
@@ -92,7 +92,7 @@
 	</div>
 	 
 	<div class="col-lg-12">
-  		<a href="ad-view.php" class="card card-ad">
+  		<a href="?v=AdView" class="card card-ad">
 	    <div class="row g-0"> 
 	        <div class="col-4 col-sm-3 position-relative">
 	            <img src="assets/img/items/item.png" class="card-img h-100" alt="...">
