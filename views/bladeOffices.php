@@ -18,11 +18,11 @@
 				
 			   <div class="col-6 col-lg-4">
 			  		<div class="card card-office text-center">
-					  <a class="card-img" href="office-view.php">
+					  <a class="card-img" href="?v=OfficeView">
 					  	<img src="assets/img/offices/office-1-2.png" class="img-fluid">
 					  </a>
 					  <div class="card-body">
-					    <h5 class="card-title fw-bold"><a href="office-view.php"><?php echo Trans('app','Saleh al-Attal real estate company'); ?></a></h5>
+					    <h5 class="card-title fw-bold"><a href="?v=OfficeView"><?php echo Trans('app','Saleh al-Attal real estate company'); ?></a></h5>
 					    <div class="card-social">
 					    	<ul>
 					    		<li><a href=""><i class="bi bi-facebook"></i></a></li>
@@ -40,11 +40,11 @@
 				
 			   <div class="col-6 col-lg-4">
 			  		<div class="card card-office text-center">
-					  <a class="card-img" href="office-view.php">
+					  <a class="card-img" href="?v=OfficeView">
 					  	<img src="assets/img/offices/office-1-1.png" class="img-fluid">
 					  </a>
 					  <div class="card-body">
-					    <h5 class="card-title fw-bold"><a href="office-view.php"><?php echo Trans('app','Saleh al-Attal real estate company'); ?></a></h5>
+					    <h5 class="card-title fw-bold"><a href="?v=OfficeView"><?php echo Trans('app','Saleh al-Attal real estate company'); ?></a></h5>
 					    <div class="mx-0">
 					    	<a href="#" class="btn btn-primary w-100"><i class="bi bi-telephone-fill mx-2"></i><?php echo Trans('app','Call'); ?></a>
 					    </div>
@@ -54,11 +54,11 @@
 				
 				<div class="col-6 col-lg-4">
 			  		<div class="card card-office text-center">
-					  <a class="card-img" href="office-view.php">
+					  <a class="card-img" href="?v=OfficeView">
 					  	<img src="assets/img/offices/office-1-2.png" class="img-fluid">
 					  </a>
 					  <div class="card-body">
-					    <h5 class="card-title fw-bold"><a href="office-view.php"><?php echo Trans('app','Saleh al-Attal real estate company'); ?></a></h5>
+					    <h5 class="card-title fw-bold"><a href="?v=OfficeView"><?php echo Trans('app','Saleh al-Attal real estate company'); ?></a></h5>
 					    <div class="card-social">
 					    	<ul>
 					    		<li><a href=""><i class="bi bi-facebook"></i></a></li>
@@ -76,11 +76,11 @@
 				
 			   <div class="col-6 col-lg-4">
 			  		<div class="card card-office text-center">
-					  <a class="card-img" href="office-view.php">
+					  <a class="card-img" href="?v=OfficeView">
 					  	<img src="assets/img/offices/office-1-1.png" class="img-fluid">
 					  </a>
 					  <div class="card-body">
-					    <h5 class="card-title fw-bold"><a href="office-view.php"><?php echo Trans('app','Saleh al-Attal real estate company'); ?></a></h5>
+					    <h5 class="card-title fw-bold"><a href="?v=OfficeView"><?php echo Trans('app','Saleh al-Attal real estate company'); ?></a></h5>
 					    <div class="mx-0">
 					    	<a href="#" class="btn btn-primary w-100"><i class="bi bi-telephone-fill mx-2"></i><?php echo Trans('app','Call'); ?></a>
 					    </div>
