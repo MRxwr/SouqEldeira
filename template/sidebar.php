@@ -4,10 +4,10 @@
 		<div class="sidebar-element1">
 			<div class="element1-start">
 				<div class="change-language">
-				    <?php if( $_COOKIE['lang'] ==='en') { ?>   
+				    <?php if( $_SESSION['lang'] ==='en') { ?>   
 		        		<a class='language p-0' href='<?php echo "http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=ar" ?>'><img src='assets/img/lang/ar.png' class='img-fluid langimg'><span>عربى</span></a> 
 					<?php } ?>
-					<?php if( $_COOKIE['lang'] ==='ar') { ?> 	
+					<?php if( $_SESSION['lang'] ==='ar') { ?> 	
 						<a class='language p-0' href='<?php echo "http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=en" ?>'><img src='assets/img/lang/en.png' class='img-fluid langimg'><span>English</span></a>
 		        	<?php } ?>  
 			    </div>
@@ -15,7 +15,7 @@
 			       <i class="bi bi-x-lg"></i>
 			    </div>
 			</div>
-		    <?php if($_COOKIE['valid']){ ?>
+		    <?php if($_SESSION['valid']){ ?>
 		    <div class="sidebar-header">
 		    	<div class="profile">
 		    		
@@ -25,7 +25,7 @@
 			    		</a>
 		    		</div>
 		    		<div class="details">
-		    			<h3 class="fullname"><?php echo $_COOKIE['firstname']." ".$_COOKIE['lastname'] ?></h3>
+		    			<h3 class="fullname"><?php echo $_SESSION['firstname']." ".$_SESSION['lastname'] ?></h3>
 		    			<a href="?v=Profile"><?php echo Trans('app','My Profile'); ?></a>
 		    		</div>
 		    	</div>
@@ -60,12 +60,12 @@
 		        <li class="active">
 		            <a href="?v=Home"><i class="bi bi-house"></i><?php echo Trans('app','Home'); ?></a>
 		        </li>
-		        <?php if(!$_COOKIE['valid']){ ?>
+		        <?php if(!$_SESSION['valid']){ ?>
 		        <li>
 		            <a href="?v=Login"><i class="bi bi-box-arrow-right"></i><?php echo Trans('app','Login'); ?></a>
 		        </li>
 		        <?php } ?>
-		        <?php if($_COOKIE['valid']){ ?>
+		        <?php if($_SESSION['valid']){ ?>
 		        <li>
 		            <a href="?v=MyAds"><i class="bi bi-grid"></i><?php echo Trans('app','My Ads'); ?> <span class="badge">2</span></a>
 		        </li>
@@ -93,7 +93,7 @@
 		        <li>
 		            <a href="?v=Contact"><i class="bi bi-envelope-arrow-up"></i><?php echo Trans('app','Contact Us'); ?></a>
 		        </li>
-		        <?php if($_COOKIE['valid']){ ?>
+		        <?php if($_SESSION['valid']){ ?>
 		        <li>
 		            <a class="logout" href="?v=Logout"><i class="bi bi-box-arrow-right"></i><?php echo Trans('app','Logout'); ?></a>
 		        </li>

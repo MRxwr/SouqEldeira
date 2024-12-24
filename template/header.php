@@ -4,7 +4,7 @@
 <?php include 'admin/includes/language.php'; ?>
 
 <!DOCTYPE html>
-<html lang="<?php echo $_COOKIE['lang']; ?>" dir="<?php echo $_COOKIE['dir']; ?>">
+<html lang="<?php echo $_SESSION['lang']; ?>" dir="<?php echo $_SESSION['dir']; ?>">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -16,10 +16,10 @@
         
        
         <!-- Core CSS -->
-        <?php if(isset($_COOKIE["dir"]) && $_COOKIE["dir"]==='ltr') { ?>
+        <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='ltr') { ?>
         <link href="assets/components/bootstrap/v-5.2.3/css/bootstrap.min.css" rel="stylesheet" />
         <?php } ?>
-         <?php if(isset($_COOKIE["dir"]) && $_COOKIE["dir"]==='rtl') { ?>
+         <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
         <link href="assets/components/bootstrap/v-5.2.3/css/bootstrap.rtl.min.css" rel="stylesheet" />
         <?php } ?>
         
@@ -33,12 +33,12 @@
 
         <!-- Theme Css  -->
 		<link href="assets/css/style.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
-        <?php if(isset($_COOKIE["dir"]) && $_COOKIE["dir"]==='rtl') { ?>
+        <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
      	<link href="assets/css/style-rtl.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
     	<?php } ?>
     	
     	<link href="assets/css/responsive.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
-    	<?php if(isset($_COOKIE["dir"]) && $_COOKIE["dir"]==='rtl') { ?>
+    	<?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
      	<link href="assets/css/responsive-rtl.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
     	<?php } ?>
 		
