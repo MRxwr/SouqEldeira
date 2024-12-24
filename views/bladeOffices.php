@@ -33,7 +33,7 @@
 							</ul>
 						</div>
 						<div class="mx-0"> 
-							<a href="tel:<?php echo $offices[$i]["phone"]; ?>" class="btn btn-primary w-100"><i class="bi bi-telephone-fill mx-2"></i><?php echo Trans('app','Call'); ?></a>
+							<a href="tel:<?php echo $offices[$i]["mobile"]; ?>" class="btn btn-primary w-100"><i class="bi bi-telephone-fill mx-2"></i><?php echo Trans('app','Call'); ?></a>
 						</div>
 						</div>
 					</div>
