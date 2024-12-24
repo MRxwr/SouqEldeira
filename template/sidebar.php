@@ -1,44 +1,32 @@
 <!-- Sidebar  -->
 <nav id="sidebar">
-	
-	
 	<div class="main-sidebar-container">
-		
 		<div class="sidebar-element1">
-			
 			<div class="element1-start">
-		 
 				<div class="change-language">
 				    <?php if( $_SESSION['lang'] ==='en') { ?>   
-		        		<a class='language p-0' href='<?php echo str_replace("?lang=ar", "" ,str_replace("&lang=ar", "", $_SERVER['REQUEST_URI'])) ?>'><img src='assets/img/lang/ar.png' class='img-fluid langimg'><span>عربى</span></a> 
+		        		<a class='language p-0' href='<?php echo str_replace("?lang=ar", "" ,str_replace("&lang=ar", "", $_SERVER['REQUEST_URI'])) ?>'><img src='assets/img/lang/ar.png' class='img-fluid langimg'><span><?php echo str_replace("?lang=en", "" ,str_replace("&lang=en", "", $_SERVER['REQUEST_URI'])) ?></span></a> 
 					<?php } ?>
 					<?php if( $_SESSION['lang'] ==='ar') { ?> 	
-						<a class='language p-0' href='<?php echo str_replace("?lang=en", "" ,str_replace("&lang=en", "", $_SERVER['REQUEST_URI'])) ?>'><img src='assets/img/lang/en.png' class='img-fluid langimg'><span>English</span></a>
+						<a class='language p-0' href='<?php echo str_replace("?lang=en", "" ,str_replace("&lang=en", "", $_SERVER['REQUEST_URI'])) ?>'><img src='assets/img/lang/en.png' class='img-fluid langimg'><span><?php echo str_replace("?lang=en", "" ,str_replace("&lang=en", "", $_SERVER['REQUEST_URI'])) ?></span></a>
 		        	<?php } ?>  
 			    </div>
-			    
 			    <div id="dismiss" class="siderbar-dismiss text-end">
 			       <i class="bi bi-x-lg"></i>
 			    </div>
-			    
 			</div>
-		    
-		    
 		    <?php if($_SESSION['valid']){ ?>
 		    <div class="sidebar-header">
 		    	<div class="profile">
-		    		
 		    		<div class="avatar">
 			    		<a href="?v=Home" class="d-block">
 			    			<img src="assets/img/profile.png" class="img-fluid" alt="...">
 			    		</a>
 		    		</div>
-		    		
 		    		<div class="details">
 		    			<h3 class="fullname"><?php echo $_SESSION['firstname']." ".$_SESSION['lastname'] ?></h3>
 		    			<a href="?v=Profile"><?php echo Trans('app','My Profile'); ?></a>
 		    		</div>
-		    		
 		    	</div>
 		    	<div class="">
 		    		<a href="?v=Notifications" class="notifications">
@@ -62,14 +50,11 @@
 		    	</div>
 		    </div>
 		    <?php } ?>
-		    
-		    
 		    <div class="sidebar-add-ad my-3">
 				<a href="?v=AddAd" class="btn btn-primary btn-border-radius-1 w-100">
 					<i class="bi bi-plus-lg"></i> <?php echo Trans('app','Add Ad'); ?>
 				</a>
 		    </div>
-		    
 		    <ul class="sidebar-menu list-unstyled mt-2">
 		        <li class="active">
 		            <a href="?v=Home"><i class="bi bi-house"></i><?php echo Trans('app','Home'); ?></a>
@@ -113,17 +98,14 @@
 		        </li>
 		        <?php } ?>
 		    </ul>
-			
 		</div>
-		
+
 		<div class="sidebar-element2">
-			
 			<div class="sidebar-contact-whatsapp mb-3">
 				<a href="" class="btn btn-default btn-border-radius-1 w-100 py-2">
 					<i class="bi bi-whatsapp"></i> <?php echo Trans('app','Contact us via WhatsApp'); ?>
 				</a>
 		    </div>
-			
 			<ul class="socila-links list-unstyled mb-3">
 		        <li>
 		            <a href=""><i class="bi bi-envelope"></i></a>
@@ -141,9 +123,6 @@
 		            <a href=""><i class="bi bi-telephone"></i></a>
 		        </li>
 		    </ul>
-		    
 		</div>
-		
 	</div>
-
 </nav>
