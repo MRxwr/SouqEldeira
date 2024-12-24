@@ -4,6 +4,7 @@
 		<div class="sidebar-element1">
 			<div class="element1-start">
 				<div class="change-language">
+					<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>
 				    <?php if( $_SESSION['lang'] ==='en') { ?>   
 		        		<a class='language p-0' href='<?php echo getSign() . "lang=ar" ?>'><img src='assets/img/lang/ar.png' class='img-fluid langimg'><span>عربى</span></a> 
 					<?php } ?>
