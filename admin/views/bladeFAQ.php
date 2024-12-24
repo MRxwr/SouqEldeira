@@ -129,10 +129,10 @@ if( isset($_POST["updateRank"]) ){
 					<a href="<?php echo "?v={$_GET["v"]}&delId={$faqs[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger"></i>
 					</a>	
                     <div style="display:none">
-                        <label id="enQuestion<?php echo $faqs[$i]["id"] ?>"><?php echo $faqs[$i]["enQuestion"] ?>"></label>
-                        <label id="arQuestion<?php echo $faqs[$i]["id"] ?>"><?php echo $faqs[$i]["arQuestion"] ?>"></label>
-                        <label id="enAnswer<?php echo $faqs[$i]["id"] ?>"><?php echo $faqs[$i]["enAnswer"] ?>"></label>
-                        <label id="arAnswer<?php echo $faqs[$i]["id"] ?>"><?php echo $faqs[$i]["arAnswer"] ?>"></label>
+                        <label id="enQuestion<?php echo $faqs[$i]["id"] ?>"><?php echo $faqs[$i]["enQuestion"] ?></label>
+                        <label id="arQuestion<?php echo $faqs[$i]["id"] ?>"><?php echo $faqs[$i]["arQuestion"] ?></label>
+                        <label id="enAnswer<?php echo $faqs[$i]["id"] ?>"><?php echo $faqs[$i]["enAnswer"] ?></label>
+                        <label id="arAnswer<?php echo $faqs[$i]["id"] ?>"><?php echo $faqs[$i]["arAnswer"] ?></label>
                     </div>		
 				</td>
 				</tr>
