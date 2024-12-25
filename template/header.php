@@ -1,7 +1,7 @@
 <?php include 'admin/includes/config.php'; ?>
 <?php include 'admin/includes/functions.php'; ?>
-<?php include 'admin/includes/translate.php'; ?>
 <?php include 'admin/includes/language.php'; ?>
+<?php include 'admin/includes/translate.php'; ?>
 
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION['lang']; ?>" dir="<?php echo $_SESSION['dir']; ?>">
