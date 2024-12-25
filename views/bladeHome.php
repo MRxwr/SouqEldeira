@@ -31,10 +31,24 @@
 						<label class="input-group-text labelIcon" for=""><i class="bi bi-geo-alt"></i></label>
 						<select class="form-select" name="propertyRegion" aria-label="Property Region">
 						<option selected><i class="bi bi-geo-alt"></i> <?php echo Trans('app','Area or Region'); ?></option>
-						<option value="1"><?php echo Trans('app','Area 1'); ?></option>
-						<option value="2"><?php echo Trans('app','Area 2'); ?></option> 
-						<option value="3"><?php echo Trans('app','Area 3'); ?></option>
-						<option value="4"><?php echo Trans('app','Area 4'); ?></option>
+						<?php
+						$governateId = 0;
+						$directionOfArea = direction("enTitle","arTitle");
+						if( $governates = selectDB("governates","`status` = '0' ORDER BY `rank` ASC") ){
+							for( $i = 0; $i < sizeof($governates); $i++ ){
+								$governate = selectDB("governates","`id` = '{$governates[$i]["id"]}'");
+								$governateTitle = direction($governate[0]["enTitle"],$governate[0]["arTitle"]);
+								echo "<optgroup label='{$governateTitle}'>";
+								if( $areas = selectDB("areas","`status` = '0' AND `governateId` = '{$governates[$i]["id"]}' ORDER BY `{$directionOfArea}` ASC") ){
+									for( $j = 0; $j < sizeof($areas); $j++ ){
+										$title = direction($areas[$j]["enTitle"],$areas[$j]["arTitle"]);
+										echo "<option value='{$areas[$j]["id"]}'>{$title}</option>";
+									}
+								}
+							}
+							echo "</optgroup>";
+						}
+						?>
 						</select>
 					</div>
 				</div>	
