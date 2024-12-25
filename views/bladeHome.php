@@ -178,7 +178,7 @@
 				if( $offices = selectDB("shops","`id` != '0' AND `status` = '0' ORDER BY `rank` ASC")){
 					for( $i = 0; $i < count($offices); $i++ ){
 						echo '<div class="item">';
-						echo '<a href="?v=OfficeView&id=' . $offices[$i]["id"] . '"><img src="logos/' . $offices[$i]["logo"] . '"></a>';
+						echo '<a href="?v=OfficeView&id=' . $offices[$i]["id"] . '"><img src="logos/' . $offices[$i]["logo"] . '" style="width:157px;height:157px"></a>';
 						echo '</div>';
 					}
 				}
