@@ -120,7 +120,6 @@
         <?php require_once 'views/bladeAdView.php';  ?>   
         </div>  
       </div>
-     
     </div> 
   </div>
 </div>
