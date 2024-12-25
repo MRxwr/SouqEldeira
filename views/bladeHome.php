@@ -177,15 +177,15 @@
 		    	<h3 class="fw-bold text-center mb-5"><?php echo Trans('app','Real estate offices in Kuwait'); ?></h3> 
 		        	
 		        <div class="owl-carousel owl-carousel-offices owl-theme">
-				    <div class="item"><a href="?v=OfficeView"><img src="assets/img/offices/office-1.png"></a></div>
-				    <div class="item"><a href="?v=OfficeView"><img src="assets/img/offices/office-2.png"></a></div>
-				    <div class="item"><a href="?v=OfficeView"><img src="assets/img/offices/office-3.png"></a></div>
-				    <div class="item"><a href="?v=OfficeView"><img src="assets/img/offices/office-1.png"></a></div>
-				    <div class="item"><a href="?v=OfficeView"><img src="assets/img/offices/office-2.png"></a></div>
-				    <div class="item"><a href="?v=OfficeView"><img src="assets/img/offices/office-3.png"></a></div>
-				    <div class="item"><a href="?v=OfficeView"><img src="assets/img/offices/office-1.png"></a></div>
-				    <div class="item"><a href="?v=OfficeView"><img src="assets/img/offices/office-2.png"></a></div>
-				    <div class="item"><a href="?v=OfficeView"><img src="assets/img/offices/office-3.png"></a></div>
+					<?php
+					if( $offices = selectDB("shops","`id` != '0' AND `status` = '0' ORDER BY `rank` ASC")){
+						for( $i = 0; $i < count($offices); $i++ ){
+							echo '<div class="item">';
+							echo '<a href="?v=OfficeView&id=' . $offices[$i]["id"] . '"><img src="logos/' . $offices[$i]["logo"] . '"></a>';
+							echo '</div>';
+						}
+					}
+					?>
 				</div>
 				</div>
 				
