@@ -45,7 +45,7 @@ if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['passw
 		  <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
 		    <div class="form-container">
 		    	
-		    <form id="login-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+		    <form id="login-form" method="post" action="?v=Login" >
 		
 		      <div class="mb-4 text-center">
 				<img src="assets/img/logo-1.png" class="img-fluid" alt="...">
