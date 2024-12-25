@@ -57,12 +57,16 @@
 				<div class="form-outline mt-4">
 				<div class="input-group input-group-select-with-icon">  
 						<label class="input-group-text labelIcon" for=""><i class="bi bi-building"></i></label>
-						<select class="form-select" name="propertyType" aria-label="Properity Type">
+						<select class="form-select" name="categoryId" aria-label="Properity Type">
 						<option selected><i class="bi bi-building"></i> <?php echo Trans('app','Properity Type'); ?></option>
-						<option value="1"><?php echo Trans('app','Sale'); ?></option>
-						<option value="2"><?php echo Trans('app','Allowance'); ?></option> 
-						<option value="3"><?php echo Trans('app','Rent'); ?></option>
-						<option value="4"><?php echo Trans('app','Request'); ?></option>
+						<?php
+						if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1'") ){
+							for( $i = 0; $i < sizeof($categories); $i++ ){
+								$title = direction($categories[$i]["enTitle"],$categories[$i]["arTitle"]);
+								echo "<option value='{$categories[$i]["id"]}'>{$title}</option>";
+							}
+						}
+						?>
 						</select>
 				</div> 
 				</div>
