@@ -60,7 +60,7 @@
 						<select class="form-select" name="categoryId" aria-label="Properity Type">
 						<option selected><i class="bi bi-building"></i> <?php echo Trans('app','Properity Type'); ?></option>
 						<?php
-						if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1'") ){
+						if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 							for( $i = 0; $i < sizeof($categories); $i++ ){
 								$title = direction($categories[$i]["enTitle"],$categories[$i]["arTitle"]);
 								echo "<option value='{$categories[$i]["id"]}'>{$title}</option>";
