@@ -1,47 +1,31 @@
+<div class="alert alert-primary welcome-message responsive" role="alert">
+	<i class="bi bi-exclamation-circle"></i> <?php echo Trans('app','A message from the manager to manage the website'); ?>
+</div>  
 
-		
-		
-
-	<div class="alert alert-primary welcome-message responsive" role="alert">
-		<i class="bi bi-exclamation-circle"></i> <?php echo Trans('app','A message from the manager to manage the website'); ?>
-	</div>  
-		
-	<form class="" action="search-view.php">
+<form class="" action="search-view.php">
 	<div class="search-area-row"> 
-			
 		<div class="row">
-			
 			<div class="main-radio-btn">
-				
 				<div class="radio-btn">
 					<input type="radio" id="aSale" name="propertyType" checked />
 					<label for="aSale"><?php echo Trans('app','Sale'); ?></label>
 				</div>
-				
 				<div class="radio-btn">
 					<input type="radio" id="aRent" name="propertyType" />
 					<label for="aRent"><?php echo Trans('app','Rent'); ?></label>
 				</div>
-				
 				<div class="radio-btn">
 					<input type="radio" id="aAllowance" name="propertyType" />
 					<label for="aAllowance"><?php echo Trans('app','Allowance'); ?></label>
 				</div>
-				
 				<div class="radio-btn"> 
 					<input type="radio" id="aRequest" name="propertyType" />
 					<label for="aRequest"><?php echo Trans('app','Request'); ?></label>
 				</div>
-			
 			</div>
-		
-	
 		</div>
-		
 		<div class="row">
-			
 			<div class="col-md-4">
-				
 				<div class="form-outline mt-4"> 
 					<div class="input-group input-group-select-with-icon">  
 						<label class="input-group-text labelIcon" for=""><i class="bi bi-geo-alt"></i></label>
@@ -54,10 +38,7 @@
 						</select>
 					</div>
 				</div>	
-					
-			
 			</div>
-				
 			<div class="col-md-4">
 				<div class="form-outline mt-4">
 				<div class="input-group input-group-select-with-icon">  
@@ -72,21 +53,17 @@
 				</div> 
 				</div>
 			</div>
-			
 				<div class="col-6 col-md-4">
 				<div class="form-outline mt-4">
 				<button type="submit" class="btn btn-primary btn-block w-100"> <?php echo Trans('app','Search Now'); ?> &nbsp; &nbsp; <i class="bi bi-search"></i></button>
 				</div>
 			</div>
-			
 			<div class="col-6 col-md-12">
 				<div class="form-outline mt-3 advanced-search">  
 				<a href="#!" class="advanced-search-a"><i class="bi bi-sliders"></i><span class="fw-bold"><?php echo Trans('app','Advanced Search'); ?></span></a>
 				</div>
 			</div>
-			
 		</div>
-		
 		<div class="advanced-search-view">
 			<div class="row mt-3">   
 					<div class="col-6 col-md-6">
@@ -101,11 +78,9 @@
 					</div>
 			</div> 
 		</div>
-		
 	</div>
-	</form>
-	
-</div> 
+</form>
+ 
 
 <div class="homePageSecondContent my-3">
 	<div class="container container-project">
