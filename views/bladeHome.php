@@ -109,41 +109,19 @@
 </div>	
 	
 <div class="container container-project">
-	
-	
-	
-	<div class="ads-section">
-		<h4 class="mb-3"><?php echo Trans('app','Latest ads for sale'); ?></h4>		  
-		<?php require('template/adsMainList.php'); ?>
-		<div class="d-block text-end mt-3">
-		<a href="" class="btn btn-primary"><?php echo Trans('app','More'); ?> ...</a>
-		</div>
-	</div>
-	
-	<div class="ads-section">
-		<h4 class="mb-3"><?php echo Trans('app','For rent the latest ads'); ?></h4>		  
-		<?php require('template/adsMainList.php'); ?> 
-		<div class="d-block text-end mt-3">
-		<a href="" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i> </a>
-		</div>
-	</div>
-	
-	<div class="ads-section">
-		<h4 class="mb-3"><?php echo Trans('app','For the latest ads allowance'); ?></h4>		  
-		<?php require('template/adsMainList.php'); ?> 
-		<div class="d-block text-end mt-3">
-		<a href="" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i> </a>
-		</div>
-	</div>
-	
-	<div class="ads-section">
-		<h4 class="mb-3"><?php echo Trans('app','To request the latest announcements'); ?></h4>		  
-		<?php require('template/adsMainList.php'); ?> 
-		<div class="d-block text-end mt-3">
-		<a href="" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i> </a>
-		</div>
-	</div>
-	
+	<?php
+	$arrayOf4 = [Trans('app','Latest ads for sale'),Trans('app','For rent the latest ads'),Trans('app','For the latest ads allowance'),Trans('app','To request the latest announcements')];
+	for( $i = 0; $i < 4; $i++ ){
+		$type = $i;
+		echo "<div class='ads-section'>";
+		echo "<h4 class='mb-3'>{$arrayOf4[$i]}</h4>";
+		require('template/adsMainList.php');
+		echo "<div class='d-block text-end mt-3'>";
+		echo "<a href='' class='btn btn-primary'>".Trans('app','More')." ...</a>";
+		echo "</div>";
+		echo "</div>";
+	}
+	?>
 </div> 
 
 
