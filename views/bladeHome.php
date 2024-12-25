@@ -133,7 +133,11 @@
 			<div class="col-md-12 text-center">
 				<img src="assets/img/logo-white.png" class="img-fluid logo">
 				<br>
-				<p><?php echo Trans('app','about-txt-1'); ?></p>
+				<p><?php 
+				if ( $settings = selectDB("settings","`id` = '1'") ){
+					echo direction($settings[0]["enAbout"],$settings[0]["arAbout"]);
+				}
+				?></p>
 			</div>
 		</div>
 	</div> 
