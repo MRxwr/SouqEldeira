@@ -7,12 +7,12 @@ if ( isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["pa
 		if( $users[0]["hidden"] != 0 ){
 			$msg = direction("Your account is locked", "تم قفل حسابك");
 		}
-		var_dump(count($users));
 		if( count($users) > 1 ){
 			$msg = direction("Wrong username or password", "اسم المستخدم او كلمة المرور غير صحيحة");
 		}else{
 			$GenerateNewCC = md5(rand());
 			if( updateDB("users",array("keepMeAlive"=>$GenerateNewCC),"`id` = '{$users[0]["id"]}'") ){
+				var_dump($GenerateNewCC);
 				$_SESSION[$cookieSession] = $email;
 				$_SESSION["timeout"] = time() + (86400*30);
 				header("Location: index.php?v=Home");
