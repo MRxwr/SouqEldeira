@@ -25,6 +25,9 @@ if ( isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["pa
 		$msg = direction("Wrong username or password", "اسم المستخدم او كلمة المرور غير صحيحة");
 	}
 }
+if( isset($_GET["fp"]) && !empty($_GET["fp"]) ){
+	$msg = direction("Please check your email for new password", "يرجى التحقق من بريدك الإلكتروني لتجديد كلمة المرور");
+}
 ?>
 <div class="row"> 
 <div class="col-md-11 mx-auto">

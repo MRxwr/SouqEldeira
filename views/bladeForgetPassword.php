@@ -11,6 +11,7 @@ if (isset($_POST['forget']) && !empty($_POST['email'])){
 				"password"	=>	$randomPass
 			);
 			forgetPass($data);
+			header("Location: index.php?v=Login&fp=" . md5(rand(100000,999999)));die();
 		}
 	}
 }
@@ -33,23 +34,6 @@ if (isset($_POST['forget']) && !empty($_POST['email'])){
 		  </div>
 		  <!-- Submit button -->
 		  <button type="submit" name="forget" class="btn btn-primary btn-block w-100 mb-4 py-2"><?php echo Trans('app','Send Activation Code'); ?></button>
-		</form>
-		<?php } ?>
-		<?php if($verify === 1) { ?>
-		<form id="forget-password-verify-form" method="post">
-		  <div class="mb-0 text-start form-title-as-label"> 
-			<h5><?php echo Trans('app','Verification Code'); ?></h5>
-		  </div>
-		  <!-- Email input -->
-		  <div class="form-outline"> 
-			<input type="text" class="form-control" name="code" placeholder="<?php echo Trans('app','Please Enter Verification Code'); ?>" />
-		  </div>
-		  <div class="form-outline my-3 verify-code-time">   
-		  	<span id="timerOTP"></span>
-		  	<a href="#!"><?php echo Trans('app','Re-send'); ?></a>
-		  </div> 
-		  <!-- Submit button -->
-		  <button type="submit" name="verify" class="btn btn-primary btn-block w-100 mb-4 py-2"><?php echo Trans('app','Verification'); ?></button> 
 		</form>
 		<?php } ?>
 	</div>
