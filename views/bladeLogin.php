@@ -13,8 +13,8 @@ if ( isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["pa
 			$GenerateNewCC = md5(rand());
 			if( updateDB("users",array("keepMeAlive"=>$GenerateNewCC),"`id` = '{$users[0]["id"]}'") ){
 				$_SESSION[$cookieSession] = $email;
-				header("Location: index.php?v=Home");
 				$_SESSION["timeout"] = time() + (86400*30);
+				header("Location: index.php?v=Home");
 				setcookie($cookieSession, $GenerateNewCC, time() + (86400*30 ), "/");die();
 			}else{
 				$msg = direction("Browser not supported", "المتصفح غير مدعوم");
