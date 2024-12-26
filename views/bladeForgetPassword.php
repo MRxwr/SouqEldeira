@@ -1,11 +1,18 @@
 <?php
 $verify = 0;
-if (isset($_POST['forget']) && !empty($_POST['username'])) 
-{
-   if ($_POST['username'] == 'test')
-   {
-      $verify = 1;
-   }
+if (isset($_POST['forget']) && !empty($_POST['email'])){
+	if( $user = selectDBNew("users",[$_POST["email"]],"`email` = ?","") ){
+		$randomPass = rand(100000,999999);
+		$GenerateNewCC = sha1($randomPass);
+		if( updateDB("users",array("password"=>$GenerateNewCC),"`id` = '{$user[0]["id"]}'") ){
+			$verify = 1;
+			$data = array(
+				"email"	=>	$user[0]["email"],
+				"password"	=>	$randomPass
+			);
+			forgetPass($data);
+		}
+	}
 }
 ?>
 <div class="row"> 
