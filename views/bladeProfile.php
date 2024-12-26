@@ -185,7 +185,7 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 	<div class="col-md-6"> 
 		<div class="with-white-bg px-4 py-5 mt-4 mt-md-0">    
 			<h4 class="mb-0"><?php echo Trans('app','Change Password'); ?></h4>		
-			<form id="change-password-form" class="mt-4" method="post" action="index.php?v=Profile">>
+			<form id="change-password-form" class="mt-4" method="post" action="index.php?v=Profile">
 				<!-- Price input -->
 				<div class="form-outline mb-4">
 				<input type="text" class="form-control" name="password" placeholder="<?php echo Trans('app','Current Password'); ?>" /> 
