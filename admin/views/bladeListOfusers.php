@@ -125,7 +125,7 @@ if( isset($_POST["name"]) ){
 		
 		<tbody>
 		<?php 
-		if( $users = selectDB("users","`status` = '0' AND `hidden` = '0'") ){
+		if( $users = selectDB("users","`status` = '0'") ){
 			for( $i = 0; $i < sizeof($users); $i++ ){	
 				if ( $users[$i]["hidden"] == 2 ){
 					$icon = "fa fa-unlock";
