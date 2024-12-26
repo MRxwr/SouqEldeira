@@ -13,7 +13,7 @@
 				<a style="cursor: pointer" class="card card-ad <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" */?> href="?v=AdView&id=<?php echo $ad['id']; ?>">
 					<div class="row g-0"> 
 						<div class="col-4 col-sm-3 position-relative">
-							<span class="feature-label"><?php echo Trans('app','Feature'); ?></span> 
+							<?php if( $ad["packageId"] == 2 ){ ?><span class="feature-label"><?php echo Trans('app','Feature'); ?></span> <?php } ?>
 							<div id="carouselAdMainImages" class="carousel slide" data-bs-ride="carousel">
 							<div class="carousel-indicators">
 								<?php 
