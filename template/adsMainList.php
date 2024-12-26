@@ -3,6 +3,7 @@
 	<?php
 	if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' ORDER BY `id` DESC LIMIT 3") ){
 		for( $i = 0; $i < sizeof($ads); $i++ ){
+			/*
 			if( $ads[$i]["packageId"] == 1 ){
 				$feature = "card-feature";
 			}else{
@@ -10,14 +11,13 @@
 			}
 	?>
 <div class="col-lg-12">
-	<a style="cursor: pointer" class="card card-ad <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" */?> href="?v=AdView&id=<?php echo $ads[$i]['id']; ?>">
+	<a style="cursor: pointer" class="card card-ad <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" ?> href="?v=AdView&id=<?php echo $ads[$i]['id']; ?>">
 		<div class="row g-0"> 
 			<div class="col-4 col-sm-3 position-relative">
 				<span class="feature-label"><?php echo Trans('app','Feature'); ?></span> 
 				<div id="carouselAdMainImages" class="carousel slide" data-bs-ride="carousel">
 				<div class="carousel-indicators">
 					<?php 
-					/*
 					if( $images = selectDB("images","`productId` = '".$ads[$i]['id']."'") ){
 						for( $j = 0; $j < sizeof($images); $j++ ){
 							if( $j == 0 ){
@@ -30,7 +30,6 @@
 							<?php
 						}
 					}
-						*/
 					?>
 				</div>
 				<div class="carousel-inner">
@@ -77,6 +76,7 @@
 	</a>
 </div>
 			<?php
+			*/
 		}
 	}
 	?>
