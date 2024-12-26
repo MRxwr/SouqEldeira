@@ -6,7 +6,15 @@ require ("admin/includes/translate.php");
 if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
 	session_start ();
 	$svdva = $_COOKIE[$cookieSession];
-	if ( $user = selectDBNew("users", [$svdva], "`keepMeAlive` LIKE ? AND `hidden` != '2' AND `status` = '0'", "")){
+	if ( $user = selectDBNew("users", [$svdva], "`keepMeAlive` LIKE ?", "")){
+        if( $user[0]["status"] != 0 ){
+            $_SESSION['valid'] = false;
+            header("Location: index.php?v=Home&error=status");die();
+        }
+        if( $user[0]["hidden"] != 0 ){
+            $_SESSION['valid'] = false;
+            header("Location: index.php?v=Home&error=blocked");die();
+        }
         $_SESSION['valid'] = true;
         $userDetails = array(
             "id" => $user[0]["id"],
@@ -18,6 +26,6 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
 		$_SESSION[$cookieSession] = $user[0]["email"];	
 	}else{
         $_SESSION['valid'] = false;
-		header("Location: index.php?v=Home&error=" . md5(rand(0000,9999)));die();
+		header("Location: index.php?v=Home&error=login");die();
 	}
 }
