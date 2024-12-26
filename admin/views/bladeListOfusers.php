@@ -64,12 +64,12 @@ if( isset($_POST["name"]) ){
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
 			<div class="col-md-6">
-			<label><?php echo direction("First Name","الاسم الأول") ?></label>
+			<label><?php echo direction("Name","الاسم") ?></label>
 			<input type="text" name="name" class="form-control" required>
 			</div>
 
 			<div class="col-md-6">
-			<label><?php echo direction("Last Name","الاسم الثاني") ?></label>
+			<label><?php echo direction("Username","اسم المستخدم") ?></label>
 			<input type="text" name="username" class="form-control" required>
 			</div>
 
