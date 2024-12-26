@@ -48,11 +48,11 @@ if( isset($_POST["enTitle"]) ){
 	.delete-btn {
 		position: absolute;
 		top: 50%;
-		left: 50%;
+		left: 20%;
 		transform: translate(-50%, -50%);
 		font-size: 24px;
 		font-weight: bold;
-		color: red;
+		color: #c46666;
 		cursor: pointer;
 		display: none;
 	}
