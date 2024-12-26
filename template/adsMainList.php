@@ -1,6 +1,5 @@
 <div class="ads-main-list">
 	<div class="row gy-3"> 
-
 	<?php
 	if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' ORDER BY `id` DESC LIMIT 3") ){
 		for( $i = 0; $i < sizeof($ads); $i++ ){
@@ -89,7 +88,7 @@
       </div>
       <div class="modal-body">
       	<div class="container container-project">
-        <?php require_once 'views/bladeAdView.php';  ?>   
+        <?php /*require_once 'views/bladeAdView.php'; */ ?>   
         </div>  
       </div>
     </div> 

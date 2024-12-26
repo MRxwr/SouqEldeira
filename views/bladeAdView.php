@@ -1,6 +1,5 @@
 <?php
 if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?","") ){
-	
 }else{
 	?>
 	<script>
