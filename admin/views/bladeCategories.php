@@ -105,12 +105,12 @@ if( isset($_POST["arTitle"]) ){
 			</select>
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-md-6" style="display: none;">
 			<label><?php echo direction("Logo","الشعار") ?></label>
 			<input type="file" name="imageurl" class="form-control" >
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-md-6" style="display: none;">
 			<label><?php echo direction("Header","الصورة الكبيرة") ?></label>
 			<input type="file" name="header" class="form-control" >
 			</div>
@@ -229,8 +229,8 @@ if( isset($_POST["arTitle"]) ){
 		$("input[name=update]").val(id);
 		$("input[name=enTitle]").val(enTitle);
 		$("select[name=hidden]").val(hidden);
-		$("#headerImg").attr("src","../logos/"+header);
-		$("#logoImg").attr("src","../logos/"+logo);
-		$("#images").attr("style","margin-top:10px;display:block");
+		//$("#headerImg").attr("src","../logos/"+header);
+		//$("#logoImg").attr("src","../logos/"+logo);
+		//$("#images").attr("style","margin-top:10px;display:block");
 	})
 </script>
