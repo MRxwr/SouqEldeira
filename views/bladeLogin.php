@@ -1,6 +1,6 @@
 <?php
 if ( isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"]) ){
-	if( $users = selectDBNew("users",[$_POST["username"],sha1($_POST["password"])],"`email` LIKE ? AND `password` LIKE ?","") ){
+	if( $users = selectDBNew("users",[$_POST["username"],sha1($_POST["password"])],"`username` LIKE ? AND `password` LIKE ?","") ){
 		if( $users[0]["status"] != 0 ){
 			$msg = direction("Your account is blocked", "تم حظر حسابك");
 		}
