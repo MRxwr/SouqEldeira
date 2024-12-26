@@ -7,6 +7,7 @@ if ( isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["pa
 		if( $users[0]["hidden"] != 0 ){
 			$msg = direction("Your account is locked", "تم قفل حسابك");
 		}
+		var_dump(count($users));
 		if( count($users) > 1 ){
 			$msg = direction("Wrong username or password", "اسم المستخدم او كلمة المرور غير صحيحة");
 		}else{
