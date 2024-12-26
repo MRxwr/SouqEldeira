@@ -12,9 +12,7 @@ if ( isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["pa
 			$msg = direction("Wrong username or password", "اسم المستخدم او كلمة المرور غير صحيحة");
 		}else{
 			$GenerateNewCC = md5(rand());
-			var_dump(updateDB("users",array("keepMeAlive"=>$GenerateNewCC),"`id` = '{$users[0]["id"]}'"));
 			if( updateDB("users",array("keepMeAlive"=>$GenerateNewCC),"`id` = '{$users[0]["id"]}'") ){
-				var_dump($GenerateNewCC);
 				$_SESSION[$cookieSession] = $email;
 				header("Location: index.php?v=Home");
 				setcookie($cookieSession, $GenerateNewCC, time() + (86400*30 ), "/");die();
