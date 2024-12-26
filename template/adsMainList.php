@@ -17,6 +17,7 @@
 				<div id="carouselAdMainImages" class="carousel slide" data-bs-ride="carousel">
 				<div class="carousel-indicators">
 					<?php 
+					/*
 					if( $images = selectDB("images","`productId` = '".$ads[$i]['id']."'") ){
 						for( $j = 0; $j < sizeof($images); $j++ ){
 							if( $j == 0 ){
@@ -29,6 +30,7 @@
 							<?php
 						}
 					}
+						*/
 					?>
 				</div>
 				<div class="carousel-inner">
