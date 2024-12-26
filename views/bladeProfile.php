@@ -79,7 +79,7 @@ if( isset($_POST["email"]) && !empty($_POST["email"]) ){
 	if( updateDB("users",$data, "`id` = '{$userDetails["id"]}'") ){
 		?>
 		<script>
-			alert("<?php echo direction("Your email has been updated successfully","تم تغيير بريدك الإلكتروني بنجاح"); ?>");
+			alert("<?php echo direction("Your details has been updated successfully","تم تحديث بياناتك بنجاح"); ?>");
 			window.location = "index.php?v=Profile";
 		</script>
 		<?php
