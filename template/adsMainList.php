@@ -34,12 +34,12 @@
 							<div class="carousel-inner">
 								<?php
 								if( $images = selectDB("images","`productId` = '".$ad['id']."'") ){
-									for( $j = 0; $j < sizeof($images); $j++ ){
+									for( $z = 0; $z < sizeof($images); $z++ ){
 										?>
 										<div class="carousel-item <?php echo $active ?>">
 										<object>
 											<a href="?v=AdView&id=<?php echo $ad["id"] ?>" data-toggle="lightbox" data-gallery="mixedgallery">
-												<img src="logos/<?php echo $images[$j]["imageurl"] ?>" class="d-block w-100 h-100" alt="...">
+												<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" alt="...">
 											</a> 
 										</object> 
 										</div>
