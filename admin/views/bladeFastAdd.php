@@ -1,17 +1,17 @@
 <?php 
 if( isset($_POST["enTitle"]) ){
+	$dataArray = array(
+		"categoryId" => "{$_POST["categoryId"]}",
+		"arTitle" => ($_POST["arTitle"]),
+		"enTitle" => ($_POST["enTitle"]),
+		"arDetails" => ($_POST["arDetails"]),
+		"enDetails" => ($_POST["enDetails"]),
+		"price" => "{$_POST["price"]}",
+		"cost" => "{$_POST["cost"]}",
+	);
 	if( isset($_POST["id"]) && !empty($_POST["id"])){
 		$product = selectDB("products","`id` = '{$_POST["id"]}'");
-		$updateArray = array(
-			"categoryId" => "{$_POST["categoryId"]}",
-			"arTitle" => ($_POST["arTitle"]),
-			"enTitle" => ($_POST["enTitle"]),
-			"arDetails" => ($_POST["arDetails"]),
-			"enDetails" => ($_POST["enDetails"]),
-			"price" => "{$_POST["price"]}",
-			"cost" => "{$_POST["cost"]}",
-		);
-		updateDB("products",$updateArray,"`id` LIKE '{$_POST["id"]}'");
+		updateDB("products",$dataArray,"`id` LIKE '{$_POST["id"]}'");
 		for( $i = 0; $i < sizeof($_FILES['logo']['tmp_name']); $i++ ){
 			if( is_uploaded_file($_FILES['logo']['tmp_name'][$i]) ){
 				$filenewname = uploadImageBanner($_FILES["logo"]["tmp_name"][$i]);
@@ -20,38 +20,14 @@ if( isset($_POST["enTitle"]) ){
 		}
 		header("LOCATION: index.php?v=FastAdd");
 	}else{
-		$files = array();
-		foreach ($_FILES["logo"]["tmp_name"] as $key => $tmp_name) {
-			$files[] = new CURLFile($tmp_name, $_FILES["logo"]["type"][$key], $_FILES["logo"]["name"][$key]);
+		insertDB("products",$dataArray);
+		for( $i = 0; $i < sizeof($_FILES['logo']['tmp_name']); $i++ ){
+			if( is_uploaded_file($_FILES['logo']['tmp_name'][$i]) ){
+				$filenewname = uploadImageBanner($_FILES["logo"]["tmp_name"][$i]);
+				insertDB("images",array("productId" => $_POST["id"],"imageurl" => $filenewname));
+			}
 		}
-		$data = array(
-			'categoryId' => $_POST["categoryId"],
-			'enTitle' => $_POST["enTitle"],
-			'arTitle' => $_POST["arTitle"],
-			'enDetails' => $_POST["enDetails"],
-			'arDetails' => $_POST["arDetails"],
-			'price' => $_POST["price"],
-			'cost' => $_POST["cost"],
-		);
-		foreach ($files as $key => $file) {
-			$data["logo[$key]"] = $file;
-		}
-		$curl = curl_init();
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => "{$baseURL}requests/dashboard/index.php?a=Product&action=add",
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'POST',
-			CURLOPT_POSTFIELDS => $data,
-		));
-		$response = curl_exec($curl);
-		$response = json_decode($response, true);
-		curl_close($curl);
-		echo $response["data"]["msg"];
+		header("LOCATION: index.php?v=FastAdd");
 	}
 }
 ?>
