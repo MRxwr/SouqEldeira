@@ -1,13 +1,13 @@
 <?php
 if ( isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"]) ){
 	if( $users = selectDBNew("users",[$_POST["username"],sha1($_POST["password"])],"`username` LIKE ? AND `password` LIKE ?","") ){
-		var_dump($_POST["username"]);
 		if( $users[0]["status"] != 0 ){
 			$msg = direction("Your account is blocked", "تم حظر حسابك");
 		}
 		if( $users[0]["hidden"] != 0 ){
 			$msg = direction("Your account is locked", "تم قفل حسابك");
 		}
+		var_dump($users[0]["hidden"]);
 		if( count($users) > 1 ){
 			$msg = direction("Wrong username or password", "اسم المستخدم او كلمة المرور غير صحيحة");
 		}else{
