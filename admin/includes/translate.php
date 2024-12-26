@@ -1,6 +1,6 @@
 <?php
 if ( $settingsCookie = selectDBNew("settings",[1],"`id` = ?","") ){
-	//$cookieSession = $settingsCookie[0]["cookie"];
+	$cookieSession = $settingsCookie[0]["cookie"];
 }
 $settingsLang = (isset($_COOKIE["CREATEkwLANG"]) && $_COOKIE["CREATEkwLANG"] == "en") ? "en" : "ar";
 $directionHTML = (isset($_COOKIE["CREATEkwLANG"]) && $_COOKIE["CREATEkwLANG"] == "en") ? "" : "rtl";
