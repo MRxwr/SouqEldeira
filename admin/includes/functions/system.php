@@ -25,7 +25,7 @@ function forgetPass($data){
 		'body' => "<center>
 				<img src='".encryptImage("logos/{$settingslogo}")."' style='width:200px;height:200px'>
 				<p>&nbsp;</p>
-				<p>Dear {$user[0]["fName"]} {$user[0]["lName"]},</p>
+				<p>Dear {$user[0]["name"]} - {$user[0]["username"]},</p>
 				<p>Your new password at {$settingsWebsite} is:<br>
 				</p>
 				<p style='font-size: 25px; color: red'><strong>{$data["password"]}</strong></p>
