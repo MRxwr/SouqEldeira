@@ -18,6 +18,4 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
 	}else{
 		header("Location: index.php?v=Home&error=" . md5(rand(0000,9999)));die();
 	}
-}else{
-	header("Location: index.php?v=Home");die();
 }
