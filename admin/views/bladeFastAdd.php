@@ -308,22 +308,30 @@ if( isset($_POST["enTitle"]) ){
 		$("select[name=packageId]").val($("#packageId"+id).html()).selectpicker('refresh');
 		$("#images").empty().attr("style","margin-top:10px;display:block"); // Clear the div
 		$.each(JSON.parse($("#image"+id).html()), function(index, value){
+		var container = $("<div>").css("position", "relative");
+		
 		var img = $("<img>").attr({
 			src: "../logos/" + value["imageurl"],
 			width: 100,
 			height: 100,
 		});
 		
+		// Wrap the image in an <a> tag
+		var a = $("<a>").attr("href", "javascript:void(0)");
+		a.append(img);
+		
+		container.append(a);
+		
 		// Add a delete button
 		var deleteBtn = $("<span>").addClass("delete-btn").html("X");
-		img.append(deleteBtn);
+		container.append(deleteBtn);
 		
 		// Add a hover effect to show the delete button
-		img.hover(function() {
-			$(this).css("opacity", 0.5); // Make the image slightly transparent
+		container.hover(function() {
+			$(this).find("img").css("opacity", 0.5); // Make the image slightly transparent
 			$(this).find(".delete-btn").show();
 		}, function() {
-			$(this).css("opacity", 1); // Reset the image opacity
+			$(this).find("img").css("opacity", 1); // Reset the image opacity
 			$(this).find(".delete-btn").hide();
 		});
 		
@@ -336,7 +344,7 @@ if( isset($_POST["enTitle"]) ){
 			}
 		});
 		
-		$("#images").append(img);
+		$("#images").append(container);
 		});
 	})
 </script>
