@@ -77,6 +77,7 @@ if( isset($_POST["email"]) && !empty($_POST["email"]) ){
 		"contactEmail" => $_POST["contactEmail"],
 		"logo" => $_POST["logo"],
 	);
+	var_dump($data);
 	if( updateDB("users",$data, "`id` = '{$userDetails["id"]}'") ){
 		?>
 		<script>
