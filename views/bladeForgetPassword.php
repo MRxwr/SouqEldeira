@@ -23,7 +23,7 @@ if (isset($_POST['forget']) && !empty($_POST['email'])){
 			<img src="assets/img/logo-1.png" class="img-fluid" alt="...">
 		</div>
 	    <?php if($verify === 0) { ?>  
-		<form id="forget-password-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+		<form id="forget-password-form" method="post" action="?v=ForgetPassword">
 		  <div class="mb-0 text-start form-title-as-label">
 			<h5><?php echo Trans('app','Forgot password?'); ?></h5> 
 		  </div>
