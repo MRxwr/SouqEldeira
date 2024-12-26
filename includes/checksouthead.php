@@ -16,8 +16,8 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
         );
 		$_SESSION[$cookieSession] = $user[0]["email"];	
 	}else{
-		header("Location: includes/logout.php");die();
+		header("Location: index.php?v=Home&error=" . md5(rand(0000,9999)));die();
 	}
 }else{
-	header("Location: includes/logout.php");die();
+	header("Location: index.php?v=Home");die();
 }
