@@ -87,7 +87,7 @@ if ( isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["pa
 		        </div> 
 		
 		        <div class="col-md-12 d-flex justify-content-start"> 
-		          <a href="forget-password.php"><?php echo Trans('app','Click here if you forgot your password?'); ?></a>
+		          <a href="?v=ForgetPassword"><?php echo Trans('app','Click here if you forgot your password?'); ?></a>
 		        </div>
 		        
 		      </div>
