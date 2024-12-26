@@ -1,22 +1,28 @@
 <?php
-$msg = '';
-if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) 
-{
-   if ($_POST['username'] == 'test' && $_POST['password'] == '1234')
-   {
-      $_SESSION['valid']     = true;
-      $_SESSION['timeout']   = time();
-      $_SESSION['username']  = 'test';
-	  $_SESSION['firstname'] = 'Badr';  
-	  $_SESSION['lastname']  = 'Mahmoud';  
-      
-	  header('Location: index.php');
-      //echo 'You have entered valid use name and password';
-   }
-   else 
-   {
-      $msg = 'Wrong username or password';
-   }
+if ( isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"]) ){
+	if( $users = selectDBNew("users",[$_POST["username"],sha1($_POST["password"])],"`email` LIKE ? AND `password` LIKE ?","") ){
+		if( $users[0]["status"] != 0 ){
+			$msg = direction("Your account is blocked", "تم حظر حسابك");
+		}
+		if( $users[0]["hidden"] != 0 ){
+			$msg = direction("Your account is locked", "تم قفل حسابك");
+		}
+		if( count($users) > 1 ){
+			$msg = direction("Wrong username or password", "اسم المستخدم او كلمة المرور غير صحيحة");
+		}else{
+			$GenerateNewCC = md5(rand());
+			if( updateDB("users",array("keepMeAlive"=>$GenerateNewCC),"`id` = '{$users[0]["id"]}'") ){
+				$_SESSION[$cookieSession] = $email;
+				header("Location: index.php?v=Home");
+				setcookie($cookieSession, $GenerateNewCC, time() + (86400*30 ), "/");die();
+				$_SESSION["timeout"] = time() + (86400*30);
+			}else{
+				$msg = direction("Browser not supported", "المتصفح غير مدعوم");
+			}
+		}
+	}else{ 
+		$msg = direction("Wrong username or password", "اسم المستخدم او كلمة المرور غير صحيحة");
+	}
 }
 ?>
 		<div class="row"> 
@@ -61,7 +67,7 @@ if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['passw
 			  
 		      <!-- Email input -->
 		      <div class="form-outline mb-4">
-		        <input type="text" class="form-control" name="username" placeholder="<?php echo Trans('app','Username Or Email'); ?>" />
+		        <input type="text" class="form-control" name="username" placeholder="<?php echo direction("Username","اسم المستخدم"); ?>" />
 		      </div>
 		
 		      <!-- Password input -->
