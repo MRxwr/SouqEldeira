@@ -21,6 +21,7 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
             "email" => $user[0]["email"],
             "name" => $user[0]["name"],
             "username" => $user[0]["username"],
+            "phone" => $user[0]["phone"],
             "logo" => $user[0]["logo"],
         );
 		$_SESSION[$cookieSession] = $user[0]["email"];	

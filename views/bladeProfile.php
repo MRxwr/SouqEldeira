@@ -6,21 +6,21 @@
 	</div>
 	<div class="col-md-6"> 
 		<div class="with-white-bg py-1 px-4">
-			<form id="profile-form" class="mt-4">		
+			<form id="profile-form" class="mt-4" method="post" action="index.php?v=Profile">		
 				<div class="mb-4 text-center">
 				<img src="assets/img/profile.png" class="img-fluid" alt="...">
 				</div>
 				<!-- Price input -->
 				<div class="form-outline mb-4">
-				<input type="text" class="form-control" name="username" value="Badr Mahmoud" placeholder="<?php echo Trans('app','Username'); ?>" />
+				<input type="text" class="form-control" name="username" value="<?php echo $userDetails["username"]; ?>" placeholder="<?php echo Trans('app','Username'); ?>" />
 				</div>
 				<!-- Price input -->
 				<div class="form-outline mb-4">
-				<input type="text" class="form-control" name="phone" value="65680566" placeholder="<?php echo Trans('app','Phone Number'); ?>" />
+				<input type="text" class="form-control" name="phone" value="<?php echo $userDetails["phone"]; ?>" placeholder="<?php echo Trans('app','Phone Number'); ?>" />
 				</div>
 				<!-- Price input -->
 				<div class="form-outline mb-4">
-				<input type="text" class="form-control" name="email" value="badertov7@gmail.com" placeholder="<?php echo Trans('app','Email'); ?>" />
+				<input type="text" class="form-control" name="email" value="<?php echo $userDetails["email"]; ?>" placeholder="<?php echo Trans('app','Email'); ?>" />
 				</div>
 				<div class="form-outline mb-4">
 				<h5 class="fw-bold mb-3"><?php echo Trans('app','Update Profile Image'); ?></h5>
