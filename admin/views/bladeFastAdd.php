@@ -2,6 +2,9 @@
 if( isset($_POST["enTitle"]) ){
 	$dataArray = array(
 		"categoryId" => "{$_POST["categoryId"]}",
+		"packageId" => "{$_POST["packageId"]}",
+		"governateId" => "{$_POST["governateId"]}",
+		"areaId" => "{$_POST["areaId"]}",
 		"arTitle" => ($_POST["arTitle"]),
 		"enTitle" => ($_POST["enTitle"]),
 		"arDetails" => ($_POST["arDetails"]),
