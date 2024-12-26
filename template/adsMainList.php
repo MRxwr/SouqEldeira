@@ -1,7 +1,6 @@
 <div class="ads-main-list">
 	<div class="row gy-3"> 
 	<?php
-	var_dump($ads = selectDB("products","`status` = '0' AND `hidden` != '2' ORDER BY `id` DESC LIMIT 3"));/*
 	if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' ORDER BY `id` DESC LIMIT 3") ){
 		for( $i = 0; $i < sizeof($ads); $i++ ){
 			if( $ads[$i]["packageId"] == 1 ){
@@ -9,6 +8,7 @@
 			}else{
 				$feature = "";
 			}
+			/*
 	?>
 <div class="col-lg-12">
 	<a style="cursor: pointer" class="card card-ad <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" ?> href="?v=AdView&id=<?php echo $ads[$i]['id']; ?>">
@@ -76,9 +76,9 @@
 	</a>
 </div>
 			<?php
+			*/
 		}
 	}
-		*/
 	?>
 
 <div class="modal modal-bottom fade" id="ad_modal" tabindex="-1" aria-labelledby="ad_modal" aria-hidden="true">
