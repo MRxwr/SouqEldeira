@@ -21,11 +21,11 @@
 		    		
 		    		<div class="avatar">
 			    		<a href="?v=Home" class="d-block">
-			    			<img src="assets/img/profile.png" class="img-fluid" alt="...">
+			    			<img src="<?php echo "logos/{$userDetails['logo']}" ?>" class="img-fluid" alt="...">
 			    		</a>
 		    		</div>
 		    		<div class="details">
-		    			<h3 class="fullname"><?php echo $_SESSION['firstname']." ".$_SESSION['lastname'] ?></h3>
+		    			<h3 class="fullname"><?php echo $userDetails['name'] ?></h3>
 		    			<a href="?v=Profile"><?php echo Trans('app','My Profile'); ?></a>
 		    		</div>
 		    	</div>
