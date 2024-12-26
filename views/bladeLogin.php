@@ -1,5 +1,5 @@
 <?php
-if ( isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"]) ){
+if ( !isset($_POST["register"]) && isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"]) ){
 	$_SESSION["timeout"] = time() + (86400*30);
 	if( $users = selectDBNew("users",[$_POST["username"],sha1($_POST["password"])],"`username` LIKE ? AND `password` LIKE ?","") ){
 		if( $users[0]["status"] != 0 ){
@@ -25,6 +25,36 @@ if ( isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["pa
 		$msg = direction("Wrong username or password", "اسم المستخدم او كلمة المرور غير صحيحة");
 	}
 }
+
+if( isset($_POST["register"]) && !empty($_POST["username"]) && !empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && !empty($_POST["repeat-password"]) ){
+	if( $users = selectDBNew("users",[$_POST["email"]],"`email` = ?","") ){
+		$msg = direction("Email already exists", "البريد الإلكتروني موجود بالفعل");
+	}else{
+		if( $_POST["password"] == $_POST["repeat-password"] ){
+			$GenerateNewCC = md5(rand());
+			$password = sha1($_POST["password"]);
+			$data = array(
+				"username"	=>	$_POST["username"],
+				"name"		=>	$_POST["name"],
+				"email"		=>	$_POST["email"],
+				"password"	=>	$password,
+				"keepMeAlive"	=>	$GenerateNewCC,
+			);
+			if( insertDB("users",$data) ){
+				$_SESSION["timeout"] = time() + (86400*30);
+				$_SESSION[$cookieSession] = $_POST["email"];
+				setcookie($cookieSession, $GenerateNewCC, time() + (86400*30 ), "/");
+				header("Location: index.php?v=Home");
+				die();
+			}else{
+				$msg = direction("Browser not supported", "المتصفح غير مدعوم");	
+			}
+		}else{
+			$msg = direction("Passwords do not match", "كلمة المرور غير متطابقة");
+		}
+	}
+}
+
 if( isset($_GET["fp"]) && !empty($_GET["fp"]) ){
 	$msg = direction("Please check your email for new password", "يرجى التحقق من بريدك الإلكتروني لتجديد كلمة المرور");
 }
@@ -88,7 +118,8 @@ if( isset($_GET["fp"]) && !empty($_GET["fp"]) ){
 	
 	<div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
 	<div class="form-container">
-	<form id="register-form">
+	<form id="register-form" method="post" action="?v=Login">
+		<input type="hidden" name="register" value="1">
 		<div class="mb-4 text-center">
 		<img src="assets/img/logo-1.png" class="img-fluid" alt="...">
 		</div>
