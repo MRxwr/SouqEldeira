@@ -16,8 +16,8 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
         );
 		$_SESSION[$cookieSession] = $user[0]["email"];	
 	}else{
-		header("Location: logout.php");die();
+		header("Location: includes/logout.php");die();
 	}
 }else{
-	header("Location: logout.php");die();
+	header("Location: includes/logout.php");die();
 }
