@@ -263,25 +263,8 @@ if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
 					  <ul class="dropdown-menu">
 						<?php
 						  echo '<li><a id="'.$products[$i]["id"].'" class="edit" href="javascript:void(0)"><i class="zmdi zmdi-edit"></i></a></li>';
-						  if ( $products[$i]["hidden"] == 0 ){
-							echo '<li><a href="includes/products/delete.php?id='.$products[$i]["id"].'"><i class="fa fa-eye-slash"></i></a></li>';
-						  }else{
-							echo '<li><a href="includes/products/delete.php?id='.$products[$i]["id"].'&show=1"><i class="fa fa-eye"></i></a></li>';
-						  }
-						  echo '<li><a href="includes/products/delete.php?id='.$products[$i]["id"].'&forceDelete=1"><i class="fa fa-times"></i></a></li>';
-						  echo '<li role="separator" class="divider"></li>';
-						  if( $products[$i]["bestSeller"] == 1 ){
-							$color = "btn-success";
-						  }else{
-							$color = "btn-default";
-						  }
-						  echo '<li><a href="?v=Product&bestId='.$products[$i]["id"].'" class="'.$color.'"><i class="fa fa-usd"></i></a></li>';
-						  if( $products[$i]["recent"] == 1 ){
-							$color = "btn-success";
-						  }else{
-							$color = "btn-default";
-						  }
-						  echo '<li><a href="?v=Product&newId='.$products[$i]["id"].'" class="'.$color.'"><i class="fa fa-plus-square"></i></a></li>';
+						  echo '<li><a href="'.$link.'"><i class="'.$icon.'"></i></a></li>';
+						  echo "<li><a href='?v={$_GET["v"]}&forceDelete={$products[$i]["id"]}'><i class='fa fa-times'></i></a></li>";
 						?>
 					  </ul>
 					</div>
