@@ -339,7 +339,7 @@ if( isset($_POST["enTitle"]) ){
 		deleteBtn.click(function(e) {
 			e.stopPropagation(); // Prevent the click event from bubbling up
 			if (confirm("Are you sure you want to delete this image?")) {
-			var imageId = value["imageId"]; // Assuming the imageId is stored in the value object
+			var imageId = value["id"]; // Assuming the imageId is stored in the value object
 			window.location.href = "?v=FastAdd&deleteImage=" + imageId;
 			}
 		});
