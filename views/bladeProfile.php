@@ -35,31 +35,31 @@
 					<div class="col-md-6"> 
 						<div class="input-group mb-1">
 							<span class="input-group-text"><i class="bi bi-facebook"></i></span>
-							<input type="text" name="facebook" class="form-control">
+							<input type="text" name="facebook" class="form-control" value="<?php echo $userDetails["facebook"]; ?>">
 						</div>
 					</div>
 					<div class="col-md-6"> 
 						<div class="input-group mb-1">
 							<span class="input-group-text"><i class="bi bi-twitter-x"></i></span>
-							<input type="text" name="twitter" class="form-control">
+							<input type="text" name="twitter" class="form-control" value="<?php echo $userDetails["twitter"]; ?>">
 						</div>
 					</div>
 					<div class="col-md-6"> 
 						<div class="input-group mb-1">
 							<span class="input-group-text"><i class="bi bi-instagram"></i></span>
-							<input type="text" name="instagram" class="form-control">
+							<input type="text" name="instagram" class="form-control" value="<?php echo $userDetails["instagram"]; ?>">
 						</div>
 					</div>
 					<div class="col-md-6"> 
 						<div class="input-group mb-1">
 							<span class="input-group-text"><i class="bi bi-envelope"></i></span>
-							<input type="text" name="email" class="form-control">
+							<input type="text" name="email" class="form-control" value="<?php echo $userDetails["contactEmail"]; ?>">
 						</div>
 					</div>
 					<div class="col-md-12"> 
 						<div class="input-group mb-1">
 							<span class="input-group-text"><i class="bi bi-link"></i></span>
-							<input type="text" name="website" class="form-control">
+							<input type="text" name="website" class="form-control" value="<?php echo $userDetails["url"]; ?>">
 						</div>
 					</div>
 					</div>
