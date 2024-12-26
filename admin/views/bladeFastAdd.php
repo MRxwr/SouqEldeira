@@ -18,16 +18,25 @@ if( isset($_POST["enTitle"]) ){
 				insertDB("images",array("productId" => $_POST["id"],"imageurl" => $filenewname));
 			}
 		}
-		header("LOCATION: index.php?v=FastAdd");
+		header("LOCATION: index.php?v=FastAdd");die();
 	}else{
-		insertDB("products",$dataArray);
-		for( $i = 0; $i < sizeof($_FILES['logo']['tmp_name']); $i++ ){
-			if( is_uploaded_file($_FILES['logo']['tmp_name'][$i]) ){
-				$filenewname = uploadImageBanner($_FILES["logo"]["tmp_name"][$i]);
-				insertDB("images",array("productId" => $_POST["id"],"imageurl" => $filenewname));
+		if(insertDB("products",$dataArray) ){
+			for( $i = 0; $i < sizeof($_FILES['logo']['tmp_name']); $i++ ){
+				if( is_uploaded_file($_FILES['logo']['tmp_name'][$i]) ){
+					$filenewname = uploadImageBanner($_FILES["logo"]["tmp_name"][$i]);
+					insertDB("images",array("productId" => $_POST["id"],"imageurl" => $filenewname));
+				}
 			}
+			header("LOCATION: index.php?v=FastAdd");die();
+		}else{
+			?>
+			<script>
+				alert("Could not process your request, Please try again.");
+			</script>
+			<?php
+			header("LOCATION: index.php?v=FastAdd");die();
 		}
-		header("LOCATION: index.php?v=FastAdd");
+		
 	}
 }
 ?>
