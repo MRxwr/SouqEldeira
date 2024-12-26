@@ -174,7 +174,7 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 					<div class="col-md-12"> 
 						<div class="input-group mb-1">
 							<span class="input-group-text"><i class="bi bi-link"></i></span>
-							<input type="text" name="website" class="form-control" value="<?php echo $userDetails["url"]; ?>">
+							<input type="text" name="url" class="form-control" value="<?php echo $userDetails["url"]; ?>">
 						</div>
 					</div>
 					</div>
