@@ -23,7 +23,7 @@ if( isset($_POST["enTitle"]) ){
 		}
 		header("LOCATION: index.php?v=FastAdd");die();
 	}else{
-		if(insertDB("products",$dataArray) ){
+		if( insertDB("products",$dataArray) ){
 			for( $i = 0; $i < sizeof($_FILES['logo']['tmp_name']); $i++ ){
 				if( is_uploaded_file($_FILES['logo']['tmp_name'][$i]) ){
 					$filenewname = uploadImageBanner($_FILES["logo"]["tmp_name"][$i]);
