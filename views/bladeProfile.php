@@ -52,7 +52,6 @@ if( isset($_POST["password"]) && !empty($_POST["password"]) ){
 		<?php
 	}
 }
-var_dump($_POST);
 if( isset($_POST["email"]) && !empty($_POST["email"]) ){
 	if( $user = selectDBNew("users",[$_POST["email"]],"`email` = ?","") ){
 		if( $user[0]["id"] != $userDetails["id"] ){
@@ -77,7 +76,6 @@ if( isset($_POST["email"]) && !empty($_POST["email"]) ){
 		"contactEmail" => $_POST["contactEmail"],
 		"logo" => $_POST["logo"],
 	);
-	var_dump($data);
 	if( updateDB("users",$data, "`id` = '{$userDetails["id"]}'") ){
 		?>
 		<script>
