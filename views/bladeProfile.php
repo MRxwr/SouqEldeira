@@ -52,7 +52,7 @@ if( isset($_POST["password"]) && !empty($_POST["password"]) ){
 		<?php
 	}
 }
-
+var_dump($_POST);
 if( isset($_POST["email"]) && !empty($_POST["email"]) ){
 	if( $user = selectDBNew("users",[$_POST["email"]],"`email` = ?","") ){
 		if( $user[0]["id"] != $userDetails["id"] ){
