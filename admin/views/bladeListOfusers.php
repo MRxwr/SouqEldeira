@@ -127,6 +127,15 @@ if( isset($_POST["name"]) ){
 		<?php 
 		if( $users = selectDB("users","`status` = '0' AND `hidden` = '0'") ){
 			for( $i = 0; $i < sizeof($users); $i++ ){	
+				if ( $users[$i]["hidden"] == 2 ){
+					$icon = "fa fa-unlock";
+					$link = "?v={$_GET["v"]}&show={$users[$i]["id"]}";
+					$hide = direction("Unlock","فتح الحساب");
+				}else{
+					$icon = "fa fa-lock";
+					$link = "?v={$_GET["v"]}&hide={$users[$i]["id"]}";
+					$hide = direction("Lock","قفل الحساب");
+				}
 				?>
 				<tr>
 				<td id="name<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["name"] ?></td>
@@ -137,6 +146,8 @@ if( isset($_POST["name"]) ){
 				<td class="text-nowrap">
 					<a id="<?php echo $users[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i></a>
 					<a href="?v=ClientInfo&id=<?php echo $users[$i]["id"] ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo direction("More","المزيد") ?>"> <i class="fa fa-plus text-inverse m-r-10"></i></a>
+					<a href="<?php echo $link ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo $hide ?>"> <i class="<?php echo $icon ?> text-inverse m-r-10"></i>
+					</a>
 					<a href="<?php echo "?v={$_GET["v"]}&delId={$users[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i></a>
 					<div style="display:none">
 						<label id="name<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["name"] ?></label>
