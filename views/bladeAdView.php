@@ -2,6 +2,7 @@
 if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?","") ){
 	$area = selectDBNew("areas",[$ad[0]['areaId']],"`id` = ?","");
 	updateDB("products",["views" => $ad[0]['views'] + 1],"`id` = {$_GET["id"]}");
+	$ad[0]["views"] = $ad[0]['views'] + 1;
 }else{
 	?>
 	<script>
