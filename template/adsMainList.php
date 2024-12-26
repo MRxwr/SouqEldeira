@@ -2,10 +2,8 @@
 	<div class="row gy-3"> 
 	<?php
 	if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' ORDER BY `id` DESC LIMIT 3") ){
-		echo sizeof($ads);
-	}
-	/*
 		for( $i = 0; $i < sizeof($ads); $i++ ){
+			/*
 			if( $ads[$i]["packageId"] == 1 ){
 				$feature = "card-feature";
 			}else{
@@ -78,6 +76,7 @@
 	</a>
 </div>
 			<?php
+			*/
 		}
 	}
 	?>
