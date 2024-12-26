@@ -137,7 +137,6 @@ if( isset($_POST["name"]) ){
 				<td class="text-nowrap">
 					<a id="<?php echo $users[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i></a>
 					<a href="?v=ClientInfo&id=<?php echo $users[$i]["id"] ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo direction("More","المزيد") ?>"> <i class="fa fa-plus text-inverse m-r-10"></i></a>
-					<a href="?v=ClientAddress&num=<?php echo $users[$i]["id"] ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo direction("Addresses","العناوين") ?>"> <i class="fa fa-globe text-inverse m-r-10"></i></a>
 					<a href="<?php echo "?v={$_GET["v"]}&delId={$users[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i></a>
 					<div style="display:none">
 						<label id="name<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["name"] ?></label>
