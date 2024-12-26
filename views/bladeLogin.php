@@ -1,5 +1,6 @@
 <?php
 if ( isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"]) ){
+	$_SESSION["timeout"] = time() + (86400*30);
 	if( $users = selectDBNew("users",[$_POST["username"],sha1($_POST["password"])],"`username` LIKE ? AND `password` LIKE ?","") ){
 		if( $users[0]["status"] != 0 ){
 			$msg = direction("Your account is blocked", "تم حظر حسابك");
@@ -14,7 +15,6 @@ if ( isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["pa
 			if( updateDB("users",array("keepMeAlive"=>$GenerateNewCC),"`id` = '{$users[0]["id"]}'") ){
 				var_dump($GenerateNewCC);
 				$_SESSION[$cookieSession] = $email;
-				$_SESSION["timeout"] = time() + (86400*30);
 				header("Location: index.php?v=Home");
 				setcookie($cookieSession, $GenerateNewCC, time() + (86400*30 ), "/");die();
 			}else{
