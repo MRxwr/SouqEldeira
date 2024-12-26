@@ -20,7 +20,7 @@
 		    	<div class="profile">
 		    		
 		    		<div class="avatar">
-			    		<a href="?v=Home" class="d-block">
+			    		<a href="?v=Profile" class="d-block">
 			    			<img src="<?php echo "logos/{$userDetails['logo']}" ?>" class="img-fluid" alt="...">
 			    		</a>
 		    		</div>
@@ -44,9 +44,9 @@
 		    		</a>
 		    	</div>
 		    	<div class="">
-		    		<a href="?v=Notifications" class="notifications">
+		    		<a href="#" class="notifications">
 		    		 <i class="bi bi-bell"></i> 
-					 <span class="badge badge-light">9</span>				  
+					 <span class="badge badge-light">0</span>				  
 					</a> 
 		    	</div>
 		    </div>
