@@ -54,6 +54,7 @@ if( isset($_POST["enTitle"]) ){
 		font-weight: bold;
 		color: red;
 		cursor: pointer;
+		display: none;
 	}
 </style>
 
@@ -313,18 +314,21 @@ if( isset($_POST["enTitle"]) ){
 			height: 100,
 		});
 		
-		// Add a delete button on hover
+		// Add a delete button
+		var deleteBtn = $("<span>").addClass("delete-btn").html("X");
+		img.append(deleteBtn);
+		
+		// Add a hover effect to show the delete button
 		img.hover(function() {
 			$(this).css("opacity", 0.5); // Make the image slightly transparent
-			var deleteBtn = $("<span>").addClass("delete-btn").html("X");
-			$(this).append(deleteBtn);
+			$(this).find(".delete-btn").show();
 		}, function() {
 			$(this).css("opacity", 1); // Reset the image opacity
-			$(this).find(".delete-btn").remove();
+			$(this).find(".delete-btn").hide();
 		});
 		
 		// Add a click event to the delete button
-		img.on("click", ".delete-btn", function(e) {
+		deleteBtn.click(function(e) {
 			e.stopPropagation(); // Prevent the click event from bubbling up
 			if (confirm("Are you sure you want to delete this image?")) {
 			var imageId = value["imageId"]; // Assuming the imageId is stored in the value object
