@@ -11,7 +11,7 @@
 			}
 	?>
 <div class="col-lg-12">
-	<a style="cursor: pointer" class="card card-ad <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" */?> href="?v=AddView&id=<?php echo $ads[$i]['id']; ?>">
+	<a style="cursor: pointer" class="card card-ad <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" */?> href="?v=AdView&id=<?php echo $ads[$i]['id']; ?>">
 		<div class="row g-0"> 
 			<div class="col-4 col-sm-3 position-relative">
 				<span class="feature-label"><?php echo Trans('app','Feature'); ?></span> 
