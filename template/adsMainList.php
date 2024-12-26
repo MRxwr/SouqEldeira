@@ -2,9 +2,7 @@
 	<div class="row gy-3"> 
 	<?php
 	if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' ORDER BY `id` DESC LIMIT 3") ){
-		for( $i = 0; $i < sizeof($ads); $i++ ){
-		
-		}
+		var_dump($ads);
 	}
 	?>
 
