@@ -1,5 +1,6 @@
 <?php
 if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?","") ){
+	$area = selectDBNew("areas",[$ad[0]['areaId']],"`id` = ?","");
 }else{
 	?>
 	<script>
@@ -15,7 +16,7 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 	<div class="row">
         <div class="col-sm-4">
         	<div class="ad-top-details-items">
-                <div class=""> <span class="sp1"><i class="bi bi-geo-alt"></i></span>        <span class="sp2"><?php echo Trans('app','El-Gabrya'); ?></span></div>
+                <div class=""> <span class="sp1"><i class="bi bi-geo-alt"></i></span>        <span class="sp2"><?php echo direction($area[0]['enTitle'], $area[0]['arTitle']); ?></span></div>
                 <div class=""> <span class="sp1"><?php echo Trans('app','Price'); ?></span>  <span class="sp2"><?php echo $ad[0]['price'] . "-/KD"; ?></span></div>
             </div>
         </div>
