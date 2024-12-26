@@ -17,7 +17,7 @@ if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 	}
 }
 
-if( isset($_POST["fullName"]) ){
+if( isset($_POST["name"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
 	if ( $id == 0 ){
@@ -65,12 +65,12 @@ if( isset($_POST["fullName"]) ){
 		<div class="row m-0">
 			<div class="col-md-6">
 			<label><?php echo direction("First Name","الاسم الأول") ?></label>
-			<input type="text" name="fName" class="form-control" required>
+			<input type="text" name="name" class="form-control" required>
 			</div>
 
 			<div class="col-md-6">
 			<label><?php echo direction("Last Name","الاسم الثاني") ?></label>
-			<input type="text" name="lName" class="form-control" required>
+			<input type="text" name="username" class="form-control" required>
 			</div>
 
 			<div class="col-md-4">
@@ -115,6 +115,7 @@ if( isset($_POST["fullName"]) ){
 		<thead>
 		<tr>
 		<th><?php echo direction("Name","الإسم") ?></th>
+		<th><?php echo direction("Username","اسم المستخدم") ?></th>
 		<th><?php echo direction("Email","الإيميل") ?></th>
 		<th><?php echo direction("Mobile","الهاتف") ?></th>
 		<th><?php echo direction("Joined","إلتحق") ?></th>
@@ -128,7 +129,8 @@ if( isset($_POST["fullName"]) ){
 			for( $i = 0; $i < sizeof($users); $i++ ){	
 				?>
 				<tr>
-				<td id="name<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["fName"] . " " . $users[$i]["lName"] ?></td>
+				<td id="name<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["name"] ?></td>
+				<td id="username<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["username"] ?></td>
 				<td id="email<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["email"] ?></td>
 				<td id="mobile<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["phone"] ?></td>
 				<td id="date<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["date"] ?></td>
@@ -138,8 +140,8 @@ if( isset($_POST["fullName"]) ){
 					<a href="?v=ClientAddress&num=<?php echo $users[$i]["id"] ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo direction("Addresses","العناوين") ?>"> <i class="fa fa-globe text-inverse m-r-10"></i></a>
 					<a href="<?php echo "?v={$_GET["v"]}&delId={$users[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i></a>
 					<div style="display:none">
-						<label id="fName<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["fName"] ?></label>
-						<label id="lName<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["lName"] ?></label>
+						<label id="name<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["name"] ?></label>
+						<label id="username<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["username"] ?></label>
 					</div>		
 				</td>
 				</tr>
@@ -160,14 +162,11 @@ if( isset($_POST["fullName"]) ){
 <script>
 	$(document).on("click",".edit", function(){
 		var id = $(this).attr("id");
-		$("input[name=password]").removeAttr("required");
-		var email = $("#email"+id).html();
-		var name = $("#name"+id).html();
-		var mobile = $("#mobile"+id).html();
-		$("input[name=email]").val(email);
-		$("input[name=phone]").val(mobile);
 		$("input[name=update]").val(id);
-		$("input[name=fName]").val($("#fName"+id).html()).focus();
-		$("input[name=lName]").val($("#lName"+id).html());
+		$("input[name=email]").val($("#email"+id).html());
+		$("input[name=phone]").val($("#mobile"+id).html());
+		$("input[name=name]").val($("#name"+id).html()).focus();
+		$("input[name=username]").val($("#username"+id).html());
+		$("input[name=password]").removeAttr("required");
 	})
 </script>
