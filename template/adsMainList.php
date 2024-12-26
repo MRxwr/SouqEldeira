@@ -35,6 +35,11 @@
 								<?php
 								if( $images = selectDB("images","`productId` = '".$ad['id']."'") ){
 									for( $z = 0; $z < sizeof($images); $z++ ){
+										if( $z == 0 ){
+											$active = "active";
+										}else{
+											$active = "";
+										}
 										?>
 										<div class="carousel-item <?php echo $active ?>">
 										<object>
