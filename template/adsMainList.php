@@ -3,7 +3,7 @@
 	<?php
 	if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' ORDER BY `id` DESC LIMIT 3") ){
 		foreach( $ads as $ad ){
-			if( $ad["packageId"] == 1 ){
+			if( $ad["packageId"] == 2 ){
 				$feature = "card-feature";
 			}else{
 				$feature = "";
