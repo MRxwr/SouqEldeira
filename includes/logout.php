@@ -1,6 +1,7 @@
 <?php
 include_once ("../admin/includes/config.php");
 include_once ("../admin/includes/functions.php");
+include_once ("../admin/includes/language.php");
 require_once ("../admin/includes/translate.php");
 setcookie($cookieSession, "", time() - (86400*30 ), "/");
 session_start ();
