@@ -38,6 +38,8 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
 		$_SESSION[$cookieSession] = $user[0]["email"];	
 	}else{
         $_SESSION['valid'] = false;
+        setcookie($cookieSession, "", time() - (86400*30 ), "/");
+        session_destroy();
 		header("Location: index.php?v=Home&error=login");die();
 	}
 }
