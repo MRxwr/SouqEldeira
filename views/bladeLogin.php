@@ -4,12 +4,30 @@ if ( !isset($_POST["register"]) && isset($_POST["username"]) && !empty($_POST["u
 	if( $users = selectDBNew("users",[$_POST["username"],sha1($_POST["password"])],"`username` LIKE ? AND `password` LIKE ?","") ){
 		if( $users[0]["status"] != 0 ){
 			$msg = direction("Your account is blocked", "تم حظر حسابك");
+			?>
+			<script>
+				alert("<?php echo $msg; ?>");
+				window.location = "index.php?v=Home";
+			</script>
+			<?php
 		}
 		if( $users[0]["hidden"] != 0 ){
 			$msg = direction("Your account is locked", "تم قفل حسابك");
+			?>
+			<script>
+				alert("<?php echo $msg; ?>");
+				window.location = "index.php?v=Home";
+			</script>
+			<?php
 		}
 		if( count($users) > 1 ){
 			$msg = direction("Wrong username or password", "اسم المستخدم او كلمة المرور غير صحيحة");
+			?>
+			<script>
+				alert("<?php echo $msg; ?>");
+				window.location = "index.php?v=Home";
+			</script>
+			<?php
 		}else{
 			$GenerateNewCC = md5(rand());
 			if( updateDB("users",array("keepMeAlive"=>$GenerateNewCC),"`id` = '{$users[0]["id"]}'") ){
@@ -19,10 +37,22 @@ if ( !isset($_POST["register"]) && isset($_POST["username"]) && !empty($_POST["u
 				die();
 			}else{
 				$msg = direction("Browser not supported", "المتصفح غير مدعوم");
+				?>
+			<script>
+				alert("<?php echo $msg; ?>");
+				window.location = "index.php?v=Home";
+			</script>
+			<?php
 			}
 		}
 	}else{ 
 		$msg = direction("Wrong username or password", "اسم المستخدم او كلمة المرور غير صحيحة");
+		?>
+		<script>
+			alert("<?php echo $msg; ?>");
+			window.location = "index.php?v=Home";
+		</script>
+		<?php
 	}
 }
 
