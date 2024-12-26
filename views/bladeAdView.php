@@ -24,7 +24,17 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
         <div class="col-sm-7">  
         	<div class="ad-top-details-items">
                 <div class=""><span class="sp1"><i class="bi bi-heart"></i> </span> <span class="sp2"><?php echo Trans('app','Favourite'); ?></span></div>
-                <div class=""><span class="sp1"><i class="bi bi-clock"></i> </span> <span class="sp2"><?php echo $ad[0]['date'] ?> <?php echo Trans('app','Hours'); ?></span></div>
+                <div class=""><span class="sp1"><i class="bi bi-clock"></i> </span>
+					<span class="sp2">
+						<?php
+						$adDate = new DateTime($ad[0]['date']);
+						$now = new DateTime();
+						$diff = $now->diff($adDate);
+						$hours = $diff->h + ($diff->days * 24);
+						echo $hours . " " . Trans('app','Hours');
+						?>
+					</span>
+				</div>
                 <div class=""><span class="sp1"><i class="bi bi-eye"></i>   </span> <span class="sp2"><?php echo $ad[0]['views'] ?></span></div>
                 <div class=""><span class="sp1"><i class="bi bi-share"></i> </span> <span class="sp2"><?php echo Trans('app','Share'); ?></span></div>
             </div>
