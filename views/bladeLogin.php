@@ -40,7 +40,6 @@ if( isset($_POST["register"]) && !empty($_POST["username"]) && !empty($_POST["na
 				"password"	=>	$password,
 				"keepMeAlive"	=>	$GenerateNewCC,
 			);
-			var_dump($data);
 			if( insertDB("users",$data) ){
 				$_SESSION["timeout"] = time() + (86400*30);
 				$_SESSION[$cookieSession] = $_POST["email"];
