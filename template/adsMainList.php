@@ -71,7 +71,15 @@
 								<hr>
 								<div class="card-body-btn">
 									<span class=""><i class="bi bi-heart"></i> <?php echo Trans('app','Favourite'); ?></span>
-									<span class=""><i class="bi bi-clock"></i> <?php echo $ad['date'] ?> <?php echo Trans('app','Hours'); ?></span>
+									<span class="">
+										<i class="bi bi-clock"></i>
+										<?php
+											$adDate = new DateTime($ad['date']);
+											$now = new DateTime();
+											$diff = $now->diff($adDate);
+											$hours = $diff->h + ($diff->days * 24);
+									 		echo $hours . " " . Trans('app','Hours'); ?>
+									 </span>
 									<span class=""><i class="bi bi-eye"></i> <?php echo $ad['views'] ?></span>
 								</div>
 							</div>
