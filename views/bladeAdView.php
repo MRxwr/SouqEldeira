@@ -34,7 +34,7 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 						$now = new DateTime();
 						$diff = $now->diff($adDate);
 						$hours = $diff->h + ($diff->days * 24);
-						echo $ad[0]['date'] . " " . Trans('app','Hours');
+						echo substr($ad[0]['date'], 0, 10) . " " . Trans('app','Hours');
 						?>
 					</span>
 				</div>
