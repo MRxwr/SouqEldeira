@@ -9,11 +9,15 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
 	if ( $user = selectDBNew("users", [$svdva], "`keepMeAlive` LIKE ?", "")){
         if( $user[0]["status"] != 0 ){
             $_SESSION['valid'] = false;
+            setcookie($cookieSession, "", time() - (86400*30 ), "/");
+            session_destroy();
             updateDB("users",array("keepMeAlive" => ""),"`id` = '{$user[0]["id"]}'");
             header("Location: index.php?v=Home&error=status");die();
         }
         if( $user[0]["hidden"] != 0 ){
             $_SESSION['valid'] = false;
+            setcookie($cookieSession, "", time() - (86400*30 ), "/");
+            session_destroy();
             updateDB("users",array("keepMeAlive" => ""),"`id` = '{$user[0]["id"]}'");
             header("Location: index.php?v=Home&error=blocked");die();
         }
