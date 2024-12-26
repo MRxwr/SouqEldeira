@@ -52,6 +52,21 @@ if( isset($_GET["deleteImage"]) && !empty($_GET["deleteImage"]) ){
 		header("LOCATION: index.php?v=FastAdd");die();
 	}
 }
+
+if( isset($_GET["show"]) && !empty($_GET["show"]) ){
+	updateDB("products",array("hidden" => 0),"`id` = '{$_GET["show"]}'");
+	header("LOCATION: index.php?v=FastAdd");die();
+}
+
+if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
+	updateDB("products",array("hidden" => 2),"`id` = '{$_GET["hide"]}'");
+	header("LOCATION: index.php?v=FastAdd");die();
+}
+
+if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
+	updateDB("products",array("status" => 1),"`id` = '{$_GET["forceDelete"]}'");
+	header("LOCATION: index.php?v=FastAdd");die();
+}
 ?>
 <style>
 	.delete-btn {
