@@ -8,6 +8,13 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
 	$svdva = $_COOKIE[$cookieSession];
 	if ( $user = selectDBNew("users", [$svdva], "`keepMeAlive` LIKE ?", "")){
         if( $user[0]["status"] != 0 ){
+			$msg = direction("Your account is blocked", "تم حظر حسابك");
+			?>
+			<script>
+				alert("<?php echo $msg; ?>");
+				window.location = "index.php?v=Home";
+			</script>
+			<?php
             $_SESSION['valid'] = false;
             setcookie($cookieSession, "", time() - (86400*30 ), "/");
             session_destroy();
@@ -15,6 +22,13 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
             header("Location: index.php?v=Home&error=status");die();
         }
         if( $user[0]["hidden"] != 0 ){
+			$msg = direction("Your account is locked", "تم قفل حسابك");
+			?>
+			<script>
+				alert("<?php echo $msg; ?>");
+				window.location = "index.php?v=Home";
+			</script>
+			<?php
             $_SESSION['valid'] = false;
             setcookie($cookieSession, "", time() - (86400*30 ), "/");
             session_destroy();
