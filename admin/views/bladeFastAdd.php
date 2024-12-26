@@ -26,8 +26,7 @@ if( isset($_POST["enTitle"]) ){
 			for( $i = 0; $i < sizeof($_FILES['logo']['tmp_name']); $i++ ){
 				if( is_uploaded_file($_FILES['logo']['tmp_name'][$i]) ){
 					$filenewname = uploadImageBanner($_FILES["logo"]["tmp_name"][$i]);
-					//get the last inserted id i want full sql query
-					$product = selectDB("products","`status` != '0' ORDER BY `id` DESC LIMIT 1");
+					$product = selectDB("products","`id` != '0' ORDER BY `id` DESC LIMIT 1");
 					insertDB("images",array("productId" => $product[0]["id"],"imageurl" => $filenewname));
 				}
 			}
