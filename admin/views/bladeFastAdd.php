@@ -50,7 +50,7 @@ if( isset($_GET["deleteImage"]) && !empty($_GET["deleteImage"]) ){
 		unlink("../logos/{$image[0]["imageurl"]}");
 	}
 	if( deleteDB("images","`id` = '{$_GET["deleteImage"]}'") ){
-		header("LOCATION: index.php?v=FastAdd");
+		header("LOCATION: index.php?v=FastAdd");die();
 	}
 }
 ?>
@@ -319,23 +319,18 @@ if( isset($_GET["deleteImage"]) && !empty($_GET["deleteImage"]) ){
 		$("#images").empty().attr("style","margin-top:10px;display:block"); // Clear the div
 		$.each(JSON.parse($("#image"+id).html()), function(index, value){
 		var container = $("<div>").css("position", "relative");
-		
 		var img = $("<img>").attr({
 			src: "../logos/" + value["imageurl"],
 			width: 100,
 			height: 100,
 		});
-		
 		// Wrap the image in an <a> tag
 		var a = $("<a>").attr("href", "javascript:void(0)");
 		a.append(img);
-		
 		container.append(a);
-		
 		// Add a delete button
 		var deleteBtn = $("<span>").addClass("delete-btn").html("X");
 		container.append(deleteBtn);
-		
 		// Add a hover effect to show the delete button
 		container.hover(function() {
 			$(this).find("img").css("opacity", 0.5); // Make the image slightly transparent
@@ -344,7 +339,6 @@ if( isset($_GET["deleteImage"]) && !empty($_GET["deleteImage"]) ){
 			$(this).find("img").css("opacity", 1); // Reset the image opacity
 			$(this).find(".delete-btn").hide();
 		});
-		
 		// Add a click event to the delete button
 		deleteBtn.click(function(e) {
 			e.stopPropagation(); // Prevent the click event from bubbling up
@@ -353,7 +347,6 @@ if( isset($_GET["deleteImage"]) && !empty($_GET["deleteImage"]) ){
 			window.location.href = "?v=FastAdd&deleteImage=" + imageId;
 			}
 		});
-		
 		$("#images").append(container);
 		});
 	})
