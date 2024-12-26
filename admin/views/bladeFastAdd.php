@@ -10,7 +10,6 @@ if( isset($_POST["enTitle"]) ){
 		"arDetails" => "{$_POST["arDetails"]}",
 		"enDetails" => "{$_POST["enDetails"]}",
 		"price" => "{$_POST["price"]}",
-		"cost" => "{$_POST["cost"]}",
 	);
 	if( isset($_POST["id"]) && !empty($_POST["id"])){
 		$product = selectDB("products","`id` = '{$_POST["id"]}'");
