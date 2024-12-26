@@ -44,6 +44,19 @@ if( isset($_POST["enTitle"]) ){
 	}
 }
 ?>
+<style>
+	.delete-btn {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 24px;
+		font-weight: bold;
+		color: red;
+		cursor: pointer;
+	}
+</style>
+
 <div class="row">
 <div class="col-sm-12">
 <div class="panel panel-default card-view">
@@ -294,12 +307,32 @@ if( isset($_POST["enTitle"]) ){
 		$("select[name=packageId]").val($("#packageId"+id).html()).selectpicker('refresh');
 		$("#images").empty().attr("style","margin-top:10px;display:block"); // Clear the div
 		$.each(JSON.parse($("#image"+id).html()), function(index, value){
-			var img = $("<img>").attr({
-				src: "../logos/" + value["imageurl"],
-				width: 100,
-				height: 100,
-			});
-			$("#images").append(img);
+		var img = $("<img>").attr({
+			src: "../logos/" + value["imageurl"],
+			width: 100,
+			height: 100,
+		});
+		
+		// Add a delete button on hover
+		img.hover(function() {
+			$(this).css("opacity", 0.5); // Make the image slightly transparent
+			var deleteBtn = $("<span>").addClass("delete-btn").html("X");
+			$(this).append(deleteBtn);
+		}, function() {
+			$(this).css("opacity", 1); // Reset the image opacity
+			$(this).find(".delete-btn").remove();
+		});
+		
+		// Add a click event to the delete button
+		img.on("click", ".delete-btn", function(e) {
+			e.stopPropagation(); // Prevent the click event from bubbling up
+			if (confirm("Are you sure you want to delete this image?")) {
+			var imageId = value["imageId"]; // Assuming the imageId is stored in the value object
+			window.location.href = "?v=FastAdd&deleteImage=" + imageId;
+			}
+		});
+		
+		$("#images").append(img);
 		});
 	})
 </script>
