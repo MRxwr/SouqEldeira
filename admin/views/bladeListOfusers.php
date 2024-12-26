@@ -20,6 +20,9 @@ if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 if( isset($_POST["name"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
+	if (is_uploaded_file($_FILES['logo']['tmp_name'])) {
+		$_POST["logo"] = uploadImageBanner($_FILES['logo']['tmp_name']);
+	}
 	if ( $id == 0 ){
 		$_POST["password"] = sha1($_POST["password"]);
 		if( insertDB("users", $_POST) ){
@@ -87,6 +90,13 @@ if( isset($_POST["name"]) ){
 			<label><?php echo direction("Password","كلمة المرور") ?></label>
 			<input type="text" name="password" class="form-control" required>
 			</div>
+
+			<div class="col-md-12">
+			<label><?php echo direction("Logo","الشعار") ?></label>
+			<input type="file" name="logo" class="form-control" required>
+			</div>
+
+			<div class="col-md-12" id="images"></div>
 			
 			<div class="col-md-12" style="margin-top:10px">
 			<input type="submit" class="btn btn-primary" value="<?php echo direction("Submit","أرسل") ?>">
@@ -152,6 +162,7 @@ if( isset($_POST["name"]) ){
 					<div style="display:none">
 						<label id="name<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["name"] ?></label>
 						<label id="username<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["username"] ?></label>
+						<label id="images<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["logo"] ?></label>
 					</div>		
 				</td>
 				</tr>
@@ -178,5 +189,7 @@ if( isset($_POST["name"]) ){
 		$("input[name=name]").val($("#name"+id).html()).focus();
 		$("input[name=username]").val($("#username"+id).html());
 		$("input[name=password]").removeAttr("required");
+		$("#images").empty().attr("style","margin-top:10px;display:block");
+		$("#images").html("<img src='../logos/"+$("#images"+id).html()+"' width='100' height='100'>");
 	})
 </script>

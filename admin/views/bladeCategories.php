@@ -33,14 +33,11 @@ if( isset($_POST["arTitle"]) ){
 		} else {
 			$_POST["imageurl"] = "";
 		}
-		
 		if (is_uploaded_file($_FILES['header']['tmp_name'])) {
 			$_POST["imageurl"] = uploadImageBanner($_FILES['header']['tmp_name']);
 		} else {
 			$_POST["header"] = "";
 		}
-		
-		
 		if( insertDB("categories", $_POST) ){
 			header("LOCATION: ?v=Categories");
 		}else{
