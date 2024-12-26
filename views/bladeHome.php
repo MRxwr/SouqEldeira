@@ -112,7 +112,6 @@
 	<?php
 	$arrayOf4 = [Trans('app','Latest ads for sale'),Trans('app','For rent the latest ads'),Trans('app','For the latest ads allowance'),Trans('app','To request the latest announcements')];
 	for( $i = 0; $i < 4; $i++ ){
-		/*
 		$type = $i;
 		echo "<div class='ads-section'>";
 		echo "<h4 class='mb-3'>{$arrayOf4[$i]}</h4>";
@@ -121,7 +120,6 @@
 		echo "<a href='' class='btn btn-primary'>".Trans('app','More')." ...</a>";
 		echo "</div>";
 		echo "</div>";
-		*/
 	}
 	?>
 </div> 
