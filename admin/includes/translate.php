@@ -1,5 +1,5 @@
 <?php
-if ( $settingsCookie = selectDB("settings","`id` = '1'") ){
+if ( $settingsCookie = selectDBNew("settings",[1],"`id` = ?","") ){
 	//$cookieSession = $settingsCookie[0]["cookie"];
 }
 $settingsLang = (isset($_COOKIE["CREATEkwLANG"]) && $_COOKIE["CREATEkwLANG"] == "en") ? "en" : "ar";
