@@ -94,7 +94,7 @@ if( isset($_POST["email"]) && !empty($_POST["email"]) ){
 }
 
 if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
-	if( updateDB('users',array('status'=> '1'),"`id` = '{$userDetails["id"]}'") ){
+	if( updateDB('users',array('hidden'=> '2'),"`id` = '{$userDetails["id"]}'") ){
 		?>
 		<script>
 			alert("<?php echo direction("Your account has been deleted successfully","تم حذف حسابك بنجاح"); ?>");
