@@ -78,7 +78,7 @@
 											$now = new DateTime();
 											$diff = $now->diff($adDate);
 											$hours = $diff->h + ($diff->days * 24);
-									 		echo $hours . " " . Trans('app','Hours'); ?>
+									 		echo substr($ad['date'], 0, 10); ?>
 									 </span>
 									<span class=""><i class="bi bi-eye"></i> <?php echo $ad['views'] ?></span>
 								</div>
