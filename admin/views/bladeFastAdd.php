@@ -43,6 +43,16 @@ if( isset($_POST["enTitle"]) ){
 		
 	}
 }
+
+if( isset($_GET["deleteImage"]) && !empty($_GET["deleteImage"]) ){
+	$image = selectDB("images","`id` = '{$_GET["deleteImage"]}'");
+	if( $image[0]["imageurl"] != "noimage.png" ){
+		unlink("../logos/{$image[0]["imageurl"]}");
+	}
+	if( deleteDB("images","`id` = '{$_GET["deleteImage"]}'") ){
+		header("LOCATION: index.php?v=FastAdd");
+	}
+}
 ?>
 <style>
 	.delete-btn {
