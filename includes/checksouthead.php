@@ -3,6 +3,34 @@ require ("admin/includes/config.php");
 require ("admin/includes/functions.php");
 require ("admin/includes/language.php");
 require ("admin/includes/translate.php");
+if( isset($_GET["error"]) && $_GET["error"] == "status" ){
+    $msg = direction("Your account is blocked", "تم حظر حسابك");
+    ?>
+    <script>
+        alert("<?php echo $msg; ?>");
+        window.location = "index.php?v=Home";
+    </script>
+    <?php
+    $_SESSION['valid'] = false;
+    setcookie($cookieSession, "", time() - (86400*30 ), "/");
+    session_destroy();
+    updateDB("users",array("keepMeAlive" => ""),"`id` = '{$user[0]["id"]}'");
+    header("Location: index.php?v=Home&error=status");die();
+}
+if( isset($_GET["error"]) && $_GET["error"] == "blocked" ){
+    $msg = direction("Your account is locked", "تم قفل حسابك");
+    ?>
+    <script>
+        alert("<?php echo $msg; ?>");
+        window.location = "index.php?v=Home";
+    </script>
+    <?php
+    $_SESSION['valid'] = false;
+    setcookie($cookieSession, "", time() - (86400*30 ), "/");
+    session_destroy();
+    updateDB("users",array("keepMeAlive" => ""),"`id` = '{$user[0]["id"]}'");
+    header("Location: index.php?v=Home&error=blocked");die();
+}
 if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
 	session_start ();
 	$svdva = $_COOKIE[$cookieSession];
