@@ -112,9 +112,9 @@
 			      	 <label class="mb-3"><?php echo Trans('app','Images'); ?></label>
 			      	 <div class="add-ad-images" for="fileInput" id="fileInputLabel">
 			      	 	<span for="fileI1nputFld" class="images" id="file1Input">+</span>
-			      	 	<label for="fileI2nputFld" class="images" id="file2Input">+</label>
-			      	 	<label for="fileI3nputFld" class="images" id="file3Input">+</label>
-			      	 	<label for="fileI4nputFld" class="images" id="file4Input">+</label>
+			      	 	<span for="fileI2nputFld" class="images" id="file2Input">+</span>
+			      	 	<span for="fileI3nputFld" class="images" id="file3Input">+</span>
+			      	 	<span for="fileI4nputFld" class="images" id="file4Input">+</span>
 			      	 </div>
 					 <div style="display:none">
 					   <input type="file" id="fileI1nputFld">
@@ -139,33 +139,27 @@
 		</div>
 		</div>
 		<script>
-			$(document).ready(function() {
-				$('#fileI1nputFld').change(function() {
-					displaySelectedFiles(this,'file1Input');
+			$(document).ready(function () {
+				// Map span clicks to corresponding file input clicks
+				$('.images').on('click', function () {
+					const id = $(this).attr('id'); // Get the ID of the clicked span
+					const fileInputId = id.replace('Input', 'InputFld'); // Map to file input ID
+					$('#' + fileInputId).trigger('click'); // Trigger file input click
 				});
-				$('#fileI2nputFld').change(function() {
-					displaySelectedFiles(this,'file2Input');
-				});
-				$('#fileI3nputFld').change(function() {
-					displaySelectedFiles(this,'file3Input');
-				});
-				$('#fileI4nputFld').change(function() {
-					displaySelectedFiles(this,'file4Input');
+
+				// Display the selected image
+				$('input[type="file"]').on('change', function (event) {
+					const inputId = $(this).attr('id'); // Get file input ID
+					const spanId = inputId.replace('InputFld', 'Input'); // Map to span ID
+					const file = event.target.files[0]; // Get the selected file
+
+					if (file) {
+						const reader = new FileReader();
+						reader.onload = function (e) {
+							$('#' + spanId).css('background-image', `url(${e.target.result})`).text(''); // Display image
+						};
+						reader.readAsDataURL(file); // Read the file as a DataURL
+					}
 				});
 			});
-
-			function displaySelectedFiles(input,preview) {
-				var filePreview  = $('#'+preview);
-				filePreview.empty(); // Clear previous file list
-
-				if (input.files && input.files[0]) {
-					var reader = new FileReader();
-					reader.onload = function(e) {
-						filePreview.append('<img src="' + e.target.result + '" alt="File Preview" style="width:100%">');
-					};
-					reader.readAsDataURL(input.files[0]);
-				} else {
-					filePreview.html('No file selected');
-				}
-			}
 		</script>
