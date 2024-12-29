@@ -28,7 +28,12 @@ if( isset($_POST["from"]) && !empty($_POST["from"]) && isset($_POST["to"]) && !e
 }else{
 	$price = "";
 }
-if( $ads = selectDBNew("products",[$_POST["categoryId"],$_POST["areaId"]],"`status` = '0' AND `hidden` != '2' AND `categoryId` = ? AND `areaId` = ? {$price} ORDER BY `packageId` DESC,`id` DESC","") ){
+if( isset($_POST["propertyType"]) && !empty($_POST["propertyType"]) ){
+	$propertyType = " AND `propertyType` = '{$_POST["propertyType"]}' ";
+}else{
+	$propertyType = "";
+}
+if( $ads = selectDBNew("products",[$_POST["categoryId"],$_POST["areaId"]],"`status` = '0' AND `hidden` != '2' AND `categoryId` = ? AND `areaId` = ? {$price} {$propertyType} ORDER BY `packageId` DESC,`id` DESC","") ){
 }
 ?>
 <div class="search-ads-options mb-3">
