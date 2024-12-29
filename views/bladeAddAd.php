@@ -111,7 +111,7 @@
 			      <div class="form-outline mb-4">
 			      	 <label class="mb-3"><?php echo Trans('app','Images'); ?></label>
 			      	 <div class="add-ad-images" for="fileInput" id="fileInputLabel">
-			      	 	<label for="fileI1nputFld" class="images" id="file1Input">+</label>
+			      	 	<span for="fileI1nputFld" class="images" id="file1Input">+</span>
 			      	 	<label for="fileI2nputFld" class="images" id="file2Input">+</label>
 			      	 	<label for="fileI3nputFld" class="images" id="file3Input">+</label>
 			      	 	<label for="fileI4nputFld" class="images" id="file4Input">+</label>
