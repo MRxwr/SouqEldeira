@@ -54,7 +54,7 @@
 					);
 					updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
 				}
-				header("LOCATION: index.php?v=Home&success=1");
+				header("LOCATION: index.php?v=Home");
 		}else{
 			?>
 			<script>
