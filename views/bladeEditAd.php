@@ -44,6 +44,7 @@
 					}
 				}
 				if($_POST["adType"] == 1){
+					if($_POST["adType"] == 1){
 					$normalAds = $normalAds - 1;
 					$data = array(
 						"normalAd" => "{$normalAds}",
@@ -76,6 +77,7 @@
 	}
   }
  }
+}
 ?>
 			
 			

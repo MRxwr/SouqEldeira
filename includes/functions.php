@@ -44,7 +44,6 @@
         $width, $height, 
         $originalWidth, $originalHeight
     );
-
     // Save the resized image
     switch ($imageType) {
         case 'image/jpeg':
