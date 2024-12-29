@@ -9,8 +9,8 @@
 		$specialAds = $user[0]["specialAd"];
 		$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
 		$package = selectDBNew("packages",[$order[0]["packageId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","");
-	var_dump($user);
-	if( isset($_POST["addads"]) ){
+	//var_dump($user);
+	if(isset($_POST["adTitle"])){
 		var_dump($user);
 		if( ($_POST["adType"] == 0 && $user[0]["normalAd"] > 1 ) || ($_POST["adType"] == 2 && $user[0]["specialAd"] > 0 )){
 		    $expiryDate = date("Y-m-d", strtotime("+{$package[0]["expirey"]} days"));
