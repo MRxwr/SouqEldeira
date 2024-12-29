@@ -190,10 +190,10 @@
 			      	 	<label for="file4InputFld" class="fileInput images" id="file4Input">+</label>
 			      	 </div>
 					 <div style="display:none">
-					   <input type="files[]" id="file1InputFld">
-					   <input type="files[]" id="file2InputFld">
-					   <input type="files[]" id="file3InputFld">
-					   <input type="files[]" id="file4InputFld">
+					   <input type="file" name="files[]" id="file1InputFld">
+					   <input type="file" name="files[]" id="file2InputFld">
+					   <input type="file" name="files[]" id="file3InputFld">
+					   <input type="file" name="files[]" id="file4InputFld">
 					</div>
 			      	 <span class="form-hint d-block mt-3"><?php echo Trans('app','Picture size is 1:1 square'); ?></span>
 			      </div>
