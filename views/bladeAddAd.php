@@ -126,7 +126,7 @@
 				  <!-- State input -->
 			      <div class="form-outline mb-4">
 			      	<select class="form-select form-control mb-3" name="adArea" required>
-					  <option selected><i class="bi bi-geo-alt"></i> <?php echo Trans('app','Area or Region'); ?></option>
+					  <option value=""><i class="bi bi-geo-alt"></i> <?php echo Trans('app','Area or Region'); ?></option>
 					  <?php
 						$governateId = 0;
 						$directionOfArea = direction("enTitle","arTitle");
@@ -151,7 +151,7 @@
 			       <!-- Property type input -->
 			      <div class="form-outline mb-4">
 			      	<select class="form-select form-control mb-3" name="propertyType" required>
-					  <option selected><i class="bi bi-building"></i> <?php echo Trans('app','Properity Type'); ?></option>
+					  <option value=""><i class="bi bi-building"></i> <?php echo Trans('app','Properity Type'); ?></option>
 						<?php
 						if( $propertyType = selectDB("propertyType","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 							for( $i = 0; $i < sizeof($propertyType); $i++ ){
