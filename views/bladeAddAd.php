@@ -23,10 +23,12 @@
 						<div class="main-radio-btn">
 						<?php
 							if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
+								$checked =  "";
 								for( $i = 0; $i < sizeof($categories); $i++ ){
 									$title = direction($categories[$i]["enTitle"],$categories[$i]["arTitle"]);
+									$checked = ($i == 0) ? "checked" : "";
 									echo "<div class='radio-btn'>
-										<input type='radio' id='a{$categories[$i]["id"]}' name='categoryId' value='{$categories[$i]["id"]}' />
+										<input type='radio' id='a{$categories[$i]["id"]}' name='categoryId' value='{$categories[$i]["id"]}' {$checked} />
 										<label for='a{$categories[$i]["id"]}'>{$title}</label>
 									</div>";
 								}
@@ -49,7 +51,7 @@
 				  
 				  <!-- State input -->
 			      <div class="form-outline mb-4">
-			      	<select class="form-select form-control mb-3" name="ad-state">
+			      	<select class="form-select form-control mb-3" name="adArea" required>
 					  <option selected><i class="bi bi-geo-alt"></i> <?php echo Trans('app','Area or Region'); ?></option>
 					  <?php
 						$governateId = 0;
@@ -74,7 +76,7 @@
 			      
 			       <!-- Property type input -->
 			      <div class="form-outline mb-4">
-			      	<select class="form-select form-control mb-3" name="propertyType">
+			      	<select class="form-select form-control mb-3" name="propertyType" required>
 					  <option selected><i class="bi bi-building"></i> <?php echo Trans('app','Properity Type'); ?></option>
 						<?php
 						if( $propertyType = selectDB("propertyType","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
@@ -99,12 +101,12 @@
 
 				  <!-- Title input -->
 			      <div class="form-outline mb-4">
-			        <input type="text"  class="form-control" name="adTitle" placeholder="<?php echo Trans('app','Title'); ?>" />
+			        <input type="text"  class="form-control" name="adTitle" placeholder="<?php echo Trans('app','Title'); ?>"  required/>
 			      </div>
 			     
 				  <!-- Description input --> 
 			      <div class="form-outline mb-3">
-			         <textarea class="form-control" style="min-height:100px;"  rows="9" name="ad-description" placeholder="<?php echo Trans('app','Description'); ?>"></textarea>
+			         <textarea class="form-control" style="min-height:100px;"  rows="9" name="ad-description" placeholder="<?php echo Trans('app','Description'); ?>" required></textarea>
 			      </div>
 			      
 			      <!-- Description input -->
@@ -129,13 +131,9 @@
 			      <div class="text-center">  
 			      	<p class="add-ad-form-text fw-bold"><?php echo Trans('app','Send us message by'); ?> <a href=""><?php echo Trans('app','WhatsApp'); ?></a> <?php echo Trans('app','or'); ?> <a href="contact.php"><?php echo Trans('app','call us'); ?></a> <?php echo Trans('app','for help'); ?></p>
 			      </div> 
-				  
 			    </form>
-				</div>
-			 
-  
- 
-		</div>
-		</div>
+			 </div>
+		   </div>
+		  </div>
 		</div>
 		
