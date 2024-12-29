@@ -111,10 +111,10 @@
 			      <div class="form-outline mb-4">
 			      	 <label class="mb-3"><?php echo Trans('app','Images'); ?></label>
 			      	 <div class="add-ad-images" for="fileInput" id="fileInputLabel">
-			      	 	<span for="file1InputFld" class="fileInput images" id="file1Input">+</span>
-			      	 	<span for="file2InputFld" class="fileInput images" id="file2Input">+</span>
-			      	 	<span for="file3InputFld" class="fileInput images" id="file3Input">+</span>
-			      	 	<span for="file4InputFld" class="fileInput images" id="file4Input">+</span>
+			      	 	<lebel for="file1InputFld" class="fileInput images" id="file1Input">+</lebel>
+			      	 	<lebel for="file2InputFld" class="fileInput images" id="file2Input">+</lebel>
+			      	 	<lebel for="file3InputFld" class="fileInput images" id="file3Input">+</lebel>
+			      	 	<lebel for="file4InputFld" class="fileInput images" id="file4Input">+</lebel>
 			      	 </div>
 					 <div style="display:none">
 					   <input type="file" id="file1InputFld">
@@ -143,7 +143,7 @@
 				// Map span clicks to corresponding file input clicks
 				$('.fileInput').on('click', function () {
 					const id = $(this).attr('id'); // Get the ID of the clicked span
-					alert(id);
+					
 					const fileInputId = id.replace('Input', 'InputFld'); // Map to file input ID
 					$('#' + fileInputId).trigger('click'); // Trigger file input click
 				});

@@ -1415,7 +1415,7 @@ color:var(--pt-main-color);
     gap:20px;
 }
 
-.add-ad-images span
+.add-ad-images span,.add-ad-images label
 {
 	width: 100%;
     text-align: center;
