@@ -26,7 +26,7 @@ $(document).ready(function () {
 	    });
 	});
     // Handle file selection and preview for all file inputs
-    $('input[type="files"]').on('change', function (event) {
+    $('input.fileInput').on('change', function (event) {
       // Get the file input ID
       const fileInputId = $(this).attr('id');
       // Map to the corresponding span ID
