@@ -3,7 +3,7 @@ require ("admin/includes/config.php");
 require ("admin/includes/functions.php");
 require ("admin/includes/language.php");
 require ("admin/includes/translate.php");
-require ("functions.php");
+require ("includes/functions.php");
 if( isset($_GET["error"]) && $_GET["error"] == "status" ){
     $msg = direction("Your account is blocked", "تم حظر حسابك");
     ?>
