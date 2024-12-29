@@ -325,6 +325,9 @@ if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
 						<label id="packageId<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["packageId"] ?></label>
 						<label id="area<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["areaId"] ?></label>
 						<label id="governate<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["governateId"] ?></label>
+						<label id="shopId<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["shopId"] ?></label>
+						<label id="userId<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["userId"] ?></label>
+						<label id="propertyType<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["propertyType"] ?></label>
 					</div>
 				</td>
 			</tr>
@@ -361,6 +364,12 @@ if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
 		$("select[name=categoryId]").val($("#categoryId"+id).html()).selectpicker('refresh');
 		$("select[name=packageId] option").prop("selected", false);
 		$("select[name=packageId]").val($("#packageId"+id).html()).selectpicker('refresh');
+		$("select[name=propertyType] option").prop("selected", false);
+		$("select[name=propertyType]").val($("#propertyType"+id).html()).selectpicker('refresh');
+		$("select[name=shopId] option").prop("selected", false);
+		$("select[name=shopId]").val($("#shopId"+id).html()).selectpicker('refresh');
+		$("select[name=userId] option").prop("selected", false);
+		$("select[name=userId]").val($("#userId"+id).html()).selectpicker('refresh');
 		$("#images").empty().attr("style","margin-top:10px;display:block"); // Clear the div
 		$.each(JSON.parse($("#image"+id).html()), function(index, value){
 		var container = $("<div>").css("position", "relative");
