@@ -1,7 +1,7 @@
 <?php
  function getMyAds($id, $tp='expired'){
+    $date = date("Y-m-d");
     if($tp == 'expired'){
-        $date = date("Y-m-d");
         $myads = selectDB("products"," `expiryDate` > '{$date}' AND `status` = '0' AND `userId` = '{$id}'");
     }else{
         $myads = selectDB("products"," `expiryDate` < '{$date}' AND `status` = '0' AND `userId` = '{$id}'");

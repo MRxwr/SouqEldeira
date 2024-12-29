@@ -2,7 +2,9 @@
 	echo "<script>window.location.href = '/index.php?v=Login';</script>";
  } else {
 	$settings = selectDB("settings","`id` = '1'");
-}
+	$myExpiredAds=getMyAds($user[0]["id"], 'expired');
+	$myActiveAds=getMyAds($user[0]["id"], 'active');
+ }
 ?>	
 			
 			<div class="row"> 
@@ -131,6 +133,35 @@
 						</div>
 						
 						<div class="my-ad-list cuurrent-ads">
+
+							<?php foreach( $myActiveAds as $ad ){ 
+								if( $ad["packageId"] == 2 ){
+									$feature = "card-feature";
+								}else{
+									$feature = "";
+								}?>
+								<div class="my-ad-list-item my-2">  
+								<div class="row g-1"> 
+									<div class="col-md-8 my-ad-list-item-side1">  
+										<img src="assets/img/items/item-2.png" class="img-fluid" alt="...">
+										<div class="data">
+											<h4><?php echo Trans('app','A house for rent in Abu Fetera'); ?></h4>
+											<h5><?php echo Trans('app','Mubarak Al-Kabeer'); ?> - <?php echo Trans('app','Al-funaitis'); ?></h5>
+											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 23/8/2023</h6>
+										</div> 
+									</div>
+									<div class="col-md-4 my-ad-list-item-side2">    
+										<div class="viewers"><i class="bi bi-eye"></i>54</div>
+										<div class="status"><span class="published ad-status-type"><i class="bi bi-check"></i></span></div>
+										<div class="actions">
+											<a href="#!" class="update"><i class="bi bi-pencil-square"></i></a>
+											<a href="#!" class="delete"><i class="bi bi-trash3"></i></a>
+										</div> 
+									</div>
+								</div>
+							</div> 
+
+							<?php } ?>
 							
 							<?php for ($i=0; $i < 3; $i++) { ?>
 							 
