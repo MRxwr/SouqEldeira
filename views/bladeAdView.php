@@ -113,7 +113,11 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 
 <div class="ads-section"> 
   <h4 class="text-start mt-2 mb-3"><?php echo Trans('app','From the same region'); ?></h4>
-  <?php include 'template/adsMainList.php'; ?>
+  <?php
+  if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' AND `categoryId` = {$ad[0]["categoryId"]} ORDER BY `packageId` DESC,`id` DESC LIMIT 3") ){
+  	include 'template/adsMainList.php';
+  }
+  ?>
   <div class="d-block text-end mt-3">
   	<a href="" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i></a>
   </div> 
