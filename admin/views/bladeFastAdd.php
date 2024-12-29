@@ -4,6 +4,9 @@ if( isset($_POST["enTitle"]) ){
 		"categoryId" => "{$_POST["categoryId"]}",
 		"packageId" => "{$_POST["packageId"]}",
 		"governateId" => "{$_POST["governateId"]}",
+		"shopId" => "{$_POST["shopId"]}",
+		"userId" => "{$_POST["userId"]}",
+		"propertyType" => "{$_POST["propertyType"]}",
 		"areaId" => "{$_POST["areaId"]}",
 		"arTitle" => "{$_POST["arTitle"]}",
 		"enTitle" => "{$_POST["enTitle"]}",
@@ -95,7 +98,38 @@ if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
-            <div class="col-md-3">
+
+			<div class="col-md-4">
+			<label><?php echo direction("Offices","المكاتب") ?></label>
+				<select name="shopId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
+					<option value="0" selected default><?php echo direction("None","لا يوجد") ?></option>
+					<?php
+                    if( $shops = selectDB("shops","`status` = '0' AND `hidden` = '1'") ){
+                        for( $i = 0; $i < sizeof($shops); $i++ ){
+                            $title = direction($shops[$i]["enTitle"],$shops[$i]["arTitle"]);
+                            echo "<option value='{$shops[$i]["id"]}'>{$title}</option>";
+                        }
+                    }
+                    ?>
+				</select>
+			</div>
+
+			<div class="col-md-4">
+			<label><?php echo direction("Users","المستخدمين") ?></label>
+				<select name="userId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
+					<option value="0" selected default><?php echo direction("None","لا يوجد") ?></option>
+					<?php
+                    if( $users = selectDB("users","`status` = '0' AND `hidden` = '1'") ){
+                        for( $i = 0; $i < sizeof($users); $i++ ){
+                            $title = $users[$i]["name"];
+                            echo "<option value='{$users[$i]["id"]}'>{$title}</option>";
+                        }
+                    }
+                    ?>
+				</select>
+			</div>
+
+            <div class="col-md-4">
 			<label><?php echo direction("Category","القسم") ?></label>
 				<select name="categoryId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
 					<?php
@@ -103,6 +137,20 @@ if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
                         for( $i = 0; $i < sizeof($categories); $i++ ){
                             $title = direction($categories[$i]["enTitle"],$categories[$i]["arTitle"]);
                             echo "<option value='{$categories[$i]["id"]}'>{$title}</option>";
+                        }
+                    }
+                    ?>
+				</select>
+			</div>
+
+			<div class="col-md-4">
+			<label><?php echo direction("Property Type","نوع العقار") ?></label>
+				<select name="propertyType" class="selectpicker" data-style="form-control btn-default btn-outline" required>
+					<?php
+                    if( $propertyType = selectDB("propertyType","`status` = '0' AND `hidden` = '1'") ){
+                        for( $i = 0; $i < sizeof($propertyType); $i++ ){
+                            $title = direction($propertyType[$i]["enTitle"],$propertyType[$i]["arTitle"]);
+                            echo "<option value='{$propertyType[$i]["id"]}'>{$propertyType}</option>";
                         }
                     }
                     ?>
