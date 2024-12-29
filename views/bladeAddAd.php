@@ -41,11 +41,11 @@
 				  <div class="form-outline mb-4">
 				  	<div class="main-radio-btn">			  		
 				  		<div class="radio-btn">
-					  		<input type="radio" name="ad-type" />
-					  		<label for="aRegular"><?php echo Trans('app','Regular Ad'); ?> (1)</label> 
+					  		<input type="radio" name="adType" id="aRegular" />
+					  		<label for="aRegular"><?php echo Trans('app','Regular Ad'); ?> (1)</label>
 					  	</div>
 					  	<div class="radio-btn">
-					  		<input type="radio" name="ad-type" checked />
+					  		<input type="radio" name="adType" id="aSpecial" checked  />
 					  		<label for="aSpecial"><?php echo Trans('app','Special Ad'); ?> (9)</label>  
 					  	</div>
 				 	</div>
@@ -54,21 +54,40 @@
 				  <!-- State input -->
 			      <div class="form-outline mb-4">
 			      	<select class="form-select form-control mb-3" name="ad-state">
-					  <option selected><?php echo Trans('app','State'); ?></option>
-					  <option value="1"><?php echo Trans('app','State'); ?>-1</option>
-					  <option value="2"><?php echo Trans('app','State'); ?>-2</option>
-					  <option value="3"><?php echo Trans('app','State'); ?>-3</option>
+					  <option selected><i class="bi bi-geo-alt"></i> <?php echo Trans('app','Area or Region'); ?></option>
+					  <?php
+						$governateId = 0;
+						$directionOfArea = direction("enTitle","arTitle");
+						if( $governates = selectDB("governates","`status` = '0' ORDER BY `rank` ASC") ){
+							for( $i = 0; $i < sizeof($governates); $i++ ){
+								$governate = selectDB("governates","`id` = '{$governates[$i]["id"]}'");
+								$governateTitle = direction($governate[0]["enTitle"],$governate[0]["arTitle"]);
+								echo "<optgroup label='{$governateTitle}'>";
+								if( $areas = selectDB("areas","`status` = '0' AND `governateId` = '{$governates[$i]["id"]}' ORDER BY `{$directionOfArea}` ASC") ){
+									for( $j = 0; $j < sizeof($areas); $j++ ){
+										$title = direction($areas[$j]["enTitle"],$areas[$j]["arTitle"]);
+										echo "<option value='{$areas[$j]["id"]}'>{$title}</option>";
+									}
+								}
+							}
+							echo "</optgroup>";
+						}
+						?>
 					</select>
 			      </div>
 			      
 			       <!-- Property type input -->
 			      <div class="form-outline mb-4">
-			      	<select class="form-select form-control mb-3" name="ad-property-type">
-					  <option selected><?php echo Trans('app','Property type'); ?></option>
-					  <option value="1"><?php echo Trans('app','Sale'); ?></option>
-					  <option value="2"><?php echo Trans('app','Allowance'); ?></option>
-					  <option value="3"><?php echo Trans('app','Rent'); ?></option>
-					  <option value="4"><?php echo Trans('app','Request'); ?></option>
+			      	<select class="form-select form-control mb-3" name="propertyType">
+					  <option selected><i class="bi bi-building"></i> <?php echo Trans('app','Properity Type'); ?></option>
+						<?php
+						if( $propertyType = selectDB("propertyType","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
+							for( $i = 0; $i < sizeof($propertyType); $i++ ){
+								$title = direction($propertyType[$i]["enTitle"],$propertyType[$i]["arTitle"]);
+								echo "<option value='{$propertyType[$i]["id"]}'>{$title}</option>";
+							}
+						}
+						?>
 					</select>
 			      </div>
 				  
