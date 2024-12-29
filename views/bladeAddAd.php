@@ -2,10 +2,9 @@
 <?php if(!$_SESSION['valid']){
 	echo "<script>window.location.href = '/index.php?v=Login';</script>";
  } else {
-	$settings = selectDB("settings","`id` = '1'");
 	$normalAds = 0;
 	$specialAds = 0;
-	if($user[0]["id"] >0 && $user[0]["status"] == 0){
+	if($user[0]["id"] >0){
 		$normalAds = $user[0]["normalAd"];
 		$specialAds = $user[0]["specialAd"];
 		$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
@@ -29,7 +28,7 @@
 			"status"	=>	"0",
 			"expirey"	=>	$expiryDate
 		);
-		var_dump($data);
+		var_dump($data); exit;
 		if( insertDB("products", $data) ){
 			// Get last inserted id
 			$lastId = $conn->insert_id;
