@@ -4,6 +4,7 @@
         $date = date("Y-m-d");
         $myads = selectDB("products"," `expiryDate` > '{$date}' AND `status` = '0' AND `userId` = '{$id}'");
     }else{
+        $date = date("Y-m-d");
         $myads = selectDB("products"," `expiryDate` < '{$date}' AND `status` = '0' AND `userId` = '{$id}'");
     }
     return $myads;
