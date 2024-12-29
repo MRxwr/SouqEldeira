@@ -24,34 +24,20 @@
 			
 				  
 				  <div class="form-outline mb-4">
-				  	
-				  	<div class="main-radio-btn">
-				  		
-				  		<div class="radio-btn">
-					  		<input type="radio" name="ad-property-type" checked />
-					  		<label for="aSale"><?php echo Trans('app','Sale'); ?></label>
-					  	</div>
-					  	
-					  	<div class="radio-btn">
-					  		<input type="radio" name="ad-property-type" />
-					  		<label for="aAllowance"><?php echo Trans('app','Allowance'); ?></label>
-					  	</div>
-					  	
-				  		<div class="radio-btn">
-					  		<input type="radio" name="ad-property-type" />
-					  		<label for="aRent"><?php echo Trans('app','Rent'); ?></label>
-					  	</div>
-					  	
-					  	<div class="radio-btn">
-					  		<input type="radio" name="ad-property-type" />
-					  		<label for="aRequest"><?php echo Trans('app','Request'); ?></label>
-					  	</div>
-				  	
-				 	</div>
-				 	
+						<div class="main-radio-btn">
+						<?php
+							if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
+								for( $i = 0; $i < sizeof($categories); $i++ ){
+									$title = direction($categories[$i]["enTitle"],$categories[$i]["arTitle"]);
+									echo "<div class='radio-btn'>
+										<input type='radio' id='a{$categories[$i]["id"]}' name='categoryId' value='{$categories[$i]["id"]}' />
+										<label for='a{$categories[$i]["id"]}'>{$title}</label>
+									</div>";
+								}
+							}
+							?>
+						</div>
 				 </div> 
-				 
-				 
 				  <div class="form-outline mb-4">
 				  	<div class="main-radio-btn">			  		
 				  		<div class="radio-btn">
