@@ -21,7 +21,7 @@
 		    		
 		    		<div class="avatar">
 			    		<a href="?v=Profile" class="d-block">
-			    			<img src="<?php echo "logos/{$userDetails['logo']}" ?>" class="img-fluid" alt="..." style="border-radius: 100%; height: 50px;width: 50px;">
+			    			<img src="<?php echo "logos/{$userDetails['logo']}" ?>" class="img-fluid" alt="..." style="border-radius: 100%;height: 58px;width: 100%;">
 			    		</a>
 		    		</div>
 		    		<div class="details">
