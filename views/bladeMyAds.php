@@ -4,7 +4,11 @@
 	$settings = selectDB("settings","`id` = '1'");
 	$myExpiredAds=getMyAds($user[0]["id"], 'expired');
 	$myActiveAds=getMyAds($user[0]["id"], 'active');
- }
+	$normalAds = 0;
+	$specialAds = 0;
+	$normalAds = $user[0]["normalAd"];
+	$specialAds = $user[0]["specialAd"];
+}
 ?>	
 			
 			<div class="row"> 
