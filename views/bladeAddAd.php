@@ -110,12 +110,18 @@
 			      <!-- Description input -->
 			      <div class="form-outline mb-4">
 			      	 <label class="mb-3"><?php echo Trans('app','Images'); ?></label>
-			      	 <div class="add-ad-images">
-			      	 	<span>+</span>
-			      	 	<span>+</span>
-			      	 	<span>+</span>
-			      	 	<span>+</span>
+			      	 <div class="add-ad-images" for="fileInput" id="fileInputLabel">
+			      	 	<label for="fileI1nputFld" class="images" id="file1Input">+</label>
+			      	 	<label for="fileI2nputFld" class="images" id="file2Input">+</label>
+			      	 	<label for="fileI3nputFld" class="images" id="file3Input">+</label>
+			      	 	<label for="fileI4nputFld" class="images" id="file4Input">+</label>
 			      	 </div>
+					 <div style="display:none">
+					   <input type="file" id="fileI1nputFld">
+					   <input type="file" id="fileI2nputFld">
+					   <input type="file" id="fileI3nputFld">
+					   <input type="file" id="fileI4nputFld">
+					</div>
 			      	 <span class="form-hint d-block mt-3"><?php echo Trans('app','Picture size is 1:1 square'); ?></span>
 			      </div>
 			      <!-- Submit button -->
@@ -132,3 +138,34 @@
 		</div>
 		</div>
 		</div>
+		<script>
+			$(document).ready(function() {
+				$('#fileI1nputFld').change(function() {
+					displaySelectedFiles(this,'file1Input');
+				});
+				$('#fileI2nputFld').change(function() {
+					displaySelectedFiles(this,'file2Input');
+				});
+				$('#fileI3nputFld').change(function() {
+					displaySelectedFiles(this,'file3Input');
+				});
+				$('#fileI4nputFld').change(function() {
+					displaySelectedFiles(this,'file4Input');
+				});
+			});
+
+			function displaySelectedFiles(input,preview) {
+				var filePreview  = $('#'+preview);
+				filePreview.empty(); // Clear previous file list
+
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						filePreview.append('<img src="' + e.target.result + '" alt="File Preview" style="width:100%">');
+					};
+					reader.readAsDataURL(input.files[0]);
+				} else {
+					filePreview.html('No file selected');
+				}
+			}
+		</script>
