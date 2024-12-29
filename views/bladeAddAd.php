@@ -86,7 +86,7 @@
 					<h4><?php echo Trans('app','Add Ad'); ?></h4>
 			 	</div>
 			 	
-			    <form id="add-ad-form" class="mt-4" method="post" action="" enctype="multipart/form-data">
+			    <form id="add-ad-form" class="mt-4" name="add-ad-form" method="POST"  action="" enctype="multipart/form-data">
 				<input type="hidden" name="addAds" value="1">
 				<div class="form-outline mb-4">
 						<div class="main-radio-btn">
