@@ -42,7 +42,7 @@ if ( isset($_POST) ){
 }else{
 	?>
 	<script>
-		alert('<?php echo direction("Could not process your request, Please try again","حدث خطأ أثناء عملية الطلب, يرجى المحاولة مرة أخرى"); ?>');
+		alert("error" + '<?php echo direction("Could not process your request, Please try again","حدث خطأ أثناء عملية الطلب, يرجى المحاولة مرة أخرى"); ?>');
 		window.location.href = 'index.php?v=Home';
 	</script>
 	<?php
