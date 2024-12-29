@@ -56,6 +56,6 @@ if( $ads = selectDBNew("products",[$_POST["categoryId"],$_POST["areaId"]],"`stat
 <div class="ads-section">
 	<?php include 'template/adsMainList.php'; ?>
 	<div class="d-block text-end mt-3">
-	<a href="" class="btn btn-primary"><?php echo Trans('app','More'); ?> ...</a>
+	<?php /*<a href="" class="btn btn-primary"><?php echo Trans('app','More'); ?> ...</a>*/?>
 	</div>
 </div>
