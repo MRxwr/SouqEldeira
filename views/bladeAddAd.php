@@ -3,12 +3,16 @@
 	echo "<script>window.location.href = '/index.php?v=Login';</script>";
  } else {
 	$settings = selectDB("settings","`id` = '1'");
+	$normalAds = 0;
+	$specialAds = 0;
 	if($user[0]["id"] >0 && $user[0]["status"] == 0){
+		$normalAds = $user[0]["normalAd"];
+		$specialAds = $user[0]["specialAd"];
 		$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
 		$package = selectDBNew("packages",[$order[0]["packageId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","");
-	var_dump($user);
+	//var_dump($user);
 	if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["addads"]) && !empty($_POST["adType"]) && !empty($_POST["adTitle"]) && !empty($_POST["adDescription"]) && !empty($_POST["adPrice"]) && !empty($_POST["propertyType"]) ){
-		
+		if( ($_POST["adType"] == 0 && $user[0]["normalAd"] > 0 ) || ($_POST["adType"] == 1 && $user[0]["specialAd"] > 0 )){
 		$data = array(
 			"userId" => "{$user[0]["id"]}",
 			"categoryId"	=>	$_POST["categoryId"],
@@ -44,7 +48,10 @@
 			<?php
 			header("LOCATION: index.php?v=AddAd");
 		}	
+	 }else{
+
 	 }
+	}
 	}
 }
 ?>
@@ -82,12 +89,12 @@
 				  <div class="form-outline mb-4">
 				  	<div class="main-radio-btn">			  		
 				  		<div class="radio-btn">
-					  		<input type="radio" name="adType" id="aRegular" value="0" />
-					  		<label for="aRegular"><?php echo Trans('app','Regular Ad'); ?> (1)</label>
+					  		<input type="radio" name="adType" id="aRegular" value="1" />
+					  		<label for="aRegular"><?php echo Trans('app','Regular Ad'); ?> (<?php echo $normalAds; ?>)</label>
 					  	</div>
 					  	<div class="radio-btn">
-					  		<input type="radio" name="adType" id="aSpecial" checked value="1"  />
-					  		<label for="aSpecial"><?php echo Trans('app','Special Ad'); ?> (9)</label>  
+					  		<input type="radio" name="adType" id="aSpecial" checked value="2"  />
+					  		<label for="aSpecial"><?php echo Trans('app','Special Ad'); ?> (<?php echo $specialAds; ?>)</label>  
 					  	</div>
 				 	</div>
 				 </div> 
