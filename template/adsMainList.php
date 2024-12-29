@@ -92,6 +92,9 @@
 		}
 	}
 	?>
+</div>
+</div>
+
 
 <div class="modal modal-bottom fade" id="ad_modal" tabindex="-1" aria-labelledby="ad_modal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable">
