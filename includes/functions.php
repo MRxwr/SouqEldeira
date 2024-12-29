@@ -112,7 +112,7 @@ function uploadImageBannerown($imageLocation){
 			$fileTitle = str_replace("{$imageSizes[$i]}.",".",$fileTitle);
 			// Open the file to get existing content
 			$data = file_get_contents($newFile);
-			// New file
+			// New filei c
 			$new = "logos/{$imageSizes[$i]}".$fileTitle;
 			// Write the contents back to a new file
 			file_put_contents($new, $data);

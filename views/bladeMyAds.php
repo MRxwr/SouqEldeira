@@ -165,7 +165,7 @@
 							
 							<?php for ($i=0; $i < 3; $i++) { ?>
 							 
-							<div class="my-ad-list-item my-2">  
+							<!-- <div class="my-ad-list-item my-2">  
 								<div class="row g-1"> 
 									<div class="col-md-8 my-ad-list-item-side1">  
 										<img src="assets/img/items/item-2.png" class="img-fluid" alt="...">
@@ -184,7 +184,7 @@
 										</div> 
 									</div>
 								</div>
-							</div> 
+							</div>  -->
 							
 							<?php } ?>
 							
