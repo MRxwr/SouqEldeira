@@ -10,7 +10,7 @@ if( $category = selectDBNew("categories",[$_POST["categoryId"]],"`status` = '0' 
 	</script>
 	<?php
 }
-if( $area = selectDBNew("areas",[$_POST["areaId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","") ){
+if( $area = selectDBNew("areas",[$_POST["areaId"]],"`status` = '0' AND `hidden` = '0' AND `id` = ?","") ){
 	$areaTitle = direction($area[0]["enTitle"],$area[0]["arTitle"]);
 }else{
 	?>
