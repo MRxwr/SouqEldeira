@@ -143,6 +143,7 @@
 				// Map span clicks to corresponding file input clicks
 				$('.images').on('click', function () {
 					const id = $(this).attr('id'); // Get the ID of the clicked span
+					alert(id);
 					const fileInputId = id.replace('Input', 'InputFld'); // Map to file input ID
 					$('#' + fileInputId).trigger('click'); // Trigger file input click
 				});
