@@ -1,5 +1,10 @@
 
-			
+<?php if(!$_SESSION['valid']){
+	echo "<script>window.location.href = '/index.php?v=Login';</script>";
+ } else {
+	$settings = selectDB("settings","`id` = '1'");
+}
+?>
 			
 			
 		<div class="row"> 
