@@ -12,7 +12,7 @@
 	//var_dump($user);
 	
 	if(isset($_POST["addAds"])){
-		if( ($_POST["adType"] == 0 && $user[0]["normalAd"] > 1 ) || ($_POST["adType"] == 2 && $user[0]["specialAd"] > 0 )){
+		if( ($_POST["adType"] == 1 && $user[0]["normalAd"] > 1 ) || ($_POST["adType"] == 2 && $user[0]["specialAd"] > 0 )){
 		    $expiryDate = date("Y-m-d", strtotime("+{$package[0]["expirey"]} days"));
 			$data = array(
 			"userId" => "{$user[0]["id"]}",
