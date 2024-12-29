@@ -112,7 +112,7 @@
 	<?php
 	$arrayOf4 = [Trans('app','Latest ads for sale'),Trans('app','For rent the latest ads'),Trans('app','For the latest ads allowance'),Trans('app','To request the latest announcements')];
 	for( $i = 0; $i < 4; $i++ ){
-		$type = $i;
+		$type = $i+1;
 		echo "<div class='ads-section'>";
 		echo "<h4 class='mb-3'>{$arrayOf4[$i]}</h4>";
 		require('template/adsMainList.php');
