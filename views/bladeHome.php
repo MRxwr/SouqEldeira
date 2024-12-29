@@ -105,7 +105,6 @@
 	
 <div class="container container-project">
 	<?php
-	$arrayOf4 = [Trans('app','sale'),Trans('app','For rent the latest ads'),Trans('app','For the latest ads allowance'),Trans('app','To request the latest announcements')];
 	if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 		for( $i = 0; $i < sizeof($categories); $i++ ){
 			$type = $categories[$i]["id"];
