@@ -10,8 +10,8 @@
 		$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
 		$package = selectDBNew("packages",[$order[0]["packageId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","");
 	//var_dump($user);
-	if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["addads"]) && !empty($_POST["adType"]) && !empty($_POST["adTitle"]) && !empty($_POST["adDescription"]) && !empty($_POST["adPrice"]) && !empty($_POST["propertyType"]) ){
-		if( ($_POST["adType"] == 0 && $user[0]["normalAd"] > 0 ) || ($_POST["adType"] == 1 && $user[0]["specialAd"] > 0 )){
+	if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["addads"]) && isset($_POST["adTitle"]) ){
+		if( ($_POST["adType"] == 0 && $user[0]["normalAd"] > 1 ) || ($_POST["adType"] == 2 && $user[0]["specialAd"] > 0 )){
 		    $expiryDate = date("Y-m-d", strtotime("+{$package[0]["expirey"]} days"));
 			$data = array(
 			"userId" => "{$user[0]["id"]}",
@@ -88,7 +88,6 @@
 			 	
 			    <form id="add-ad-form" class="mt-4" method="post" action="index.php?v=AddAd" enctype="multipart/form-data">
 				<input type="hidden" name="addads" value="1">
-				<input type="hidden" name="packageId" value="1">
 				<div class="form-outline mb-4">
 						<div class="main-radio-btn">
 						<?php
