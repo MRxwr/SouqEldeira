@@ -51,7 +51,7 @@ if( $ads = selectDBNew("products",[$_POST["categoryId"],$_POST["areaId"]],"`stat
 </div>
 
 <div class="search-title mb-3 mt-2">  
-	<h4><i class="bi bi-search"></i><?php echo Trans('app','Search Result'); ?><span>(115 <?php echo Trans('app','Ad'); ?>)</span></h4>
+	<h4><i class="bi bi-search"></i><?php echo Trans('app','Search Result'); ?><span><?php echo count($ads) . " " .Trans('app','Ad'); ?></span></h4>
 </div>
 
 <div class="ads-section">
