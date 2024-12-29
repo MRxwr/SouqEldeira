@@ -38,7 +38,7 @@
 				if ( isset($_FILES['files'])) {
 					for( $i = 0; $i < sizeof($_FILES['files']['tmp_name']); $i++ ){
 						if( is_uploaded_file($_FILES['files']['tmp_name'][$i]) ){
-							$filenewname = uploadImageBanner($_FILES["files"]["tmp_name"][$i]);
+							$filenewname = uploadImageBannerown($_FILES["files"]["tmp_name"][$i]);
 							insertDB("images",array("productId" => $lastId,"imageurl" => $filenewname));
 						}
 					}
