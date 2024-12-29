@@ -138,35 +138,4 @@
 		</div>
 		</div>
 		</div>
-		<script>
-			$(document).ready(function () {
-				$('#file1InputFld').change(function() {
-					displaySelectedFiles(this,'file1Input');
-				});
-				$('#file2InputFld').change(function() {
-					displaySelectedFiles(this,'file2Input');
-				});
-				$('#file3InputFld').change(function() {
-					displaySelectedFiles(this,'file3Input');
-				});
-				$('#file4InputFld').change(function() {
-					displaySelectedFiles(this,'file4Input');
-				});
-			});
-
-		function displaySelectedFiles(input,preview) {
-			var filePreview  = $('#'+preview);
-			filePreview.empty(); // Clear previous file list
-
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					filePreview.append('<img src="' + e.target.result + '" alt="File Preview" style="width:100%">');
-				};
-				reader.readAsDataURL(input.files[0]);
-			} else {
-				filePreview.html('No file selected');
-			}
-		}
 		
-		</script>

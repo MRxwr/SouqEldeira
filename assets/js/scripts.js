@@ -25,7 +25,23 @@ $(document).ready(function () {
 	       // if ($(this).css('display') == 'block') $(this).css('display', 'flex'); // enter desired display type
 	    });
 	});
-    
+    // Handle file selection and preview for all file inputs
+    $('input[type="file"]').on('change', function (event) {
+      // Get the file input ID
+      const fileInputId = $(this).attr('id');
+      // Map to the corresponding span ID
+      const spanId = fileInputId.replace('InputFld', 'Input');
+      // Get the selected file
+      const file = event.target.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+              // Set the image preview as the background of the span
+              $('#' + spanId).css('background-image', `url(${e.target.result})`).text('');
+          };
+          reader.readAsDataURL(file);
+      }
+  });  
     
 });
 
@@ -108,3 +124,7 @@ function timer(remaining) {
 }
 
 timer(120);
+
+
+		
+		
