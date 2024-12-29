@@ -62,6 +62,7 @@
     imagedestroy($image);
     imagedestroy($resizedImage);
 }
+/*
 function uploadImageBannerown($tmpFilePath, $uploadDir = 'logos/')
 {
     // Ensure the upload directory exists
@@ -81,8 +82,8 @@ function uploadImageBannerown($tmpFilePath, $uploadDir = 'logos/')
         return false; // Return false if the upload fails
     }
 }
-
-function uploadImageBanner($imageLocation){
+*/
+function uploadImageBannerown($imageLocation){
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
 	  CURLOPT_URL => 'https://api.imgur.com/3/upload',
