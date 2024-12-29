@@ -109,7 +109,7 @@
 	if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 		for( $i = 0; $i < sizeof($categories); $i++ ){
 			for( $j = 0; $j < 4; $j++ ){
-				$type = $categories[$j]["id"];
+				$type = $categories[$i]["id"];
 				$title = direction("Latest ads for " . $categories[$j]["enTitle"]," أحدث الإعلانات ل" . $categories[$j]["arTitle"]);
 				echo "<div class='ads-section'>";
 				echo "<h4 class='mb-3'>{$title}</h4>";
