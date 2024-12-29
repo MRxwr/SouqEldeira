@@ -1,5 +1,5 @@
 <?php
-if ( isset($_POST) ){
+if ( isset($_POST) && isset($_POST["categoryId"]) && !empty($_POST["categoryId"]) ){
 	if( $category = selectDBNew("categories",[$_POST["categoryId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","") ){
 		$categoyTitle = direction($category[0]["enTitle"],$category[0]["arTitle"]);
 	}else{
