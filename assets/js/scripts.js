@@ -32,15 +32,7 @@ $(document).ready(function () {
       // Map to the corresponding span ID
       const spanId = fileInputId.replace('InputFld', 'Input');
       // Get the selected file
-      const file = event.target.files[0];
-      if (file) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-              // Set the image preview as the background of the span
-              $('#' + spanId).css('background-image', `url(${e.target.result})`).text('');
-          };
-          reader.readAsDataURL(file);
-      }
+      displaySelectedFiles(this,spanId);
   });  
     
 });
@@ -125,6 +117,18 @@ function timer(remaining) {
 
 timer(120);
 
+  function displaySelectedFiles(input,preview) {
+    var filePreview  = $('#'+preview);
+    filePreview.empty(); // Clear previous file list
 
-		
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        filePreview.append('<img src="' + e.target.result + '" alt="File Preview" style="width:100%">');
+      };
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      filePreview.html('No file selected');
+    }
+  }
 		
