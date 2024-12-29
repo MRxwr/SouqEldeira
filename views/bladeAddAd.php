@@ -10,10 +10,6 @@
 		<div class="row"> 
 		<div class="col-md-11 mx-auto">
 		<div class="guest-form-action">
-		     
-		     
-
-			
 			    <div class="form-container form-container-add">
 			    	
 		    	<div class="start-page-title text-center mb-4">
