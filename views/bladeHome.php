@@ -106,10 +106,10 @@
 <div class="container container-project">
 	<?php
 	if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
-		for( $i = 0; $i < sizeof($categories); $i++ ){
-			$type = $categories[$i]["id"];
-			$title = direction("Latest ads for " . $categories[$i]["enTitle"]," أحدث الإعلانات ل" . $categories[$i]["arTitle"]);
-			for( $j = 0; $j < 4; $j++ ){
+		for( $x = 0; $x < sizeof($categories); $x++ ){
+			$type = $categories[$x]["id"];
+			$title = direction("Latest ads for " . $categories[$x]["enTitle"]," أحدث الإعلانات ل" . $categories[$x]["arTitle"]);
+			for( $y = 0; $y < 4; $y++ ){
 				echo "<div class='ads-section'>";
 				echo "<h4 class='mb-3'>{$title}</h4>";
 				require('template/adsMainList.php');
