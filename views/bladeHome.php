@@ -11,7 +11,7 @@
 					for( $i = 0; $i < sizeof($categories); $i++ ){
 						$title = direction($categories[$i]["enTitle"],$categories[$i]["arTitle"]);
 						echo "<div class='radio-btn'>
-							<input type='radio' id='a{$categories[$i]["id"]}' name='propertyType' value='{$categories[$i]["id"]}' />
+							<input type='radio' id='a{$categories[$i]["id"]}' name='caregoryId' value='{$categories[$i]["id"]}' />
 							<label for='a{$categories[$i]["id"]}'>{$title}</label>
 						</div>";
 					}
@@ -52,13 +52,13 @@
 				<div class="form-outline mt-4">
 				<div class="input-group input-group-select-with-icon">  
 						<label class="input-group-text labelIcon" for=""><i class="bi bi-building"></i></label>
-						<select class="form-select" name="categoryId" aria-label="Properity Type">
+						<select class="form-select" name="propertyType" aria-label="Properity Type">
 						<option selected><i class="bi bi-building"></i> <?php echo Trans('app','Properity Type'); ?></option>
 						<?php
-						if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
-							for( $i = 0; $i < sizeof($categories); $i++ ){
-								$title = direction($categories[$i]["enTitle"],$categories[$i]["arTitle"]);
-								echo "<option value='{$categories[$i]["id"]}'>{$title}</option>";
+						if( $propertyType = selectDB("propertyType","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
+							for( $i = 0; $i < sizeof($propertyType); $i++ ){
+								$title = direction($propertyType[$i]["enTitle"],$propertyType[$i]["arTitle"]);
+								echo "<option value='{$propertyType[$i]["id"]}'>{$title}</option>";
 							}
 						}
 						?>
