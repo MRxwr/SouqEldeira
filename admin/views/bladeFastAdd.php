@@ -143,7 +143,7 @@ if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
 				</select>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<label><?php echo direction("Property Type","نوع العقار") ?></label>
 				<select name="propertyType" class="selectpicker" data-style="form-control btn-default btn-outline" required>
 					<?php
