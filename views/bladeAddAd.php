@@ -17,8 +17,6 @@
 			 	</div>
 			 	
 			    <form id="add-ad-form" class="mt-4" method="post" action="index.php?v=AddAd" enctype="multipart/form-data">
-			
-				  
 				  <div class="form-outline mb-4">
 						<div class="main-radio-btn">
 						<?php
@@ -39,11 +37,11 @@
 				  <div class="form-outline mb-4">
 				  	<div class="main-radio-btn">			  		
 				  		<div class="radio-btn">
-					  		<input type="radio" name="adType" id="aRegular" />
+					  		<input type="radio" name="adType" id="aRegular" value="0" />
 					  		<label for="aRegular"><?php echo Trans('app','Regular Ad'); ?> (1)</label>
 					  	</div>
 					  	<div class="radio-btn">
-					  		<input type="radio" name="adType" id="aSpecial" checked  />
+					  		<input type="radio" name="adType" id="aSpecial" checked value="1"  />
 					  		<label for="aSpecial"><?php echo Trans('app','Special Ad'); ?> (9)</label>  
 					  	</div>
 				 	</div>
@@ -91,7 +89,7 @@
 
 			      <!-- Price input -->
 			      <div class="form-outline mb-4">
-			        <input type="number"  class="form-control" name="ad-price" placeholder="<?php echo Trans('app','Price'); ?>" />
+			        <input type="number"  class="form-control" name="ad-price" placeholder="<?php echo Trans('app','Price'); ?>" required />
 			      </div>
 			
 				  <!-- Phone input -->
