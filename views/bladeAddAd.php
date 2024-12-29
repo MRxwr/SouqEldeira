@@ -10,12 +10,8 @@
 		$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
 		$package = selectDBNew("packages",[$order[0]["packageId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","");
 	//var_dump($user);
-	if ($_POST) {
-		echo "POST data received.";
-		var_dump($_POST);
-	}
-	if(isset($_POST["adTitle"])){
-		var_dump($user);
+	
+	if(isset($_POST["addAds"])){
 		if( ($_POST["adType"] == 0 && $user[0]["normalAd"] > 1 ) || ($_POST["adType"] == 2 && $user[0]["specialAd"] > 0 )){
 		    $expiryDate = date("Y-m-d", strtotime("+{$package[0]["expirey"]} days"));
 			$data = array(
@@ -30,8 +26,7 @@
 			"price"		=>	$_POST["adPrice"],
 			"enDetails"	=>	$_POST["adDescription"],
 			"arDetails"	=>	$_POST["adDescription"],
-			"status"	=>	"0",
-			"expirey"	=>	$expiryDate
+			"expiryDate" =>	$expiryDate
 		);
 		var_dump($data); exit;
 		if( insertDB("products", $data) ){
@@ -92,7 +87,7 @@
 			 	</div>
 			 	
 			    <form id="add-ad-form" class="mt-4" method="post" action="" enctype="multipart/form-data">
-				<input type="hidden" name="addads" value="1">
+				<input type="hidden" name="addAds" value="1">
 				<div class="form-outline mb-4">
 						<div class="main-radio-btn">
 						<?php
