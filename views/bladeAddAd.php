@@ -4,6 +4,7 @@
  } else {
 	$settings = selectDB("settings","`id` = '1'");
 	$user = selectDB("users","`id` = '{$_SESSION["userId"]}'");
+	var_dump($user);
 	if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["addads"]) && !empty($_POST["adType"]) && !empty($_POST["adTitle"]) && !empty($_POST["adDescription"]) && !empty($_POST["adPrice"]) && !empty($_POST["propertyType"]) ){
 		$data = array(
 			"userId" => "{$_POST["userId"]}",
