@@ -115,7 +115,7 @@
 				echo "<h4 class='mb-3'>{$title}</h4>";
 				require('template/adsMainList.php');
 				echo "<div class='d-block text-end mt-3'>";
-				echo "<a href='?v=Search={$type} ?>' class='btn btn-primary'>".Trans('app','More')." ...</a>";
+				echo "<a href='?v=Search&type={$type} ?>' class='btn btn-primary'>".Trans('app','More')." ...</a>";
 				echo "</div>";
 				echo "</div>";
 			}

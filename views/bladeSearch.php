@@ -36,8 +36,8 @@ if ( isset($_POST) ){
 	}
 	if( $ads = selectDBNew("products",[$_POST["categoryId"],$_POST["areaId"]],"`status` = '0' AND `hidden` != '2' AND `categoryId` = ? AND `areaId` = ? {$price} {$propertyType} ORDER BY `packageId` DESC,`id` DESC","") ){
 	}
-}elseif( isset($_GET["search"]) && !empty($_GET["search"]) ){
-	if( $ads = selectDBNew("products",[$_GET["search"]],"`status` = '0' AND `hidden` != '2' AND `categoryId` = ? ORDER BY `packageId` DESC,`id` DESC","") ){
+}elseif( isset($_GET["type"]) && !empty($_GET["type"]) ){
+	if( $ads = selectDBNew("products",[$_GET["type"]],"`status` = '0' AND `hidden` != '2' AND `categoryId` = ? ORDER BY `packageId` DESC,`id` DESC","") ){
 	}
 }else{
 	?>

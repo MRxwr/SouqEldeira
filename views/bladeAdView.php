@@ -119,6 +119,6 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
   }
   ?>
   <div class="d-block text-end mt-3">
-  	 <a href="?v=Search=<?php echo $ad[0]["categoryId"] ?>" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i></a>
+  	 <a href="?v=Search&type=<?php echo $ad[0]["categoryId"] ?>" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i></a>
   </div> 
 </div>
