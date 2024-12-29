@@ -140,17 +140,11 @@
 		</div>
 		<script>
 			$(document).ready(function () {
-				// Map span clicks to corresponding file input clicks
-				$('.fileInput').on('click', function () {
-					const id = $(this).attr('id'); // Get the ID of the clicked span
-					
-					const fileInputId = id.replace('Input', 'InputFld'); // Map to file input ID
-					$('#' + fileInputId).trigger('click'); // Trigger file input click
-				});
-
+				
 				// Display the selected image
 				$('input[type="file"]').on('change', function (event) {
 					const inputId = $(this).attr('id'); // Get file input ID
+					alert( inputId );
 					const spanId = inputId.replace('InputFld', 'Input'); // Map to span ID
 					const file = event.target.files[0]; // Get the selected file
 
