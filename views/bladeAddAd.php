@@ -55,7 +55,7 @@
 					);
 					updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
 				}
-				header("LOCATION: index.php?v=AddAd&success=1&msg='");
+				header("LOCATION: index.php?v=Home&success=1");
 		}else{
 			?>
 			<script>
@@ -162,12 +162,12 @@
 
 			      <!-- Price input -->
 			      <div class="form-outline mb-4">
-			        <input type="number"  class="form-control" name="ad-price" placeholder="<?php echo Trans('app','Price'); ?>" required />
+			        <input type="number"  class="form-control" name="adPrice" placeholder="<?php echo Trans('app','Price'); ?>" required />
 			      </div>
 			
 				  <!-- Phone input -->
 			      <div class="form-outline mb-4">
-			        <input type="text"  class="form-control" name="ad-phone" placeholder="<?php echo Trans('app','Phone Number'); ?>" />
+			        <input type="text"  class="form-control" name="adPhone" placeholder="<?php echo Trans('app','Phone Number'); ?>" />
 			      </div>
 
 				  <!-- Title input -->
@@ -177,7 +177,7 @@
 			     
 				  <!-- Description input --> 
 			      <div class="form-outline mb-3">
-			         <textarea class="form-control" style="min-height:100px;"  rows="9" name="ad-description" placeholder="<?php echo Trans('app','Description'); ?>" required></textarea>
+			         <textarea class="form-control" style="min-height:100px;"  rows="9" name="adDescription" placeholder="<?php echo Trans('app','Description'); ?>" required></textarea>
 			      </div>
 			      
 			      <!-- Description input -->
