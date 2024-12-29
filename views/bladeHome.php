@@ -11,7 +11,7 @@
 					for( $i = 0; $i < sizeof($categories); $i++ ){
 						$title = direction($categories[$i]["enTitle"],$categories[$i]["arTitle"]);
 						echo "<div class='radio-btn'>
-							<input type='radio' id='a{$categories[$i]["id"]}' name='caregoryId' value='{$categories[$i]["id"]}' />
+							<input type='radio' id='a{$categories[$i]["id"]}' name='categoryId' value='{$categories[$i]["id"]}' />
 							<label for='a{$categories[$i]["id"]}'>{$title}</label>
 						</div>";
 					}
