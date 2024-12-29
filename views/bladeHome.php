@@ -6,22 +6,17 @@
 	<div class="search-area-row"> 
 		<div class="row">
 			<div class="main-radio-btn">
-				<div class="radio-btn">
-					<input type="radio" id="aSale" name="propertyType" checked />
-					<label for="aSale"><?php echo Trans('app','Sale'); ?></label>
-				</div>
-				<div class="radio-btn">
-					<input type="radio" id="aRent" name="propertyType" />
-					<label for="aRent"><?php echo Trans('app','Rent'); ?></label>
-				</div>
-				<div class="radio-btn">
-					<input type="radio" id="aAllowance" name="propertyType" />
-					<label for="aAllowance"><?php echo Trans('app','Allowance'); ?></label>
-				</div>
-				<div class="radio-btn"> 
-					<input type="radio" id="aRequest" name="propertyType" />
-					<label for="aRequest"><?php echo Trans('app','Request'); ?></label>
-				</div>
+				<?php
+				if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
+					for( $i = 0; $i < sizeof($categories); $i++ ){
+						$title = direction($categories[$i]["enTitle"],$categories[$i]["arTitle"]);
+						echo "<div class='radio-btn'>
+							<input type='radio' id='a{$categories[$i]["id"]}' name='propertyType' value='{$categories[$i]["id"]}' />
+							<label for='a{$categories[$i]["id"]}'>{$title}</label>
+						</div>";
+					}
+				}
+				?>
 			</div>
 		</div>
 		<div class="row">
