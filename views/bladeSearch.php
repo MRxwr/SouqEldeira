@@ -5,7 +5,7 @@ if( $category = selectDBNew("categories",[$_POST["categoryId"]],"`status` = '0' 
 }else{
 	?>
 	<script>
-		alert('<?php echo direction("categories Could not process your request, Please try again","حدث خطأ أثناء عملية الطلب, يرجى المحاولة مرة أخرى"); ?>');
+		alert('<?php echo direction("Could not process your request, Please try again","حدث خطأ أثناء عملية الطلب, يرجى المحاولة مرة أخرى"); ?>');
 		window.location.href = 'index.php?v=Home';
 	</script>
 	<?php
@@ -15,7 +15,7 @@ if( $area = selectDBNew("areas",[$_POST["areaId"]],"`status` = '0' AND `hidden` 
 }else{
 	?>
 	<script>
-		alert('<?php echo direction("areas Could not process your request, Please try again","حدث خطأ أثناء عملية الطلب, يرجى المحاولة مرة أخرى"); ?>');
+		alert('<?php echo direction("Could not process your request, Please try again","حدث خطأ أثناء عملية الطلب, يرجى المحاولة مرة أخرى"); ?>');
 		window.location.href = 'index.php?v=Home';
 	</script>
 	<?php
