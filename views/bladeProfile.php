@@ -142,9 +142,11 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 				<div class="form-outline mb-4">
 				<h5 class="fw-bold mb-3"><?php echo Trans('app','Update Profile Image'); ?></h5>
 				<div class="change-profile-image">
-				  <input type="file" accept="image/*" name="logo">
-				  <span><?php echo Trans('app','Click or drag an account image'); ?></span>
-				  <span><i class="bi bi-image"></i></span>
+				  <label for="profile-image-input">
+					<span><?php echo Trans('app','Click or drag an account image'); ?></span>
+					<span><i class="bi bi-image"></i></span>
+				  </label>
+				  <input type="file" id="profile-image-input" name="logo"accept="image/*" style="display: none;">
 				</div>
 				</div>
 				<div class="form-outline mb-4">
