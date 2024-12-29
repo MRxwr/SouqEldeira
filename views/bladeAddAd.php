@@ -13,7 +13,7 @@
 	//var_dump($user);
 	if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["addads"]) && !empty($_POST["adType"]) && !empty($_POST["adTitle"]) && !empty($_POST["adDescription"]) && !empty($_POST["adPrice"]) && !empty($_POST["propertyType"]) ){
 		if( ($_POST["adType"] == 0 && $user[0]["normalAd"] > 0 ) || ($_POST["adType"] == 1 && $user[0]["specialAd"] > 0 )){
-		   $expiryDate = date("Y-m-d", strtotime("+{$package[0]["expirey"]} days"));
+		    $expiryDate = date("Y-m-d", strtotime("+{$package[0]["expirey"]} days"));
 			$data = array(
 			"userId" => "{$user[0]["id"]}",
 			"categoryId"	=>	$_POST["categoryId"],
@@ -29,7 +29,7 @@
 			"status"	=>	"0",
 			"expirey"	=>	$expiryDate
 		);
-		
+		var_dump($data);
 		if( insertDB("products", $data) ){
 			// Get last inserted id
 			$lastId = $conn->insert_id;
