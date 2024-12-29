@@ -119,7 +119,7 @@ if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
 				<select name="userId" class="selectpicker" data-style="form-control btn-default btn-outline" required>
 					<option value="0" selected default><?php echo direction("None","لا يوجد") ?></option>
 					<?php
-                    if( $users = selectDB("users","`status` = '0' AND `hidden` = '1'") ){
+                    if( $users = selectDB("users","`status` = '0' AND `hidden` = '0'") ){
                         for( $i = 0; $i < sizeof($users); $i++ ){
                             $title = $users[$i]["name"];
                             echo "<option value='{$users[$i]["id"]}'>{$title}</option>";
