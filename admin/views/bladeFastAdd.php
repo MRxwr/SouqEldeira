@@ -150,7 +150,7 @@ if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
                     if( $propertyType = selectDB("propertyType","`status` = '0' AND `hidden` = '1'") ){
                         for( $i = 0; $i < sizeof($propertyType); $i++ ){
                             $title = direction($propertyType[$i]["enTitle"],$propertyType[$i]["arTitle"]);
-                            echo "<option value='{$propertyType[$i]["id"]}'>{$propertyType}</option>";
+                            echo "<option value='{$propertyType[$i]["id"]}'>{$title}</option>";
                         }
                     }
                     ?>
@@ -323,7 +323,7 @@ if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
 						<label id="image<?php echo $products[$i]["id"]?>"><?php echo json_encode($image)?></label>
 						<label id="categoryId<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["categoryId"] ?></label>
 						<label id="packageId<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["packageId"] ?></label>
-						<label id="area<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["areaId"] ?></label>
+						<label id="areaId<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["areaId"] ?></label>
 						<label id="governate<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["governateId"] ?></label>
 						<label id="shopId<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["shopId"] ?></label>
 						<label id="userId<?php echo $products[$i]["id"]?>"><?php echo $products[$i]["userId"] ?></label>
