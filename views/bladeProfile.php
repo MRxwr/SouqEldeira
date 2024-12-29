@@ -63,7 +63,11 @@ if( isset($_POST["email"]) && !empty($_POST["email"]) ){
 			<?php
 		}
 	}
-	$_POT["logo"] = $userDetails["logo"];
+	if (is_uploaded_file($_FILES['logo']['tmp_name'])) {
+		$_POST["logo"] = uploadProfileImage($_FILES['logo']['tmp_name']);
+	}else{
+		$_POST["logo"] = $userDetails["logo"];
+	}
 	$data = array(
 		"email" => $_POST["email"],
 		"username" => $_POST["username"],
@@ -119,7 +123,7 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 	</div>
 	<div class="col-md-6"> 
 		<div class="with-white-bg py-1 px-4">
-			<form id="profile-form" class="mt-4" method="post" action="index.php?v=Profile">		
+			<form id="profile-form" class="mt-4" method="post" action="index.php?v=Profile" enctype="multipart/form-data">		
 				<div class="mb-4 text-center">
 				<img src="assets/img/profile.png" class="img-fluid" alt="...">
 				</div>
@@ -138,8 +142,9 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 				<div class="form-outline mb-4">
 				<h5 class="fw-bold mb-3"><?php echo Trans('app','Update Profile Image'); ?></h5>
 				<div class="change-profile-image">
-					<span><?php echo Trans('app','Click or drag an account image'); ?></span>
-					<span><i class="bi bi-image"></i></span>
+				  <input type="file" accept="image/*" name="logo">
+				  <span><?php echo Trans('app','Click or drag an account image'); ?></span>
+				  <span><i class="bi bi-image"></i></span>
 				</div>
 				</div>
 				<div class="form-outline mb-4">
