@@ -29,11 +29,11 @@
 						<div class="ads-balance">
 							<div>
 								<span class="title"><?php echo Trans('app','Regular Advertising'); ?></span>
-								<span class="count">2</span>
+								<span class="count"><?php echo $normalAds; ?></span>
 							</div> 
 							<div>
 								<span class="title"><?php echo Trans('app','Special Advertising'); ?></span>
-								<span class="count">2</span>
+								<span class="count"><?php echo $specialAds; ?></span>
 							</div>
 							<div class="recharge-balance"> 
 								<a href="#" class="btn btn-primary py-0 px-5" id="recharge-balance-btn"><?php echo Trans('app','Recharge Your Balance'); ?></a>
