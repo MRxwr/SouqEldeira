@@ -26,14 +26,14 @@ $(document).ready(function () {
 	    });
 	});
     // Handle file selection and preview for all file inputs
-    $('input[type="files[]"]').on('change', function (event) {
+    $('input[type="files"]').on('change', function (event) {
       // Get the file input ID
       const fileInputId = $(this).attr('id');
       // Map to the corresponding span ID
       const spanId = fileInputId.replace('InputFld', 'Input');
       // Get the selected file
-      displaySelectedFiles(this,spanId);
-  });  
+       displaySelectedFiles(this,spanId);
+    });  
     
 });
 
