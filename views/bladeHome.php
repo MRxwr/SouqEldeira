@@ -145,7 +145,7 @@
 			<h3 class="fw-bold text-center mb-5"><?php echo Trans('app','Real estate offices in Kuwait'); ?></h3> 
 			<div class="owl-carousel owl-carousel-offices owl-theme">
 				<?php
-				if( $offices = selectDB("shops","`id` != '0' AND `status` = '0' ORDER BY `rank` ASC")){
+				if( $offices = selectDB("shops","`id` != '0' AND `status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")){
 					for( $i = 0; $i < count($offices); $i++ ){
 						echo '<div class="item">';
 						echo '<a href="?v=OfficeView&id=' . $offices[$i]["id"] . '"><img src="logos/' . $offices[$i]["logo"] . '" style="width:157px;height:157px"></a>';
