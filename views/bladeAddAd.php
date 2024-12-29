@@ -3,18 +3,24 @@
 	echo "<script>window.location.href = '/index.php?v=Login';</script>";
  } else {
 	$settings = selectDB("settings","`id` = '1'");
+	if($user[0]["id"] >0 && $user[0]["status"] == 0){
+		$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
+		$package = selectDBNew("packages",[$order[0]["packageId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","");
 	var_dump($user);
 	if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["addads"]) && !empty($_POST["adType"]) && !empty($_POST["adTitle"]) && !empty($_POST["adDescription"]) && !empty($_POST["adPrice"]) && !empty($_POST["propertyType"]) ){
+		
 		$data = array(
-			"userId" => "{$_POST["userId"]}",
+			"userId" => "{$user[0]["id"]}",
 			"categoryId"	=>	$_POST["categoryId"],
+			"packageId" => "{$order[0]["packageId"]}",
 			"propertyType"	=>	$_POST["propertyType"],
 			"areaId"	=>	$_POST["adArea"],
 			"adType"	=>	$_POST["adType"],
 			"enTitle"		=>	$_POST["adTitle"],
+			"arTitle"		=>	$_POST["adTitle"],
 			"price"		=>	$_POST["adPrice"],
 			"enDetails"	=>	$_POST["adDescription"],
-			"categoryId"	=>	$GenerateNewCC,
+			"arDetails"	=>	$_POST["adDescription"]
 		);
 		
 		if( insertDB("products", $data) ){
@@ -38,6 +44,7 @@
 			<?php
 			header("LOCATION: index.php?v=AddAd");
 		}	
+	 }
 	}
 }
 ?>
@@ -54,6 +61,7 @@
 			 	
 			    <form id="add-ad-form" class="mt-4" method="post" action="index.php?v=AddAd" enctype="multipart/form-data">
 				<input type="hidden" name="addads" value="1">
+				<input type="hidden" name="packageId" value="1">
 				<div class="form-outline mb-4">
 						<div class="main-radio-btn">
 						<?php
