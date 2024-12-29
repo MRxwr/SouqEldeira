@@ -111,16 +111,16 @@
 			      <div class="form-outline mb-4">
 			      	 <label class="mb-3"><?php echo Trans('app','Images'); ?></label>
 			      	 <div class="add-ad-images" for="fileInput" id="fileInputLabel">
-			      	 	<span for="fileI1nputFld" class="images" id="file1Input">+</span>
-			      	 	<span for="fileI2nputFld" class="images" id="file2Input">+</span>
-			      	 	<span for="fileI3nputFld" class="images" id="file3Input">+</span>
-			      	 	<span for="fileI4nputFld" class="images" id="file4Input">+</span>
+			      	 	<span for="file1InputFld" class="fileInput images" id="file1Input">+</span>
+			      	 	<span for="file2InputFld" class="fileInput images" id="file2Input">+</span>
+			      	 	<span for="file3InputFld" class="fileInput images" id="file3Input">+</span>
+			      	 	<span for="file4InputFld" class="fileInput images" id="file4Input">+</span>
 			      	 </div>
 					 <div style="display:none">
-					   <input type="file" id="fileI1nputFld">
-					   <input type="file" id="fileI2nputFld">
-					   <input type="file" id="fileI3nputFld">
-					   <input type="file" id="fileI4nputFld">
+					   <input type="file" id="file1InputFld">
+					   <input type="file" id="file2InputFld">
+					   <input type="file" id="file3InputFld">
+					   <input type="file" id="file4InputFld">
 					</div>
 			      	 <span class="form-hint d-block mt-3"><?php echo Trans('app','Picture size is 1:1 square'); ?></span>
 			      </div>
@@ -141,7 +141,7 @@
 		<script>
 			$(document).ready(function () {
 				// Map span clicks to corresponding file input clicks
-				$('.images').on('click', function () {
+				$('.fileInput').on('click', function () {
 					const id = $(this).attr('id'); // Get the ID of the clicked span
 					alert(id);
 					const fileInputId = id.replace('Input', 'InputFld'); // Map to file input ID
