@@ -67,6 +67,9 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
             "contactEmail" => $user[0]["contactEmail"],
             "logo" => $user[0]["logo"],
         );
+        if( $user[0]["logo"] == "" ){
+            $userDetails["logo"] = "assets/img/logo-1.png";
+        }
 		$_SESSION[$cookieSession] = $user[0]["email"];	
 	}else{
         $_SESSION['valid'] = false;
