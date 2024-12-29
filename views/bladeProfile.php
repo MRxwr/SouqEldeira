@@ -125,7 +125,7 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 		<div class="with-white-bg py-1 px-4">
 			<form id="profile-form" class="mt-4" method="post" action="index.php?v=Profile" enctype="multipart/form-data">		
 				<div class="mb-4 text-center">
-				<img src="<?php echo $userDetails["logo"]; ?>" style="border-radius:100%;" class="img-fluid" alt="...">
+				<img src="logos/<?php echo $userDetails["logo"]; ?>" style="border-radius:100%;" class="img-fluid" alt="...">
 				</div>
 				<!-- Price input -->
 				<div class="form-outline mb-4">
