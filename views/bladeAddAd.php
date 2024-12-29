@@ -34,30 +34,32 @@
 		if( insertDB("products", $data) ){
 			// Get last inserted id
 			$lastId = $conn->insert_id;
+
+			if($_POST["adType"] == 1){
+				if($_POST["adType"] == 1){
+				$normalAds = $normalAds - 1;
+				$data = array(
+					"normalAd" => "{$normalAds}",
+				);
+				updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
+			}else if($_POST["adType"] == 2){
+				$specialAds = $specialAds - 1;
+				$data = array(
+					"specialAd" => "{$specialAds}",
+				);
+				updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
+			}
 			// Upload images
-				if ( isset($_FILES['files'])) {
-					for( $i = 0; $i < sizeof($_FILES['files']['tmp_name']); $i++ ){
-						if( is_uploaded_file($_FILES['files']['tmp_name'][$i]) ){
-							$filenewname = uploadImageBannerown($_FILES["files"]["tmp_name"][$i]);
-							insertDB("images",array("productId" => $lastId,"imageurl" => $filenewname));
-						}
+			if ( isset($_FILES['files'])) {
+				for( $i = 0; $i < sizeof($_FILES['files']['tmp_name']); $i++ ){
+					if( is_uploaded_file($_FILES['files']['tmp_name'][$i]) ){
+						$filenewname = uploadImageBannerown($_FILES["files"]["tmp_name"][$i]);
+						insertDB("images",array("productId" => $lastId,"imageurl" => $filenewname));
 					}
 				}
-				if($_POST["adType"] == 1){
-					if($_POST["adType"] == 1){
-					$normalAds = $normalAds - 1;
-					$data = array(
-						"normalAd" => "{$normalAds}",
-					);
-					updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
-				}else if($_POST["adType"] == 2){
-					$specialAds = $specialAds - 1;
-					$data = array(
-						"specialAd" => "{$specialAds}",
-					);
-					updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
-				}
-				header("LOCATION: index.php?v=Home");
+			}
+				
+			header("LOCATION: index.php?v=Home");
 		}else{
 			?>
 			<script>
