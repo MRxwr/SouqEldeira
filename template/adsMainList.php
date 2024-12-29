@@ -1,7 +1,8 @@
 <div class="ads-main-list">
 	<div class="row gy-3"> 
 	<?php
-	if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' ORDER BY `packageId` DESC,`id` DESC LIMIT 3") ){
+	$type = ( isset($type) && !empty($type) ) ? " AND `categoryId` = '{$type}' " : "";
+	if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' {$type} ORDER BY `packageId` DESC,`id` DESC LIMIT 3") ){
 		foreach( $ads as $ad ){
 			if( $ad["packageId"] == 2 ){
 				$feature = "card-feature";
