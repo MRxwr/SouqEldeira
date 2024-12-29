@@ -79,16 +79,16 @@
 		</div>
 		<div class="advanced-search-view">
 			<div class="row mt-3">   
-					<div class="col-6 col-md-6">
-						<div class="form-outline"> 
-						<input type="text" class="form-control" name="propertyPriceFrom" placeholder="<?php echo Trans('app','Price From'); ?>">
-						</div>
+				<div class="col-6 col-md-6">
+					<div class="form-outline"> 
+					<input type="text" class="form-control" name="propertyPriceFrom" placeholder="<?php echo Trans('app','Price From'); ?>">
 					</div>
-					<div class="col-6 col-md-6">
-						<div class="form-outline">
-						<input type="text" class="form-control" name="propertyPriceTo" placeholder="<?php echo Trans('app','Price To'); ?>">
-						</div> 
-					</div>
+				</div>
+				<div class="col-6 col-md-6">
+					<div class="form-outline">
+					<input type="text" class="form-control" name="propertyPriceTo" placeholder="<?php echo Trans('app','Price To'); ?>">
+					</div> 
+				</div>
 			</div> 
 		</div>
 	</div>
@@ -105,16 +105,21 @@
 	
 <div class="container container-project">
 	<?php
-	$arrayOf4 = [Trans('app','Latest ads for sale'),Trans('app','For rent the latest ads'),Trans('app','For the latest ads allowance'),Trans('app','To request the latest announcements')];
-	for( $i = 0; $i < 4; $i++ ){
-		$type = $i+1;
-		echo "<div class='ads-section'>";
-		echo "<h4 class='mb-3'>{$arrayOf4[$i]}</h4>";
-		require('template/adsMainList.php');
-		echo "<div class='d-block text-end mt-3'>";
-		echo "<a href='' class='btn btn-primary'>".Trans('app','More')." ...</a>";
-		echo "</div>";
-		echo "</div>";
+	$arrayOf4 = [Trans('app','sale'),Trans('app','For rent the latest ads'),Trans('app','For the latest ads allowance'),Trans('app','To request the latest announcements')];
+	if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
+		for( $i = 0; $i < sizeof($categories); $i++ ){
+			for( $j = 0; $j < 4; $j++ ){
+				$type = $categories[$j]["id"];
+				$title = direction("Latest ads for " . $categories[$j]["enTitle"]," أحدث الإعلانات ل" . $categories[$j]["arTitle"]);
+				echo "<div class='ads-section'>";
+				echo "<h4 class='mb-3'>{$title}</h4>";
+				require('template/adsMainList.php');
+				echo "<div class='d-block text-end mt-3'>";
+				echo "<a href='' class='btn btn-primary'>".Trans('app','More')." ...</a>";
+				echo "</div>";
+				echo "</div>";
+			}
+		}
 	}
 	?>
 </div> 
