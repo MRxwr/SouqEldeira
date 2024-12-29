@@ -12,6 +12,7 @@
 	//var_dump($user);
 	
 	if(isset($_POST["addAds"])){
+		var_dump($user);
 		if( ($_POST["adType"] == 1 && $user[0]["normalAd"] > 1 ) || ($_POST["adType"] == 2 && $user[0]["specialAd"] > 0 )){
 		    $expiryDate = date("Y-m-d", strtotime("+{$package[0]["expirey"]} days"));
 			$data = array(
@@ -28,7 +29,7 @@
 			"arDetails"	=>	$_POST["adDescription"],
 			"expiryDate" =>	$expiryDate
 		);
-		var_dump($data); exit;
+		
 		if( insertDB("products", $data) ){
 			// Get last inserted id
 			$lastId = $conn->insert_id;
