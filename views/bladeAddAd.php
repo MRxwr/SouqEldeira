@@ -13,7 +13,8 @@
 	//var_dump($user);
 	if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["addads"]) && !empty($_POST["adType"]) && !empty($_POST["adTitle"]) && !empty($_POST["adDescription"]) && !empty($_POST["adPrice"]) && !empty($_POST["propertyType"]) ){
 		if( ($_POST["adType"] == 0 && $user[0]["normalAd"] > 0 ) || ($_POST["adType"] == 1 && $user[0]["specialAd"] > 0 )){
-		$data = array(
+		   $expiryDate = date("Y-m-d", strtotime("+{$package[0]["expirey"]} days"));
+			$data = array(
 			"userId" => "{$user[0]["id"]}",
 			"categoryId"	=>	$_POST["categoryId"],
 			"packageId" => "{$order[0]["packageId"]}",
@@ -24,7 +25,9 @@
 			"arTitle"		=>	$_POST["adTitle"],
 			"price"		=>	$_POST["adPrice"],
 			"enDetails"	=>	$_POST["adDescription"],
-			"arDetails"	=>	$_POST["adDescription"]
+			"arDetails"	=>	$_POST["adDescription"],
+			"status"	=>	"0",
+			"expirey"	=>	$expiryDate
 		);
 		
 		if( insertDB("products", $data) ){
@@ -39,7 +42,20 @@
 						}
 					}
 				}
-			header("LOCATION: index.php?v=AddAd");
+				if($_POST["adType"] == 1){
+					$normalAds = $normalAds - 1;
+					$data = array(
+						"normalAd" => "{$normalAds}",
+					);
+					updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
+				}else if($_POST["adType"] == 2){
+					$specialAds = $specialAds - 1;
+					$data = array(
+						"specialAd" => "{$specialAds}",
+					);
+					updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
+				}
+				header("LOCATION: index.php?v=AddAd&success=1&msg='");
 		}else{
 			?>
 			<script>
@@ -48,9 +64,14 @@
 			<?php
 			header("LOCATION: index.php?v=AddAd");
 		}	
-	 }else{
-
-	 }
+	 }else{ ?>
+			<script>
+				alert("You don't have enough ads points to add ");
+			</script>
+			<?php
+			header("LOCATION: index.php?v=AddAd");
+	
+	    }
 	}
 	}
 }
