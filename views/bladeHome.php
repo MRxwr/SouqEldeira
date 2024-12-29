@@ -109,13 +109,16 @@
 		for( $x = 0; $x < sizeof($categories); $x++ ){
 			$type = $categories[$x]["id"];
 			$title = direction("Latest ads for " . $categories[$x]["enTitle"]," أحدث الإعلانات ل" . $categories[$x]["arTitle"]);
-			echo "<div class='ads-section'>";
-			echo "<h4 class='mb-3'>{$title}</h4>";
-			require('template/adsMainList.php');
-			echo "<div class='d-block text-end mt-3'>";
-			echo "<a href='' class='btn btn-primary'>".Trans('app','More')." ...</a>";
-			echo "</div>";
-			echo "</div>";
+			$type1 = ( !empty($type) ) ? " AND `categoryId` = '{$type}' " : "";
+			if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' {$type1} ORDER BY `packageId` DESC,`id` DESC LIMIT 3") ){
+				echo "<div class='ads-section'>";
+				echo "<h4 class='mb-3'>{$title}</h4>";
+				require('template/adsMainList.php');
+				echo "<div class='d-block text-end mt-3'>";
+				echo "<a href='' class='btn btn-primary'>".Trans('app','More')." ...</a>";
+				echo "</div>";
+				echo "</div>";
+			}
 		}
 	}
 	?>
