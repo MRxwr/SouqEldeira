@@ -3,6 +3,42 @@
 	echo "<script>window.location.href = '/index.php?v=Login';</script>";
  } else {
 	$settings = selectDB("settings","`id` = '1'");
+	$user = selectDB("users","`id` = '{$_SESSION["userId"]}'");
+	if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["addads"]) && !empty($_POST["adType"]) && !empty($_POST["adTitle"]) && !empty($_POST["adDescription"]) && !empty($_POST["adPrice"]) && !empty($_POST["propertyType"]) ){
+		$data = array(
+			"userId" => "{$_POST["userId"]}",
+			"categoryId"	=>	$_POST["categoryId"],
+			"propertyType"	=>	$_POST["propertyType"],
+			"areaId"	=>	$_POST["adArea"],
+			"adType"	=>	$_POST["adType"],
+			"enTitle"		=>	$_POST["adTitle"],
+			"price"		=>	$_POST["adPrice"],
+			"enDetails"	=>	$_POST["adDescription"],
+			"categoryId"	=>	$GenerateNewCC,
+		);
+		
+		if( insertDB("products", $data) ){
+			// Get last inserted id
+			$lastId = $conn->insert_id;
+			// Upload images
+				if ( isset($_FILES['files'])) {
+					for( $i = 0; $i < sizeof($_FILES['files']['tmp_name']); $i++ ){
+						if( is_uploaded_file($_FILES['files']['tmp_name'][$i]) ){
+							$filenewname = uploadImageBanner($_FILES["files"]["tmp_name"][$i]);
+							insertDB("images",array("productId" => $lastId,"imageurl" => $filenewname));
+						}
+					}
+				}
+			header("LOCATION: index.php?v=AddAd");
+		}else{
+			?>
+			<script>
+				alert("Could not process your request, Please try again.");
+			</script>
+			<?php
+			header("LOCATION: index.php?v=AddAd");
+		}	
+	}
 }
 ?>
 			
@@ -17,7 +53,8 @@
 			 	</div>
 			 	
 			    <form id="add-ad-form" class="mt-4" method="post" action="index.php?v=AddAd" enctype="multipart/form-data">
-				  <div class="form-outline mb-4">
+				<input type="hidden" name="addads" value="1">
+				<div class="form-outline mb-4">
 						<div class="main-radio-btn">
 						<?php
 							if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
@@ -117,10 +154,10 @@
 			      	 	<label for="file4InputFld" class="fileInput images" id="file4Input">+</label>
 			      	 </div>
 					 <div style="display:none">
-					   <input type="file" id="file1InputFld">
-					   <input type="file" id="file2InputFld">
-					   <input type="file" id="file3InputFld">
-					   <input type="file" id="file4InputFld">
+					   <input type="files[]" id="file1InputFld">
+					   <input type="files[]" id="file2InputFld">
+					   <input type="files[]" id="file3InputFld">
+					   <input type="files[]" id="file4InputFld">
 					</div>
 			      	 <span class="form-hint d-block mt-3"><?php echo Trans('app','Picture size is 1:1 square'); ?></span>
 			      </div>
