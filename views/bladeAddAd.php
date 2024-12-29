@@ -71,14 +71,7 @@
 			header("LOCATION: index.php?v=AddAd");
 	
 	    }
-	}else{
-		?>
-			<script>
-				alert("Something went wrong, Please try again.");
-			</script>
-			<?php
-			header("LOCATION: index.php?v=AddAd");
-	   }
+	}
   }
  }
 ?>
