@@ -16,7 +16,7 @@
 					<h4><?php echo Trans('app','Add Ad'); ?></h4>
 			 	</div>
 			 	
-			    <form id="add-ad-form" class="mt-4">
+			    <form id="add-ad-form" class="mt-4" method="post" action="index.php?v=AddAd" enctype="multipart/form-data">
 			
 				  
 				  <div class="form-outline mb-4">
@@ -86,7 +86,7 @@
 						?>
 					</select>
 			      </div>
-				  
+
 			      <!-- Price input -->
 			      <div class="form-outline mb-4">
 			        <input type="number"  class="form-control" name="ad-price" placeholder="<?php echo Trans('app','Price'); ?>" />
@@ -95,6 +95,11 @@
 				  <!-- Phone input -->
 			      <div class="form-outline mb-4">
 			        <input type="text"  class="form-control" name="ad-phone" placeholder="<?php echo Trans('app','Phone Number'); ?>" />
+			      </div>
+
+				  <!-- Title input -->
+			      <div class="form-outline mb-4">
+			        <input type="text"  class="form-control" name="adTitle" placeholder="<?php echo Trans('app','Title'); ?>" />
 			      </div>
 			     
 				  <!-- Description input --> 
@@ -113,12 +118,8 @@
 			      	 </div>
 			      	 <span class="form-hint d-block mt-3"><?php echo Trans('app','Picture size is 1:1 square'); ?></span>
 			      </div>
-			     
-			
 			      <!-- Submit button -->
 			      <button type="submit" class="btn btn-primary btn-block w-100 mb-3 py-2"><?php echo Trans('app','Add Ad'); ?></button>
-			
-			      
 			      <div class="text-center">  
 			      	<p class="add-ad-form-text fw-bold"><?php echo Trans('app','Send us message by'); ?> <a href=""><?php echo Trans('app','WhatsApp'); ?></a> <?php echo Trans('app','or'); ?> <a href="contact.php"><?php echo Trans('app','call us'); ?></a> <?php echo Trans('app','for help'); ?></p>
 			      </div> 
