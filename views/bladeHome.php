@@ -24,7 +24,7 @@
 				<div class="form-outline mt-4"> 
 					<div class="input-group input-group-select-with-icon">  
 						<label class="input-group-text labelIcon" for=""><i class="bi bi-geo-alt"></i></label>
-						<select class="form-select" name="propertyRegion" aria-label="Property Region">
+						<select class="form-select" name="areaId" aria-label="Property Region">
 						<option selected><i class="bi bi-geo-alt"></i> <?php echo Trans('app','Area or Region'); ?></option>
 						<?php
 						$governateId = 0;
@@ -81,12 +81,12 @@
 			<div class="row mt-3">   
 				<div class="col-6 col-md-6">
 					<div class="form-outline"> 
-					<input type="text" class="form-control" name="propertyPriceFrom" placeholder="<?php echo Trans('app','Price From'); ?>">
+					<input type="text" class="form-control" name="from" placeholder="<?php echo Trans('app','Price From'); ?>">
 					</div>
 				</div>
 				<div class="col-6 col-md-6">
 					<div class="form-outline">
-					<input type="text" class="form-control" name="propertyPriceTo" placeholder="<?php echo Trans('app','Price To'); ?>">
+					<input type="text" class="form-control" name="to" placeholder="<?php echo Trans('app','Price To'); ?>">
 					</div> 
 				</div>
 			</div> 
