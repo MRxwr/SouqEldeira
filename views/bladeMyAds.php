@@ -183,7 +183,7 @@
 										
 										<div class="data">
 											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
-											<h5><?php echo substr(direction($ad['enDetails'],$ad['arDetails']),0,100) ?></h5>
+											<h5><?php echo Trans('app','Mubarak Al-Kabeer'); ?> - <?php echo Trans('app','Al-funaitis'); ?></h5>
 											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 23/8/2023</h6>
 										</div> 
 									</div>
