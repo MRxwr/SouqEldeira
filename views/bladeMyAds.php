@@ -15,7 +15,7 @@
 	if( isset($_GET["republish"]) && !empty($_GET["republish"]) ){
 		$product = selectDB("products","`id` = '{$_GET["republish"]}'")[0];
 		if( ($product["adType"] == 1 && $user[0]["normalAd"] > 1 ) || ($product["adType"] == 2 && $user[0]["specialAd"] > 0 )){	
-			echo $days = $days = intval($package[0]["expirey"]); // Default to 0 if invalid
+			 $days = $days = intval($package[0]["expirey"]); // Default to 0 if invalid
 		
 			if ($days > 0) {
 				$expiryDate = date("Y-m-d H:i:s", strtotime("+$days days"));
