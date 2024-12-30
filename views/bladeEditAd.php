@@ -172,7 +172,7 @@
 			      	 <label class="mb-3"><?php echo Trans('app','Images'); ?></label>
 			      	 <div class="add-ad-images" for="fileInput" id="fileInputLabel">
 					   <?php
-								if( $images = selectDB("images","`productId` = '".$product_id."'") ){
+								if( $images = selectDB("images","`productId` = '".$product[0]['id']."'") ){
 									var_dump($images);
 									// for( $z = 0; $z < sizeof($images); $z++ ){
 										
