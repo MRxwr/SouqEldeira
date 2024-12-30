@@ -180,9 +180,7 @@
 									     </label>
 									<?php }
 									
-									for( $x = sizeof($images); $x < 5; $x++ ){ ?>
-										<label for="file<?php echo x; ?>InputFld" class="fileInput images" id="file<?php echo x; ?>Input">+</label>
-									<?php }
+									
 								}else{
 									?>
 									<label for="file1InputFld" class="fileInput images" id="file1Input">+</label>
