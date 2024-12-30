@@ -31,7 +31,6 @@
 		if( insertDB("products", $data) ){
 			// Get last inserted id
 			   $lastId = selectDB("products","`id` != '0' ORDER BY `id` DESC LIMIT 1")[0]["id"];
-
 				if($product["adType"] == 1){
 					$normalAds = $normalAds - 1;
 					$data = array(
@@ -51,8 +50,7 @@
 						insertDB("images",array("productId" => $lastId,"imageurl" => $image["imageurl"]));
 					}
 				}
-				
-			header("LOCATION: index.php?v=MyAds");die();	
+			header("LOCATION: index.php?v=MyAds&success=republish");die();	
 		}
 
 	 }
@@ -60,12 +58,12 @@
 
 	if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
 		updateDB("products",array("hidden" => 2),"`id` = '{$_GET["hide"]}'");
-		header("LOCATION: index.php?v=MyAds");die();
+		header("LOCATION: index.php?v=MyAds&success=hide");die();
 	}
 	
 	if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
 		updateDB("products",array("status" => 1),"`id` = '{$_GET["forceDelete"]}'");
-		header("LOCATION: index.php?v=MyAds");die();
+		header("LOCATION: index.php?v=MyAds&success=forceDelete");die();
 	}
 }
 
