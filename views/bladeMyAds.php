@@ -8,7 +8,18 @@
 	$specialAds = 0;
 	$normalAds = $user[0]["normalAd"];
 	$specialAds = $user[0]["specialAd"];
+
+	if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
+		updateDB("products",array("hidden" => 2),"`id` = '{$_GET["hide"]}'");
+		header("LOCATION: index.php?v=MyAds");die();
+	}
+	
+	if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
+		updateDB("products",array("status" => 1),"`id` = '{$_GET["forceDelete"]}'");
+		header("LOCATION: index.php?v=MyAds");die();
+	}
 }
+
 ?>	
 			
 			<div class="row"> 
@@ -144,6 +155,11 @@
 								}else{
 									$feature = "";
 								}?>
+								<?php
+						  //echo '<li><a id="'.$products[$i]["id"].'" class="edit" href="javascript:void(0)"><i class="zmdi zmdi-edit"></i></a></li>';
+						  //echo '<li><a href="'.$link.'"><i class="'.$icon.'"></i></a></li>';
+						  //echo "<li><a href='?v={$_GET["v"]}&forceDelete={$products[$i]["id"]}'><i class='fa fa-times'></i></a></li>";
+						?>
 								<div class="my-ad-list-item my-2">  
 								<div class="row g-1"> 
 									<div class="col-md-8 my-ad-list-item-side1">  
