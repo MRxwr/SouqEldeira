@@ -81,8 +81,7 @@
  }
 }
 ?>
-			
-			
+	
 		<div class="row"> 
 		<div class="col-md-11 mx-auto">
 		<div class="guest-form-action">
