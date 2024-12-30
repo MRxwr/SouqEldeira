@@ -152,7 +152,12 @@
 												<span class="content"><?php echo Trans('app','Expire Data'); ?> : <?php echo $package['expirey']; ?> <?php echo Trans('app','Days'); ?></span>
 											</div>
 											<div class="buy">
-												<a href="#!" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Pay'); ?></a>  
+												<form action="index.php?v=Payment" method="post">
+													<input type="hidden" name="process" value="1">
+													<input type="hidden" name="packageId" value="<?php echo $package['id']; ?>">
+													<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Buy'); ?></button>
+												</form>
+												  
 											</div>
 										</div>
 									</div>

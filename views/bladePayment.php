@@ -1,0 +1,47 @@
+
+<?php if(!$_SESSION['valid']){
+	echo "<script>window.location.href = '/index.php?v=Login';</script>";
+ } else {
+	$normalAds = 0;
+	$specialAds = 0;
+	if($user[0]["id"] >0){
+		$normalAds = $user[0]["normalAd"];
+		$specialAds = $user[0]["specialAd"];
+		$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
+		$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
+		if(isset($_POST["process"]) && $_POST["process"] == "1"){
+		   $packageId = $_POST["packageId"];
+			if($package = selectDB("packages","`id` = '{$packageId}' ORDER BY `id` DESC LIMIT 1","")){
+				$orderData = array(
+					"userId" => $user[0]["id"],
+					"packageId" => $packageId,
+					"amount" => $package[0]["amount"],
+					"status" => "0",
+					"date" => date("Y-m-d H:i:s")
+				);
+				if(insertDB("orders2", $orderData)){
+					header("LOCATION: index.php?v=Payment&success=1");die();
+				}else{
+					header("LOCATION: index.php?v=Payment&error=1");die();
+				}
+
+			}
+		}
+ 	}
+}
+?>
+	<div class="row"> 
+		<div class="col-md-11 mx-auto">
+			<div class="guest-form-action">
+				<div class="form-container form-container-add">
+					<div class="start-page-title text-center mb-4">
+						<h4><?php echo Trans('app','Payment'); ?></h4>
+					</div> 
+					<div class="form-outline mb-4">
+				
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
