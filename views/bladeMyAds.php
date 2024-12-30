@@ -178,7 +178,7 @@
 												<?php
 											}
 										}else{ ?>
-									      <img src="assets/img/items/item-2.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+									      <img src="assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
 								       <?php } ?> 
 										
 										<div class="data">
@@ -253,7 +253,7 @@
 												<?php
 											}
 										}else{ ?>
-									      <img src="assets/img/items/item-2.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+									      <img src="assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
 								       <?php } ?> 
 										<div class="data">
 											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
@@ -274,12 +274,11 @@
 											<a href="#!" class="republish"><i class="bi bi-arrow-repeat"></i> <?php echo Trans('app','Republish'); ?></a>
 										</div> 
 									</div>
-								</div>
-							</div> 
+								   </div>
+							     </div> 
 
 							<?php } ?>
 						</div> 
-						
 						<div class="d-block text-center text-xl-end mt-3"> 
 						  	<a href="" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
 					    </div>
