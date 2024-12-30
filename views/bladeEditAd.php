@@ -171,7 +171,7 @@
 			      	 <label class="mb-3"><?php echo Trans('app','Images'); ?></label>
 			      	 <div class="add-ad-images" for="fileInput" id="fileInputLabel">
 					   <?php
-								if( $images = selectDB("images","`productId` = '".$product[0]["id"]."'") ){
+								if( $images = selectDB("images","`productId` = '".$_GET['id']."'") ){
 									for( $z = 0; $z < sizeof($images); $z++ ){
 										if( $z == 0 ){
 											$active = "active";
