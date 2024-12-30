@@ -16,7 +16,7 @@
 	if(isset($_POST["editAds"])){
 		//var_dump($user);
 		if(isset($_POST["id"])){
-			$data = array(
+			$dataArray = array(
 			"categoryId"	=>	$_POST["categoryId"],
 			"packageId" => "{$order[0]["packageId"]}",
 			"propertyType"	=>	$_POST["propertyType"],
