@@ -60,11 +60,12 @@
 			    <div class="form-container form-container-add">
 			    	
 		    	<div class="start-page-title text-center mb-4">
-					<h4><?php echo Trans('app','Add Ad'); ?></h4>
+					<h4><?php echo Trans('app','Edit Ad'); ?></h4>
 			 	</div>
 			 	
 			    <form id="add-ad-form" class="mt-4" name="add-ad-form" method="POST"  action="" enctype="multipart/form-data">
-				<input type="hidden" name="addAds" value="1">
+				<input type="hidden" name="editAds" value="1">
+				<input type="hidden" name="id" value="<?php echo $product[0]["id"]; ?>">
 				<div class="form-outline mb-4">
 						<div class="main-radio-btn">
 						<?php
@@ -156,10 +157,33 @@
 			      <div class="form-outline mb-4">
 			      	 <label class="mb-3"><?php echo Trans('app','Images'); ?></label>
 			      	 <div class="add-ad-images" for="fileInput" id="fileInputLabel">
-			      	 	<label for="file1InputFld" class="fileInput images" id="file1Input">+</label>
-			      	 	<label for="file2InputFld" class="fileInput images" id="file2Input">+</label>
-			      	 	<label for="file3InputFld" class="fileInput images" id="file3Input">+</label>
-			      	 	<label for="file4InputFld" class="fileInput images" id="file4Input">+</label>
+					   <?php
+								if( $images = selectDB("images","`productId` = '".$ad['id']."'") ){
+									for( $z = 0; $z < sizeof($images); $z++ ){
+										if( $z == 0 ){
+											$active = "active";
+										}else{
+											$active = "";
+										}
+										?>
+										<label for="file<?php echo $z+1; ?>InputFld" class="fileInput images" id="file<?php echo $z+1; ?>Input">
+											<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" alt="...">
+									    </label>
+										<?php
+									}
+									for( $x = sizeof($images); $x < 5; $x++ ){ ?>
+										<label for="file<?php echo x; ?>InputFld" class="fileInput images" id="file<?php echo x; ?>Input">+</label>
+									<?php }
+								}else{
+									?>
+									<label for="file1InputFld" class="fileInput images" id="file1Input">+</label>
+			      	 				<label for="file2InputFld" class="fileInput images" id="file2Input">+</label>
+			      	 				<label for="file3InputFld" class="fileInput images" id="file3Input">+</label>
+			      	 				<label for="file4InputFld" class="fileInput images" id="file4Input">+</label>
+									<?php
+								}
+								?>
+			      	 	
 			      	 </div>
 					 <div style="display:none">
 					   <input type="file" name="files[]" id="file1InputFld">
