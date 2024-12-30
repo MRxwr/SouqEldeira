@@ -176,7 +176,7 @@
 										<div class="actions">
 										<a href="#" 
 											class="update" 
-											onclick="return confirmUpdate('?v=<?php echo $_GET['v']; ?>&id=<?php echo $products[$i]['id']; ?>');">
+											onclick="return confirmUpdate('?v=EditAd&id=<?php echo $products[$i]['id']; ?>');">
 											<i class="bi bi-pencil-square"></i>
 											</a>
 											<a href="#" 
