@@ -12,8 +12,8 @@
 	$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
 	$package = selectDBNew("packages",[$order[0]["packageId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","");
 	if( isset($_GET["republish"]) && !empty($_GET["republish"]) ){
+		$product = selectDB("products","`id` = '{$_GET["republish"]}'")[0];
 		if( ($product["adType"] == 1 && $user[0]["normalAd"] > 1 ) || ($product["adType"] == 2 && $user[0]["specialAd"] > 0 )){	
-			$product = selectDB("products","`id` = '{$_GET["republish"]}'")[0];
 				$expiryDays =  $package[0]["expirey"]; // Ensure it's an integer
 				$expiryDate = date("Y-m-d H:i:s", strtotime("+{$expiryDays} days"));
 			$data = array(
