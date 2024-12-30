@@ -82,8 +82,6 @@
 						<h4 class="mb-0 fw-bold"><?php echo Trans('app','My Ads'); ?></h4>
 			 		</div>
 				</div>
-				
-				
 				<div class="col-md-12"> 
 					<div class="with-white-bg mb-4 p-4 px-2 px-md-4">
 						
@@ -208,7 +206,11 @@
 									$feature = "card-feature";
 								}else{
 									$feature = "";
-								}?>
+								}
+								$area = selectDB("areas","`id` = '".$ad['areaId']."'")[0];
+								$gov = selectDB("governorates","`id` = '".$area['govId']."'")[0];
+								?>
+								
 								<?php
 									//echo '<li><a id="'.$products[$i]["id"].'" class="edit" href="javascript:void(0)"><i class="zmdi zmdi-edit"></i></a></li>';
 									//echo '<li><a href="'.$link.'"><i class="'.$icon.'"></i></a></li>';
@@ -237,7 +239,7 @@
 										
 										<div class="data">
 											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
-											<h5><?php echo Trans('app','Mubarak Al-Kabeer'); ?> - <?php echo Trans('app','Al-funaitis'); ?></h5>
+											<h5><?php echo direction($gov['enTitle'],$gov['arTitle']); ?> - <?php echo direction($area['enTitle'],$area['arTitle']); ?></h5>
 											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 
 											<?php
 											$adDate = new DateTime($ad['date']);
