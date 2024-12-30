@@ -173,20 +173,9 @@
 			      	 <div class="add-ad-images" for="fileInput" id="fileInputLabel">
 					   <?php
 								if( $images = selectDB("images","`productId` = '".$product[0]['id']."'") ){
-									var_dump($images);
-									// for( $z = 0; $z < sizeof($images); $z++ ){
-										
-									// 	?>
-									// 	<label for="file<?php echo $z+1; ?>InputFld" class="fileInput images" id="file<?php echo $z+1; ?>Input">
-									// 		<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" alt="...">
-									//     </label>
-									// 	<?php
-									// }
-									for( $x = sizeof($images); $x < 5; $x++ ){ ?>
-										<label for="file<?php echo x; ?>InputFld" class="fileInput images" id="file<?php echo x; ?>Input">+</label>
-									<?php }
-								}else{
-									?>
+									var_dump($images); ?>
+									
+								<?php }else{ ?>
 									<label for="file1InputFld" class="fileInput images" id="file1Input">+</label>
 			      	 				<label for="file2InputFld" class="fileInput images" id="file2Input">+</label>
 			      	 				<label for="file3InputFld" class="fileInput images" id="file3Input">+</label>
