@@ -14,23 +14,32 @@
 	if(isset($_POST["addAds"])){
 		//var_dump($user);
 		if( ($_POST["adType"] == 1 && $user[0]["normalAd"] > 1 ) || ($_POST["adType"] == 2 && $user[0]["specialAd"] > 0 )){
-		    $expiryDays = $package[0]["expirey"]; // Ensure it's an integer
-    		$expiryDate = date("Y-m-d H:i:s", strtotime("+{$expiryDays} days"));
-			$data = array(
-			"userId" => "{$user[0]["id"]}",
-			"categoryId"	=>	$_POST["categoryId"],
-			"packageId" => "{$order[0]["packageId"]}",
-			"propertyType"	=>	$_POST["propertyType"],
-			"areaId"	=>	$_POST["adArea"],
-			"adType"	=>	$_POST["adType"],
-			"enTitle"		=>	$_POST["adTitle"],
-			"arTitle"		=>	$_POST["adTitle"],
-			"price"		=>	$_POST["adPrice"],
-			"enDetails"	=>	$_POST["adDescription"],
-			"arDetails"	=>	$_POST["adDescription"],
-			"expiryDate" =>	$expiryDate
-		);
+		    $days = isset($package[0]["expirey"]) && is_numeric($package[0]["expirey"]) 
+			? intval($package[0]["expirey"]) 
+			: 7; // Default to 0 if invalid
 		
+			if ($days > 0) {
+				$expiryDate = date("Y-m-d H:i:s", strtotime("+$days days"));
+			} else {
+				// Handle default case, e.g., set expiryDate to current datetime
+				$expiryDate = date("Y-m-d H:i:s");
+			}
+			
+			$data = array(
+				"userId" => "{$user[0]["id"]}",
+				"categoryId"	=>	$_POST["categoryId"],
+				"packageId" => "{$order[0]["packageId"]}",
+				"propertyType"	=>	$_POST["propertyType"],
+				"areaId"	=>	$_POST["adArea"],
+				"adType"	=>	$_POST["adType"],
+				"enTitle"		=>	$_POST["adTitle"],
+				"arTitle"		=>	$_POST["adTitle"],
+				"price"		=>	$_POST["adPrice"],
+				"enDetails"	=>	$_POST["adDescription"],
+				"arDetails"	=>	$_POST["adDescription"],
+				"expiryDate" =>	$expiryDate
+			);
+			
 		if( insertDB("products", $data) ){
 			// Get last inserted id
 			$lastId = selectDB("products","`id` != '0' ORDER BY `id` DESC LIMIT 1")[0]["id"];

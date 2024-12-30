@@ -14,8 +14,16 @@
 	if( isset($_GET["republish"]) && !empty($_GET["republish"]) ){
 		$product = selectDB("products","`id` = '{$_GET["republish"]}'")[0];
 		if( ($product["adType"] == 1 && $user[0]["normalAd"] > 1 ) || ($product["adType"] == 2 && $user[0]["specialAd"] > 0 )){	
-				$expiryDays =  $package[0]["expirey"]; // Ensure it's an integer
-				$expiryDate = date("Y-m-d H:i:s", strtotime("+{$expiryDays} days"));
+			$days = isset($package[0]["expirey"]) && is_numeric($package[0]["expirey"]) 
+			? intval($package[0]["expirey"]) 
+			: 7; // Default to 0 if invalid
+		
+			if ($days > 0) {
+				$expiryDate = date("Y-m-d H:i:s", strtotime("+$days days"));
+			} else {
+				// Handle default case, e.g., set expiryDate to current datetime
+				$expiryDate = date("Y-m-d H:i:s");
+			}
 			$data = array(
 				"userId" => "{$user[0]["id"]}",
 				"categoryId"	=>	$product["categoryId"],
