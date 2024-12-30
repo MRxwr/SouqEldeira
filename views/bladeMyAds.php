@@ -208,8 +208,8 @@
 									$feature = "";
 								}
 								$area = selectDB("areas","`id` = '".$ad['areaId']."'")[0];
-								$gov = selectDB("governorates","`id` = '".$area['governateId']."'")[0];
-								var_dump($gov);
+								//$gov = selectDB("governorates","`id` = '".$area['governateId']."'")[0];
+								var_dump($area['governateId']);
 								?>
 								
 								<?php
