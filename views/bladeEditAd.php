@@ -2,62 +2,43 @@
 <?php if(!$_SESSION['valid']){
 	echo "<script>window.location.href = '/index.php?v=Login';</script>";
  } else {
+	$product = selectDB("products","`id` = '{$_GET["id"]}'");
 	$normalAds = 0;
 	$specialAds = 0;
 	if($user[0]["id"] >0){
+		$lastId = $_POST["id"];
 		$normalAds = $user[0]["normalAd"];
 		$specialAds = $user[0]["specialAd"];
 		$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
 		$package = selectDBNew("packages",[$order[0]["packageId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","");
 	//var_dump($user);
 	
-	if(isset($_POST["addAds"])){
+	if(isset($_POST["editAds"])){
 		//var_dump($user);
-		if( ($_POST["adType"] == 1 && $user[0]["normalAd"] > 1 ) || ($_POST["adType"] == 2 && $user[0]["specialAd"] > 0 )){
-		    $expiryDays = (int) $package[0]["expirey"]; // Ensure it's an integer
-    		$expiryDate = date("Y-m-d H:i:s", strtotime("+{$expiryDays} days"));
+		if(isset($_POST["id"])){
 			$data = array(
-			"userId" => "{$user[0]["id"]}",
 			"categoryId"	=>	$_POST["categoryId"],
 			"packageId" => "{$order[0]["packageId"]}",
 			"propertyType"	=>	$_POST["propertyType"],
 			"areaId"	=>	$_POST["adArea"],
-			"adType"	=>	$_POST["adType"],
 			"enTitle"		=>	$_POST["adTitle"],
 			"arTitle"		=>	$_POST["adTitle"],
 			"price"		=>	$_POST["adPrice"],
 			"enDetails"	=>	$_POST["adDescription"],
 			"arDetails"	=>	$_POST["adDescription"],
-			"expiryDate" =>	$expiryDate
 		);
+		updateDB("products",$dataArray,"`id` LIKE '{$_POST["id"]}'");
 		
-		if( insertDB("products", $data) ){
-			// Get last inserted id
-			$lastId = $conn->insert_id;
 			// Upload images
-				if ( isset($_FILES['files'])) {
-					for( $i = 0; $i < sizeof($_FILES['files']['tmp_name']); $i++ ){
-						if( is_uploaded_file($_FILES['files']['tmp_name'][$i]) ){
-							$filenewname = uploadImageBanner($_FILES["files"]["tmp_name"][$i]);
-							insertDB("images",array("productId" => $lastId,"imageurl" => $filenewname));
-						}
+			if ( isset($_FILES['files'])) {
+				for( $i = 0; $i < sizeof($_FILES['files']['tmp_name']); $i++ ){
+					if( is_uploaded_file($_FILES['files']['tmp_name'][$i]) ){
+						$filenewname = uploadImageBannerown($_FILES["files"]["tmp_name"][$i]);
+						insertDB("images",array("productId" => $lastId,"imageurl" => $filenewname));
 					}
 				}
-				if($_POST["adType"] == 1){
-					if($_POST["adType"] == 1){
-					$normalAds = $normalAds - 1;
-					$data = array(
-						"normalAd" => "{$normalAds}",
-					);
-					updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
-				}else if($_POST["adType"] == 2){
-					$specialAds = $specialAds - 1;
-					$data = array(
-						"specialAd" => "{$specialAds}",
-					);
-					updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
-				}
-				header("LOCATION: index.php?v=Home");
+			}	
+			header("LOCATION: index.php?v=Home");
 		}else{
 			?>
 			<script>
@@ -66,21 +47,13 @@
 			<?php
 			header("LOCATION: index.php?v=AddAd");
 		}	
-	 }else{ ?>
-			<script>
-				alert("You don't have enough ads points to add ");
-			</script>
-			<?php
-			header("LOCATION: index.php?v=AddAd");
-	
-	    }
+	 
 	}
   }
  }
-}
+
 ?>
-			
-			
+	
 		<div class="row"> 
 		<div class="col-md-11 mx-auto">
 		<div class="guest-form-action">
@@ -99,7 +72,7 @@
 								$checked =  "";
 								for( $i = 0; $i < sizeof($categories); $i++ ){
 									$title = direction($categories[$i]["enTitle"],$categories[$i]["arTitle"]);
-									$checked = ($i == 0) ? "checked" : "";
+									$checked = ($i == $product[0]["categoryId"]) ? "checked" : "";
 									echo "<div class='radio-btn'>
 										<input type='radio' id='a{$categories[$i]["id"]}' name='categoryId' value='{$categories[$i]["id"]}' {$checked} />
 										<label for='a{$categories[$i]["id"]}'>{$title}</label>
@@ -136,8 +109,9 @@
 								echo "<optgroup label='{$governateTitle}'>";
 								if( $areas = selectDB("areas","`status` = '0' AND `governateId` = '{$governates[$i]["id"]}' ORDER BY `{$directionOfArea}` ASC") ){
 									for( $j = 0; $j < sizeof($areas); $j++ ){
+										$selected = ($j == $product[0]["areaId"]) ? "selected" : "";
 										$title = direction($areas[$j]["enTitle"],$areas[$j]["arTitle"]);
-										echo "<option value='{$areas[$j]["id"]}'>{$title}</option>";
+										echo "<option value='{$areas[$j]["id"]}' {$selected}>{$title}</option>";
 									}
 								}
 							}
@@ -154,8 +128,9 @@
 						<?php
 						if( $propertyType = selectDB("propertyType","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 							for( $i = 0; $i < sizeof($propertyType); $i++ ){
+								$selected = ($i == $product[0]["propertyType"]) ? "selected" : "";
 								$title = direction($propertyType[$i]["enTitle"],$propertyType[$i]["arTitle"]);
-								echo "<option value='{$propertyType[$i]["id"]}'>{$title}</option>";
+								echo "<option value='{$propertyType[$i]["id"]}' {$selected}>{$title}</option>";
 							}
 						}
 						?>
@@ -164,22 +139,17 @@
 
 			      <!-- Price input -->
 			      <div class="form-outline mb-4">
-			        <input type="number"  class="form-control" name="adPrice" placeholder="<?php echo Trans('app','Price'); ?>" required />
+			        <input type="number"  class="form-control" name="adPrice" placeholder="<?php echo Trans('app','Price'); ?>" value="<?php echo $product[0]["price"]; ?>" required />
 			      </div>
 			
-				  <!-- Phone input -->
-			      <div class="form-outline mb-4">
-			        <input type="text"  class="form-control" name="adPhone" placeholder="<?php echo Trans('app','Phone Number'); ?>" />
-			      </div>
-
 				  <!-- Title input -->
 			      <div class="form-outline mb-4">
-			        <input type="text"  class="form-control" name="adTitle" placeholder="<?php echo Trans('app','Title'); ?>"  required/>
+			        <input type="text"  class="form-control" name="adTitle" placeholder="<?php echo Trans('app','Title'); ?>" value="<?php echo $product[0]["enTitle"]; ?>"  required/>
 			      </div>
 			     
 				  <!-- Description input --> 
 			      <div class="form-outline mb-3">
-			         <textarea class="form-control" style="min-height:100px;"  rows="9" name="adDescription" placeholder="<?php echo Trans('app','Description'); ?>" required></textarea>
+			         <textarea class="form-control" style="min-height:100px;"  rows="9" name="adDescription" placeholder="<?php echo Trans('app','Description'); ?>" required><?php echo $product[0]["enDetails"]; ?></textarea>
 			      </div>
 			      
 			      <!-- Description input -->

@@ -156,10 +156,10 @@
 									$feature = "";
 								}?>
 								<?php
-						  //echo '<li><a id="'.$products[$i]["id"].'" class="edit" href="javascript:void(0)"><i class="zmdi zmdi-edit"></i></a></li>';
-						  //echo '<li><a href="'.$link.'"><i class="'.$icon.'"></i></a></li>';
-						  //echo "<li><a href='?v={$_GET["v"]}&forceDelete={$products[$i]["id"]}'><i class='fa fa-times'></i></a></li>";
-						?>
+									//echo '<li><a id="'.$products[$i]["id"].'" class="edit" href="javascript:void(0)"><i class="zmdi zmdi-edit"></i></a></li>';
+									//echo '<li><a href="'.$link.'"><i class="'.$icon.'"></i></a></li>';
+									//echo "<li><a href='?v={$_GET["v"]}&forceDelete={$products[$i]["id"]}'><i class='fa fa-times'></i></a></li>";
+								?>
 								<div class="my-ad-list-item my-2">  
 								<div class="row g-1"> 
 									<div class="col-md-8 my-ad-list-item-side1">  
@@ -174,8 +174,16 @@
 										<div class="viewers"><i class="bi bi-eye"></i>54</div>
 										<div class="status"><span class="published ad-status-type"><i class="bi bi-check"></i></span></div>
 										<div class="actions">
-											<a href="#!" class="update"><i class="bi bi-pencil-square"></i></a>
-											<a href="#!" class="delete"><i class="bi bi-trash3"></i></a>
+										<a href="#" 
+											class="update" 
+											onclick="return confirmUpdate('?v=<?php echo $_GET['v']; ?>&id=<?php echo $products[$i]['id']; ?>');">
+											<i class="bi bi-pencil-square"></i>
+											</a>
+											<a href="#" 
+												class="delete" 
+												onclick="return confirmDelete('?v=<?php echo $_GET['v']; ?>&forceDelete=<?php echo $products[$i]['id']; ?>');">
+												<i class="bi bi-trash3"></i>
+											</a>
 										</div> 
 									</div>
 								</div>
@@ -267,3 +275,18 @@
 				</div>
 				
 			</div>
+
+			<script>
+				function confirmDelete(url) {
+					if (confirm('Are you sure you want to delete this item?')) {
+						window.location.href = url;
+					}
+					return false; // Prevent the default link behavior
+				}
+				function confirmUpdate(url) {
+					if (confirm('Are you sure you want to update this item?')) {
+						window.location.href = url;
+					}
+					return false; // Prevent the default link behavior
+				}
+			</script>
