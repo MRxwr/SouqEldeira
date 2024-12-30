@@ -3,6 +3,7 @@
 	echo "<script>window.location.href = '/index.php?v=Login';</script>";
  } else {
 	$product = selectDB("products","`id` = '{$_GET["id"]}'");
+	$product_id = $product[0]["id"];
 	$normalAds = 0;
 	$specialAds = 0;
 	if($user[0]["id"] >0){
@@ -171,7 +172,7 @@
 			      	 <label class="mb-3"><?php echo Trans('app','Images'); ?></label>
 			      	 <div class="add-ad-images" for="fileInput" id="fileInputLabel">
 					   <?php
-								if( $images = selectDB("images","`productId` = '".$_GET['id']."'") ){
+								if( $images = selectDB("images","`productId` = '".$product_id."'") ){
 									for( $z = 0; $z < sizeof($images); $z++ ){
 										if( $z == 0 ){
 											$active = "active";
