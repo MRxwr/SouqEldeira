@@ -179,7 +179,7 @@
 									 		<img src="logos/<?php echo $image["imageurl"] ?>" class="d-block w-100 h-100" alt="...">
 									     </label>
 									<?php }
-									echo sizeof($images);
+									//echo sizeof($images);
 									for( $i = sizeof($images); $i < 4; $i++ ){
 										?>
 										<label for="file<?php echo $i+1; ?>InputFld" class="fileInput images" id="file<?php echo $i+1; ?>Input">+</label>
