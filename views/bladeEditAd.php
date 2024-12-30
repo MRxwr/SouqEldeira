@@ -173,18 +173,15 @@
 			      	 <div class="add-ad-images" for="fileInput" id="fileInputLabel">
 					   <?php
 								if( $images = selectDB("images","`productId` = '".$product_id."'") ){
-									for( $z = 0; $z < sizeof($images); $z++ ){
-										if( $z == 0 ){
-											$active = "active";
-										}else{
-											$active = "";
-										}
-										?>
-										<label for="file<?php echo $z+1; ?>InputFld" class="fileInput images" id="file<?php echo $z+1; ?>Input">
-											<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" alt="...">
-									    </label>
-										<?php
-									}
+									var_dump($images);
+									// for( $z = 0; $z < sizeof($images); $z++ ){
+										
+									// 	?>
+									// 	<label for="file<?php echo $z+1; ?>InputFld" class="fileInput images" id="file<?php echo $z+1; ?>Input">
+									// 		<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" alt="...">
+									//     </label>
+									// 	<?php
+									// }
 									for( $x = sizeof($images); $x < 5; $x++ ){ ?>
 										<label for="file<?php echo x; ?>InputFld" class="fileInput images" id="file<?php echo x; ?>Input">+</label>
 									<?php }
