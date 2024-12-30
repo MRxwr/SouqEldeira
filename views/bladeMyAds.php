@@ -184,11 +184,17 @@
 										<div class="data">
 											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
 											<h5><?php echo Trans('app','Mubarak Al-Kabeer'); ?> - <?php echo Trans('app','Al-funaitis'); ?></h5>
-											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 23/8/2023</h6>
+											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 
+											<?php
+											$adDate = new DateTime($ad['date']);
+											$now = new DateTime();
+											$diff = $now->diff($adDate);
+											$hours = $diff->h + ($diff->days * 24);
+									 		echo substr($ad['date'], 0, 10); ?></h6>
 										</div> 
 									</div>
 									<div class="col-md-4 my-ad-list-item-side2">    
-										<div class="viewers"><i class="bi bi-eye"></i>54</div>
+										<div class="viewers"><i class="bi bi-eye"></i><?php echo $ad['views']; ?></div>
 										<div class="status"><span class="published ad-status-type"><i class="bi bi-check"></i></span></div>
 										<div class="actions">
 										<a href="#" 
@@ -252,11 +258,18 @@
 										<div class="data">
 											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
 											<h5><?php echo Trans('app','Mubarak Al-Kabeer'); ?> - <?php echo Trans('app','Al-funaitis'); ?></h5>
-											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 23/8/2023</h6>
+											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 
+											<?php
+											$adDate = new DateTime($ad['date']);
+											$now = new DateTime();
+											$diff = $now->diff($adDate);
+											$hours = $diff->h + ($diff->days * 24);
+									 		echo substr($ad['date'], 0, 10); ?>
+											</h6>
 										</div> 
 									</div>
 									<div class="col-md-4 my-ad-list-item-side2">    
-										<div class="viewers"><i class="bi bi-eye"></i>54</div>
+										<div class="viewers"><i class="bi bi-eye"></i><?php echo $ad['views']; ?> </div>
 										<div class="actions"> 
 											<a href="#!" class="republish"><i class="bi bi-arrow-repeat"></i> <?php echo Trans('app','Republish'); ?></a>
 										</div> 
@@ -265,9 +278,6 @@
 							</div> 
 
 							<?php } ?>
-							
-							
-							
 						</div> 
 						
 						<div class="d-block text-center text-xl-end mt-3"> 
