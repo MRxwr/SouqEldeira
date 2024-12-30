@@ -292,7 +292,10 @@
 									$feature = "card-feature";
 								}else{
 									$feature = "";
-								}?>
+								}
+								$area = selectDB("areas","`id` = '".$ad['areaId']."'")[0];
+								$gov = selectDB("governates","`id` = '".$area['governateId']."'")[0];
+								?>
 								<div class="my-ad-list-item my-2"> 
 								<div class="row g-1"> 
 									<div class="col-md-8 my-ad-list-item-side1">  
@@ -314,7 +317,7 @@
 								       <?php } ?> 
 										<div class="data">
 											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
-											<h5><?php echo Trans('app','Mubarak Al-Kabeer'); ?> - <?php echo Trans('app','Al-funaitis'); ?></h5>
+											<h5><?php echo direction($gov['enTitle'],$gov['arTitle']); ?> - <?php echo direction($area['enTitle'],$area['arTitle']); ?></h5>
 											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 
 											<?php
 											$adDate = new DateTime($ad['date']);
