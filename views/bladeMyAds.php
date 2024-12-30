@@ -176,12 +176,12 @@
 										<div class="actions">
 										<a href="#" 
 											class="update" 
-											onclick="return confirmUpdate('?v=EditAd&id=<?php echo $products[$i]['id']; ?>');">
+											onclick="return confirmUpdate('?v=EditAd&id=<?php echo $ad['id']; ?>');">
 											<i class="bi bi-pencil-square"></i>
 											</a>
 											<a href="#" 
 												class="delete" 
-												onclick="return confirmDelete('?v=<?php echo $_GET['v']; ?>&forceDelete=<?php echo $products[$i]['id']; ?>');">
+												onclick="return confirmDelete('?v=<?php echo $_GET['v']; ?>&forceDelete=<?php echo $ad['id']; ?>');">
 												<i class="bi bi-trash3"></i>
 											</a>
 										</div> 
