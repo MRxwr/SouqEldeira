@@ -10,7 +10,7 @@
 	$normalAds = $user[0]["normalAd"];
 	$specialAds = $user[0]["specialAd"];
 	$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
-	$package = selectDB("packages"," `id` = '{$order[0]["packageId"]}' `status` = '0' AND `hidden` = '1' AND `id` = ?","");
+	$package = selectDB("packages"," `id` = '{$order[0]["packageId"]}' AND `status` = '0' AND `hidden` = '1' AND `id` = ?","");
 	var_dump($package);
 	if( isset($_GET["republish"]) && !empty($_GET["republish"]) ){
 		$product = selectDB("products","`id` = '{$_GET["republish"]}'")[0];
