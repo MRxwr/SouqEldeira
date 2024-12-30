@@ -1,6 +1,7 @@
 <?php if(!$_SESSION['valid']){
 	echo "<script>window.location.href = '/index.php?v=Login';</script>";
  } else {
+
 	$settings = selectDB("settings","`id` = '1'");
 	$myExpiredAds=getMyAds($user[0]["id"], 'expired');
 	$myActiveAds=getMyAds($user[0]["id"], 'active');
@@ -8,8 +9,10 @@
 	$specialAds = 0;
 	$normalAds = $user[0]["normalAd"];
 	$specialAds = $user[0]["specialAd"];
-
+	$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
+	$package = selectDBNew("packages",[$order[0]["packageId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","");
 	if( isset($_GET["republish"]) && !empty($_GET["republish"]) ){
+		if( ($product["adType"] == 1 && $user[0]["normalAd"] > 1 ) || ($product["adType"] == 2 && $user[0]["specialAd"] > 0 )){	
 			$product = selectDB("products","`id` = '{$_GET["republish"]}'")[0];
 				$expiryDays =  $package[0]["expirey"]; // Ensure it's an integer
 				$expiryDate = date("Y-m-d H:i:s", strtotime("+{$expiryDays} days"));
@@ -51,6 +54,9 @@
 					}
 				}
 			header("LOCATION: index.php?v=MyAds&success=republish");die();	
+		}
+		}else{
+			header("LOCATION: index.php?v=MyAds&error=republish");die();
 		}
 
 	 }
@@ -126,25 +132,28 @@
 								</div>
 								
 							</div>
-							
-							<div class="col-md-4"> 
-								<div class="package-data">
-									<div class="img">
-										<img src="assets/img/packages/package-1.png" class="img-fluid" alt="..."> 
+							<?php if( $packages = selectDB("packages","`status` = '0' ORDER BY `rank` ASC") ){ 
+								foreach( $packages as $package ){ ?>
+									<div class="col-md-4"> 
+										<div class="package-data">
+											<div class="img">
+												<img src="assets/img/packages/package-1.png" class="img-fluid" alt="..."> 
+											</div>
+											<div class="data">
+												<span class="title"><?php echo $package['title']; ?> - 1</span>  
+												<span class="content"><?php echo Trans('app','Price'); ?> : <?php echo $package['price']; ?> <?php echo Trans('app','Dinar'); ?></span>
+												<span class="content"><?php echo Trans('app','Regular Ad'); ?> : <?php echo $package['quantity']; ?> </span>
+												<span class="content"><?php echo Trans('app','Special Ad'); ?> : <?php echo $package['quantitySP']; ?> </span> 
+												<span class="content"><?php echo Trans('app','Expire Data'); ?> : <?php echo $package['expirey']; ?> <?php echo Trans('app','Days'); ?></span>
+											</div>
+											<div class="buy">
+												<a href="#!" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Pay'); ?></a>  
+											</div>
+										</div>
 									</div>
-									<div class="data">
-										<span class="title"><?php echo Trans('app','Golden Package'); ?> - 1</span>  
-										<span class="content"><?php echo Trans('app','Price'); ?> : 1000 <?php echo Trans('app','Dinar'); ?></span>
-										<span class="content"><?php echo Trans('app','Regular Ad'); ?> : 300 </span>
-										<span class="content"><?php echo Trans('app','Special Ad'); ?> : 200 </span> 
-										<span class="content"><?php echo Trans('app','Expire Data'); ?> : 60 <?php echo Trans('app','Day'); ?></span>
-									</div>
-									<div class="buy">
-										<a href="#!" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Pay'); ?></a>  
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4"> 
+							<?php }
+							} ?>
+							<!-- <div class="col-md-4"> 
 								<div class="package-data">
 									<div class="img">
 										<img src="assets/img/packages/package-2.png" class="img-fluid" alt="...">
@@ -160,7 +169,7 @@
 										<a href="#!" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Pay'); ?></a> 
 									</div>
 								</div>
-							</div> 
+							</div>  -->
 						</div>
 						</div>
 						
@@ -169,8 +178,6 @@
 				</div>
 			
 			</div>
-			
-			
 			<div class="row"> 
 				
 				<div class="col-md-12 col-lg-6 col-xl-6">  
