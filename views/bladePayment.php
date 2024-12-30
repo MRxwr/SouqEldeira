@@ -11,21 +11,22 @@
 		$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
 		if(isset($_POST["process"]) && $_POST["process"] == "1"){
 		   $packageId = $_POST["packageId"];
-			if($package = selectDB("packages","`id` = '{$packageId}' ORDER BY `id` DESC LIMIT 1","")){
-				$orderData = array(
-					"userId" => $user[0]["id"],
-					"packageId" => $packageId,
-					"amount" => $package[0]["amount"],
-					"status" => "0",
-					"date" => date("Y-m-d H:i:s")
-				);
-				if(insertDB("orders2", $orderData)){
-					header("LOCATION: index.php?v=Payment&success=1");die();
-				}else{
-					header("LOCATION: index.php?v=Payment&error=1");die();
-				}
+		   var_dump($packageId);
+			// if($package = selectDB("packages","`id` = '{$packageId}' ORDER BY `id` DESC LIMIT 1","")){
+			// 	$orderData = array(
+			// 		"userId" => $user[0]["id"],
+			// 		"packageId" => $packageId,
+			// 		"amount" => $package[0]["amount"],
+			// 		"status" => "0",
+			// 		"date" => date("Y-m-d H:i:s")
+			// 	);
+			// 	if(insertDB("orders2", $orderData)){
+			// 		header("LOCATION: index.php?v=Payment&success=1");die();
+			// 	}else{
+			// 		header("LOCATION: index.php?v=Payment&error=1");die();
+			// 	}
 
-			}
+			// }
 		}
  	}
 }
