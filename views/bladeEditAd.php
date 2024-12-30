@@ -179,6 +179,7 @@
 									 		<img src="logos/<?php echo $image["imageurl"] ?>" class="d-block w-100 h-100" alt="...">
 									     </label>
 									<?php }
+									echo sizeof($images);
 									
 									
 								}else{
