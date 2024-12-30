@@ -38,7 +38,7 @@
 					}
 				}
 			}	
-			header("LOCATION: index.php?v=Home");
+			header("LOCATION: index.php?v=MyAds");
 		}else{
 			?>
 			<script>

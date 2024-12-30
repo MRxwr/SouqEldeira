@@ -160,10 +160,27 @@
 									//echo '<li><a href="'.$link.'"><i class="'.$icon.'"></i></a></li>';
 									//echo "<li><a href='?v={$_GET["v"]}&forceDelete={$products[$i]["id"]}'><i class='fa fa-times'></i></a></li>";
 								?>
+								
 								<div class="my-ad-list-item my-2">  
 								<div class="row g-1"> 
-									<div class="col-md-8 my-ad-list-item-side1">  
-										<img src="assets/img/items/item-2.png" class="img-fluid" alt="...">
+									<div class="col-md-8 my-ad-list-item-side1"> 
+									<?php
+										if( $images = selectDB("images","`productId` = '".$ad['id']."'") ){
+											for( $z = 0; $z < 1; $z++ ){
+												if( $z == 0 ){
+													$active = "active";
+												}else{
+													$active = "";
+												}
+												?>
+												
+												<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+												<?php
+											}
+										}else{ ?>
+									      <img src="assets/img/items/item-2.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+								       <?php } ?> 
+										
 										<div class="data">
 											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
 											<h5><?php echo substr(direction($ad['enDetails'],$ad['arDetails']),0,100) ?></h5>
@@ -190,10 +207,6 @@
 							</div> 
 
 							<?php } ?>
-							
-							
-							
-							
 						</div> 
 						
 						<div class="d-block text-center text-xl-end mt-3"> 
@@ -220,7 +233,22 @@
 								<div class="my-ad-list-item my-2"> 
 								<div class="row g-1"> 
 									<div class="col-md-8 my-ad-list-item-side1">  
-										<img src="assets/img/items/item-2.png" class="img-fluid" alt="...">
+									<?php
+										if( $images = selectDB("images","`productId` = '".$ad['id']."'") ){
+											for( $z = 0; $z < 1; $z++ ){
+												if( $z == 0 ){
+													$active = "active";
+												}else{
+													$active = "";
+												}
+												?>
+												
+												<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+												<?php
+											}
+										}else{ ?>
+									      <img src="assets/img/items/item-2.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+								       <?php } ?> 
 										<div class="data">
 											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
 											<h5><?php echo Trans('app','Mubarak Al-Kabeer'); ?> - <?php echo Trans('app','Al-funaitis'); ?></h5>
