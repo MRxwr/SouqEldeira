@@ -11,12 +11,11 @@
 	$specialAds = $user[0]["specialAd"];
 	$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
 	$package = selectDBNew("packages",[$order[0]["packageId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","");
+	var_dump($package);
 	if( isset($_GET["republish"]) && !empty($_GET["republish"]) ){
 		$product = selectDB("products","`id` = '{$_GET["republish"]}'")[0];
 		if( ($product["adType"] == 1 && $user[0]["normalAd"] > 1 ) || ($product["adType"] == 2 && $user[0]["specialAd"] > 0 )){	
-			$days = isset($package[0]["expirey"]) && is_numeric($package[0]["expirey"]) 
-			? intval($package[0]["expirey"]) 
-			: 7; // Default to 0 if invalid
+			$days = $days = intval($package[0]["expirey"]); // Default to 0 if invalid
 		
 			if ($days > 0) {
 				$expiryDate = date("Y-m-d H:i:s", strtotime("+$days days"));

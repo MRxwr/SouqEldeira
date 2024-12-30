@@ -14,9 +14,7 @@
 	if(isset($_POST["addAds"])){
 		//var_dump($user);
 		if( ($_POST["adType"] == 1 && $user[0]["normalAd"] > 1 ) || ($_POST["adType"] == 2 && $user[0]["specialAd"] > 0 )){
-		    $days = isset($package[0]["expirey"]) && is_numeric($package[0]["expirey"]) 
-			? intval($package[0]["expirey"]) 
-			: 7; // Default to 0 if invalid
+		    $days = intval($package[0]["expirey"]); // Default to 0 if invalid
 		
 			if ($days > 0) {
 				$expiryDate = date("Y-m-d H:i:s", strtotime("+$days days"));
