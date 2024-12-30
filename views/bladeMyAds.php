@@ -9,6 +9,55 @@
 	$normalAds = $user[0]["normalAd"];
 	$specialAds = $user[0]["specialAd"];
 
+	if( isset($_GET["republish"]) && !empty($_GET["republish"]) ){
+			$product = selectDB("products","`id` = '{$_GET["republish"]}'")[0];
+				$expiryDays =  $package[0]["expirey"]; // Ensure it's an integer
+				$expiryDate = date("Y-m-d H:i:s", strtotime("+{$expiryDays} days"));
+			$data = array(
+				"userId" => "{$user[0]["id"]}",
+				"categoryId"	=>	$product["categoryId"],
+				"packageId" => "{$product["packageId"]}",
+				"propertyType"	=>$product["propertyType"],
+				"areaId"	=>	$product["areaId"],
+				"adType"	=>	$product["adType"],
+				"enTitle"		=>$product["enTitle"],
+				"arTitle"		=>$product["arTitle"],
+				"price"		=>	$product["price"],
+				"enDetails"	=>	$product["enDetails"],
+				"arDetails"	=>	$product["arDetails"],
+				"expiryDate" =>	$expiryDate
+			);
+		
+		if( insertDB("products", $data) ){
+			// Get last inserted id
+			   $lastId = selectDB("products","`id` != '0' ORDER BY `id` DESC LIMIT 1")[0]["id"];
+
+				if($product["adType"] == 1){
+					$normalAds = $normalAds - 1;
+					$data = array(
+						"normalAd" => "{$normalAds}",
+					);
+					updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
+				}else if($product["adType"] == 2){
+					$specialAds = $specialAds - 1;
+					$data = array(
+						"specialAd" => "{$specialAds}",
+					);
+					updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
+				}
+				// Upload images
+				if( $images = selectDB("images","`productId` = '".$product['id']."'") ){
+					foreach( $images as $k=>$image ){
+						insertDB("images",array("productId" => $lastId,"imageurl" => $image["imageurl"]));
+					}
+				}
+				
+			header("LOCATION: index.php?v=MyAds");die();	
+		}
+
+	 }
+	
+
 	if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
 		updateDB("products",array("hidden" => 2),"`id` = '{$_GET["hide"]}'");
 		header("LOCATION: index.php?v=MyAds");die();
@@ -271,7 +320,11 @@
 									<div class="col-md-4 my-ad-list-item-side2">    
 										<div class="viewers"><i class="bi bi-eye"></i><?php echo $ad['views']; ?> </div>
 										<div class="actions"> 
-											<a href="#!" class="republish"><i class="bi bi-arrow-repeat"></i> <?php echo Trans('app','Republish'); ?></a>
+										<a href="#" 
+											class="republish" 
+											onclick="return confirmRepublish('?v=<?php echo $_GET['v']; ?>&republish=<?php echo $ad['id']; ?>');">
+											<i class="bi bi-arrow-repeat"></i> <?php //echo Trans('app', 'Republish'); ?>
+										</a>
 										</div> 
 									</div>
 								   </div>
@@ -322,6 +375,12 @@
 				}
 				function confirmUpdate(url) {
 					if (confirm('Are you sure you want to update this item?')) {
+						window.location.href = url;
+					}
+					return false; // Prevent the default link behavior
+				}
+				function confirmRepublish(url) {
+					if (confirm('Are you sure you want to republish this ad?')) {
 						window.location.href = url;
 					}
 					return false; // Prevent the default link behavior
