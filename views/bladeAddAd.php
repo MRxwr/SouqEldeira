@@ -33,7 +33,7 @@
 		
 		if( insertDB("products", $data) ){
 			// Get last inserted id
-			$lastId = $conn->insert_id;
+			$lastId = selectDB("products","`id` != '0' ORDER BY `id` DESC LIMIT 1")[0]["id"];
 
 			if($_POST["adType"] == 1){
 				if($_POST["adType"] == 1){
