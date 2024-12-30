@@ -6,7 +6,7 @@
 	$normalAds = 0;
 	$specialAds = 0;
 	if($user[0]["id"] >0){
-		$lastId = $_POST["id"];
+		
 		$normalAds = $user[0]["normalAd"];
 		$specialAds = $user[0]["specialAd"];
 		$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
@@ -34,7 +34,7 @@
 				for( $i = 0; $i < sizeof($_FILES['files']['tmp_name']); $i++ ){
 					if( is_uploaded_file($_FILES['files']['tmp_name'][$i]) ){
 						$filenewname = uploadImageBannerown($_FILES["files"]["tmp_name"][$i]);
-						insertDB("images",array("productId" => $lastId,"imageurl" => $filenewname));
+						insertDB("images",array("productId" => $_POST["id"],"imageurl" => $filenewname));
 					}
 				}
 			}	
@@ -110,7 +110,7 @@
 								echo "<optgroup label='{$governateTitle}'>";
 								if( $areas = selectDB("areas","`status` = '0' AND `governateId` = '{$governates[$i]["id"]}' ORDER BY `{$directionOfArea}` ASC") ){
 									for( $j = 0; $j < sizeof($areas); $j++ ){
-										$selected = ($j == $product[0]["areaId"]) ? "selected" : "";
+										$selected = ($areas[$j]["id"] == $product[0]["areaId"]) ? "selected" : "";
 										$title = direction($areas[$j]["enTitle"],$areas[$j]["arTitle"]);
 										echo "<option value='{$areas[$j]["id"]}' {$selected}>{$title}</option>";
 									}
