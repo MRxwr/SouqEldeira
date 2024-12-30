@@ -208,7 +208,7 @@
 									$feature = "";
 								}
 								$area = selectDB("areas","`id` = '".$ad['areaId']."'")[0];
-								$gov = selectDB("governorates","`id` = '".$area['governateId']."'")[0];
+								//$gov = selectDB("governorates","`id` = '".$area['governateId']."'")[0];
 								?>
 								
 								<?php
@@ -239,7 +239,7 @@
 										
 										<div class="data">
 											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
-											<h5><?php echo direction($gov['enTitle'],$gov['arTitle']); ?> - <?php echo direction($area['enTitle'],$area['arTitle']); ?></h5>
+											<h5><?php// echo direction($gov['enTitle'],$gov['arTitle']); ?> - <?php echo direction($area['enTitle'],$area['arTitle']); ?></h5>
 											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 
 											<?php
 											$adDate = new DateTime($ad['date']);
