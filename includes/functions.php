@@ -148,6 +148,7 @@ function doPaymant($data){
         //    'cancelUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId='.$orderId,
         //    'notificationUrl' => 'https://souqeldeira.createkwservers.com/index.php',
         //    );
+        $CustomerMobile = preg_replace('/\D/', '', $data["phone"]); 
            $postBody  = [
             'language' => 'en',
             'order' => [
@@ -159,17 +160,14 @@ function doPaymant($data){
                 'id' => $orderId
             ],
             'customer'=> [
-                'uniqueId'=> $data["phone"],
+                'uniqueId'=> $CustomerMobile,
                 'name'=>  $data["name"],
                 'email'=> $data["email"],
-                'mobile'=> $data["phone"]
+                'mobile'=> $CustomerMobile
             ],
             'returnUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&success=1&orderId='.$orderId,
             'cancelUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId='.$orderId,
-            'notificationUrl' =>  'https://souqeldeira.createkwservers.com/index.php',
-            'paymentGateway' => [
-                'src' => $paymentGateway
-            ],
+            'notificationUrl' =>  'https://souqeldeira.createkwservers.com/index.php' 
         ];
        var_dump($postBody);  
        $curl = curl_init();
