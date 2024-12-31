@@ -128,8 +128,8 @@
 					$arrayIcons = ["facebook","instagram","twitter","envelope","telephone"];
 					$arrayLinks = ["https://www.facebook.com/","https://www.instagram.com/","https://www.twitter.com/","mailto:","tel:"];
 					for( $x = 0; $x < sizeof($socials); $x++ ){
-						if( !empty($socials[$x][$arraySmedia[$x]]) ){
-							echo '<li><a href="' . $arrayLinks[$x] . $socials[$x][$arraySmedia[$x]] . '"><i class="bi bi-' . $arrayIcons[$x] . '"></i></a></li>';
+						if( !empty($socials[0][$arraySmedia[$x]]) ){
+							echo '<li><a href="' . $arrayLinks[$x] . $socials[0][$arraySmedia[$x]] . '"><i class="bi bi-' . $arrayIcons[$x] . '"></i></a></li>';
 						}
 					}
 				}
