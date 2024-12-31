@@ -18,12 +18,12 @@
 					"userId" => $user[0]["id"],
 					"orderId" => $orderId,
 					"packageId" => $packageId,
-					"price" => $package[0]["amount"],
+					"price" => $package[0]["price"],
 					"date" => date("Y-m-d H:i:s"),
 					'info' => json_encode(array("name" => $user[0]["name"], "email" => $user[0]["email"], "phone" => $user[0]["phone"])),
 					"status" => "0",
 				);
-				var_dump($package);
+				 var_dump($orderData);
 				if(insertDB("orders2", $orderData)){
 					$data=array(
 						"userId" => $user[0]["id"],
