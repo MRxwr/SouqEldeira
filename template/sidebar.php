@@ -1,3 +1,8 @@
+<?php
+if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` NOT LIKE '%{$userDetails['id']}%") ){
+	$totalNotSeen = sizeof($notifications);
+}
+?>
 <!-- Sidebar  -->
 <nav id="sidebar">
 	<div class="main-sidebar-container">
@@ -32,7 +37,7 @@
 		    	<div class="">
 		    		<a href="?v=Notifications" class="notifications">
 		    		 <i class="bi bi-bell"></i> 
-					 <span class="badge badge-light">9</span>				  
+					 <span class="badge badge-light"><?php echo $totalNotSeen; ?></span>				  
 					</a> 
 		    	</div>
 		    </div>
