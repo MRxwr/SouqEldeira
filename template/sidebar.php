@@ -74,10 +74,14 @@
             		<a class="have-sub-menu" data-bs-toggle="collapse" data-bs-target="#realState-collapse"aria-expanded="false"><i class="bi bi-houses"></i><?php echo Trans('app','Real Estate'); ?></a>
 		            <div class="collapse" id="realState-collapse">
 		              <ul class="sub-menu-ul">
-		                <li><a href="?v=AdsList" class="rounded"><?php echo Trans('app','Sale'); ?></a></li>
-		                <li><a href="?v=AdsList" class="rounded"><?php echo Trans('app','Allowance'); ?></a></li>
-		                <li><a href="?v=AdsList" class="rounded"><?php echo Trans('app','Rent'); ?></a></li>
-		                <li><a href="?v=AdsList" class="rounded"><?php echo Trans('app','Request'); ?></a></li>
+						<?php
+						if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
+							for( $x = 0; $x < sizeof($categories); $x++ ){
+								$title = direction($categories[$x]['enTitle'],$categories[$x]['arTitle']);
+								echo "<li><a class='rounded' href='?v=Search&type={$categories[$x]['id']}'>{$title}</a></li>";
+							}
+						}
+						?>
 		              </ul>
 		            </div>
           		</li>
