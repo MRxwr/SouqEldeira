@@ -128,9 +128,9 @@
 							$sMediaLinks = ["https://www.facebook.com/","https://www.twitter.com/","https://www.instagram.com/","mailto:", "tel:"];
 							for ($i = 0; $i < count($sMediaArray); $i++) {
 								echo $sMedia[$i]["$sMediaArray[$i]"];
-								if( !empty($sMedia[$i]["$sMediaArray[$i]"]) ){
+								/*if( !empty($sMedia[$i]["$sMediaArray[$i]"]) ){
 								echo '<li><a href="' . $sMediaLinks[$i] . $sMedia[$i]["$sMediaArray[$i]"] . '"><i class="' . $sMediaIcons[$i] . '"></i></a></li>';
-								}
+								}*/
 							}
 						}
 						?>
