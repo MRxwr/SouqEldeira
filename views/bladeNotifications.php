@@ -1,8 +1,5 @@
 <?php
 if( $notifications = selectDB("notifications","`status` = '0' ORDER BY `id` DESC") ){
-	$totalSeen = sizeof($notifications);
-}else{
-	$totalSeen = 0;
 }
 ?>
 <div class="row">
@@ -57,8 +54,9 @@ if( $notifications = selectDB("notifications","`status` = '0' ORDER BY `id` DESC
 </div>
 
 <script>
+	// after page finish loading make .badge number equal to the number of unseen notifications
 	$(document).ready(function(){
-		var totalSeen = $("#NotSeen").html();
-		$(".badge").html(totalSeen);
-	})
+		var unseen = $('#NotSeen').text();
+		$('.badge').text(unseen);
+	});
 </script>
