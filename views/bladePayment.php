@@ -12,7 +12,7 @@
 		$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
 		if(isset($_POST["process"]) && $_POST["process"] == "1"){
 		   $packageId = $_POST["packageId"];
-		   var_dump($packageId);
+		   
 			if($package = selectDB("packages","`id` = '{$packageId}' ORDER BY `id` DESC LIMIT 1","")){
 				$orderData = array(
 					"userId" => $user[0]["id"],
@@ -23,6 +23,7 @@
 					'info' => json_encode(array("name" => $user[0]["name"], "email" => $user[0]["email"], "phone" => $user[0]["phone"])),
 					"status" => "0",
 				);
+				var_dump($package);
 				if(insertDB("orders2", $orderData)){
 					$data=array(
 						"userId" => $user[0]["id"],
