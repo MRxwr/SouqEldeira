@@ -122,21 +122,18 @@
 				</a>
 		    </div>
 			<ul class="socila-links list-unstyled mb-3">
-		        <li>
-		            <a href=""><i class="bi bi-envelope"></i></a>
-		        </li>
-		        <li>
-		            <a href=""><i class="bi bi-instagram"></i></a>
-		        </li>
-		        <li>
-		            <a href=""><i class="bi bi-twitter-x"></i></a>
-		        </li>
-		        <li>
-		            <a href=""><i class="bi bi-facebook"></i></a>
-		        </li>
-		        <li>
-		            <a href=""><i class="bi bi-telephone"></i></a>
-		        </li>
+				<?php
+				if( $socials = selectDB("s_media","`id` = '1'") ){
+					$arraySmedia = ["facebook","instagram","twitter","email","mobile"];
+					$arrayIcons = ["facebook","instagram","twitter","envelope","telephone"];
+					$arrayLinks = ["https://www.facebook.com/","https://www.instagram.com/","https://www.twitter.com/","mailto:","tel:"];
+					for( $x = 0; $x < sizeof($socials); $x++ ){
+						if( !empty($socials[$x][$arraySmedia[$x]]) ){
+							echo '<li><a href="' . $arrayLinks[$x] . $socials[$x][$arraySmedia[$x]] . '"><i class="bi bi-' . $arrayIcons[$x] . '"></i></a></li>';
+						}
+					}
+				}
+				?>
 		    </ul>
 		</div>
 	</div>
