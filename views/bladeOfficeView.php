@@ -69,7 +69,7 @@ if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'",
 				}
 				?>
 				<div class="d-block text-end mt-3">
-				<a href="?v=AdsList" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i></a>
+				<?php /* <a href="?v=AdsList" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i></a> */ ?>
 				</div>
 			</div>
 		</div> 
