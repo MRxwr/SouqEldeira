@@ -23,7 +23,7 @@
 					'info' => json_encode(array("name" => $user[0]["name"], "email" => $user[0]["email"], "phone" => $user[0]["phone"])),
 					"status" => "0",
 				);
-				 var_dump($orderData);
+				 
 				if(insertDB("orders2", $orderData)){
 					$data=array(
 						"userId" => $user[0]["id"],
