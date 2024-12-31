@@ -29,8 +29,8 @@ if( $notifications = selectDB("notifications","`status` = '0' ORDER BY `id` DESC
 							updateDB('notifications',array('listOfUsers'=> json_encode($listOfUsers)),"`id` = '{$notifications[$i]['id']}'");
 						}
 						?>
-						<div class="notification-list ">
-							<div class="notification-list_content <?php echo $seen; ?>">
+						<div class="notification-list <?php echo $seen; ?>">
+							<div class="notification-list_content">
 								<div class="notification-list_img">
 									<img src="logos/<?php echo $userDetails['logo']; ?>" class="img-fluid" alt="..." style="border-radius: 100%;height: 58px;width: 100%;">
 								</div>
