@@ -181,12 +181,9 @@ function doPaymant($data){
        $err = curl_error($curl);
        curl_close($curl);
        $response = json_decode($response,true);
+       var_dump($response);
        if ($err) {
-        $data['status']=200;
-        $data['type']='error';
-        $data['msg']='payment error !!'; 
-        $data['data'] =$err;
-        echo json_encode($data);
+        var_dump($err);
         exit();
         }
        //saving info and redirecting to payment pages
