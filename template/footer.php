@@ -121,28 +121,24 @@
 					<h3><?php echo Trans('app','Socila media platforms'); ?></h3>
 					
 					<ul class="socila-links list-unstyled my-4">
-				        <li>
-				            <a href=""><i class="bi bi-envelope"></i></a>
-				        </li>
-				        <li>
-				            <a href=""><i class="bi bi-instagram"></i></a>
-				        </li>
-				        <li>
-				            <a href=""><i class="bi bi-twitter-x"></i></a>
-				        </li>
-				        <li>
-				            <a href=""><i class="bi bi-facebook"></i></a>
-				        </li>
-				        <li>
-				            <a href=""><i class="bi bi-telephone-fill"></i></a>
-				        </li>
+						<?php
+						$sMedia = selectDB("s_media", "`id = '1'") ;
+						$sMediaArray = ["facebook", "twitter", "instagram", "email", "mobile"];
+						$sMediaIcons = ["bi bi-facebook","bi bi-twitter-x","bi bi-instagram","bi bi-envelope", "bi bi-telephone-fill"];
+						$sMediaLinks = ["https://www.facebook.com/","https://www.twitter.com/","https://www.instagram.com/","mailto:", "tel:"];
+						for ($i = 0; $i < count($sMediaArray); $i++) {
+							if( !empty($sMedia[$i]["{$sMediaArray[$i]}"]) ){
+							echo '<li><a href="' . $sMediaLinks[$i] . $sMedia[$i]["{$sMediaArray[$i]}"] . '"><i class="' . $sMediaIcons[$i] . '"></i></a></li>';
+							}
+						}
+						?>
 				    </ul>
 					
 					<div class="copyright-text">
                         <p>
                         	<a href="https://www.createkuwait.com" target="_blank" class="copyright-icon">©</a> 
                         	<?php echo Trans('app','All rights reserved to'); ?>
-                        	<a href="?v=Home" target="_blank"><?php echo Trans('app','Souq Al Deerah'); ?></a> 
+                        	<a href="?v=Home" target="_blank"><?php echo Trans('app','Souq Al Deirah'); ?></a> 
                         </p> 
                     </div>
 				</div>	
