@@ -1,5 +1,5 @@
 <?php
-if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` NOT LIKE '%{$userDetails['id']}%") ){
+if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` NOT LIKE '%{$userDetails['id']}%'") ){
 	$totalNotSeen = sizeof($notifications);
 }
 ?>
