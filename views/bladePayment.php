@@ -5,6 +5,7 @@
 	$normalAds = 0;
 	$specialAds = 0;
 	if($user[0]["id"] >0){
+		$orderId = date("Ymd").rand(0000,9999).time();
 		$normalAds = $user[0]["normalAd"];
 		$specialAds = $user[0]["specialAd"];
 		$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
@@ -15,14 +16,27 @@
 			if($package = selectDB("packages","`id` = '{$packageId}' ORDER BY `id` DESC LIMIT 1","")){
 				$orderData = array(
 					"userId" => $user[0]["id"],
-					"orderId" => generateOrderId(),
+					"orderId" => $orderId,
 					"packageId" => $packageId,
 					"price" => $package[0]["amount"],
-					"status" => "0",
 					"date" => date("Y-m-d H:i:s"),
-					"status" => $package[0]["expirey"]
+					'info' => json_encode(array("name" => $user[0]["name"], "email" => $user[0]["email"], "phone" => $user[0]["phone"])),
+					"status" => "0",
 				);
 				if(insertDB("orders2", $orderData)){
+					$data=array(
+						"userId" => $user[0]["id"],
+						"name" => $user[0]["name"],
+						"email" => $user[0]["email"],
+						"phone" => $user[0]["phone"],
+						'orderId' => $orderId,
+						"packageId" => $packageId,
+						"price" => $package[0]["price"],
+						"details" => $package[0]["details"],
+						"totalAmount" => $package[0]["price"],
+						"date" => date("Y-m-d H:i:s"),
+					);
+					doPaymant($data);
 					header("LOCATION: index.php?v=Payment&success=1");die();
 				}else{
 					header("LOCATION: index.php?v=Payment&error=1");die();
@@ -41,6 +55,14 @@
 						<h4><?php echo Trans('app','Payment'); ?></h4>
 					</div> 
 					<div class="form-outline mb-4">
+						<?php if(isset($_GET["success"]) && $_GET["success"] == "1"){
+							
+							
+						} ?>
+						<?php if(isset($_GET["error"]) && $_GET["error"] == "1"){
+							
+							
+						} ?>
 				
 					</div>
 				</div>

@@ -15,8 +15,8 @@ if(!empty($data) && is_array($data) && $data){
        'customer[name]' => "{$data["name"]}",
        'customer[email]' => "{$data["email"]}",
        'customer[mobile]' => "{$data["phone"]}",
-       'returnUrl' => 'https://souqeldeira.createkwservers.com/index.php',
-       'cancelUrl' => 'https://souqeldeira.createkwservers.com/index.php',
+       'returnUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&opt=success&orderId='.$orderId,
+       'cancelUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&opt=error&orderId='.$orderId,
        'notificationUrl' => 'https://souqeldeira.createkwservers.com/index.php',
        );
    $curl = curl_init();
