@@ -7,7 +7,7 @@ $sourceLang  = 'en';
 
 // Srart -> This data for change depended on project default language 
 
-$defaultLang = 'en';
+$defaultLang = 'ar';
 $defaultDir  = 'ltr';  
 
 // $defaultLang = 'ar';
