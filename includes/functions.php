@@ -178,10 +178,17 @@ function doPaymant($data){
           ),
         ));
        $response = curl_exec($curl);
-       var_dump($response);
+       $err = curl_error($curl);
        curl_close($curl);
        $response = json_decode($response,true);
-      
+       if ($err) {
+        $data['status']=200;
+        $data['type']='error';
+        $data['msg']='payment error !!'; 
+        $data['data'] =$err;
+        echo json_encode($data);
+        exit();
+        }
        //saving info and redirecting to payment pages
        if( isset($response["status"]) && $response["status"] == true && isset($response["data"]["link"]) && !empty($response["data"]["link"]) ){
            //$_SESSION["paymentLink"] = $response["data"]["link"];
