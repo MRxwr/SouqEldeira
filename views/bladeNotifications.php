@@ -16,6 +16,7 @@ if( $notifications = selectDB("notifications","`status` = '0' ORDER BY `id` DESC
 			<div class="containerX">
 				<div class="notification-ui_dd-content">
 					<?php
+					$counter = 0;
 					for( $i = 0; $i < sizeof($notifications); $i++ ){
 						if( !isset($notifications[$i]['listOfUsers']) || empty($notifications[$i]['listOfUsers']) ){
 							$notifications[$i]['listOfUsers'] = json_encode(array());
@@ -27,6 +28,7 @@ if( $notifications = selectDB("notifications","`status` = '0' ORDER BY `id` DESC
 							$seen = "notification-list--unread";
 							array_push($listOfUsers,$userDetails['id']);
 							updateDB('notifications',array('listOfUsers'=> json_encode($listOfUsers)),"`id` = '{$notifications[$i]['id']}'");
+							$counter++;
 						}
 						?>
 						<div class="notification-list <?php echo $seen; ?>">
@@ -47,24 +49,16 @@ if( $notifications = selectDB("notifications","`status` = '0' ORDER BY `id` DESC
 						<?php
 					}
 					?>
-					<div class="notification-list notification-list--unread">
-						<div class="notification-list_content">
-							<div class="notification-list_img">
-								<img src="assets/img/profile.png" class="img-fluid" alt="...">
-							</div>
-							<div class="notification-list_detail">
-								<p><b><?php echo Trans('app','Badr Mahmoud'); ?></b> <?php echo Trans('app','reacted to your ad'); ?></p>
-								<p class="text-muted"><?php echo Trans('app','The number of real estate ads offered for rent or for sale in Kuwait is 4883 new ads'); ?></p>
-								<p class="text-muted"><small><?php echo Trans('app','10 mins ago'); ?></small></p>
-							</div>
-						</div>
-						<div class="notification-list_feature-img">
-							<i class="bi bi-bell"></i> 
-						</div>
-					</div>
-
+					<span style="display: none;" id="NotSeen"><?php echo $counter; ?></span>
 				</div>
 			</div>
 		</section>
 	</div>
 </div>
+
+<script>
+	$(document).ready(function(){
+		var totalSeen = $("#NotSeen").html();
+		$(".badge").html(totalSeen);
+	})
+</script>
