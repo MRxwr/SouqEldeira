@@ -122,13 +122,14 @@
 					
 					<ul class="socila-links list-unstyled my-4">
 						<?php
-						$sMedia = selectDB("s_media", "`id = '1'") ;
-						$sMediaArray = ["facebook", "twitter", "instagram", "email", "mobile"];
-						$sMediaIcons = ["bi bi-facebook","bi bi-twitter-x","bi bi-instagram","bi bi-envelope", "bi bi-telephone-fill"];
-						$sMediaLinks = ["https://www.facebook.com/","https://www.twitter.com/","https://www.instagram.com/","mailto:", "tel:"];
-						for ($i = 0; $i < count($sMediaArray); $i++) {
-							if( !empty($sMedia[$i]["{$sMediaArray[$i]}"]) ){
-							echo '<li><a href="' . $sMediaLinks[$i] . $sMedia[$i]["{$sMediaArray[$i]}"] . '"><i class="' . $sMediaIcons[$i] . '"></i></a></li>';
+						if( $sMedia = selectDB("s_media", "`id = '1'") ){
+							$sMediaArray = ["facebook", "twitter", "instagram", "email", "mobile"];
+							$sMediaIcons = ["bi bi-facebook","bi bi-twitter-x","bi bi-instagram","bi bi-envelope", "bi bi-telephone-fill"];
+							$sMediaLinks = ["https://www.facebook.com/","https://www.twitter.com/","https://www.instagram.com/","mailto:", "tel:"];
+							for ($i = 0; $i < count($sMediaArray); $i++) {
+								if( !empty($sMedia[$i]["{$sMediaArray[$i]}"]) ){
+								echo '<li><a href="' . $sMediaLinks[$i] . $sMedia[$i]["$sMediaArray[$i]"] . '"><i class="' . $sMediaIcons[$i] . '"></i></a></li>';
+								}
 							}
 						}
 						?>
