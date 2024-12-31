@@ -108,7 +108,7 @@
 	if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 		for( $x = 0; $x < sizeof($categories); $x++ ){
 			$type = $categories[$x]["id"];
-			$title = direction("Latest ads for " . $categories[$x]["enTitle"]," أحدث الإعلانات ل" . $categories[$x]["arTitle"]);
+			$title = direction("Latest ads for " . $categories[$x]["enTitle"]," أحدث الإعلانات لل" . $categories[$x]["arTitle"]);
 			$type1 = ( !empty($type) ) ? " AND `categoryId` = '{$type}' " : "";
 			if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' {$type1} ORDER BY `packageId` DESC,`id` DESC LIMIT 3") ){
 				echo "<div class='ads-section'>";
