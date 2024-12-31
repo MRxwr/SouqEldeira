@@ -122,6 +122,7 @@
 					
 					<ul class="socila-links list-unstyled my-4">
 						<?php
+						var_dump($sMedia = selectDB("s_media", "`id = '1'"));
 						if( $sMedia = selectDB("s_media", "`id = '1'") ){
 							$sMediaArray = ["facebook", "twitter", "instagram", "email", "mobile"];
 							$sMediaIcons = ["bi bi-facebook","bi bi-twitter-x","bi bi-instagram","bi bi-envelope", "bi bi-telephone-fill"];
