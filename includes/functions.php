@@ -148,7 +148,7 @@ function doPaymant($data){
            'cancelUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId='.$orderId,
            'notificationUrl' => 'https://souqeldeira.createkwservers.com/index.php',
            );
-          
+       var_dump($response);  
        $curl = curl_init();
        curl_setopt_array($curl, array(
            CURLOPT_URL => '{$basURL}',
@@ -167,7 +167,7 @@ function doPaymant($data){
        $response = curl_exec($curl);
 
        var_dump($response);
-       
+
        curl_close($curl);
        $response = json_decode($response,true);
       
