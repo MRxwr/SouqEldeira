@@ -117,7 +117,7 @@
 
 		<div class="sidebar-element2">
 			<div class="sidebar-contact-whatsapp mb-3">
-				<a href="" class="btn btn-default btn-border-radius-1 w-100 py-2">
+				<a href="https://wa.me/96566004080" class="btn btn-default btn-border-radius-1 w-100 py-2">
 					<i class="bi bi-whatsapp"></i> <?php echo Trans('app','Contact us via WhatsApp'); ?>
 				</a>
 		    </div>
