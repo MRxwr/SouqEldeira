@@ -63,9 +63,13 @@ if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'",
 				<h4><?php echo Trans('app','Office Ads'); ?></h4> 
 			</div>
 			<div class="ads-section">
-				<?php include 'template/adsMainList.php'; ?>
+				<?php
+				if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' AND `shopId` = {$offices[0]["id"]} ORDER BY `packageId` DESC,`id` DESC") ){
+					include 'template/adsMainList.php';
+				}
+				?>
 				<div class="d-block text-end mt-3">
-				<a href="?v=AdsList" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i></a>
+				<?php /* <a href="?v=AdsList" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i></a> */ ?>
 				</div>
 			</div>
 		</div> 

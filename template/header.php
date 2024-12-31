@@ -1,4 +1,6 @@
-<?php include 'includes/checksouthead.php'; ?>
+<?php
+include 'includes/checksouthead.php';
+?>
 
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION['lang']; ?>" dir="<?php echo $_SESSION['dir']; ?>">

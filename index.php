@@ -1,5 +1,4 @@
 <?php 
-
 require_once 'template/header.php';
 
 // get viewed page from pages folder \\
