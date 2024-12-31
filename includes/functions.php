@@ -124,6 +124,11 @@ function uploadImageBannerown($imageLocation){
 }
 function doPaymant($data=array()){
     if(!empty($data) && is_array($data) && $data){
+        //$basURL = "https://uapi.upayments.com/api/v1/charge"; 
+	    //$token=$apidata['token'];
+
+        $basURL = "https://sandboxapi.upayments.com/api/v1/charge";
+        $token = "e66a94d579cf75fba327ff716ad68c53aae11528";
         $paymentGateway = "knet";
         $fullAmount = $data["totalAmount"];
         $orderId = date("Ymd").rand(0000,9999).time();
@@ -145,7 +150,7 @@ function doPaymant($data=array()){
            );
        $curl = curl_init();
        curl_setopt_array($curl, array(
-           CURLOPT_URL => 'https://uapi.upayments.com/api/v1/charge',
+           CURLOPT_URL => '{$basURL}',
            CURLOPT_RETURNTRANSFER => true,
            CURLOPT_ENCODING => '',
            CURLOPT_MAXREDIRS => 10,
@@ -155,7 +160,7 @@ function doPaymant($data=array()){
            CURLOPT_CUSTOMREQUEST => 'POST',
            CURLOPT_POSTFIELDS => $postBody,
            CURLOPT_HTTPHEADER => array(
-               'Authorization: Bearer afmceR6nHQaIehhpOel036LBhC8hihuB8iNh9ACF',
+               'Authorization: Bearer {$token}',
            ),
        ));
        $response = curl_exec($curl);
