@@ -5,13 +5,11 @@
  <footer class="mt-5x">
 	<div class="container container-projectX">
 		<div class="row">
-	 		
 		  <div class="col-md-12">
 		  	<div class="footer-sec1 text-center">
 				<a href="" class="logo"><img src="assets/img/logo-1.png"></a>
 			</div>
 		  </div>
-		  
 		  <div class="col-md-12 mt-4">
 		  	<div class="footer-sec2 text-start">
 				<?php
@@ -31,7 +29,6 @@
 				?>
 		  	</div>
 		  </div>
-		  
 		</div>	
 		
 		<div class="row mt-1">
@@ -66,13 +63,10 @@
 					</div>
 					<hr class="res"> 
 				</div>
-				
 				<div class="col-md-1"></div>
-				 
 				<div class="col-md-4 divSocial">
 					<hr class="res"> 
 					<h3><?php echo Trans('app','Socila media platforms'); ?></h3>
-					
 					<ul class="socila-links list-unstyled my-4">
 						<?php
 						if( $sMedia = selectDB("s_media", "`id` = '1'") ){
@@ -87,7 +81,6 @@
 						}
 						?>
 				    </ul>
-					
 					<div class="copyright-text">
                         <p>
                         	<a href="https://www.createkuwait.com" target="_blank" class="copyright-icon">©</a> 
@@ -98,7 +91,6 @@
 				</div>	
 			</div>	
 		</div>	
-			  
 	</div>
 </footer>
 
