@@ -127,7 +127,6 @@
 							$sMediaIcons = ["bi bi-facebook","bi bi-twitter-x","bi bi-instagram","bi bi-envelope", "bi bi-telephone-fill"];
 							$sMediaLinks = ["https://www.facebook.com/","https://www.twitter.com/","https://www.instagram.com/","mailto:", "tel:"];
 							for ($i = 0; $i < count($sMediaArray); $i++) {
-								echo $sMedia[0]["$sMediaArray[$i]"];
 								if( !empty($sMedia[0]["$sMediaArray[$i]"]) ){
 								echo '<li><a href="' . $sMediaLinks[$i] . $sMedia[0]["$sMediaArray[$i]"] . '"><i class="' . $sMediaIcons[$i] . '"></i></a></li>';
 								}
