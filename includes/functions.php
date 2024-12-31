@@ -174,7 +174,7 @@ function doPaymant($data){
        var_dump($postBody);  
        $curl = curl_init();
        curl_setopt_array($curl, array(
-           CURLOPT_URL => '{$basURL}',
+           CURLOPT_URL => 'https://sandboxapi.upayments.com/api/v1/charge',
            CURLOPT_RETURNTRANSFER => true,
            CURLOPT_ENCODING => '',
            CURLOPT_MAXREDIRS => 10,
@@ -184,7 +184,7 @@ function doPaymant($data){
            CURLOPT_CUSTOMREQUEST => 'POST',
            CURLOPT_POSTFIELDS => json_encode($postBody),
            CURLOPT_HTTPHEADER => array(
-               'Authorization: Bearer {$token}',
+               'Authorization: Bearer jt12334',
                'Content-Type' => 'application/json',
            ),
        ));
