@@ -65,9 +65,19 @@
 		            <a href="?v=Login"><i class="bi bi-box-arrow-right"></i><?php echo Trans('app','Login'); ?></a>
 		        </li>
 		        <?php } ?>
-		        <?php if($_SESSION['valid']){ ?>
+		        <?php if($_SESSION['valid']){
+					if( isset($userDetails["id"]) && !empty($userDetails["id"]) ){
+						if( $myAds = selectDB("products","`userId` = '{$_SESSION['userId']}' AND `status` = '0' AND `hidden` != '2'") ){
+							$myAds = sizeof($myAds);
+						}else{
+							$myAds = 0;
+						}
+					}else{
+						$myAds = 0;
+					}
+					?>
 		        <li>
-		            <a href="?v=MyAds"><i class="bi bi-grid"></i><?php echo Trans('app','My Ads'); ?> <span class="badge">2</span></a>
+		            <a href="?v=MyAds"><i class="bi bi-grid"></i><?php echo Trans('app','My Ads'); ?> <span class="badge"><?php echo $myAds; ?></span></a>
 		        </li>
 		        <?php } ?>
 		        <li>
