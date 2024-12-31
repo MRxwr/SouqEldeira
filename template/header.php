@@ -1,8 +1,5 @@
 <?php
 include 'includes/checksouthead.php';
-if( $sMedia = selectDB("s_media", "`id = '1'") ){
-}
-
 ?>
 
 <!DOCTYPE html>
