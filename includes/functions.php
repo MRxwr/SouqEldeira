@@ -148,44 +148,35 @@ function doPaymant($data){
         //    'cancelUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId='.$orderId,
         //    'notificationUrl' => 'https://souqeldeira.createkwservers.com/index.php',
         //    );
-        $CustomerMobile = preg_replace('/\D/', '', $data["phone"]); 
-           $postBody  = [
+        $fields_string = array(
             'language' => 'en',
-            'order' => [
-                'id' => $orderId,
-                'currency' =>'KWD',
-                'amount' => $data["totalAmount"]
-            ],
-            'reference' => [
-                'id' => $orderId
-            ],
-            'customer'=> [
-                'uniqueId'=> $CustomerMobile,
-                'name'=>  $data["name"],
-                'email'=> $data["email"],
-                'mobile'=> $CustomerMobile
-            ],
-            'returnUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&success=1&orderId='.$orderId,
-            'cancelUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId='.$orderId,
-            'notificationUrl' =>  'https://souqeldeira.createkwservers.com/index.php' 
-        ];
-       var_dump($postBody);  
-       $curl = curl_init();
-       curl_setopt_array($curl, array(
-           CURLOPT_URL => 'https://sandboxapi.upayments.com/api/v1/charge',
-           CURLOPT_RETURNTRANSFER => true,
-           CURLOPT_ENCODING => '',
-           CURLOPT_MAXREDIRS => 10,
-           CURLOPT_TIMEOUT => 0,
-           CURLOPT_FOLLOWLOCATION => true,
-           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-           CURLOPT_CUSTOMREQUEST => 'POST',
-           CURLOPT_POSTFIELDS => json_encode($postBody),
-           CURLOPT_HTTPHEADER => array(
-               'Authorization: Bearer jt12334',
-               'Content-Type' => 'application/json',
-           ),
-       ));
+            "customer[name]" => $data["name"],
+            "customer[email]" => $data["email"],
+            "customer[mobile]" => $data["phone"],
+            'order[id]' => "{$orderId}",
+            'order[currency]' => "KWD",
+            'order[amount]' => "{$fullAmount}",
+            'reference[id]' => "{$CustomerReference}",
+            'returnUrl' => "https://souqeldeira.createkwservers.com/index.php?v=Payment&success=1&orderId=".$orderId,
+            'cancelUrl' => "https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId=".$orderId,
+            'notificationUrl' => 'https://souqeldeira.createkwservers.com/index.php',
+            );
+
+		$curl = curl_init();
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => "{$basURL}",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS => $fields_string,
+          CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer afmceR6nHQaIehhpOel036LBhC8hihuB8iNh9ACF'
+          ),
+        ));
        $response = curl_exec($curl);
 
        var_dump($response);
