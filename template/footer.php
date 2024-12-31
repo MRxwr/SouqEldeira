@@ -142,7 +142,7 @@
                         <p>
                         	<a href="https://www.createkuwait.com" target="_blank" class="copyright-icon">©</a> 
                         	<?php echo Trans('app','All rights reserved to'); ?>
-                        	<a href="index.php" target="_blank"><?php echo Trans('app','Souq Al Deerah'); ?></a> 
+                        	<a href="?v=Home" target="_blank"><?php echo Trans('app','Souq Al Deerah'); ?></a> 
                         </p> 
                     </div>
 				</div>	

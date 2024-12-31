@@ -1,4 +1,9 @@
-<?php include 'includes/checksouthead.php'; ?>
+<?php
+include 'includes/checksouthead.php';
+if( $sMedia = selectDB("s_media", "`id = '1'") ){
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION['lang']; ?>" dir="<?php echo $_SESSION['dir']; ?>">
