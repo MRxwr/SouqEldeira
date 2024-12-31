@@ -133,21 +133,44 @@ function doPaymant($data){
         $fullAmount = $data["totalAmount"];
         $orderId = date("Ymd").rand(0000,9999).time();
        //preparing upayment payload and creating order
-        $postBody = array(
-           'language' => 'en',
-           'paymentGateway[src]' => "{$paymentGateway}",
-           'order[id]' => $orderId,
-           'order[currency]' => 'KWD',
-           'order[amount]' => (string)$fullAmount,
-           'order[description]' => "{$data["details"]}",
-           'reference[id]' => $orderId,
-           'customer[name]' => "{$data["name"]}",
-           'customer[email]' => "{$data["email"]}",
-           'customer[mobile]' => "{$data["phone"]}",
-           'returnUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&success=1&orderId='.$orderId,
-           'cancelUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId='.$orderId,
-           'notificationUrl' => 'https://souqeldeira.createkwservers.com/index.php',
-           );
+        // $postBody = array(
+        //    'language' => 'en',
+        //    'paymentGateway[src]' => "{$paymentGateway}",
+        //    'order[id]' => $orderId,
+        //    'order[currency]' => 'KWD',
+        //    'order[amount]' => (string)$fullAmount,
+        //    'order[description]' => "{$data["details"]}",
+        //    'reference[id]' => $orderId,
+        //    'customer[name]' => "{$data["name"]}",
+        //    'customer[email]' => "{$data["email"]}",
+        //    'customer[mobile]' => "{$data["phone"]}",
+        //    'returnUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&success=1&orderId='.$orderId,
+        //    'cancelUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId='.$orderId,
+        //    'notificationUrl' => 'https://souqeldeira.createkwservers.com/index.php',
+        //    );
+           $postBody  = [
+            'language' => 'en',
+            'order' => [
+                'id' => $orderId,
+                'currency' =>'KWD',
+                'amount' => $data["totalAmount"]
+            ],
+            'reference' => [
+                'id' => $orderId
+            ],
+            'customer'=> [
+                'uniqueId'=> $data["phone"],
+                'name'=>  $data["name"],
+                'email'=> $data["email"],
+                'mobile'=> $data["phone"]
+            ],
+            'returnUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&success=1&orderId='.$orderId,
+            'cancelUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId='.$orderId,
+            'notificationUrl' =>  'https://souqeldeira.createkwservers.com/index.php',
+            'paymentGateway' => [
+                'src' => $paymentGateway
+            ],
+        ];
        var_dump($postBody);  
        $curl = curl_init();
        curl_setopt_array($curl, array(
@@ -159,9 +182,10 @@ function doPaymant($data){
            CURLOPT_FOLLOWLOCATION => true,
            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
            CURLOPT_CUSTOMREQUEST => 'POST',
-           CURLOPT_POSTFIELDS => $postBody,
+           CURLOPT_POSTFIELDS => json_encode($postBody),
            CURLOPT_HTTPHEADER => array(
                'Authorization: Bearer {$token}',
+               'Content-Type' => 'application/json',
            ),
        ));
        $response = curl_exec($curl);
