@@ -37,7 +37,8 @@
 						"totalAmount" => $package[0]["price"],
 						"date" => date("Y-m-d H:i:s"),
 					);
-					if($link=doPaymant($data)){
+					$link=doPaymant($data);
+					if($link){
 						header("LOCATION: $link");die();
 					}else{
 						header("LOCATION: index.php?v=Payment&error=1");die();

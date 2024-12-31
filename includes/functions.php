@@ -148,6 +148,7 @@ function doPaymant($data=array()){
            'cancelUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId='.$orderId,
            'notificationUrl' => 'https://souqeldeira.createkwservers.com/index.php',
            );
+           var_dump($postBody);
        $curl = curl_init();
        curl_setopt_array($curl, array(
            CURLOPT_URL => '{$basURL}',
@@ -168,7 +169,7 @@ function doPaymant($data=array()){
        $response = json_decode($response,true);
        //saving info and redirecting to payment pages
        if( isset($response["status"]) && $response["status"] == true && isset($response["data"]["link"]) && !empty($response["data"]["link"]) ){
-           $_SESSION["paymentLink"] = $response["data"]["link"];
+           //$_SESSION["paymentLink"] = $response["data"]["link"];
            return $response["data"]["link"];
            //header("Location: {$response["data"]["link"]}");
        }else{
