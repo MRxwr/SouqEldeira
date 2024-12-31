@@ -167,6 +167,7 @@ function doPaymant($data){
        $response = curl_exec($curl);
        curl_close($curl);
        $response = json_decode($response,true);
+       var_dump($response);
        //saving info and redirecting to payment pages
        if( isset($response["status"]) && $response["status"] == true && isset($response["data"]["link"]) && !empty($response["data"]["link"]) ){
            //$_SESSION["paymentLink"] = $response["data"]["link"];
