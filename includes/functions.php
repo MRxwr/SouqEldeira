@@ -124,30 +124,11 @@ function uploadImageBannerown($imageLocation){
 }
 function doPaymant($data){
     if(!empty($data) && is_array($data) && $data){
-        //$basURL = "https://uapi.upayments.com/api/v1/charge"; 
-	    //$token=$apidata['token'];
-        ///var_dump($data);
         $basURL = "https://sandboxapi.upayments.com/api/v1/charge";
-        $token = "e66a94d579cf75fba327ff716ad68c53aae11528";
+        $token = "jtest123";
         $paymentGateway = "knet";
         $fullAmount = $data["totalAmount"];
         $orderId = date("Ymd").rand(0000,9999).time();
-       //preparing upayment payload and creating order
-        // $postBody = array(
-        //    'language' => 'en',
-        //    'paymentGateway[src]' => "{$paymentGateway}",
-        //    'order[id]' => $orderId,
-        //    'order[currency]' => 'KWD',
-        //    'order[amount]' => (string)$fullAmount,
-        //    'order[description]' => "{$data["details"]}",
-        //    'reference[id]' => $orderId,
-        //    'customer[name]' => "{$data["name"]}",
-        //    'customer[email]' => "{$data["email"]}",
-        //    'customer[mobile]' => "{$data["phone"]}",
-        //    'returnUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&success=1&orderId='.$orderId,
-        //    'cancelUrl' => 'https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId='.$orderId,
-        //    'notificationUrl' => 'https://souqeldeira.createkwservers.com/index.php',
-        //    );
         $fields_string = array(
             'language' => 'en',
             'paymentGateway[src]' => "{$paymentGateway}",
@@ -162,7 +143,6 @@ function doPaymant($data){
             'cancelUrl' => "https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId=".$orderId,
             'notificationUrl' => 'https://souqeldeira.createkwservers.com/index.php',
             );
-
 		$curl = curl_init();
         curl_setopt_array($curl, array(
           CURLOPT_URL => "{$basURL}",
@@ -178,20 +158,20 @@ function doPaymant($data){
             "Authorization: Bearer {$token}"
           ),
         ));
-       $response = curl_exec($curl);
-       $err = curl_error($curl);
-       curl_close($curl);
-       $response = json_decode($response,true);
-       if ($err) {
-        var_dump($err);
-        exit();
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+        $response = json_decode($response,true);
+        if ($err) {
+            var_dump($err);
+            exit();
         }
-       //saving info and redirecting to payment pages
-       if( isset($response["status"]) && $response["status"] == true && isset($response["data"]["link"]) && !empty($response["data"]["link"]) ){
-           $_SESSION["paymentLink"] = $response["data"]["link"];
-           return $response["data"]["link"];
-       }else{
-        return false;
-       } 
+        //saving info and redirecting to payment pages
+        if( isset($response["status"]) && $response["status"] == true && isset($response["data"]["link"]) && !empty($response["data"]["link"]) ){
+            $_SESSION["paymentLink"] = $response["data"]["link"];
+            return $response["data"]["link"];
+        }else{
+            return false;
+        } 
     }
 }
