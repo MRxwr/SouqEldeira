@@ -150,6 +150,7 @@ function doPaymant($data){
         //    );
         $fields_string = array(
             'language' => 'en',
+            'paymentGateway[src]' => "{$paymentGateway}",
             "customer[name]" => $data["name"],
             "customer[email]" => $data["email"],
             "customer[mobile]" => $data["phone"],
