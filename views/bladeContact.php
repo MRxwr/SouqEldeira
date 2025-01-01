@@ -1,5 +1,5 @@
 <?php
-if( isset($_POST) ){
+if( isset($_POST) && !empty($_POST) ){
 	if( empty($_POST["name"]) || empty($_POST["phone"]) || empty($_POST["email"]) || empty($_POST["message"]) ){
 		?>
 		<script>
