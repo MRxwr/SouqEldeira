@@ -5,7 +5,7 @@
 	$normalAds = 0;
 	$specialAds = 0;
 	if($user[0]["id"] >0){
-		$orderId = date("Ymd").rand(0000,9999).time();
+		$orderId = rand(0000,9999).time();
 		$normalAds = $user[0]["normalAd"];
 		$specialAds = $user[0]["specialAd"];
 		$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
@@ -61,11 +61,46 @@
 					</div> 
 					<div class="form-outline mb-4">
 						<?php if(isset($_GET["success"]) && $_GET["success"] == "1"){
-							
-							
+							if($_GET["orderId"]){
+								$order = selectDB("orders2","`orderId` = '{$_GET["orderId"]}'");
+								if($order && $order[0]["status"] == "0"){
+									$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
+									if($package){
+										$user = selectDB("users","`id` = '{$order[0]["userId"]}' ORDER BY `id` DESC LIMIT 1","");
+										$normalAds = $user[0]["normalAd"] + $package[0]["quantity"]; //normalAds
+										$specialAds = $user[0]["specialAd"] + $package[0]["quantitySP"]; //specialAds
+										$data = array(
+											"normalAd" => "{$normalAds}",
+											"specialAd" => "{$specialAds}",
+										);
+										updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
+									}
+									$orderData = array(
+										"normalAds" => $_GET["payment_id"],
+										"status" => "1",
+									);
+									updateDB("orders2",$orderData,"`id` = '{$order[0]["id"]}'");
+									echo "<div class='alert alert-success'>".Trans('app','Payment completed successfully')."</div>";	
+									echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".Trans('app','MyAds')."</a>";
+								}else{
+									echo "<div class='alert alert-success'>".Trans('app','Payment completed successfully')."</div>";
+									echo "<div class='text-default'>".Trans('app','Your ads have been activated')."</div>"; 
+									echo "<div class='text-default'>".Trans('app','Order ID: {$_GET["orderId"]}')."</div>"; 
+									echo "<div class='text-default'>".Trans('app','Payment ID: {$_GET["payment_id"]}')."</div>"; 
+									echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".Trans('app','MyAds')."</a>";
+								}
+								
+							}else{
+								$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
+							}
+			
 						} ?>
 						<?php if(isset($_GET["error"]) && $_GET["error"] == "1"){
-							
+							if($_GET["orderId"]){
+								echo "<div class='alert alert-danger'>".Trans('app','Payment failed')."</div>";
+								echo "<div class='text-default'>".Trans('app','Order ID: {$_GET["orderId"]}')."</div>"; 
+								echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".Trans('app','Try again')."</a>";
+							}
 							
 						} ?>
 				
