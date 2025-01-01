@@ -128,7 +128,7 @@ function doPaymant($data){
 	    //$token=$apidata['token'];
         ///var_dump($data);
         $basURL = "https://sandboxapi.upayments.com/api/v1/charge";
-        $token = "jt12334";
+        $token = "e66a94d579cf75fba327ff716ad68c53aae11528";
         $paymentGateway = "knet";
         $fullAmount = $data["totalAmount"];
         $orderId = date("Ymd").rand(0000,9999).time();
