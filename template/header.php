@@ -49,4 +49,5 @@ include 'includes/checksouthead.php';
         <?php include 'template/sidebar.php'; ?> 
         <!-- Start page-content -->
 		<div class="page-content my-5">
+            <div class="home page-header"></div>
 	        <div class="container container-project">
