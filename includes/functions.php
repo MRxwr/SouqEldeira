@@ -182,7 +182,6 @@ function doPaymant($data){
        $err = curl_error($curl);
        curl_close($curl);
        $response = json_decode($response,true);
-        var_dump($response);
        if ($err) {
         var_dump($err);
         exit();
