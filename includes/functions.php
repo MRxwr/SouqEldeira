@@ -191,7 +191,6 @@ function doPaymant($data){
        if( isset($response["status"]) && $response["status"] == true && isset($response["data"]["link"]) && !empty($response["data"]["link"]) ){
            $_SESSION["paymentLink"] = $response["data"]["link"];
            return $response["data"]["link"];
-           header("Location: {$response["data"]["link"]}");
        }else{
         return false;
        } 

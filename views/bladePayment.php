@@ -38,7 +38,6 @@
 						"date" => date("Y-m-d H:i:s"),
 					);
 					$link=doPaymant($data);
-					die();
 					if($link){
 						header("LOCATION: $link");die();
 					}else{
