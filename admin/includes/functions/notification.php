@@ -175,6 +175,31 @@ function sendMails($orderId, $email){
 		curl_close($curl);
 }
 
+function contactUsMail($data){
+	GLOBAL $settingsEmail, $settingsTitle;
+		$title = "New Message - {$settingsTitle}";
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'https://createid.link/api/v1/send/notify',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => array(
+				'site' => $title,
+				'subject' => "Contact Us Form",
+				'body' => $data["msg"],
+				'from_email' => $data["email"],
+				'to_email' => $settingsEmail
+			),
+		));
+		$response = curl_exec($curl);
+		curl_close($curl);
+}
+
 function sendMailsAdmin($orderId){
 	GLOBAL $settingsEmail, $settingsTitle;
 			$sendEmail = $settingsEmail;

@@ -1,8 +1,38 @@
+<?php
+if( isset($_POST) ){
+	if( empty($_POST["name"]) || empty($_POST["phone"]) || empty($_POST["email"]) || empty($_POST["message"]) ){
+		?>
+		<script>
+			alert("<?php echo direction("Please fill all the fields","الرجاء ملء جميع الحقول"); ?>");
+			window.location = "index.php?v=Contact";
+		</script>
+		<?php
+	}else{
+		$msg = "
+		Name: {$_POST["name"]}<br>
+		Phone: {$_POST["phone"]}<br>
+		Email: {$_POST["email"]}<br>
+		Message: {$_POST["message"]}
+		";
+		$data = array(
+			"email" => $_POST["email"],
+			"msg" => $msg
+		);
+		contactUsMail($data);
+		?>
+		<script>
+			alert("<?php echo direction("Your message has been sent successfully","تم إرسال رسالتك بنجاح"); ?>");
+			window.location = "index.php?v=Contact";
+		</script>
+		<?php
+	}
+}
+?>
 <div class="row"> 
 	<div class="main-contact with-white-bg p-4 pt-4 d-flex align-items-center">
 		<div class="col-lg-6 col-md-12">  
 			<h4 class="mb-3"><?php echo Trans('app','Contact Us'); ?></h4>
-			<form class="contact-us-form">
+			<form class="contact-us-form" method="post" action="">
 				<div class="row row-fields d-flex align-items-stretch g-3">
 					<div class="col-md-6">
 						<div class="form-outline mb-4">
