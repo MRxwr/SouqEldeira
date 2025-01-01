@@ -2,7 +2,7 @@
 	<i class="bi bi-exclamation-circle"></i> <?php echo Trans('app','A message from the manager to manage the website'); ?>
 </div>  
 
-<form class="" action="?v=Search" method="POST">
+<form class="search-area" action="?v=Search" method="POST">
 	<div class="search-area-row"> 
 		<div class="row">
 			<div class="main-radio-btn">
