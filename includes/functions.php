@@ -62,27 +62,6 @@
     imagedestroy($image);
     imagedestroy($resizedImage);
 }
-/*
-function uploadImageBannerown($tmpFilePath, $uploadDir = 'logos/')
-{
-    // Ensure the upload directory exists
-    if (!file_exists($uploadDir)) {
-        mkdir($uploadDir, 0777, true); // Create the directory with necessary permissions
-    }
-
-    // Generate a unique name for the file to avoid conflicts
-    $fileExtension = pathinfo($tmpFilePath, PATHINFO_EXTENSION);
-    $uniqueFileName = uniqid('banner_', true) . '.' . $fileExtension;
-    $targetPath = $uploadDir . $uniqueFileName;
-
-    // Move the uploaded file to the target directory
-    if (move_uploaded_file($tmpFilePath, $targetPath)) {
-        return $uniqueFileName; // Return the new file name
-    } else {
-        return false; // Return false if the upload fails
-    }
-}
-*/
 function uploadImageBannerown($imageLocation){
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
