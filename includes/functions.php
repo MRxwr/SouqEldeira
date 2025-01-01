@@ -156,7 +156,7 @@ function doPaymant($data){
             'order[id]' => "{$orderId}",
             'order[currency]' => "KWD",
             'order[amount]' => "{$fullAmount}",
-            'reference[id]' => "{$CustomerReference}",
+            'reference[id]' => "{$orderId}",
             'returnUrl' => "https://souqeldeira.createkwservers.com/index.php?v=Payment&success=1&orderId=".$orderId,
             'cancelUrl' => "https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId=".$orderId,
             'notificationUrl' => 'https://souqeldeira.createkwservers.com/index.php',
@@ -174,7 +174,7 @@ function doPaymant($data){
           CURLOPT_CUSTOMREQUEST => 'POST',
           CURLOPT_POSTFIELDS => $fields_string,
           CURLOPT_HTTPHEADER => array(
-            'Authorization: Bearer afmceR6nHQaIehhpOel036LBhC8hihuB8iNh9ACF'
+            "Authorization: Bearer {$token}"
           ),
         ));
        $response = curl_exec($curl);
