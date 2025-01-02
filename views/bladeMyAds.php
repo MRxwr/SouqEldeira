@@ -431,7 +431,7 @@
 										<a href="#" 
 											class="remove" 
 											onclick="return confirmRemove('?v=<?php echo $_GET['v']; ?>&remove=<?php echo $ad['id']; ?>');">
-											<i class="bi bi-arrow-repeat"></i> <?php //echo Trans('app', 'Republish'); ?>
+											<i class="bi bi-trash3"></i> <?php //echo Trans('app', 'Republish'); ?>
 										</a>
 										</div> 
 									</div>
