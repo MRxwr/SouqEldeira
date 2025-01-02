@@ -7,7 +7,7 @@
         $date = date("Y-m-d");
         $myads = selectDB("products"," `expiryDate` >= '{$date}' AND `status` = '0'  AND `userId` = '{$id}'");
     }else if($tp == 'favourite'){
-        $myads = selectDB("products"," `status` = '0' AND `hidden` != '2'  AND `listOfUsers` NOT LIKE '%{$id}%'");
+        $myads = selectDB("products"," `status` = '0' AND `hidden` != '2'  AND `listOfUsers` LIKE '%{$id}%'");
         
     }else{
         $myads = [];
