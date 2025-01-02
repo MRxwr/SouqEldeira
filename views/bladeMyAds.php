@@ -374,7 +374,7 @@
 					<div class="with-white-bg  p-4 px-2 px-md-4"> 
 						<div class="favourite-list ads-section">
 						  <h4 class="mb-4"><?php echo Trans('app','Favourite'); ?></h4>	  	  
-						  <?php foreach( $myExpiredAds as $ad ){ 
+						  <?php foreach( $myFevoriteAds as $ad ){ 
 								if( $ad["packageId"] == 2 ){
 									$feature = "card-feature";
 								}else{
@@ -403,7 +403,7 @@
 									      <img src="assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
 								       <?php } ?> 
 										<div class="data">
-											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
+											<h4><a><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></a></h4>
 											<h5><?php echo direction($gov['enTitle'],$gov['arTitle']); ?> - <?php echo direction($area['enTitle'],$area['arTitle']); ?></h5>
 											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 
 											<?php
