@@ -5,6 +5,7 @@
 	$settings = selectDB("settings","`id` = '1'");
 	$myExpiredAds=getMyAds($user[0]["id"], 'expired');
 	$myActiveAds=getMyAds($user[0]["id"], 'active');
+	$myFevoriteAds=getMyAds($user[0]["id"], 'favourite');
 	$normalAds = 0;
 	$specialAds = 0;
 	$normalAds = $user[0]["normalAd"];
@@ -373,7 +374,61 @@
 					<div class="with-white-bg  p-4 px-2 px-md-4"> 
 						<div class="favourite-list ads-section">
 						  <h4 class="mb-4"><?php echo Trans('app','Favourite'); ?></h4>	  	  
-						  <?php include 'themes/'.$config['theme'].'/sections/ads-main-list.php'; ?>
+						  <?php foreach( $myExpiredAds as $ad ){ 
+								if( $ad["packageId"] == 2 ){
+									$feature = "card-feature";
+								}else{
+									$feature = "";
+								}
+								$area = selectDB("areas","`id` = '".$ad['areaId']."'")[0];
+								$gov = selectDB("governates","`id` = '".$area['governateId']."'")[0];
+								?>
+								<div class="my-ad-list-item my-2"> 
+								<div class="row g-1"> 
+									<div class="col-md-8 my-ad-list-item-side1">  
+									<?php
+										if( $images = selectDB("images","`productId` = '".$ad['id']."'") ){
+											for( $z = 0; $z < 1; $z++ ){
+												if( $z == 0 ){
+													$active = "active";
+												}else{
+													$active = "";
+												}
+												?>
+												
+												<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+												<?php
+											}
+										}else{ ?>
+									      <img src="assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+								       <?php } ?> 
+										<div class="data">
+											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
+											<h5><?php echo direction($gov['enTitle'],$gov['arTitle']); ?> - <?php echo direction($area['enTitle'],$area['arTitle']); ?></h5>
+											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 
+											<?php
+											$adDate = new DateTime($ad['date']);
+											$now = new DateTime();
+											$diff = $now->diff($adDate);
+											$hours = $diff->h + ($diff->days * 24);
+									 		echo substr($ad['date'], 0, 10); ?>
+											</h6>
+										</div> 
+									</div>
+									<div class="col-md-4 my-ad-list-item-side2">    
+										<div class="viewers"><i class="bi bi-eye"></i><?php echo $ad['views']; ?> </div>
+										<div class="actions"> 
+										<a href="#" 
+											class="republish" 
+											onclick="return confirmRepublish('?v=<?php echo $_GET['v']; ?>&republish=<?php echo $ad['id']; ?>');">
+											<i class="bi bi-arrow-repeat"></i> <?php //echo Trans('app', 'Republish'); ?>
+										</a>
+										</div> 
+									</div>
+								   </div>
+							     </div> 
+
+							<?php } ?>
 						  <div class="d-block text-center text-xl-end mt-3"> 
 						  	<a href="" class="view-all"><?php echo Trans('app','View All'); ?></a>
 						  </div>

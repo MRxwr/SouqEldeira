@@ -3,9 +3,14 @@
     $date = date("Y-m-d");
     if($tp == 'expired'){
         $myads = selectDB("products"," `expiryDate` < '{$date}' AND `status` = '0'  AND `userId` = '{$id}'");
-    }else{
+    }else if($tp == 'active'){
         $date = date("Y-m-d");
         $myads = selectDB("products"," `expiryDate` >= '{$date}' AND `status` = '0'  AND `userId` = '{$id}'");
+    }else if($tp == 'favourite'){
+        $myads = selectDB("products"," `status` = '0' AND `hidden` != '2'  AND `listOfUsers` NOT LIKE '%{$id}%'");
+        
+    }else{
+        $myads = [];
     }
     return $myads;
  }
