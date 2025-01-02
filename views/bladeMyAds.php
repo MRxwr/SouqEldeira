@@ -87,6 +87,7 @@
 		","`id` = '{$_GET['remove']}'")){
 			header("LOCATION: index.php?v=MyAds&success=remove");die();
 		}
+	}
 		//selectDB("products"," `status` = '0' AND `hidden` != '2'  AND `listOfUsers` LIKE '%{$id}%'");
 }
 
