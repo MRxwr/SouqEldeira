@@ -156,7 +156,7 @@
 												<img src="assets/img/packages/package-1.png" class="img-fluid" alt="..."> 
 											</div>
 											<div class="data">
-												<span class="title"><?php echo $package['title']; ?> - 1</span>  
+												<span class="title"><?php echo direction($package['enTitle'],$package['arTitle']); ?> - 1</span>  
 												<span class="content"><?php echo Trans('app','Price'); ?> : <?php echo $package['price']; ?> <?php echo Trans('app','Dinar'); ?></span>
 												<span class="content"><?php echo Trans('app','Regular Ad'); ?> : <?php echo $package['quantity']; ?> </span>
 												<span class="content"><?php echo Trans('app','Special Ad'); ?> : <?php echo $package['quantitySP']; ?> </span> 
