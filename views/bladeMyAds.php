@@ -79,6 +79,15 @@
 		updateDB("products",array("status" => 1),"`id` = '{$_GET["forceDelete"]}'");
 		header("LOCATION: index.php?v=MyAds&success=forceDelete");die();
 	}
+	if(isset($_GET['remove']) && !empty($_GET['remove'])){
+		if(updateDB("products"," listOfUsers = JSON_REMOVE(
+            listOfUsers, 
+            JSON_UNQUOTE(JSON_SEARCH(listOfUsers, 'one', :{$user[0]['id']}))
+        )
+		","`id` = '{$_GET['remove']}'")){
+			header("LOCATION: index.php?v=MyAds&success=remove");die();
+		}
+		//selectDB("products"," `status` = '0' AND `hidden` != '2'  AND `listOfUsers` LIKE '%{$id}%'");
 }
 
 ?>	
@@ -403,7 +412,7 @@
 									      <img src="assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
 								       <?php } ?> 
 										<div class="data">
-											<h4><a><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></a></h4>
+											<h4><a href="?v=Ad&id=<?php echo $ad['id']; ?>"><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></a></h4>
 											<h5><?php echo direction($gov['enTitle'],$gov['arTitle']); ?> - <?php echo direction($area['enTitle'],$area['arTitle']); ?></h5>
 											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 
 											<?php
@@ -419,8 +428,8 @@
 										<div class="viewers"><i class="bi bi-eye"></i><?php echo $ad['views']; ?> </div>
 										<div class="actions"> 
 										<a href="#" 
-											class="republish" 
-											onclick="return confirmRepublish('?v=<?php echo $_GET['v']; ?>&republish=<?php echo $ad['id']; ?>');">
+											class="remove" 
+											onclick="return confirmRemove('?v=<?php echo $_GET['v']; ?>&remove=<?php echo $ad['id']; ?>');">
 											<i class="bi bi-arrow-repeat"></i> <?php //echo Trans('app', 'Republish'); ?>
 										</a>
 										</div> 
@@ -459,6 +468,12 @@
 				}
 				function confirmRepublish(url) {
 					if (confirm('Are you sure you want to republish this ad?')) {
+						window.location.href = url;
+					}
+					return false; // Prevent the default link behavior
+				}
+				function confirmRemove(url) {
+					if (confirm('Are you sure you want to remove this ad?')) {
 						window.location.href = url;
 					}
 					return false; // Prevent the default link behavior
