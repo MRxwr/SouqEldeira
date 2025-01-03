@@ -296,7 +296,7 @@
 						</div> 
 						
 						<div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="&v=myAdsList&type=active_ads&page=1" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="?v=MyAdsList&type=active_ads&page=1" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
 					    </div>
 						
 					</div>
@@ -367,7 +367,7 @@
 							<?php } ?>
 						</div> 
 						<div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="&v=myAdsList&type=ended_ads&page=1" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="?v=MyAdsList&type=ended_ads&page=1" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
 					    </div>
 						
 						
@@ -440,7 +440,7 @@
 
 							<?php } ?>
 						  <div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="&v=myAdsList&type=active_ads&page=1" class="view-all"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="?v=MyAdsList&type=active_ads&page=1" class="view-all"><?php echo Trans('app','View All'); ?></a>
 						  </div>
 						</div>
 					</div> 
