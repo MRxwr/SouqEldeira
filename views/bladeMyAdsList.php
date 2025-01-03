@@ -1,11 +1,11 @@
 <?php if(!$_SESSION['valid']){
 	echo "<script>window.location.href = '/index.php?v=Login';</script>";
  } else {
-
+    $page = $_GET["page"] ?? 1;
 	$settings = selectDB("settings","`id` = '1'");
-	$myExpiredAds=getMyAds($user[0]["id"], 'expired', 1);
-	$myActiveAds=getMyAds($user[0]["id"], 'active', 1);
-	$myFevoriteAds=getMyAds($user[0]["id"], 'favourite',1);
+	$myExpiredAds=getMyAds($user[0]["id"], 'expired', $page);
+	$myActiveAds=getMyAds($user[0]["id"], 'active' ,$page);
+	$myFevoriteAds=getMyAds($user[0]["id"], 'favourite',$page);
 	$normalAds = 0;
 	$specialAds = 0;
 	$normalAds = $user[0]["normalAd"];
@@ -100,108 +100,11 @@
 						<h4 class="mb-0 fw-bold"><?php echo Trans('app','My Ads'); ?></h4>
 			 		</div>
 				</div>
-				<div class="col-md-12"> 
-					<div class="with-white-bg mb-4 p-4 px-2 px-md-4">
-						
-						<h4 class="mb-3 fw-bold"><?php echo Trans('app','My balance of ads'); ?></h4>
-						
-						
-						<div class="ads-balance">
-							<div>
-								<span class="title"><?php echo Trans('app','Regular Advertising'); ?></span>
-								<span class="count"><?php echo $normalAds; ?></span>
-							</div> 
-							<div>
-								<span class="title"><?php echo Trans('app','Special Advertising'); ?></span>
-								<span class="count"><?php echo $specialAds; ?></span>
-							</div>
-							<div class="recharge-balance"> 
-								<a href="#" class="btn btn-primary py-0 px-5" id="recharge-balance-btn"><?php echo Trans('app','Recharge Your Balance'); ?></a>
-							</div> 
-						</div>
-						
-						<div class="add-ads-balance-big">
-						<div class="row d-felx align-items-center add-ads-balance mt-4">
-							
-							<div class="col-md-4 col-lg-4 col-form">   
-								 
-								<div class="buy-ad">
-									<span><?php echo Trans('app','Buy Regular Ad'); ?></span>
-									<form class="buy-ad-form buy-ad-regular"> 
-								        <div class="form-outline">
-								        	<input type="number"  class="form-control" name="quantity" placeholder="<?php echo Trans('app','Qt'); ?>" />
-								        </div> 
-								        <div class="text-center">(x 1 <?php echo Trans('app','Dinar'); ?>)</div> 
-			      						<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Pay'); ?></button> 
-									</form>
-								</div>
-								
-								<div class="buy-ad mt-2">
-									<span><?php echo Trans('app','Buy Special Ad'); ?></span>
-									<form class="buy-ad-form special-ad-regular">
-								        <div class="form-outline">
-								        	<input type="number"  class="form-control" name="quantity" placeholder="<?php echo Trans('app','Qt'); ?>" />
-								        </div> 
-								        <div class="text-center">(x 1 <?php echo Trans('app','Dinar'); ?>)</div> 
-			      						<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Pay'); ?></button>
-									</form>
-								</div>
-								
-							</div>
-							<?php if( $packages = selectDB("packages","`status` = '0' ORDER BY `rank` ASC") ){ 
-								foreach( $packages as $package ){ ?>
-									<div class="col-md-4"> 
-										<div class="package-data">
-											<div class="img">
-												<img src="assets/img/packages/package-1.png" class="img-fluid" alt="..."> 
-											</div>
-											<div class="data">
-												<span class="title"><?php echo direction($package['enTitle'],$package['arTitle']); ?> - 1</span>  
-												<span class="content"><?php echo Trans('app','Price'); ?> : <?php echo $package['price']; ?> <?php echo Trans('app','Dinar'); ?></span>
-												<span class="content"><?php echo Trans('app','Regular Ad'); ?> : <?php echo $package['quantity']; ?> </span>
-												<span class="content"><?php echo Trans('app','Special Ad'); ?> : <?php echo $package['quantitySP']; ?> </span> 
-												<span class="content"><?php echo Trans('app','Expire Data'); ?> : <?php echo $package['expirey']; ?> <?php echo Trans('app','Days'); ?></span>
-											</div>
-											<div class="buy">
-												<form action="index.php?v=Payment" method="post">
-													<input type="hidden" name="process" value="1">
-													<input type="hidden" name="packageId" value="<?php echo $package['id']; ?>">
-													<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Buy'); ?></button>
-												</form>
-												  
-											</div>
-										</div>
-									</div>
-							<?php }
-							} ?>
-							<!-- <div class="col-md-4"> 
-								<div class="package-data">
-									<div class="img">
-										<img src="assets/img/packages/package-2.png" class="img-fluid" alt="...">
-									</div>
-									<div class="data">
-										<span class="title"><?php echo Trans('app','Golden Package'); ?> - 2</span>  
-										<span class="content"><?php echo Trans('app','Price'); ?> : 1000 <?php echo Trans('app','Dinar'); ?></span>
-										<span class="content"><?php echo Trans('app','Regular Ad'); ?> : 300 </span>
-										<span class="content"><?php echo Trans('app','Special Ad'); ?> : 200 </span> 
-										<span class="content"><?php echo Trans('app','Expire Data'); ?> : 60 <?php echo Trans('app','Day'); ?></span>
-									</div>
-									<div class="buy">
-										<a href="#!" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Pay'); ?></a> 
-									</div>
-								</div>
-							</div>  -->
-						</div>
-						</div>
-						
-			 		</div>
-			 		
-				</div>
-			
+
 			</div>
 			<div class="row"> 
-				
-				<div class="col-md-12 col-lg-6 col-xl-6">  
+				<?php if(isset($_GET["type"]) && $_GET["type"] == "active_ads"){ ?>
+				<div class="col-md-12 col-lg-12 col-xl-12">  
 					<div class="with-white-bg mb-4 p-4 px-2 px-md-4">
 						
 						<div class="my-current-ad-head">
@@ -296,13 +199,13 @@
 						</div> 
 						
 						<div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="&v=myAdsList&type=active_ads&page=1" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="&v=MyAds&type=active_ads&page=1" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
 					    </div>
 						
 					</div>
 				</div>
-				
-				<div class="col-md-12 col-lg-6 col-xl-6"> 
+				<?php }else if(isset($_GET["type"]) && $_GET["type"] == "ended_ads"){ ?>
+				<div class="col-md-12 col-lg-12 col-xl-12"> 
 					<div class="with-white-bg mb-4 p-4 px-2 px-md-4">  
 						
 						<div class="my-ended-ad-head">
@@ -367,7 +270,7 @@
 							<?php } ?>
 						</div> 
 						<div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="&v=myAdsList&type=ended_ads&page=1" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="&v=MyAds&type=ended_ads&page=1" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
 					    </div>
 						
 						
@@ -375,12 +278,8 @@
 						
 					</div>
 				</div>
-				
-			</div>
-			
-			<div class="row row-fields d-flex align-items-stretch"> 
-				
-				<div class="col-md-12 col-lg-6 col-xl-6"> 
+				<?php }else if(isset($_GET["type"]) && $_GET["type"] == "favourite_ads"){ ?>
+				<div class="col-md-12 col-lg-12 col-xl-12"> 
 					<div class="with-white-bg  p-4 px-2 px-md-4"> 
 						<div class="favourite-list ads-section">
 						  <h4 class="mb-4"><?php echo Trans('app','Favourite'); ?></h4>	  	  
@@ -445,8 +344,15 @@
 						</div>
 					</div> 
 				</div>
+				<?php } ?>
+				
+			</div>
+			
+			<div class="row row-fields d-flex align-items-stretch"> 
+				
+				
 				 
-				<div class="col-md-6 col-myad-logo">   
+				<div class="col-md-12 col-myad-logo">   
 					<div class="with-white-bg  p-4 text-center h-100 d-flex align-items-center justify-content-center">
 						<img src="assets/img/logo-big.png" class="img-fluid" alt="...">		 	
 					</div>

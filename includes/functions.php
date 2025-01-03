@@ -1,14 +1,20 @@
 <?php
- function getMyAds($id, $tp){
+ function getMyAds($id, $tp, $page){
+    if($page < 1) $page = 1;
+    if($page > 1){
+        $from = ($page-1)*5;
+    }else{
+        $from = 0;
+    }
+    $limit = 5*$page;
     $date = date("Y-m-d");
     if($tp == 'expired'){
-        $myads = selectDB("products"," `expiryDate` < '{$date}' AND `status` = '0'  AND `userId` = '{$id}'");
+        $myads = selectDB("products"," `expiryDate` < '{$date}' AND `status` = '0'  AND `userId` = '{$id}' ORDER BY `id` DESC LIMIT {$from}, {$limit}");
     }else if($tp == 'active'){
         $date = date("Y-m-d");
-        $myads = selectDB("products"," `expiryDate` >= '{$date}' AND `status` = '0'  AND `userId` = '{$id}'");
+        $myads = selectDB("products"," `expiryDate` >= '{$date}' AND `status` = '0'  AND `userId` = '{$id}' ORDER BY `id` DESC LIMIT {$from}, {$limit}");
     }else if($tp == 'favourite'){
-        $myads = selectDB("products"," `status` = '0' AND `hidden` != '2'  AND `listOfUsers` LIKE '%{$id}%'");
-        
+        $myads = selectDB("products"," `status` = '0' AND `hidden` != '2'  AND `listOfUsers` LIKE '%{$id}%' ORDER BY `id` DESC LIMIT {$from}, {$limit}");
     }else{
         $myads = [];
     }
