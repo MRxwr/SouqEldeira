@@ -3,7 +3,7 @@ $(document).ready(function () {
   $(".favo").on("click", function () {
     var id = $(this).attr("id");
     //make ajax call to add favorite
-    $.get("requests/index.php?a=Favo&id=" + id)
+    $.get("requests/index.php?a=Favo&id=" + id + "&valid=" + $.cookie("CSseldeira"))
     .done(function(response) {
       var elem = $(".favo"+id);
       if(elem.css("color") !== "red"){
