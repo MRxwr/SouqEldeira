@@ -3,6 +3,7 @@ if( isset($_GET["valid"]) && !empty($_GET["valid"]) ){
     if( $user = selectDBNew("users", [$_GET["valid"]], "`keepMeAlive` LIKE ?","") ){
         var_dump($user);die();
         $userDetails["id"] = $user[0]["id"];
+        /*
         if( $product = selectDBNew("products", [$_GET["id"]], "`id` = ?","") ){
             if( in_array($userDetails["id"],json_decode($product[0]["listOfUsers"],true)) ){
                 $listOfUsers = json_decode($product[0]["listOfUsers"],true);
@@ -22,6 +23,7 @@ if( isset($_GET["valid"]) && !empty($_GET["valid"]) ){
         }else{
             echo outputError(array("msg" => "Poduct not found"));die();
         }
+            */
     }else{
         echo outputError(array("msg" => "User not found"));die();
     }
