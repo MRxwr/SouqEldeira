@@ -3,7 +3,7 @@ if( isset($_GET["valid"]) && !empty($_GET["valid"]) ){
     if( $user = selectDBNew("users", [$_GET["valid"]], "`keepMeAlive` LIKE ?","") ){
         $userDetails["id"] = $user[0]["id"];
         if( $product = selectDBNew("products", [$_GET["id"]], "`id` = ?","") ){            
-            if( !empty($listOfUsers) && !is_null($listOfUsers) && !is_array($listOfUsers) ){
+            if( !empty($listOfUsers) && is_null($listOfUsers) && !is_array($listOfUsers) ){
                 $listOfUsers = array();
             }else{
                 $listOfUsers = json_decode($product[0]["listOfUsers"],true);
