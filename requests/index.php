@@ -1,5 +1,5 @@
 <?php 
-require_once '../template/header.php';
+require_once '../admin/includes/functions.php';
 
 // get viewed page from pages folder \\
 if( isset($_GET["a"]) && searchFile("views","api{$_GET["a"]}.php") ){
@@ -8,5 +8,4 @@ if( isset($_GET["a"]) && searchFile("views","api{$_GET["a"]}.php") ){
 	echo outputError(array("msg" => "API not found"));die();
 }
 
-require_once '../template/footer.php';
 ?>
