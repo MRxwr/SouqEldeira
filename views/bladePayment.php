@@ -63,7 +63,7 @@
 						<?php if(isset($_GET["result"]) && $_GET["result"] == "CAPTURED"){
 							if($_GET["requested_order_id"]){
 								echo $orderId  = $_GET["requested_order_id"];
-								$order = selectDB("orders2"," `orderId` = '$orderId}'","");
+								$order = selectDB("orders2"," `orderId` = '$orderId}' ORDER BY `id` DESC LIMIT 1","");
 								var_dump($order);
 								if($order && $order[0]["status"] == "0"){
 									$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
