@@ -84,6 +84,9 @@
 									);
 									updateDB("orders2",$orderData,"`id` = '{$order[0]["id"]}'");
 									echo "<div class='alert alert-success'>".Trans('app','Payment completed successfully')."</div>";	
+									echo "<div class='text-default'>".Trans('app','Your ads have been activated')."</div>"; 
+									echo "<div class='text-default'>".Trans('app','Order ID:'. $orderId)."</div>"; 
+									echo "<div class='text-default'>".Trans('app','Payment ID:'.$_GET["payment_id"])."</div>";
 									echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".Trans('app','MyAds')."</a>";
 								}else{
 									echo "<div class='alert alert-success'>".Trans('app','Payment completed successfully')."</div>";
