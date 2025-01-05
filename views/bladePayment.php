@@ -64,7 +64,7 @@
 							if($_GET["requested_order_id"]){
 								$orderId  = str_replace('?', '', $_GET["requested_order_id"]);
 								$order = selectDB("orders2"," `orderId` = '$orderId}'","");
-								//var_dump($order);
+								var_dump($order);
 								if($order && $order[0]["status"] == "0"){
 									$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
 									if($package){
