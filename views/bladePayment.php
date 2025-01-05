@@ -62,7 +62,9 @@
 					<div class="form-outline mb-4">
 						<?php if(isset($_GET["success"]) && $_GET["success"] == "1"){
 							if($_GET["orderId"]){
-								$order = selectDB("orders2","`orderId` = '{$_GET["orderId"]}'");
+								$orderId = str_replace('?', '', $_GET["orderId"]);
+								$order = selectDB("orders2"," `orderId` = '{$orderId}' ORDER BY `id` DESC LIMIT 1","");
+								//var_dump($order);
 								if($order && $order[0]["status"] == "0"){
 									$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
 									if($package){
@@ -85,8 +87,8 @@
 								}else{
 									echo "<div class='alert alert-success'>".Trans('app','Payment completed successfully')."</div>";
 									echo "<div class='text-default'>".Trans('app','Your ads have been activated')."</div>"; 
-									echo "<div class='text-default'>".Trans('app','Order ID: {$_GET["orderId"]}')."</div>"; 
-									echo "<div class='text-default'>".Trans('app','Payment ID: {$_GET["payment_id"]}')."</div>"; 
+									echo "<div class='text-default'>".Trans('app','Order ID:'. $orderId)."</div>"; 
+									echo "<div class='text-default'>".Trans('app','Payment ID:'.$_GET["payment_id"])."</div>"; 
 									echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".Trans('app','MyAds')."</a>";
 								}
 								
@@ -98,7 +100,7 @@
 						<?php if(isset($_GET["error"]) && $_GET["error"] == "1"){
 							if($_GET["orderId"]){
 								echo "<div class='alert alert-danger'>".Trans('app','Payment failed')."</div>";
-								echo "<div class='text-default'>".Trans('app','Order ID: {$_GET["orderId"]}')."</div>"; 
+								echo "<div class='text-default'>".Trans('app','Order ID:'. $orderId)."</div>"; 
 								echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".Trans('app','Try again')."</a>";
 							}
 							
