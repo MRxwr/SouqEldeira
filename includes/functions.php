@@ -118,7 +118,8 @@ function doPaymant($data){
         $token = "jtest123";
         $paymentGateway = "knet";
         $fullAmount = $data["totalAmount"];
-        $orderId = date("Ymd").rand(0000,9999).time();
+        //$orderId = date("Ymd").rand(0000,9999).time();
+        $orderId = $data["orderId"];
         $fields_string = array(
             'language' => 'en',
             'paymentGateway[src]' => "{$paymentGateway}",
