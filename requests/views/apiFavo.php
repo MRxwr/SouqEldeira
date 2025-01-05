@@ -8,14 +8,12 @@ if( isset($_GET["valid"]) && !empty($_GET["valid"]) ){
                 $listOfUsers = array();
             }
             if( in_array($userDetails["id"],$listOfUsers) ){
-                
                 unset($listOfUsers[array_search($userDetails["id"],$listOfUsers)]);
                 $listOfUsers = array_values($listOfUsers);
                 $listOfUsers = json_encode($listOfUsers);
                 updateDB("products",array("listOfUsers" => $listOfUsers),"`id` = '{$_GET["id"]}'");
                 echo outputData(array("msg" => direction("Removed from favorites","تم حذف العقار من المفضلة")));die();
             }else{
-                $listOfUsers = json_decode($product[0]["listOfUsers"],true);
                 $listOfUsers[] = $userDetails["id"];
                 $listOfUsers = array_values($listOfUsers);
                 $listOfUsers = json_encode($listOfUsers);
