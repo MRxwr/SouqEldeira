@@ -67,6 +67,7 @@
 								//var_dump($order);
 								if($order && $order[0]["status"] == "0"){
 									$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
+									var_dump($order);
 									if($package){
 										$user = selectDB("users","`id` = '{$order[0]["userId"]}' ORDER BY `id` DESC LIMIT 1","");
 										$normalAds = $user[0]["normalAd"] + $package[0]["quantity"]; //normalAds
