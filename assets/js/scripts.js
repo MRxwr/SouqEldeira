@@ -1,4 +1,22 @@
-$(document).ready(function () {     
+$(document).ready(function () {    
+  
+  $(".favo").on("click", function () {
+    var id = $(this).attr("id");
+    //make ajax call to add favorite
+    $.get("requests/index.php?a=Favo&id=" + id)
+    .done(function(response) {
+      var elem = $(".favo"+id);
+      if(elem.css("color") !== "red"){
+        elem.attr("style", "color:red");
+      }else{
+        elem.removeAttr("style");
+      }
+      alert(response.data.msg);
+    })
+    .fail(function() {
+      alert("Error occurred!");
+    });
+  });
 	
 	$('#dismiss, .main-overlay').on('click', function () {
         $('#sidebar').removeClass('active');

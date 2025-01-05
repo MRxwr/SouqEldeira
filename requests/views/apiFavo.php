@@ -1,0 +1,25 @@
+<?php
+if( isset($userDetails["id"]) && !empty($userDetails["id"]) ){
+    if( $product = selectDBNew("products", [$_GET["id"]], "`id` = ?","") ){
+        if( in_array($userDetails["id"],json_decode($product[0]["listOfUsers"],true)) ){
+            $listOfUsers = json_decode($product[0]["listOfUsers"],true);
+            unset($listOfUsers[array_search($userDetails["id"],$listOfUsers)]);
+            $listOfUsers = array_values($listOfUsers);
+            $listOfUsers = json_encode($listOfUsers);
+            updateDB("products",array("listOfUsers" => $listOfUsers),"`id` = '{$_GET["id"]}'");
+            echo outputData(array("msg" => direction("Removed from favorites","تم حذف العقار من المفضلة")));die();
+        }else{
+            $listOfUsers = json_decode($product[0]["listOfUsers"],true);
+            $listOfUsers[] = $userDetails["id"];
+            $listOfUsers = array_values($listOfUsers);
+            $listOfUsers = json_encode($listOfUsers);
+            updateDB("products",array("listOfUsers" => $listOfUsers),"`id` = '{$_GET["id"]}'");
+            echo outputData(array("msg" => direction("Added to favorites","تم إضافة العقار الى المفضلة")));die();
+        }
+    }else{
+        echo outputError(array("msg" => "Product not found"));die();
+    }
+}else{
+    echo outputError(array("msg" => "User not found"));die();
+}
+?>
