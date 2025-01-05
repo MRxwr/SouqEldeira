@@ -4,7 +4,7 @@ if( isset($_GET["valid"]) && !empty($_GET["valid"]) ){
         $userDetails["id"] = $user[0]["id"];
         if( $product = selectDBNew("products", [$_GET["id"]], "`id` = ?","") ){
             $listOfUsers = json_decode($product[0]["listOfUsers"],true);
-            if( !is_null($listOfUsers) && !is_array($listOfUsers) ){
+            if( !empty($listOfUsers) && !is_null($listOfUsers) && !is_array($listOfUsers) ){
                 $listOfUsers = array();
             }
             if( in_array($userDetails["id"],$listOfUsers) ){
