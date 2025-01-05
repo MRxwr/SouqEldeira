@@ -25,6 +25,6 @@ if( isset($_GET["valid"]) && !empty($_GET["valid"]) ){
         echo outputError(array("msg" => "User not found"));die();
     }
 }else{
-    echo outputError(array("msg" => "User not found"));die();
+    echo outputError(array("msg" => "set validity code"));die();
 }
 ?>
