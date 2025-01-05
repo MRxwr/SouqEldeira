@@ -67,7 +67,7 @@
 								//var_dump($order);
 								if($order && $order[0]["status"] == "0"){
 									$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
-									var_dump($package);
+									//var_dump($package);
 									if($package){
 										$user = selectDB("users","`id` = '{$order[0]["userId"]}' ORDER BY `id` DESC LIMIT 1","");
 										$normalAds = $user[0]["normalAd"] + $package[0]["quantity"]; //normalAds
@@ -79,7 +79,7 @@
 										updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
 									}
 									$orderData = array(
-										"normalAds" => $_GET["payment_id"],
+										"gatewayId" => $_GET["payment_id"],
 										"status" => "1",
 									);
 									updateDB("orders2",$orderData,"`id` = '{$order[0]["id"]}'");
