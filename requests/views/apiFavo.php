@@ -1,7 +1,7 @@
 <?php
 if( isset($_GET["valid"]) && !empty($_GET["valid"]) ){
     $svdva = $_GET["valid"];
-	if ( $user = selectDBNew("users", [$svdva], "`keepMeAlive` LIKE ?", "")){
+	if ( $user = selectDB("users","`keepMeAlive` LIKE '{$svdva}'")){
         var_dump($user);
         echo $userDetails["id"] = $user[0]["id"];
         /*
