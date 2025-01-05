@@ -69,7 +69,7 @@
 								<p class="card-price"><?php echo $ad['price'] . "-/KD"; ?></p>
 								<hr>
 								<div class="card-body-btn">
-									<span class=""><i class="bi bi-heart"></i> <?php echo Trans('app','Favourite'); ?></span>
+									<span class="favo" id="<?php echo $ad['id']; ?>"><i class="bi bi-heart favo<?php echo $ad['id']; ?>" ></i> <?php echo Trans('app','Favourite'); ?></span>
 									<span class="">
 										<i class="bi bi-clock"></i>
 										<?php
