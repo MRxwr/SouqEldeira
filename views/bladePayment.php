@@ -62,7 +62,7 @@
 					<div class="form-outline mb-4">
 						<?php if(isset($_GET["success"]) && $_GET["success"] == "1"){
 							if($_GET["orderId"]){
-								$orderId  = str_replace('?', '', $_GET["orderId"]);
+								$orderId  = str_replace('?', '', $_GET["requested_order_id"]);
 								$order = selectDB("orders2"," `orderId` = '$orderId}'","");
 								//var_dump($order);
 								if($order && $order[0]["status"] == "0"){

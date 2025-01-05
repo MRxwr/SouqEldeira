@@ -130,8 +130,8 @@ function doPaymant($data){
             'order[currency]' => "KWD",
             'order[amount]' => "{$fullAmount}",
             'reference[id]' => "{$orderId}",
-            'returnUrl' => "https://souqeldeira.createkwservers.com/index.php?v=Payment&success=1&orderId=".$orderId,
-            'cancelUrl' => "https://souqeldeira.createkwservers.com/index.php?v=Payment&error=1&orderId=".$orderId,
+            'returnUrl' => "https://souqeldeira.createkwservers.com/index.php",
+            'cancelUrl' => "https://souqeldeira.createkwservers.com/index.php",
             'notificationUrl' => 'https://souqeldeira.createkwservers.com/index.php',
             );
 		$curl = curl_init();
