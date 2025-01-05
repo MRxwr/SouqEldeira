@@ -1,5 +1,6 @@
 <?php
 if( isset($_GET["valid"]) && !empty($_GET["valid"]) ){
+    var_Dump($_GET["valid"]);die();
     if( $user = selectDBNew("users", [$_GET["valid"]], "`keepMeAlive` LIKE ?","") ){
         var_dump($user);die();
         $userDetails["id"] = $user[0]["id"];
