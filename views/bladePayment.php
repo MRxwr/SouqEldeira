@@ -60,8 +60,8 @@
 						<h4><?php echo Trans('app','Payment'); ?></h4>
 					</div> 
 					<div class="form-outline mb-4">
-						<?php if(isset($_GET["success"]) && $_GET["success"] == "1"){
-							if($_GET["orderId"]){
+						<?php if(isset($_GET["result"]) && $_GET["result"] == "CAPTURED"){
+							if($_GET["requested_order_id"]){
 								$orderId  = str_replace('?', '', $_GET["requested_order_id"]);
 								$order = selectDB("orders2"," `orderId` = '$orderId}'","");
 								//var_dump($order);
@@ -96,9 +96,9 @@
 								$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
 							}
 			
-						} ?>
-						<?php if(isset($_GET["error"]) && $_GET["error"] == "1"){
-							if($_GET["orderId"]){
+						} else{
+							if($_GET["requested_order_id"]){
+								$orderId  = str_replace('?', '', $_GET["requested_order_id"]);
 								echo "<div class='alert alert-danger'>".Trans('app','Payment failed')."</div>";
 								echo "<div class='text-default'>".Trans('app','Order ID:'. $orderId)."</div>"; 
 								echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".Trans('app','Try again')."</a>";
