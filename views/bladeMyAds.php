@@ -440,7 +440,7 @@
 
 							<?php } ?>
 						  <div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="?v=MyAdsList&type=favourite&page=1" class="view-all"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="?v=MyAdsList&type=favourite_ads&page=1" class="view-all"><?php echo Trans('app','View All'); ?></a>
 						  </div>
 						</div>
 					</div> 
