@@ -26,7 +26,7 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
         </div>
         <div class="col-sm-7">  
         	<div class="ad-top-details-items">
-                <div class=""><span class="sp1"><i class="bi bi-heart"></i> </span> <span class="sp2"><?php echo Trans('app','Favourite'); ?></span></div>
+                <div class="favo" id="<?php echo $ad[0]['id']; ?>"><span class="sp1"><i class="bi bi-heart"></i> </span> <span class="sp2"><?php echo Trans('app','Favourite'); ?></span></div>
                 <div class=""><span class="sp1"><i class="bi bi-clock"></i> </span>
 					<span class="sp2">
 						<?php
@@ -39,7 +39,7 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 					</span>
 				</div>
                 <div class=""><span class="sp1"><i class="bi bi-eye"></i>   </span> <span class="sp2"><?php echo $ad[0]['views'] ?></span></div>
-                <div class="favo" id="<?php echo $ad[0]['id']; ?>"><span class="sp1"><i class="bi bi-share"></i> </span> <span class="sp2"><?php echo Trans('app','Share'); ?></span></div>
+                <div class=""><span class="sp1"><i class="bi bi-share"></i> </span> <span class="sp2"><?php echo Trans('app','Share'); ?></span></div>
             </div> 
         </div>
 	</div>
