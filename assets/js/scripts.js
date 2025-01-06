@@ -14,9 +14,9 @@ $(document).ready(function () {
       var elem = $(".favo"+id);
       console.log(responseObject.error);
       if( responseObject.error == "0" ){
-        elem.attr("style", "color:red");
-      }else{
         elem.attr("style", "color:#000");
+      }else{
+        elem.attr("style", "color:red");
       }
       alert(responseObject.data.msg);
     })

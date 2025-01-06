@@ -13,13 +13,13 @@ if( isset($_GET["valid"]) && !empty($_GET["valid"]) ){
                 $listOfUsers = array_values($listOfUsers);
                 $listOfUsers = json_encode($listOfUsers);
                 updateDB("products",array("listOfUsers" => $listOfUsers),"`id` = '{$_GET["id"]}'");
-                echo outputData(array("msg" => direction("Removed from favorites","تم حذف العقار من المفضلة")));die();
+                echo outputData(array("msg" => direction("Removed from favorites","تم حذف العقار من المفضلة"),"tag" => "0"));die();
             }else{
                 $listOfUsers[] = $userDetails["id"];
                 $listOfUsers = array_values($listOfUsers);
                 $listOfUsers = json_encode($listOfUsers);
                 updateDB("products",array("listOfUsers" => $listOfUsers),"`id` = '{$_GET["id"]}'");
-                echo outputData(array("msg" => direction("Added to favorites","تم إضافة العقار الى المفضلة")));die();
+                echo outputData(array("msg" => direction("Added to favorites","تم إضافة العقار الى المفضلة"),"tag" => "1"));die();
             }
         }else{
             echo outputError(array("msg" => "Poduct not found"));die();
