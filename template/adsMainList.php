@@ -79,9 +79,14 @@
 						<div class="col-4">
 							<?php
 							if( is_null($ad['listOfUsers']) ){
-								$color = "color:red";
-							}else{
 								$color = "";
+							}else{
+								$listOfUsers = json_decode($ad['listOfUsers'],true);
+								if( in_array($userDetails["id"],$listOfUsers) ){
+									$color = "color:red";
+								}else{
+									$color = "";
+								}
 							}
 							?>
 							<span class="favo" id="<?php echo $ad['id']; ?>">
