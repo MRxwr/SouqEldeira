@@ -3,7 +3,6 @@ $(document).ready(function () {
   $(".favo").on("click", function () {
     var id = $(this).attr("id");
     var cookieValue = document.cookie.match(/CSseldeira=([^;]*)/);
-    alert(cookieValue);
     if (cookieValue) {
       var valid = cookieValue[1];
       // use the valid variable
