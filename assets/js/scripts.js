@@ -28,12 +28,10 @@ $(document).ready(function () {
 
   $(".share").on("click", function () {
     // open share dialog and share page link with title
-    var title = document.title;
-    var url = window.location.href;
+    var url = $(this).attr("id");
     // open share dialog and let user choose where to share
     if (navigator.share) {
       navigator.share({
-        title: title,
         url: url
       })
       .then(() => console.log('Successful share'))
