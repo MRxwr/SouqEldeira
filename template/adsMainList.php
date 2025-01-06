@@ -74,21 +74,30 @@
 				</a>
 			</div>
 			<div class="col-lg-12">
-				<div class="card-body-btn">
-					<span class="favo" id="<?php echo $ad['id']; ?>">
-						<i class="bi bi-heart favo<?php echo $ad['id']; ?>" ></i> 
-						<?php echo Trans('app','Favourite'); ?>
-					</span>
-					<span class="">
-						<i class="bi bi-clock"></i>
-						<?php
-							$adDate = new DateTime($ad['date']);
-							$now = new DateTime();
-							$diff = $now->diff($adDate);
-							$hours = $diff->h + ($diff->days * 24);
-							echo substr($ad['date'], 0, 10); ?>
-						</span>
-					<span class=""><i class="bi bi-eye"></i> <?php echo $ad['views'] ?></span>
+				<div class="card card-ad card-body-btn">
+					<div class="row">
+						<div class="col-4">
+							<span class="favo" id="<?php echo $ad['id']; ?>">
+								<i class="bi bi-heart favo<?php echo $ad['id']; ?>" ></i> 
+								<?php echo Trans('app','Favourite'); ?>
+							</span>
+						</div>
+						<div class="col-4">
+							<span class="">
+								<i class="bi bi-clock"></i>
+								<?php
+									$adDate = new DateTime($ad['date']);
+									$now = new DateTime();
+									$diff = $now->diff($adDate);
+									$hours = $diff->h + ($diff->days * 24);
+									echo substr($ad['date'], 0, 10);
+								?>
+							</span>
+						</div>
+						<div class="col-4">
+							<span class=""><i class="bi bi-eye"></i> <?php echo $ad['views'] ?></span>
+						</div>
+					</div>
 				</div>
 			</div>
 			<?php
