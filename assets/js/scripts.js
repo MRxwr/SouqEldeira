@@ -2,8 +2,15 @@ $(document).ready(function () {
   
   $(".favo").on("click", function () {
     var id = $(this).attr("id");
+    var cookieValue = document.cookie.match(/CSseldeira=([^;]*)/);
+    if (cookieValue) {
+      var valid = cookieValue[1];
+      // use the valid variable
+    }else{
+      var valid = "";
+    }
     //make ajax call to add favorite
-    $.get("requests/index.php?a=Favo&id=" + id + "&valid=" + $.cookie("CSseldeira"))
+    $.get("requests/index.php?a=Favo&id=" + id + "&valid=" + valid)
     .done(function(response) {
       var elem = $(".favo"+id);
       if(elem.css("color") !== "red"){
