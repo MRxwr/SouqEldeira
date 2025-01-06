@@ -73,7 +73,7 @@
 					</div>
 				</a>
 			</div>
-			<div class="col-lg-12">
+			<div class="col-lg-12 m-0 text-center">
 				<div class="card card-ad card-body-btn">
 					<div class="row">
 						<div class="col-4">
