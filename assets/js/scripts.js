@@ -12,7 +12,7 @@ $(document).ready(function () {
     .done(function(response) {
       const responseObject = JSON.parse(response);
       var elem = $(".favo"+id);
-      if( responseObject.data.error === "0" ){
+      if( responseObject.data.error == "0" ){
         elem.attr("style", "color:red");
       }else{
         elem.attr("style", "color:#000");
