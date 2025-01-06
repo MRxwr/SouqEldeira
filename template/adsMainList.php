@@ -73,6 +73,7 @@
 										<i class="bi bi-heart favo<?php echo $ad['id']; ?>" ></i> 
 										<?php echo Trans('app','Favourite'); ?>
 									</span>
+									<span class="">
 										<i class="bi bi-clock"></i>
 										<?php
 											$adDate = new DateTime($ad['date']);
