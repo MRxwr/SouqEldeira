@@ -11,7 +11,6 @@ $(document).ready(function () {
     $.get("requests/index.php?a=Favo&id=" + id + "&valid=" + valid)
     .done(function(response) {
       const responseObject = JSON.parse(response);
-      console.log(responseObject);
       var elem = $(".favo"+id);
       if(elem.css("color") !== "red"){
         elem.attr("style", "color:red");
