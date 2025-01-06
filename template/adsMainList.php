@@ -69,7 +69,7 @@
 								<p class="card-price"><?php echo $ad['price'] . "-/KD"; ?></p>
 								<hr>
 								<div class="card-body-btn">
-									<span class="favo" id="<?php echo $ad['id']; ?>" style="pointer-events: none;">
+									<span class="favo" id="<?php echo $ad['id']; ?>" style="pointer-events: none;" onclick="event.stopPropagation();">
 										<i class="bi bi-heart favo<?php echo $ad['id']; ?>" ></i> 
 										<?php echo Trans('app','Favourite'); ?>
 									</span>
