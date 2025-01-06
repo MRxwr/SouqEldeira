@@ -77,8 +77,15 @@
 				<div class="card card-ad card-body-btn">
 					<div class="row">
 						<div class="col-4">
+							<?php
+							if( is_null($ad['listOfUsers']) ){
+								$color = "color:red";
+							}else{
+								$color = "";
+							}
+							?>
 							<span class="favo" id="<?php echo $ad['id']; ?>">
-								<i class="bi bi-heart favo<?php echo $ad['id']; ?>" ></i> 
+								<i class="bi bi-heart favo<?php echo $ad['id']; ?>" style="<?php echo $color; ?>" ></i> 
 								<?php echo Trans('app','Favourite'); ?>
 							</span>
 						</div>
