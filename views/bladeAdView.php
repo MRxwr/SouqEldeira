@@ -40,7 +40,7 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 				</div>
                 <div class=""><span class="sp1"><i class="bi bi-eye"></i>   </span> <span class="sp2"><?php echo $ad[0]['views'] ?></span></div>
                 <div class=""><span class="sp1 favo" id="<?php echo $ad[0]['id']; ?>"><i class="bi bi-share"></i> </span> <span class="sp2"><?php echo Trans('app','Share'); ?></span></div>
-            </div>
+            </div> 
         </div>
 	</div>
 </div>
