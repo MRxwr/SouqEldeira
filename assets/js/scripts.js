@@ -25,6 +25,21 @@ $(document).ready(function () {
       alert("Error occurred!");
     });
   });
+
+  $(".share").on("click", function () {
+    // open share dialog and share page link with title
+    var title = document.title;
+    var url = window.location.href;
+    // open share dialog and let user choose where to share
+    if (navigator.share) {
+      navigator.share({
+        title: title,
+        url: url
+      })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing:', error));
+    }
+  });
 	
 	$('#dismiss, .main-overlay').on('click', function () {
         $('#sidebar').removeClass('active');
