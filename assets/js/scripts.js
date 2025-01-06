@@ -18,7 +18,7 @@ $(document).ready(function () {
       }else{
         elem.removeAttr("style");
       }
-      alert(response.data.msg);
+      alert(response);
     })
     .fail(function() {
       alert("Error occurred!");
