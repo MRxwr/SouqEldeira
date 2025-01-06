@@ -9,7 +9,7 @@
 			}
 	?>
 			<div class="col-lg-12">
-				<a style="cursor: pointer;position: relative; z-index: 0;" class="card card-ad <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" */?> href="?v=AdView&id=<?php echo $ad['id']; ?>">
+				<a style="cursor: pointer" class="card card-ad <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" */?> href="?v=AdView&id=<?php echo $ad['id']; ?>">
 					<div class="row g-0"> 
 						<div class="col-4 col-sm-3 position-relative">
 							<?php if( $ad["packageId"] == 2 ){ ?><span class="feature-label"><?php echo Trans('app','Feature'); ?></span> <?php } ?>
@@ -68,26 +68,28 @@
 								<p class="card-text"><?php echo substr(direction($ad['enDetails'],$ad['arDetails']),0,100) ?></p>
 								<p class="card-price"><?php echo $ad['price'] . "-/KD"; ?></p>
 								<hr>
-								<div class="card-body-btn">
-									<span class="favo" id="<?php echo $ad['id']; ?>" style="pointer-events: none; position: relative; z-index: 1;">
-										<i class="bi bi-heart favo<?php echo $ad['id']; ?>" ></i> 
-										<?php echo Trans('app','Favourite'); ?>
-									</span>
-									<span class="">
-										<i class="bi bi-clock"></i>
-										<?php
-											$adDate = new DateTime($ad['date']);
-											$now = new DateTime();
-											$diff = $now->diff($adDate);
-											$hours = $diff->h + ($diff->days * 24);
-									 		echo substr($ad['date'], 0, 10); ?>
-									 </span>
-									<span class=""><i class="bi bi-eye"></i> <?php echo $ad['views'] ?></span>
-								</div>
 							</div>
 						</div>
 					</div>
 				</a>
+			</div>
+			<div class="col-lg-12">
+				<div class="card-body-btn">
+					<span class="favo" id="<?php echo $ad['id']; ?>">
+						<i class="bi bi-heart favo<?php echo $ad['id']; ?>" ></i> 
+						<?php echo Trans('app','Favourite'); ?>
+					</span>
+					<span class="">
+						<i class="bi bi-clock"></i>
+						<?php
+							$adDate = new DateTime($ad['date']);
+							$now = new DateTime();
+							$diff = $now->diff($adDate);
+							$hours = $diff->h + ($diff->days * 24);
+							echo substr($ad['date'], 0, 10); ?>
+						</span>
+					<span class=""><i class="bi bi-eye"></i> <?php echo $ad['views'] ?></span>
+				</div>
 			</div>
 			<?php
 		}
