@@ -39,7 +39,7 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 					</span>
 				</div>
                 <div class=""><span class="sp1"><i class="bi bi-eye"></i>   </span> <span class="sp2"><?php echo $ad[0]['views'] ?></span></div>
-                <div class="share" id="<?php echo direction($ad[0]['enTitle'], $ad[0]['arTitle']) . " \n {$_SERVER['REQUEST_URI']}?v=AdView&id={$ad[0]['id']}" ?>"><span class="sp1"><i class="bi bi-share"></i> </span> <span class="sp2"><?php echo Trans('app','Share'); ?></span></div>
+                <div class="share" id="<?php echo direction($ad[0]['enTitle'], $ad[0]['arTitle']) . " {$_SERVER['REQUEST_URI']}?v=AdView&id={$ad[0]['id']}" ?>"><span class="sp1"><i class="bi bi-share"></i> </span> <span class="sp2"><?php echo Trans('app','Share'); ?></span></div>
             </div> 
         </div>
 	</div>
