@@ -15,7 +15,7 @@ $(document).ready(function () {
       if(elem.attr("style", "color:red") == null){
         elem.attr("style", "color:red");
       }else{
-        elem.removeAttr("style");
+        elem.attr("style", "");
       }
       alert(responseObject.data.msg);
     })
