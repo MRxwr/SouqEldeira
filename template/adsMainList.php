@@ -62,12 +62,14 @@
 							</button>
 							</div>	
 						</div>
+						
 						<div class="col-8 col-sm-9">
 							<div class="card-body">
 								<h5 class="card-title fw-bold"><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h5>
 								<p class="card-text"><?php echo substr(direction($ad['enDetails'],$ad['arDetails']),0,100) ?></p>
 								<p class="card-price"><?php echo $ad['price'] . "-/KD"; ?></p>
 								<hr>
+								</a>
 								<div class="card-body-btn">
 									<span class="favo" id="<?php echo $ad['id']; ?>"><i class="bi bi-heart favo<?php echo $ad['id']; ?>" ></i> <?php echo Trans('app','Favourite'); ?></span>
 									<span class="">
@@ -84,7 +86,7 @@
 							</div>
 						</div>
 					</div>
-				</a>
+				
 			</div>
 			<?php
 		}
