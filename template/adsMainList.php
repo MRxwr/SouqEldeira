@@ -69,8 +69,10 @@
 								<p class="card-price"><?php echo $ad['price'] . "-/KD"; ?></p>
 								<hr>
 								<div class="card-body-btn">
-									<span class="favo" id="<?php echo $ad['id']; ?>"><i class="bi bi-heart favo<?php echo $ad['id']; ?>" ></i> <?php echo Trans('app','Favourite'); ?></span>
-									<span class="">
+									<span class="favo" id="<?php echo $ad['id']; ?>" style="pointer-events: none;">
+										<i class="bi bi-heart favo<?php echo $ad['id']; ?>" ></i> 
+										<?php echo Trans('app','Favourite'); ?>
+									</span>
 										<i class="bi bi-clock"></i>
 										<?php
 											$adDate = new DateTime($ad['date']);
