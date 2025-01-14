@@ -272,10 +272,7 @@
 						<div class="d-block text-center text-xl-end mt-3"> 
 						  	<a href="index.php?v=MyAdsList&type=ended_ads&page=2" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
 					    </div>
-						
-						
-						
-						
+
 					</div>
 				</div>
 				<?php }else if(isset($_GET["type"]) && $_GET["type"] == "favourite_ads"){ ?>
