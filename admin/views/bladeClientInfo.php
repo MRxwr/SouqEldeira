@@ -6,6 +6,21 @@ if( $user = selectDB("users","`id` = '{$_GET["id"]}'")){
 }else{
 	header("LOCATION: ?v=ListOfusers");die();
 }
+
+if (isset($_POST["assignPackage"]) && !empty($_POST["packageId"])) {
+    $pkgId = $_POST["packageId"];
+    if ($package = selectDB("packages", "`id` = '{$pkgId}'")) {
+        $normalAds = $user[0]["normalAd"] + $package[0]["quantity"];
+        $specialAds = $user[0]["specialAd"] + $package[0]["quantitySP"];
+        $data = array(
+            "normalAd" => $normalAds,
+            "specialAd" => $specialAds
+        );
+        if (updateDB("users", $data, "`id` = '{$user[0]["id"]}'")) {
+            echo "<script>alert('Package added successfullly. Normal Ads: {$normalAds}, Special Ads: {$specialAds}'); window.location.href='?v=ClientInfo&id={$user[0]["id"]}';</script>";
+        }
+    }
+}
 ?>
 <div class="row">
 	<div class="col-sm-12">
@@ -49,12 +64,75 @@ if( $user = selectDB("users","`id` = '{$_GET["id"]}'")){
 					</div>
 					<!--/span-->
 				</div>
+                
+                <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-Mall mr-10"></i><?php echo direction("Ad Balance & Packages","رصيد الإعلانات والباقات") ?></h6>
+				<hr class="light-grey-hr"/>
+                <div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+						<label class="control-label mb-10"><?php echo direction("Normal Ads Balance","رصيد الإعلانات العادية") ?></label>
+						<input type="text" class="form-control" value="<?php echo $user[0]["normalAd"];?>" disabled>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+						<label class="control-label mb-10"><?php echo direction("Special Ads Balance","رصيد الإعلانات المميزة") ?></label>
+						<input type="text" class="form-control" value="<?php echo $user[0]["specialAd"];?>" disabled>
+						</div>
+					</div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                        <label class="control-label mb-10"><?php echo direction("Add Package","إضافة باقة") ?></label>
+                        <div class="input-group">
+                            <select name="packageId" class="form-control" id="packageSelect">
+                                <option value=""><?php echo direction("Select Package","اختر الباقة") ?></option>
+                                <?php 
+                                if($packages = selectDB("packages","`status` = '0'")){
+                                    foreach($packages as $pkg){
+                                        $title = direction($pkg["enTitle"],$pkg["arTitle"]);
+                                        echo "<option value='{$pkg["id"]}' data-normal='{$pkg["quantity"]}' data-special='{$pkg["quantitySP"]}'>{$title} (N:{$pkg["quantity"]}, S:{$pkg["quantitySP"]})</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary" onclick="confirmPackage()"><?php echo direction("Add","إضافة") ?></button>
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+				</div>
 			</form>
 		</div>
 		</div>
 		</div>
 		</div>
 	</div>
+
+    <form id="packageForm" method="POST" action="">
+        <input type="hidden" name="assignPackage" value="1">
+        <input type="hidden" name="packageId" id="hiddenPackageId">
+    </form>
+
+    <script>
+    function confirmPackage() {
+        var select = document.getElementById('packageSelect');
+        var pkgId = select.value;
+        if (!pkgId) {
+            alert('Please select a package');
+            return;
+        }
+        var option = select.options[select.selectedIndex];
+        var normal = option.getAttribute('data-normal');
+        var special = option.getAttribute('data-special');
+        var title = option.text;
+
+        if (confirm('Are you sure you want to add this package?\n' + title + '\nNormal Ads: ' + normal + '\nSpecial Ads: ' + special)) {
+            document.getElementById('hiddenPackageId').value = pkgId;
+            document.getElementById('packageForm').submit();
+        }
+    }
+    </script>
 
 <?php
 
