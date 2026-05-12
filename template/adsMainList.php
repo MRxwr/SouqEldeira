@@ -41,9 +41,7 @@
 										}
 										?>
 										<div class="carousel-item <?php echo $active ?> h-100">
-											<a href="?v=AdView&id=<?php echo $ad["id"] ?>" data-toggle="lightbox" data-gallery="mixedgallery">
-												<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" style="object-fit: cover; height: 120px;" alt="...">
-											</a> 
+											<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" style="object-fit: cover; height: 120px;" alt="...">
 										</div>
 										<?php
 									}
