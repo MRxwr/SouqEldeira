@@ -14,7 +14,7 @@
 						<div class="col-4 col-sm-3 position-relative">
 							<?php if( $ad["packageId"] == 2 ){ ?><span class="feature-label"><?php echo Trans('app','Feature'); ?></span> <?php } ?>
 							<div id="carouselAdMainImages<?php echo $ad['id']; ?>" class="carousel slide h-100" data-bs-ride="carousel">
-							<div class="carousel-indicators" style="bottom: 0px; margin-bottom: 5px;">
+							<div class="carousel-indicators" style="position: absolute; bottom: 5px; left: 0; right: 0; margin: 0; padding: 0; z-index: 15; justify-content: center; display: flex;">
 								<?php 
 								if( $images = selectDB("images","`productId` = '".$ad['id']."'") ){
 									for( $j = 0; $j < sizeof($images); $j++ ){
@@ -24,7 +24,7 @@
 											$active = "";
 										}
 										?>
-										<button type="button" data-bs-target="#carouselAdMainImages<?php echo $ad['id']; ?>" data-bs-slide-to="<?php echo $j ?>" class="<?php echo $active ?>" aria-current="true" aria-label="Slide <?php echo $j ?>" style="width: 6px; height: 6px;"></button>
+										<button type="button" data-bs-target="#carouselAdMainImages<?php echo $ad['id']; ?>" data-bs-slide-to="<?php echo $j ?>" class="<?php echo $active ?>" aria-current="true" aria-label="Slide <?php echo $j ?>" style="width: 6px; height: 6px; border-radius: 50%; margin: 0 3px; border: none; opacity: 0.5; background-color: #fff;"></button>
 										<?php
 									}
 								}
