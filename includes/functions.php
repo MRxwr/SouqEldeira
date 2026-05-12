@@ -112,57 +112,60 @@ function uploadImageBannerown($imageLocation){
 		return "";
 	}
 }
-function doPaymant($data){
-    if(!empty($data) && is_array($data) && $data){
-        $basURL = "https://sandboxapi.upayments.com/api/v1/charge";
-        $token = "jtest123";
-        $paymentGateway = "knet";
-        $fullAmount = $data["totalAmount"];
-        //$orderId = date("Ymd").rand(0000,9999).time();
-        $orderId = $data["orderId"];
-        $fields_string = array(
-            'language' => 'en',
-            'paymentGateway[src]' => "{$paymentGateway}",
-            "customer[name]" => $data["name"],
-            "customer[email]" => $data["email"],
-            "customer[mobile]" => $data["phone"],
-            'order[id]' => "{$orderId}",
-            'order[currency]' => "KWD",
-            'order[amount]' => "{$fullAmount}",
-            'reference[id]' => "{$orderId}",
-            'returnUrl' => "https://souqeldeira.com/index.php",
-            'cancelUrl' => "https://souqeldeira.com/index.php",
-            'notificationUrl' => 'https://souqeldeira.com/index.php',
-            );
-		$curl = curl_init();
-        curl_setopt_array($curl, array(
-          CURLOPT_URL => "{$basURL}",
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_ENCODING => '',
-          CURLOPT_MAXREDIRS => 10,
-          CURLOPT_TIMEOUT => 0,
-          CURLOPT_FOLLOWLOCATION => true,
-          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          CURLOPT_CUSTOMREQUEST => 'POST',
-          CURLOPT_POSTFIELDS => $fields_string,
-          CURLOPT_HTTPHEADER => array(
-            "Authorization: Bearer {$token}"
-          ),
-        ));
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-        curl_close($curl);
-        $response = json_decode($response,true);
-        if ($err) {
-            var_dump($err);
-            exit();
+function doPaymant($data , $price){
+    if ( $price <= 0 ) {
+        return "https://{$_SERVER['HTTP_HOST']}/index.php?v=Payment&result=CAPTURED&payment_id=0&requested_order_id={$data["orderId"]}";
+    }else{
+        if(!empty($data) && is_array($data) && $data){
+            $basURL = "https://sandboxapi.upayments.com/api/v1/charge";
+            $token = "jtest123";
+            $paymentGateway = "knet";
+            $fullAmount = $data["totalAmount"];
+            $orderId = $data["orderId"];
+            $fields_string = array(
+                'language' => 'en',
+                'paymentGateway[src]' => "{$paymentGateway}",
+                "customer[name]" => $data["name"],
+                "customer[email]" => $data["email"],
+                "customer[mobile]" => $data["phone"],
+                'order[id]' => "{$orderId}",
+                'order[currency]' => "KWD",
+                'order[amount]' => "{$fullAmount}",
+                'reference[id]' => "{$orderId}",
+                'returnUrl' => "https://souqeldeira.com/index.php",
+                'cancelUrl' => "https://souqeldeira.com/index.php",
+                'notificationUrl' => 'https://souqeldeira.com/index.php',
+                );
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "{$basURL}",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $fields_string,
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer {$token}"
+            ),
+            ));
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+            curl_close($curl);
+            $response = json_decode($response,true);
+            if ($err) {
+                var_dump($err);
+                exit();
+            }
+            //saving info and redirecting to payment pages
+            if( isset($response["status"]) && $response["status"] == true && isset($response["data"]["link"]) && !empty($response["data"]["link"]) ){
+                $_SESSION["paymentLink"] = $response["data"]["link"];
+                return $response["data"]["link"];
+            }else{
+                return false;
+            } 
         }
-        //saving info and redirecting to payment pages
-        if( isset($response["status"]) && $response["status"] == true && isset($response["data"]["link"]) && !empty($response["data"]["link"]) ){
-            $_SESSION["paymentLink"] = $response["data"]["link"];
-            return $response["data"]["link"];
-        }else{
-            return false;
-        } 
     }
 }

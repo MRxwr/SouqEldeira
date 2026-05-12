@@ -1,5 +1,6 @@
 
-<?php if(!$_SESSION['valid']){
+<?php 
+if(!$_SESSION['valid']){
 	echo "<script>window.location.href = '/index.php?v=Login';</script>";
  } else {
 	$normalAds = 0;
@@ -25,7 +26,7 @@
 				);
 				 
 				if(insertDB("orders2", $orderData)){
-					$data=array(
+					$data = array(
 						"userId" => $user[0]["id"],
 						"name" => $user[0]["name"],
 						"email" => $user[0]["email"],
@@ -37,7 +38,7 @@
 						"totalAmount" => $package[0]["price"],
 						"date" => date("Y-m-d H:i:s"),
 					);
-					$link=doPaymant($data);
+					$link = doPaymant($data, $package[0]["price"]);
 					if($link){
 						header("LOCATION: $link");die();
 					}else{
@@ -64,10 +65,8 @@
 							if($_GET["requested_order_id"]){
 								$orderId  = $_GET["requested_order_id"];
 								$order = selectDB("orders2"," `orderId` = '{$orderId}' ORDER BY `id` DESC LIMIT 1","");
-								//var_dump($order);
 								if($order && $order[0]["status"] == "0"){
 									$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
-									//var_dump($package);
 									if($package){
 										$user = selectDB("users","`id` = '{$order[0]["userId"]}' ORDER BY `id` DESC LIMIT 1","");
 										$normalAds = $user[0]["normalAd"] + $package[0]["quantity"]; //normalAds
