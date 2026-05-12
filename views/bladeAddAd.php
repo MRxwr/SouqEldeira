@@ -25,6 +25,7 @@
 			
 			$data = array(
 				"userId" => "{$user[0]["id"]}",
+				"shopId" => "{$user[0]["shopId"]}",
 				"categoryId"	=>	$_POST["categoryId"],
 				"packageId" => "{$order[0]["packageId"]}",
 				"propertyType"	=>	$_POST["propertyType"],
