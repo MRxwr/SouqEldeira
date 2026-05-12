@@ -2,7 +2,7 @@
 	<div class="row gy-3"> 
 	<?php
 		foreach( $ads as $ad ){
-			if( $ad["packageId"] == 2 ){
+			if( $ad["adType"] == 2 ){
 				$feature = "card-feature";
 			}else{
 				$feature = "";
@@ -12,7 +12,7 @@
 				<a style="cursor: pointer" class="card card-ad <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" */?> href="?v=AdView&id=<?php echo $ad['id']; ?>">
 					<div class="row g-0 align-items-center"> 
 						<div class="col-4 col-sm-3 position-relative">
-							<?php if( $ad["packageId"] == 2 ){ ?><span class="feature-label"><?php echo Trans('app','Feature'); ?></span> <?php } ?>
+							<?php if( $ad["adType"] == 2 ){ ?><span class="feature-label"><?php echo Trans('app','Feature'); ?></span> <?php } ?>
 							<div id="carouselAdMainImages<?php echo $ad['id']; ?>" class="carousel slide h-100" data-bs-ride="carousel" style="height: 120px; overflow: hidden;">
 							<div class="carousel-indicators" style="position: absolute; bottom: 5px; left: 0; right: 0; margin: 0; padding: 0; z-index: 15; justify-content: center; display: flex;">
 								<?php 
