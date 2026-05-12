@@ -86,22 +86,22 @@
 				 </div> 
 				  <div class="form-outline mb-4">
 				  	<div class="main-radio-btn">
-						<?php if($product[0]["adType"] == 1){ ?>
+						<?php if($product[0]["packageId"] == 1){ ?>
 							<div class="radio-btn">
-					  		  <input type="radio" name="adType" id="aRegular" checked value="1" />
+					  		  <input type="radio" name="packageId" id="aRegular" checked value="1" />
 					  		  <label for="aRegular"><?php echo Trans('app','Regular Ad'); ?> (<?php echo $normalAds; ?>)</label>
 					  	   </div>
 						  <div class="radio-btn">
-					  		<input type="radio" name="adType" id="aSpecial"  value="2" disabled  />
+					  		<input type="radio" name="packageId" id="aSpecial"  value="2" disabled  />
 					  		<label for="aSpecial"><?php echo Trans('app','Special Ad'); ?> (<?php echo $specialAds; ?>)</label>  
 					  	   </div>
 						<?php }else{ ?>
 							<div class="radio-btn">
-					  		  <input type="radio" name="adType" id="aRegular" value="1" disabled />
+					  		  <input type="radio" name="packageId" id="aRegular" value="1" disabled />
 					  		  <label for="aRegular"><?php echo Trans('app','Regular Ad'); ?> (<?php echo $normalAds; ?>)</label>
 					  	   </div>
 						  <div class="radio-btn">
-					  		<input type="radio" name="adType" id="aSpecial" checked value="2"  />
+					  		<input type="radio" name="packageId" id="aSpecial" checked value="2"  />
 					  		<label for="aSpecial"><?php echo Trans('app','Special Ad'); ?> (<?php echo $specialAds; ?>)</label>  
 					  	   </div>
 						<?php } ?>			  		
