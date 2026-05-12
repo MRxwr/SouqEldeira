@@ -13,7 +13,7 @@
 					<div class="row g-0 align-items-center"> 
 						<div class="col-4 col-sm-3 position-relative">
 							<?php if( $ad["packageId"] == 2 ){ ?><span class="feature-label"><?php echo Trans('app','Feature'); ?></span> <?php } ?>
-							<div id="carouselAdMainImages<?php echo $ad['id']; ?>" class="carousel slide h-100" data-bs-ride="carousel">
+							<div id="carouselAdMainImages<?php echo $ad['id']; ?>" class="carousel slide h-100" data-bs-ride="carousel" style="height: 120px; overflow: hidden;">
 							<div class="carousel-indicators" style="position: absolute; bottom: 5px; left: 0; right: 0; margin: 0; padding: 0; z-index: 15; justify-content: center; display: flex;">
 								<?php 
 								if( $images = selectDB("images","`productId` = '".$ad['id']."'") ){
@@ -42,7 +42,7 @@
 										?>
 										<div class="carousel-item <?php echo $active ?> h-100">
 											<a href="?v=AdView&id=<?php echo $ad["id"] ?>" data-toggle="lightbox" data-gallery="mixedgallery">
-												<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" style="object-fit: cover; min-height: 120px;" alt="...">
+												<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" style="object-fit: cover; height: 120px;" alt="...">
 											</a> 
 										</div>
 										<?php
