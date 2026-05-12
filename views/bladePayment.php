@@ -15,6 +15,14 @@ if(!$_SESSION['valid']){
 		   $packageId = $_POST["packageId"];
 		   
 			if($package = selectDB("packages","`id` = '{$packageId}' ORDER BY `id` DESC LIMIT 1","")){
+				
+				// Verify if it's a free package and if user already has it
+				if( $package[0]["price"] == 0 ){
+					if( selectDB("orders2","`userId` = '{$user[0]["id"]}' AND `packageId` = '{$packageId}' AND `status` = '1'") ){
+						header("LOCATION: index.php?v=MyAds&error=already_owned");die();
+					}
+				}
+
 				$orderData = array(
 					"userId" => $user[0]["id"],
 					"orderId" => $orderId,
@@ -38,6 +46,22 @@ if(!$_SESSION['valid']){
 						"totalAmount" => $package[0]["price"],
 						"date" => date("Y-m-d H:i:s"),
 					);
+					if( $package[0]["price"] == 0 ){
+						$user = selectDB("users","`id` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
+						$normalAds = $user[0]["normalAd"] + $package[0]["quantity"];
+						$specialAds = $user[0]["specialAd"] + $package[0]["quantitySP"];
+						$userData = array(
+							"normalAd" => "{$normalAds}",
+							"specialAd" => "{$specialAds}",
+						);
+						updateDB("users",$userData,"`id` = '{$user[0]["id"]}'");
+						$orderData = array(
+							"gatewayId" => "FREE_PKG",
+							"status" => "1",
+						);
+						updateDB("orders2",$orderData,"`orderId` = '{$orderId}'");
+						header("LOCATION: index.php?v=Payment&result=CAPTURED&requested_order_id={$orderId}&payment_id=FREE_PKG");die();
+					}
 					$link = doPaymant($data, $package[0]["price"]);
 					if($link){
 						header("LOCATION: $link");die();

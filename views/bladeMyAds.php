@@ -149,30 +149,41 @@
 								
 							</div>
 							<?php if( $packages = selectDB("packages","`status` = '0' ORDER BY `rank` ASC") ){ 
-								foreach( $packages as $package ){ ?>
+								foreach( $packages as $pkg ){ 
+									$canBuy = true;
+									if( $pkg["price"] == 0 ){
+										// Check if user already has a successful order for this free package
+										if( selectDB("orders2","`userId` = '{$user[0]["id"]}' AND `packageId` = '{$pkg["id"]}' AND `status` = '1'") ){
+											$canBuy = false;
+										}
+									}
+									
+									if( $canBuy ){
+									?>
 									<div class="col-md-4"> 
 										<div class="package-data">
 											<div class="img">
 												<img src="assets/img/packages/package-1.png" class="img-fluid" alt="..."> 
 											</div>
 											<div class="data">
-												<span class="title"><?php echo direction($package['enTitle'],$package['arTitle']); ?> - 1</span>  
-												<span class="content"><?php echo Trans('app','Price'); ?> : <?php echo $package['price']; ?> <?php echo Trans('app','Dinar'); ?></span>
-												<span class="content"><?php echo Trans('app','Regular Ad'); ?> : <?php echo $package['quantity']; ?> </span>
-												<span class="content"><?php echo Trans('app','Special Ad'); ?> : <?php echo $package['quantitySP']; ?> </span> 
-												<span class="content"><?php echo Trans('app','Expire Data'); ?> : <?php echo $package['expirey']; ?> <?php echo Trans('app','Days'); ?></span>
+												<span class="title"><?php echo direction($pkg['enTitle'],$pkg['arTitle']); ?></span>  
+												<span class="content"><?php echo Trans('app','Price'); ?> : <?php echo $pkg['price']; ?> <?php echo Trans('app','Dinar'); ?></span>
+												<span class="content"><?php echo Trans('app','Regular Ad'); ?> : <?php echo $pkg['quantity']; ?> </span>
+												<span class="content"><?php echo Trans('app','Special Ad'); ?> : <?php echo $pkg['quantitySP']; ?> </span> 
+												<span class="content"><?php echo Trans('app','Expire Data'); ?> : <?php echo $pkg['expirey']; ?> <?php echo Trans('app','Days'); ?></span>
 											</div>
 											<div class="buy">
 												<form action="index.php?v=Payment" method="post">
 													<input type="hidden" name="process" value="1">
-													<input type="hidden" name="packageId" value="<?php echo $package['id']; ?>">
+													<input type="hidden" name="packageId" value="<?php echo $pkg['id']; ?>">
 													<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Buy'); ?></button>
 												</form>
 												  
 											</div>
 										</div>
 									</div>
-							<?php }
+							<?php 	}
+								}
 							} ?>
 							<!-- <div class="col-md-4"> 
 								<div class="package-data">
