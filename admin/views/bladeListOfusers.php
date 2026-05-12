@@ -202,6 +202,7 @@ if( isset($_POST["name"]) ){
 		$("select[name=shopId]").val($("#shop"+id).html());
 		$("input[name=name]").val($("#name"+id).html()).focus();
 		$("input[name=username]").val($("#username"+id).html());
+		$("input[name=logo]").prop("required",false);
 		$("#images").empty().attr("style","margin-top:10px;display:block");
 		$("#images").html("<img src='../logos/"+$("#images"+id).html()+"' width='100' height='100'>");
 	})
