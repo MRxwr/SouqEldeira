@@ -24,7 +24,6 @@ if( isset($_POST["name"]) ){
 		$_POST["logo"] = uploadImageBanner($_FILES['logo']['tmp_name']);
 	}
 	if ( $id == 0 ){
-		$_POST["password"] = sha1($_POST["password"]);
 		if( insertDB("users", $_POST) ){
 			header("LOCATION: ?v=ListOfusers");
 		}else{
@@ -35,12 +34,6 @@ if( isset($_POST["name"]) ){
 		<?php
 		}
 	}else{
-		if( !empty($_POST["password"]) ){
-			$_POST["password"] = sha1($_POST["password"]);
-		}else{
-			$password = selectDB("users","`id` = '{$id}'");
-			$_POST["password"] = $password[0]["password"];
-		}
 		if( updateDB("users", $_POST, "`id` = '{$id}'") ){
 			header("LOCATION: ?v=ListOfusers");
 		}else{
@@ -78,17 +71,27 @@ if( isset($_POST["name"]) ){
 
 			<div class="col-md-4">
 			<label><?php echo direction("Mobile","الهاتف") ?></label>
-			<input type="number" min="0" maxlength="8" name="phone" class="form-control" required>
+			<input type="number" min="0" name="phone" class="form-control" required>
 			</div>
 			
 			<div class="col-md-4">
 			<label><?php echo direction("Email","البريد الإلكتروني") ?></label>
-			<input type="text" name="email" class="form-control" required>
+			<input type="text" name="email" class="form-control">
 			</div>
 			
 			<div class="col-md-4">
-			<label><?php echo direction("Password","كلمة المرور") ?></label>
-			<input type="text" name="password" class="form-control" required>
+			<label><?php echo direction("Shop","المحل") ?></label>
+			<select name="shopId" class="form-control">
+				<option value="0">None</option>
+				<?php
+				if( $shop = selectDB("shops","`status` = '0'") ){
+					for( $i = 0; $i < sizeof($shop); $i++ ){
+						$shopTitle = direction($shop[$i]["enTitle"],$shop[$i]["arTitle"]);
+						echo "<option value='{$shop[$i]["id"]}'>{$shopTitle}</option>";
+					}
+				}
+				?>
+			</select>
 			</div>
 
 			<div class="col-md-12">
@@ -128,6 +131,7 @@ if( isset($_POST["name"]) ){
 		<th><?php echo direction("Username","اسم المستخدم") ?></th>
 		<th><?php echo direction("Email","الإيميل") ?></th>
 		<th><?php echo direction("Mobile","الهاتف") ?></th>
+		<th><?php echo direction("Shop","المحل") ?></th>
 		<th><?php echo direction("Joined","إلتحق") ?></th>
 		<th class="text-nowrap"><?php echo direction("Actions","الخيارات") ?></th>
 		</tr>
@@ -152,6 +156,13 @@ if( isset($_POST["name"]) ){
 				<td id="username<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["username"] ?></td>
 				<td id="email<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["email"] ?></td>
 				<td id="mobile<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["phone"] ?></td>
+				<td>
+				<?php 
+				if( $shopItem = selectDB("shops","`id` = '{$users[$i]["shopId"]}'") ){
+					echo direction($shopItem[0]["enTitle"],$shopItem[0]["arTitle"]);
+				}
+				?>
+				</td>
 				<td id="date<?php echo $users[$i]["id"]?>" ><?php echo $users[$i]["date"] ?></td>
 				<td class="text-nowrap">
 					<a id="<?php echo $users[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i></a>
@@ -162,6 +173,8 @@ if( isset($_POST["name"]) ){
 					<div style="display:none">
 						<label id="name<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["name"] ?></label>
 						<label id="username<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["username"] ?></label>
+						<label id="email<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["email"] ?></label>
+						<label id="shop<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["shopId"] ?></label>
 						<label id="images<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["logo"] ?></label>
 					</div>		
 				</td>
@@ -186,9 +199,9 @@ if( isset($_POST["name"]) ){
 		$("input[name=update]").val(id);
 		$("input[name=email]").val($("#email"+id).html());
 		$("input[name=phone]").val($("#mobile"+id).html());
+		$("select[name=shopId]").val($("#shop"+id).html());
 		$("input[name=name]").val($("#name"+id).html()).focus();
 		$("input[name=username]").val($("#username"+id).html());
-		$("input[name=password]").removeAttr("required");
 		$("#images").empty().attr("style","margin-top:10px;display:block");
 		$("#images").html("<img src='../logos/"+$("#images"+id).html()+"' width='100' height='100'>");
 	})
