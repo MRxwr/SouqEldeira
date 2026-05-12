@@ -17,6 +17,19 @@ if (isset($_POST["assignPackage"]) && !empty($_POST["packageId"])) {
             "specialAd" => $specialAds
         );
         if (updateDB("users", $data, "`id` = '{$user[0]["id"]}'")) {
+            $orderId = rand(0000, 9999) . time();
+            $orderData = array(
+                "userId" => $user[0]["id"],
+                "orderId" => $orderId,
+                "packageId" => $pkgId,
+                "price" => 0,
+                "date" => date("Y-m-d H:i:s"),
+                'info' => json_encode(array("name" => $user[0]["fName"] . " " . $user[0]["lName"], "email" => $user[0]["email"], "phone" => $user[0]["phone"])),
+                "status" => "1",
+                "gatewayId" => "Free",
+                "paymentMethod" => "3"
+            );
+            insertDB("orders2", $orderData);
             echo "<script>alert('Package added successfullly. Normal Ads: {$normalAds}, Special Ads: {$specialAds}'); window.location.href='?v=ClientInfo&id={$user[0]["id"]}';</script>";
         }
     }
