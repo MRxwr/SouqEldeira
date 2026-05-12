@@ -30,15 +30,22 @@ if (isset($_POST["send_otp"]) && !empty($_POST["phone"])) {
 // Step 2: Verify OTP
 if (isset($_POST["verify_otp"]) && !empty($_POST["otp_code"]) && isset($_SESSION["pending_phone"])) {
     $phone = $_SESSION["pending_phone"];
-    $otp = $_POST["otp_code"];
+    $otp = trim($_POST["otp_code"]); // trim to remove any spaces
     
-    $check = selectDBNew("phone_verifications", [$phone, $otp], "`phone` = ? AND `code` = ? AND `expiry` > NOW()", "");
+    // We remove the expiry check for a moment to debug if it is a timezone issue
+    $check = selectDBNew("phone_verifications", [$phone, $otp], "`phone` = ? AND `code` = ?", "");
     
     if ($check) {
-        // Success! Remove verification entry
-        if (function_exists('deleteDB')) {
-            deleteDB("phone_verifications", "`phone` = '{$phone}'");
-        }
+        $expiryTime = strtotime($check[0]["expiry"]);
+        $currentTime = time();
+        
+        if ($currentTime > $expiryTime) {
+            $msg = direction("Code expired. Please request a new one.", "انتهت صلاحية الرمز. يرجى طلب رمز جديد.");
+        } else {
+            // Success! Remove verification entry
+            if (function_exists('deleteDB')) {
+                deleteDB("phone_verifications", "`phone` = '{$phone}'");
+            }
         
         // 1. Check if user exists
         $users = selectDBNew("users", [$phone], "`phone` = ?", "");
