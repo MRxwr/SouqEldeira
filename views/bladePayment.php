@@ -46,22 +46,6 @@ if(!$_SESSION['valid']){
 						"totalAmount" => $package[0]["price"],
 						"date" => date("Y-m-d H:i:s"),
 					);
-					if( $package[0]["price"] == 0 ){
-						$user = selectDB("users","`id` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
-						$normalAds = $user[0]["normalAd"] + $package[0]["quantity"];
-						$specialAds = $user[0]["specialAd"] + $package[0]["quantitySP"];
-						$userData = array(
-							"normalAd" => "{$normalAds}",
-							"specialAd" => "{$specialAds}",
-						);
-						updateDB("users",$userData,"`id` = '{$user[0]["id"]}'");
-						$orderData = array(
-							"gatewayId" => "FREE_PKG",
-							"status" => "1",
-						);
-						updateDB("orders2",$orderData,"`orderId` = '{$orderId}'");
-						header("LOCATION: index.php?v=Payment&result=CAPTURED&requested_order_id={$orderId}&payment_id=FREE_PKG");die();
-					}
 					$link = doPaymant($data, $package[0]["price"]);
 					if($link){
 						header("LOCATION: $link");die();
