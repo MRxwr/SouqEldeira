@@ -1,194 +1,128 @@
 <?php
-if ( !isset($_POST["register"]) && isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"]) ){
-	$_SESSION["timeout"] = time() + (86400*30);
-	if( $users = selectDBNew("users",[$_POST["username"],sha1($_POST["password"])],"`username` LIKE ? AND `password` LIKE ?","") ){
-		if( $users[0]["status"] != 0 ){
-			$msg = direction("Your account is blocked", "تم حظر حسابك");
-			?>
-			<script>
-				alert("<?php echo $msg; ?>");
-				window.location = "index.php?v=Home";
-			</script>
-			<?php
-		}
-		if( $users[0]["hidden"] != 0 ){
-			$msg = direction("Your account is locked", "تم قفل حسابك");
-			?>
-			<script>
-				alert("<?php echo $msg; ?>");
-				window.location = "index.php?v=Home";
-			</script>
-			<?php
-		}
-		if( count($users) > 1 ){
-			$msg = direction("Wrong username or password", "اسم المستخدم او كلمة المرور غير صحيحة");
-			?>
-			<script>
-				alert("<?php echo $msg; ?>");
-				window.location = "index.php?v=Home";
-			</script>
-			<?php
-		}else{
-			$GenerateNewCC = md5(rand());
-			if( updateDB("users",array("keepMeAlive"=>$GenerateNewCC),"`id` = '{$users[0]["id"]}'") ){
-				$_SESSION[$cookieSession] = $email;
-				setcookie($cookieSession, $GenerateNewCC, time() + (86400*30 ), "/");
-				header("Location: index.php?v=Home");
-				die();
-			}else{
-				$msg = direction("Browser not supported", "المتصفح غير مدعوم");
-				?>
-			<script>
-				alert("<?php echo $msg; ?>");
-				window.location = "index.php?v=Home";
-			</script>
-			<?php
-			}
-		}
-	}else{ 
-		$msg = direction("Wrong username or password", "اسم المستخدم او كلمة المرور غير صحيحة");
-		?>
-		<script>
-			alert("<?php echo $msg; ?>");
-			window.location = "index.php?v=Home";
-		</script>
-		<?php
-	}
+require_once("admin/includes/functions/notification.php");
+
+// Step 1: Request OTP
+if (isset($_POST["send_otp"]) && !empty($_POST["phone"])) {
+    $phone = $_POST["phone"];
+    $code = rand(100000, 999999);
+    
+    // Cleanup old codes for this phone
+    if (function_exists('deleteDB')) {
+        deleteDB("phone_verifications", "`phone` = '{$phone}'");
+    }
+    
+    // Store new code in DB
+    $data = array(
+        "phone" => $phone,
+        "code" => $code,
+        "expiry" => date("Y-m-d H:i:s", strtotime("+10 minutes"))
+    );
+    
+    if (insertDB("phone_verifications", $data)) {
+        whatsappUltraMsgVerify($phone, $code);
+        $_SESSION["pending_phone"] = $phone;
+        $successMsg = direction("OTP sent successfully to your WhatsApp", "تم إرسال رمز التحقق بنجاح إلى الواتساب الخاص بك");
+    } else {
+        $msg = direction("Error sending OTP", "خطأ في إرسال رمز التحقق");
+    }
 }
 
-if( isset($_POST["register"]) && !empty($_POST["username"]) && !empty($_POST["name"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && !empty($_POST["repeat-password"]) ){
-	if( $users = selectDBNew("users",[$_POST["email"]],"`email` = ?","") ){
-		$msg = direction("Email already exists", "البريد الإلكتروني موجود بالفعل");
-	}else{
-		if( $_POST["password"] == $_POST["repeat-password"] ){
-			$GenerateNewCC = md5(rand());
-			$password = sha1($_POST["password"]);
-			$data = array(
-				"username"	=>	$_POST["username"],
-				"name"		=>	$_POST["name"],
-				"email"		=>	$_POST["email"],
-				"password"	=>	$password,
-				"keepMeAlive"	=>	$GenerateNewCC,
-			);
-			if( insertDB("users",$data) ){
-				$_SESSION["timeout"] = time() + (86400*30);
-				$_SESSION[$cookieSession] = $_POST["email"];
-				setcookie($cookieSession, $GenerateNewCC, time() + (86400*30 ), "/");
-				header("Location: index.php?v=Home");
-				die();
-			}else{
-				$msg = direction("Browser not supported", "المتصفح غير مدعوم");	
-			}
-		}else{
-			$msg = direction("Passwords do not match", "كلمة المرور غير متطابقة");
-		}
-	}
-}
-
-if( isset($_GET["fp"]) && !empty($_GET["fp"]) ){
-	$msg = direction("Please check your email for new password", "يرجى التحقق من بريدك الإلكتروني لتجديد كلمة المرور");
+// Step 2: Verify OTP
+if (isset($_POST["verify_otp"]) && !empty($_POST["otp_code"]) && isset($_SESSION["pending_phone"])) {
+    $phone = $_SESSION["pending_phone"];
+    $otp = $_POST["otp_code"];
+    
+    $check = selectDBNew("phone_verifications", [$phone, $otp], "`phone` = ? AND `code` = ? AND `expiry` > NOW()", "");
+    
+    if ($check) {
+        // Success! Remove verification entry
+        if (function_exists('deleteDB')) {
+            deleteDB("phone_verifications", "`phone` = '{$phone}'");
+        }
+        
+        // 1. Check if user exists
+        $users = selectDBNew("users", [$phone], "`phone` = ?", "");
+        
+        if (!$users) {
+            // Register new user
+            $GenerateNewCC = md5(rand());
+            $userData = array(
+                "phone" => $phone,
+                "username" => "user_" . $phone, // Placeholder
+                "status" => 0,
+                "hidden" => 0,
+                "keepMeAlive" => $GenerateNewCC
+            );
+            insertDB("users", $userData);
+            $users = selectDBNew("users", [$phone], "`phone` = ?", "");
+        } else {
+            $GenerateNewCC = md5(rand());
+            updateDB("users", array("keepMeAlive" => $GenerateNewCC), "`id` = '{$users[0]["id"]}'");
+        }
+        
+        // 2. Set Sessions and Cookies
+        $_SESSION["timeout"] = time() + (86400 * 30);
+        $_SESSION[$cookieSession] = $phone;
+        setcookie($cookieSession, $GenerateNewCC, time() + (86400 * 30), "/");
+        
+        unset($_SESSION["pending_phone"]);
+        header("Location: index.php?v=Home");
+        die();
+    } else {
+        $msg = direction("Invalid or expired OTP", "رمز التحقق غير صحيح أو منتهي الصلاحية");
+    }
 }
 ?>
-<div class="row"> 
-<div class="col-md-11 mx-auto">
-<div class="guest-form-action">
-<!-- Pills navs -->
-<ul class="nav nav-login-register nav-pills nav-justified" id="nav-tab" role="tablist">
-	<li class="nav-item" role="presentation">
-	<a class="nav-link active" id="tab-login" data-bs-toggle="pill" href="#pills-login" role="tab"
-		aria-controls="pills-login" aria-selected="true"><?php echo Trans('app','Login'); ?></a>
-	</li>
-	<li class="nav-item" role="presentation">
-	<a class="nav-link" id="tab-register" data-bs-toggle="pill" href="#pills-register" role="tab"
-		aria-controls="pills-register" aria-selected="false"><?php echo Trans('app','Register'); ?></a>
-	</li>
-</ul>
-<!-- Pills navs -->
-<!-- Pills content -->
-<div class="tab-content tab-form-content mt-5" id="nav-tabContent">
-	<div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-	<div class="form-container">
-	<form id="login-form" method="post" action="?v=Login" >
-		<div class="mb-4 text-center">
-		<img src="assets/img/logo-1.png" class="img-fluid" alt="...">
-		</div>
-		<?php if(!empty($msg)) { ?>  
-		<div class="alert alert-danger d-flex align-items-center py-1" role="alert">
-			<i class="bi bi-x" style="font-size:30px;"></i> <?php echo $msg; ?> 
-		</div> 
-		<?php } ?> 
-		<!-- Email input -->
-		<div class="form-outline mb-4">
-		<input type="text" class="form-control" name="username" placeholder="<?php echo direction("Username","اسم المستخدم"); ?>" />
-		</div>
-		<!-- Password input -->
-		<div class="form-outline mb-3">
-		<input type="password" class="form-control"  name="password" placeholder="<?php echo Trans('app','Password'); ?>" />
-		</div>
-		<div class="row mb-4">
-		<div class="col-md-12 d-flex justify-content-start">
-			<div class="form-check mb-2">
-			<input class="form-check-input" type="checkbox" value="" checked />
-			<label class="form-check-label" for="loginCheck"> <?php echo Trans('app','Remember me'); ?> </label>
-			</div>
-		</div> 
-		<div class="col-md-12 d-flex justify-content-start"> 
-			<a href="?v=ForgetPassword"><?php echo Trans('app','Click here if you forgot your password?'); ?></a>
-		</div>
-		</div>
-		<!-- Submit button -->
-		<button type="submit" name="login" class="btn btn-primary btn-block w-100 mb-4 py-2"><?php echo Trans('app','Sign in'); ?></button>
-		<!-- Register buttons -->
-		<div class="d-none text-center">
-		<p>Not a member? <a href="#!">Register</a></p>
-		</div>
-	</form>
-	</div>
-	</div>
-	
-	<div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-	<div class="form-container">
-	<form id="register-form" method="post" action="?v=Login">
-		<input type="hidden" name="register" value="1">
-		<div class="mb-4 text-center">
-		<img src="assets/img/logo-1.png" class="img-fluid" alt="...">
-		</div>
-		<!-- Name input -->
-		<div class="form-outline mb-4">
-		<input type="text" class="form-control" name="name" placeholder="<?php echo Trans('app','Name'); ?>" />
-		</div>
-		<!-- Username input -->
-		<div class="form-outline mb-4">
-		<input type="text" class="form-control" name="username" placeholder="<?php echo Trans('app','Username'); ?>" />
-		</div>
-		<!-- Email input -->
-		<div class="form-outline mb-4">
-		<input type="email" class="form-control" name="email" placeholder="<?php echo Trans('app','Email'); ?>" />
-		</div>
-		<!-- Password input -->
-		<div class="form-outline mb-4">
-		<input type="password" class="form-control" name="password" placeholder="<?php echo Trans('app','Password'); ?>" />
-		</div>
-		<!-- Repeat Password input -->
-		<div class="form-outline mb-4">
-		<input type="password" class="form-control" name="repeat-password" placeholder="<?php echo Trans('app','Repeat Password'); ?>" />
-		</div>
-		<!-- Checkbox -->
-		<div class="col-md-12 d-flex justify-content-start mb-4">
-		<input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-			aria-describedby="registerCheckHelpText" />
-		<label class="form-check-label label-terms" for="registerCheck">
-			<?php echo Trans('app','I agree to the'); ?><a href="terms.php">&nbsp;<?php echo Trans('app','terms & conditions'); ?></a>
-		</label>
-		</div>
-		<!-- Submit button -->
-		<button type="submit" class="btn btn-primary btn-block w-100 mb-3 py-2"><?php echo Trans('app','Sign in'); ?></button>
-	</form>
-	</div>
-	</div>
-</div>
-<!-- Pills content -->
 
-</div>
-</div>
+<div class="row">
+    <div class="col-md-11 mx-auto">
+        <div class="guest-form-action">
+            <div class="form-container mt-5">
+                <form id="login-form" method="post" action="?v=Login">
+                    <div class="mb-4 text-center">
+                        <img src="assets/img/logo-1.png" class="img-fluid" alt="...">
+                    </div>
+
+                    <?php if (!empty($msg)) { ?>
+                        <div class="alert alert-danger d-flex align-items-center py-2" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i> <?php echo $msg; ?>
+                        </div>
+                    <?php } ?>
+
+                    <?php if (!empty($successMsg)) { ?>
+                        <div class="alert alert-success d-flex align-items-center py-2" role="alert">
+                            <i class="bi bi-check-circle-fill me-2"></i> <?php echo $successMsg; ?>
+                        </div>
+                    <?php } ?>
+
+                    <?php if (!isset($_SESSION["pending_phone"])) { ?>
+                        <!-- Step 1: Input Phone -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label"><?php echo direction("Phone Number (with country code)", "رقم الهاتف مع كود الدولة"); ?></label>
+                            <input type="text" class="form-control" name="phone" placeholder="96512345678" required />
+                            <div class="form-text mt-2"><?php echo direction("Example: 965XXXXXXXX", "مثال: 965XXXXXXXX"); ?></div>
+                        </div>
+                        <button type="submit" name="send_otp" class="btn btn-primary btn-block w-100 mb-4 py-2">
+                            <?php echo direction("Send Verification Code", "إرسال رمز التحقق"); ?>
+                        </button>
+                    <?php } else { ?>
+                        <!-- Step 2: Input OTP -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label"><?php echo direction("Enter Verification Code", "أدخل رمز التحقق"); ?></label>
+                            <input type="text" class="form-control text-center" name="otp_code" maxlength="6" placeholder="000000" style="letter-spacing: 10px; font-size: 24px; font-weight: bold;" required />
+                            <div class="form-text mt-2 text-center">
+                                <?php echo direction("Code sent to: ", "تم إرسال الرمز إلى: "); ?> <b><?php echo $_SESSION["pending_phone"]; ?></b>
+                            </div>
+                        </div>
+                        <button type="submit" name="verify_otp" class="btn btn-success btn-block w-100 mb-3 py-2">
+                            <?php echo direction("Verify and Login", "تحقق وتسجيل الدخول"); ?>
+                        </button>
+                        <div class="text-center">
+                            <a href="?v=Login" class="text-muted"><?php echo direction("Change phone number", "تغيير رقم الهاتف"); ?></a>
+                        </div>
+                    <?php } ?>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

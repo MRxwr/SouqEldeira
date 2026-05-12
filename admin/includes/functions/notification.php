@@ -226,4 +226,37 @@ function sendMailsAdmin($orderId){
 		$response = curl_exec($curl);
 		curl_close($curl);
 }
+
+function whatsappUltraMsgVerify($to, $code){
+	if( $whatsappNoti = selectDB("settings","`id` = '1'") ){
+		$data = array(
+			'token' => "{$whatsappNoti[0]["whatsappToken"]}",
+			'to' => "{$to}",
+			'image' => 'https://souqeldeira.com/assets/img/logo-1.png',
+			'caption' => "Hello, your verification code is: {$code}. Please use it to complete your profile verification in Souq Eldeira. \n\nThis is an automated message from Souq Eldeira.\n\nBest Regards, \nhttps://souqeldeira.com/",
+		);
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://api.ultramsg.com/{$whatsappNoti[0]["InstanceId"]}/messages/image",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_SSL_VERIFYHOST => 0,
+			CURLOPT_SSL_VERIFYPEER => 0,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "POST",
+			CURLOPT_POSTFIELDS => http_build_query($data),
+			CURLOPT_HTTPHEADER => array(
+				"content-type: application/x-www-form-urlencoded"
+			),
+		));
+		$response = curl_exec($curl);
+		curl_close($curl);
+		return $response;
+	}else{
+		$data = array();
+		return $data;
+	}
+}
 ?>
