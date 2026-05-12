@@ -10,10 +10,10 @@
 	?>
 			<div class="col-lg-12">
 				<a style="cursor: pointer" class="card card-ad <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" */?> href="?v=AdView&id=<?php echo $ad['id']; ?>">
-					<div class="row g-0"> 
+					<div class="row g-0 align-items-center"> 
 						<div class="col-4 col-sm-3 position-relative">
 							<?php if( $ad["packageId"] == 2 ){ ?><span class="feature-label"><?php echo Trans('app','Feature'); ?></span> <?php } ?>
-							<div id="carouselAdMainImages" class="carousel slide" data-bs-ride="carousel">
+							<div id="carouselAdMainImages<?php echo $ad['id']; ?>" class="carousel slide" data-bs-ride="carousel">
 							<div class="carousel-indicators">
 								<?php 
 								if( $images = selectDB("images","`productId` = '".$ad['id']."'") ){
@@ -24,7 +24,7 @@
 											$active = "";
 										}
 										?>
-										<button type="button" data-bs-target="#carouselAdMainImages" data-bs-slide-to="<?php echo $j ?>" class="<?php echo $active ?>" aria-current="true" aria-label="Slide <?php echo $j ?>"></button>
+										<button type="button" data-bs-target="#carouselAdMainImages<?php echo $ad['id']; ?>" data-bs-slide-to="<?php echo $j ?>" class="<?php echo $active ?>" aria-current="true" aria-label="Slide <?php echo $j ?>"></button>
 										<?php
 									}
 								}
@@ -41,22 +41,20 @@
 										}
 										?>
 										<div class="carousel-item <?php echo $active ?>">
-										<object>
 											<a href="?v=AdView&id=<?php echo $ad["id"] ?>" data-toggle="lightbox" data-gallery="mixedgallery">
-												<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" alt="...">
+												<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" style="object-fit: cover; min-height: 150px;" alt="...">
 											</a> 
-										</object> 
 										</div>
 										<?php
 									}
 								}
 								?>
 							</div>
-							<button class="carousel-control-prev" type="button" data-bs-target="#carouselAdMainImages" data-bs-slide="prev">
+							<button class="carousel-control-prev" type="button" data-bs-target="#carouselAdMainImages<?php echo $ad['id']; ?>" data-bs-slide="prev">
 								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 								<span class="visually-hidden">Previous</span>
 							</button>
-							<button class="carousel-control-next" type="button" data-bs-target="#carouselAdMainImages" data-bs-slide="next">
+							<button class="carousel-control-next" type="button" data-bs-target="#carouselAdMainImages<?php echo $ad['id']; ?>" data-bs-slide="next">
 								<span class="carousel-control-next-icon" aria-hidden="true"></span>
 								<span class="visually-hidden">Next</span>
 							</button>
