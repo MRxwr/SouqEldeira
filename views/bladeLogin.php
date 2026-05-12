@@ -47,37 +47,40 @@ if (isset($_POST["verify_otp"]) && !empty($_POST["otp_code"]) && isset($_SESSION
                 deleteDB("phone_verifications", "`phone` = '{$phone}'");
             }
         
-        // 1. Check if user exists
-        $users = selectDBNew("users", [$phone], "`phone` = ?", "");
-        
-        if (!$users) {
-            // Register new user
-            $GenerateNewCC = md5(rand());
-            $userData = array(
-                "phone" => $phone,
-                "username" => "user_" . $phone, // Placeholder
-                "status" => 0,
-                "hidden" => 0,
-                "keepMeAlive" => $GenerateNewCC
-            );
-            insertDB("users", $userData);
+            // 1. Check if user exists
             $users = selectDBNew("users", [$phone], "`phone` = ?", "");
-        } else {
-            $GenerateNewCC = md5(rand());
-            updateDB("users", array("keepMeAlive" => $GenerateNewCC), "`id` = '{$users[0]["id"]}'");
+            
+            if (!$users) {
+                // Register new user
+                $GenerateNewCC = md5(rand());
+                $userData = array(
+                    "phone" => $phone,
+                    "username" => "user_" . $phone, // Placeholder
+                    "status" => 0,
+                    "hidden" => 0,
+                    "keepMeAlive" => $GenerateNewCC
+                );
+                insertDB("users", $userData);
+                $users = selectDBNew("users", [$phone], "`phone` = ?", "");
+            } else {
+                $GenerateNewCC = md5(rand());
+                updateDB("users", array("keepMeAlive" => $GenerateNewCC), "`id` = '{$users[0]["id"]}'");
+            }
+            
+            // 2. Set Sessions and Cookies
+            $_SESSION["timeout"] = time() + (86400 * 30);
+            $_SESSION[$cookieSession] = $phone;
+            setcookie($cookieSession, $GenerateNewCC, time() + (86400 * 30), "/");
+            
+            unset($_SESSION["pending_phone"]);
+            header("Location: index.php?v=Home");
+            die();
         }
-        
-        // 2. Set Sessions and Cookies
-        $_SESSION["timeout"] = time() + (86400 * 30);
-        $_SESSION[$cookieSession] = $phone;
-        setcookie($cookieSession, $GenerateNewCC, time() + (86400 * 30), "/");
-        
-        unset($_SESSION["pending_phone"]);
-        header("Location: index.php?v=Home");
-        die();
     } else {
         $msg = direction("Invalid or expired OTP", "رمز التحقق غير صحيح أو منتهي الصلاحية");
     }
+}
+?>
 }
 ?>
 
