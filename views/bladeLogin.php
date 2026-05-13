@@ -81,8 +81,6 @@ if (isset($_POST["verify_otp"]) && !empty($_POST["otp_code"]) && isset($_SESSION
     }
 }
 ?>
-}
-?>
 
 <div class="row">
     <div class="col-md-11 mx-auto">
