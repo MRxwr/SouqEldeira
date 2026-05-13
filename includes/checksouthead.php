@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require ("admin/includes/config.php");
 require ("admin/includes/functions.php");
 require ("admin/includes/language.php");

@@ -1,6 +1,4 @@
 <?php
-require_once("admin/includes/functions/notification.php");
-
 // Step 1: Request OTP
 if (isset($_POST["send_otp"]) && !empty($_POST["phone"])) {
     unset($_SESSION["pending_phone"]);
@@ -72,7 +70,16 @@ if (isset($_POST["verify_otp"]) && !empty($_POST["otp_code"]) && isset($_SESSION
             // 2. Set Sessions and Cookies
             $_SESSION["timeout"] = time() + (86400 * 30);
             $_SESSION[$cookieSession] = $phone;
-            setcookie($cookieSession, $GenerateNewCC, time() + (86400 * 30), "/");
+            
+            // Set cookie with security flags for better Safari/iOS compatibility
+            $cookieOptions = [
+                'expires' => time() + (86400 * 30),
+                'path' => '/',
+                'secure' => true,
+                'httponly' => true,
+                'samesite' => 'Lax'
+            ];
+            setcookie($cookieSession, $GenerateNewCC, $cookieOptions);
             
             unset($_SESSION["pending_phone"]);
             header("Location: index.php?v=Home");
