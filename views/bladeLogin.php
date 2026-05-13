@@ -3,6 +3,7 @@ require_once("admin/includes/functions/notification.php");
 
 // Step 1: Request OTP
 if (isset($_POST["send_otp"]) && !empty($_POST["phone"])) {
+    unset($_SESSION["pending_phone"]);
     $phone = $_POST["phone"];
     $code = rand(100000, 999999);
     
@@ -55,6 +56,7 @@ if (isset($_POST["verify_otp"]) && !empty($_POST["otp_code"]) && isset($_SESSION
                 $GenerateNewCC = md5(rand());
                 $userData = array(
                     "phone" => $phone,
+                    "name" => "user_" . $phone, // Placeholder
                     "username" => "user_" . $phone, // Placeholder
                     "status" => 0,
                     "hidden" => 0,
