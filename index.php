@@ -1,7 +1,7 @@
 <?php 
 require_once 'template/header.php';
-if( isset($_GET["result"]) || isset($_GET["finalstatus"]) ){
-	if( (isset($_GET["result"]) && $_GET["result"] == "CAPTURED") || (isset($_GET["finalstatus"]) && base64_decode($_GET["finalstatus"]) == "Success") ){
+if( isset($_GET["result"]) ){
+	if( $_GET["result"] == "CAPTURED"){
 		$_GET["v"] = "Payment";
 		$_GET["success"] = 1;
 	}else{
