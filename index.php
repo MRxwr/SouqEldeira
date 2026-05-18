@@ -1,12 +1,12 @@
 <?php 
 require_once 'template/header.php';
-if( isset($_GET["result"]) ){
-	if( $_GET["result"] == "CAPTURED"){
-		$_GET["v"] = "Payment";
-		$_GET["success"] = 1;
-	}else{
+if( isset($_GET["finalstatus"]) ){
+	if( base64_decode($_GET["finalstatus"]) == "Failure" ){
 		$_GET["v"] = "Payment";
 		$_GET["error"] = 1;
+	}else{
+		$_GET["v"] = "Payment";
+		$_GET["success"] = 1;
 	}
 }
 

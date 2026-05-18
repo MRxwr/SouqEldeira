@@ -46,12 +46,47 @@ if(!$_SESSION['valid']){
 						"totalAmount" => $package[0]["price"],
 						"date" => date("Y-m-d H:i:s"),
 					);
-					$link = doPaymant($data, $package[0]["price"]);
+					//$link = doPaymant($data, $package[0]["price"]);
+
+					$bookeeyPipe = new bookeey;
+					$bookeeyPipe->setSuccessUrl('https://souqeldeira.com/index.php');
+					$bookeeyPipe->setFailureUrl('https://souqeldeira.com/index.php');
+					$bookeeyPipe->setMerchantID('mer23000173');    // Set the Merchant ID
+					$bookeeyPipe->setSecretKey('4653344');    // Set the Secret Key
+					$bookeeyPipe->setIsTestModeEnable(0);  // FORCE LIVE MODE
+					$bookeeyPipe->setOrderId(time());  // Set Order ID - This should be unique for each transaction.
+					$bookeeyPipe->setAmount($package[0]["price"]);  // Set amount in KWD 
+					$bookeeyPipe->setPayerName($user[0]["name"]);  // Set Payer Name
+					$bookeeyPipe->setPayerPhone($user[0]["phone"]);  // Set Payer Phone Numner
+					
+					if (isset($_REQUEST['selectedPaymentOption'])) {
+						$selectedPaymentOption = $_REQUEST['selectedPaymentOption'];
+						$bookeeyPipe->setSelectedPaymentOption("knet");
+					}else {
+						$selectedPaymentOption = $bookeeyPipe->getDefaultPaymentOption();
+						$bookeeyPipe->setSelectedPaymentOption("knet");
+					}
+
+					if (isset($_REQUEST['initPayment'])) {
+						// Pass sub merchant id(s) and amount(s) in the below format.
+						$transactionDetails = array(
+							array(
+								"SubMerchUID" => "mer23000173",
+								"Txn_AMT" => $package[0]["price"]
+							)
+						);
+
+						$bookeeyPipe->initiatePayment($transactionDetails);
+						exit;
+					}
+					
+					/*
 					if($link){
 						header("LOCATION: $link");die();
 					}else{
 						header("LOCATION: index.php?v=Payment&error=1");die();
 					}	
+					*/
 				}else{
 					header("LOCATION: index.php?v=Payment&error=1");die();
 				}
@@ -69,10 +104,10 @@ if(!$_SESSION['valid']){
 						<h4><?php echo Trans('app','Payment'); ?></h4>
 					</div> 
 					<div class="form-outline mb-4">
-						<?php if(isset($_GET["result"]) && $_GET["result"] == "CAPTURED"){
-							if($_GET["requested_order_id"]){
-								$orderId  = $_GET["requested_order_id"];
-								$order = selectDB("orders2"," `orderId` = '{$orderId}' ORDER BY `id` DESC LIMIT 1","");
+						<?php if(isset($_GET["finalstatus"]) && base64_decode($_GET["finalstatus"]) == "Success"){
+							if($_GET["merchantTxnId"]){
+								$gatewayId  = $_GET["merchantTxnId"];
+								$order = selectDB("orders2"," `gatewayId` = '{$gatewayId}' ORDER BY `id` DESC LIMIT 1","");
 								if($order && $order[0]["status"] == "0"){
 									$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
 									if($package){
@@ -86,20 +121,20 @@ if(!$_SESSION['valid']){
 										updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
 									}
 									$orderData = array(
-										"gatewayId" => $_GET["payment_id"],
+										"gatewayId" => $_GET["merchantTxnId"],
 										"status" => "1",
 									);
 									updateDB("orders2",$orderData,"`id` = '{$order[0]["id"]}'");
 									echo "<div class='alert alert-success'>".Trans('app','Payment completed successfully')."</div>";	
 									echo "<div class='text-default'>".Trans('app','Your ads have been activated')."</div>"; 
-									echo "<div class='text-default'>".Trans('app','Order ID:'. $orderId)."</div>"; 
-									echo "<div class='text-default'>".Trans('app','Payment ID:'.$_GET["payment_id"])."</div>";
+									echo "<div class='text-default'>".Trans('app','Order ID:'. $order[0]["id"])."</div>"; 
+									echo "<div class='text-default'>".Trans('app','Payment ID:'. $gatewayId)."</div>";
 									echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".Trans('app','MyAds')."</a>";
 								}else{
 									echo "<div class='alert alert-success'>".Trans('app','Payment completed successfully')."</div>";
 									echo "<div class='text-default'>".Trans('app','Your ads have been activated')."</div>"; 
-									echo "<div class='text-default'>".Trans('app','Order ID:'. $orderId)."</div>"; 
-									echo "<div class='text-default'>".Trans('app','Payment ID:'.$_GET["payment_id"])."</div>"; 
+									echo "<div class='text-default'>".Trans('app','Order ID:'. $order[0]["id"])."</div>"; 
+									echo "<div class='text-default'>".Trans('app','Payment ID:'. $gatewayId)."</div>"; 
 									echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".Trans('app','MyAds')."</a>";
 								}
 								
@@ -108,10 +143,11 @@ if(!$_SESSION['valid']){
 							}
 			
 						} else{
-							if($_GET["requested_order_id"]){
-								$orderId  = str_replace('?', '', $_GET["requested_order_id"]);
+							if($_GET["finalstatus"] && base64_decode($_GET["finalstatus"]) == "Failure"){
+								$gatewayId  = str_replace('?', '', $_GET["merchantTxnId"]);
 								echo "<div class='alert alert-danger'>".Trans('app','Payment failed')."</div>";
-								echo "<div class='text-default'>".Trans('app','Order ID:'. $orderId)."</div>"; 
+								echo "<div class='text-default'>".Trans('app','Order ID:'. $order[0]["id"])."</div>"; 
+								echo "<div class='text-default'>".Trans('app','Payment ID:'. $gatewayId)."</div>"; 
 								echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".Trans('app','Try again')."</a>";
 							}
 							
