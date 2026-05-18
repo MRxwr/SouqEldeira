@@ -67,7 +67,7 @@ if(!$_SESSION['valid']){
 						$bookeeyPipe->setSelectedPaymentOption("knet");
 					}
 
-					if (isset($_REQUEST['initPayment'])) {
+					//if (isset($_REQUEST['initPayment'])) {
 						// Pass sub merchant id(s) and amount(s) in the below format.
 						$transactionDetails = array(
 							array(
@@ -78,7 +78,7 @@ if(!$_SESSION['valid']){
 
 						$bookeeyPipe->initiatePayment($transactionDetails);
 						exit;
-					}
+					//}
 					
 					/*
 					if($link){
