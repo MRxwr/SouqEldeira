@@ -112,57 +112,83 @@ function uploadImageBannerown($imageLocation){
 		return "";
 	}
 }
+function str_lreplace($search, $replace, $subject) {
+    $pos = strrpos($subject, $search);
+    if($pos !== false) {
+        $subject = substr_replace($subject, $replace, $pos, strlen($search));
+    }
+    return $subject;
+}
+
 function doPaymant($data , $price){
     if ( $price <= 0 ) {
         return "https://{$_SERVER['HTTP_HOST']}/index.php?v=Payment&result=CAPTURED&payment_id=0&requested_order_id={$data["orderId"]}";
     }else{
         if(!empty($data) && is_array($data) && $data){
-            $basURL = "https://sandboxapi.upayments.com/api/v1/charge";
-            $token = "jtest123";
-            $paymentGateway = "knet";
-            $fullAmount = $data["totalAmount"];
+            $mid = "mer23000173";
+            $secretKey = "4653344";
+            $paymentGatewayUrl = "https://api.bookeey.com/api/payment/requestLink";
+            
+            $txnRefNo = mt_rand(1000000000000000, 9999999999999999);
+            $su = "https://souqeldeira.com/index.php";
+            $fu = "https://souqeldeira.com/index.php";
+            $amt = number_format($data["totalAmount"], 3, '.', '');
             $orderId = $data["orderId"];
-            $fields_string = array(
-                'language' => 'en',
-                'paymentGateway[src]' => "{$paymentGateway}",
-                "customer[name]" => $data["name"],
-                "customer[email]" => $data["email"],
-                "customer[mobile]" => $data["phone"],
-                'order[id]' => "{$orderId}",
-                'order[currency]' => "KWD",
-                'order[amount]' => "{$fullAmount}",
-                'reference[id]' => "{$orderId}",
-                'returnUrl' => "https://souqeldeira.com/index.php",
-                'cancelUrl' => "https://souqeldeira.com/index.php",
-                'notificationUrl' => 'https://souqeldeira.com/index.php',
-                );
-            $curl = curl_init();
-            curl_setopt_array($curl, array(
-            CURLOPT_URL => "{$basURL}",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => $fields_string,
-            CURLOPT_HTTPHEADER => array(
-                "Authorization: Bearer {$token}"
-            ),
-            ));
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-            curl_close($curl);
-            $response = json_decode($response,true);
-            if ($err) {
-                var_dump($err);
-                exit();
-            }
-            //saving info and redirecting to payment pages
-            if( isset($response["status"]) && $response["status"] == true && isset($response["data"]["link"]) && !empty($response["data"]["link"]) ){
-                $_SESSION["paymentLink"] = $response["data"]["link"];
-                return $response["data"]["link"];
+            $rndnum = rand(10000,99999);
+            
+            // Hash calculation
+            $hashData = "$mid|$txnRefNo|$su|$fu|$amt|GEN|$secretKey|$rndnum";
+            $hashed = hash('sha512', $hashData);
+
+            $postParams = [
+                'Do_TxnDtl' => [[ "SubMerchUID" => $mid, "Txn_AMT" => $amt ]],
+                'Do_TxnHdr' => [
+                    "PayFor" => "ECom",
+                    "Txn_HDR" => "$rndnum",
+                    "PayMethod" => "knet",
+                    "BKY_Txn_UID" => "",
+                    "Merch_Txn_UID" => "$orderId",
+                    "hashMac" => $hashed
+                ],
+                'Do_Appinfo' => [
+                    "APPTyp" => "Web",
+                    "OS" => "Web",
+                    "DevcType" => "Web",
+                    "IPAddrs" => $_SERVER['REMOTE_ADDR'],
+                    "AppVer" => "2.0.0",
+                    "UsrSessID" => session_id(),
+                    "APIVer" => "2.0.0"
+                ],
+                'Do_PyrDtl' => [
+                    "Pyr_MPhone" => $data["phone"],
+                    "Pyr_Name" => $data["name"]
+                ],
+                'Do_MerchDtl' => [
+                    "BKY_PRDENUM" => "ECom",
+                    "FURL" => $fu,
+                    "MerchUID" => $mid,
+                    "SURL" => $su
+                ],
+                'DBRqst' => "PY_ECom",
+                'Do_MoreDtl' => ["Cust_Data1" => "", "Cust_Data3" => "", "Cust_Data2" => ""]
+            ];
+
+            $ch = curl_init();
+            curl_setopt_array($ch, [
+                CURLOPT_URL => $paymentGatewayUrl,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_POST => true,
+                CURLOPT_POSTFIELDS => json_encode($postParams),
+                CURLOPT_HTTPHEADER => ['Accept: application/json', 'Content-Type: application/json'],
+                CURLOPT_SSL_VERIFYPEER => 0
+            ]);
+            
+            $response = curl_exec($ch);
+            curl_close($ch);
+            $res = json_decode($response, true);
+
+            if( isset($res["PayUrl"]) && !empty($res["PayUrl"]) ){
+                return $res["PayUrl"];
             }else{
                 return false;
             } 
