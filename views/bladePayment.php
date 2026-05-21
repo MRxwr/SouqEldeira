@@ -104,7 +104,7 @@ if(!$_SESSION['valid']){
 						<h4><?php echo Trans('app','Payment'); ?></h4>
 					</div> 
 					<div class="form-outline mb-4">
-						<?php if(isset($_GET["finalstatus"]) && base64_decode($_GET["finalstatus"]) == "Success"){
+						<?php if(isset($_GET["finalstatus"]) && strtolower(base64_decode($_GET["finalstatus"])) == "success"){
 							if($_GET["merchantTxnId"]){
 								$gatewayId  = $_GET["merchantTxnId"];
 								$order = selectDB("orders2"," `gatewayId` = '{$gatewayId}' ORDER BY `id` DESC LIMIT 1","");
@@ -143,7 +143,7 @@ if(!$_SESSION['valid']){
 							}
 			
 						} else{
-							if($_GET["finalstatus"] && base64_decode($_GET["finalstatus"]) == "Failure"){
+							if($_GET["finalstatus"] && strtolower(base64_decode($_GET["finalstatus"])) == "failure"){
 								$gatewayId  = str_replace('?', '', $_GET["merchantTxnId"]);
 								echo "<div class='alert alert-danger'>".Trans('app','Payment failed')."</div>";
 								echo "<div class='text-default'>".Trans('app','Order ID:'. $order[0]["id"])."</div>"; 
