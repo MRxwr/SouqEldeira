@@ -89,6 +89,16 @@ if (isset($_POST["verify_otp"]) && !empty($_POST["otp_code"]) && isset($_SESSION
         $msg = direction("Invalid or expired OTP", "رمز التحقق غير صحيح أو منتهي الصلاحية");
     }
 }
+
+if( isset($_GET["error"]) ){
+    if( $_GET["error"] == "status" ){
+        $msg = direction("Your account is blocked", "تم حظر حسابك");
+    }elseif( $_GET["error"] == "blocked" ){
+        $msg = direction("Your account is locked", "تم قفل حسابك");
+    }elseif( $_GET["error"] == "login" ){
+        $msg = direction("Login failed", "فشل تسجيل الدخول");
+    }
+}
 ?>
 
 <div class="row">
