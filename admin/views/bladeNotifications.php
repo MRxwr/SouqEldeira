@@ -5,6 +5,18 @@ if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 	}
 }
 
+if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
+	if( updateDB('notifications',array('hidden'=> '1'),"`id` = '{$_GET["hide"]}'") ){
+		header("LOCATION: ?v=Notifications");
+	}
+}
+
+if( isset($_GET["show"]) && !empty($_GET["show"]) ){
+	if( updateDB('notifications',array('hidden'=> '0'),"`id` = '{$_GET["show"]}'") ){
+		header("LOCATION: ?v=Notifications");
+	}
+}
+
 if( isset($_POST["title"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
@@ -93,6 +105,8 @@ if( isset($_POST["title"]) ){
 		if( $notification = selectDB("notifications","`status` = '0' ORDER BY `id` DESC") ){
 			for( $i = 0; $i < sizeof($notification); $i++ ){
 				$counter = $i + 1;
+				$hiddenIcon = $notification[$i]["hidden"] == 1 ? "fa fa-eye-slash" : "fa fa-eye";
+				$hiddenAction = $notification[$i]["hidden"] == 1 ? "?v={$_GET["v"]}&show={$notification[$i]["id"]}" : "?v={$_GET["v"]}&hide={$notification[$i]["id"]}";
 				?>
 				<tr>
                 <td><?php echo str_pad($counter, 3, "0", STR_PAD_LEFT); ?></td>
@@ -100,6 +114,8 @@ if( isset($_POST["title"]) ){
 				<td id="body<?php echo $notification[$i]["id"]?>" ><?php echo $notification[$i]["body"] ?></td>
 				<td class="text-nowrap">
 					<a id="<?php echo $notification[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i>
+					</a>
+					<a href="<?php echo $hiddenAction ?>" data-toggle="tooltip" data-original-title="Toggle Visibility"><i class="<?php echo $hiddenIcon ?> m-r-10"></i>
 					</a>
 					<a href="<?php echo "?v={$_GET["v"]}&delId={$notification[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger"></i>
 					</a>			

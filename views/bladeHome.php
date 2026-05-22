@@ -1,5 +1,11 @@
 <div class="alert alert-primary welcome-message responsive" role="alert">
-	<i class="bi bi-exclamation-circle"></i> <?php echo Trans('app','A message from the manager to manage the website'); ?>
+	<?php
+	if( $topNotification = selectDB("notifications","`status` = '0' AND `hidden` = '0' ORDER BY `id` DESC LIMIT 1") ){
+		echo '<i class="bi bi-exclamation-circle"></i> <b>' . $topNotification[0]["title"] . ':</b> ' . $topNotification[0]["body"];
+	} else {
+		echo '<i class="bi bi-exclamation-circle"></i> ' . Trans('app','A message from the manager to manage the website');
+	}
+	?>
 </div>  
 
 <form class="search-area" action="?v=Search" method="POST">
@@ -97,9 +103,15 @@
 
 <div class="homePageSecondContent my-3">
 	<div class="container container-project">
-		<div class="alert alert-primary welcome-message" role="alert">
-			<i class="bi bi-exclamation-circle"></i> <?php echo Trans('app','A message from the manager to manage the website'); ?>
-		</div>
+		<?php
+		if( $homeNotification = selectDB("notifications","`status` = '0' AND `hidden` = '0' ORDER BY `id` DESC LIMIT 1") ){
+			?>
+			<div class="alert alert-primary welcome-message" role="alert">
+				<i class="bi bi-exclamation-circle"></i> <b><?php echo $homeNotification[0]["title"]; ?>:</b> <?php echo $homeNotification[0]["body"]; ?>
+			</div>
+			<?php
+		}
+		?>
 	</div>
 </div>	
 	
