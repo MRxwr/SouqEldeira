@@ -1,6 +1,6 @@
 <?php 
 if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
-	if( updateDB('users',array('hidden'=> '2'),"`id` = '{$_GET["hide"]}'") ){
+	if( updateDB('users',array('hidden'=> '1'),"`id` = '{$_GET["hide"]}'") ){
 		header("LOCATION: ?v=ListOfusers");
 	}
 }
@@ -141,7 +141,7 @@ if( isset($_POST["name"]) ){
 		<?php 
 		if( $users = selectDB("users","`status` = '0'") ){
 			for( $i = 0; $i < sizeof($users); $i++ ){	
-				if ( $users[$i]["hidden"] == 2 ){
+				if ( $users[$i]["hidden"] == 1 ) {
 					$icon = "fa fa-unlock";
 					$link = "?v={$_GET["v"]}&show={$users[$i]["id"]}";
 					$hide = direction("Unlock","فتح الحساب");
