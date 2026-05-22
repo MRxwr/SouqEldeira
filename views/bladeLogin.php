@@ -1,4 +1,11 @@
 <?php
+// Handle "Change phone number" manual reset
+if (isset($_GET["reset"]) && $_GET["reset"] == "phone") {
+    unset($_SESSION["pending_phone"]);
+    header("Location: index.php?v=Login");
+    die();
+}
+
 // Step 1: Request OTP
 if (isset($_POST["send_otp"]) && !empty($_POST["phone"])) {
     unset($_SESSION["pending_phone"]);
@@ -145,7 +152,7 @@ if( isset($_GET["error"]) ){
                             <?php echo direction("Verify and Login", "تحقق وتسجيل الدخول"); ?>
                         </button>
                         <div class="text-center">
-                            <a href="?v=Login" class="text-muted"><?php echo direction("Change phone number", "تغيير رقم الهاتف"); ?></a>
+                            <a href="?v=Login&reset=phone" class="text-muted"><?php echo direction("Change phone number", "تغيير رقم الهاتف"); ?></a>
                         </div>
                     <?php } ?>
                 </form>
