@@ -53,16 +53,16 @@ if ( isset($_POST) && isset($_POST["categoryId"]) && !empty($_POST["categoryId"]
 ?>
 <div class="search-ads-options mb-3">
 	<div class="div">
-		<span class="title"><?php echo Trans('app','Search Options'); ?></span>
+		<span class="title"><?php echo direction("Search Options","خيارات البحث"); ?></span>
 	</div> 
 	<div class="div">
-		<span class="title"><?php echo Trans('app','Type'); ?></span>
+		<span class="title"><?php echo direction("Type","النوع"); ?></span>
 		<span class="data">
 			<span><?php echo $categoyTitle; ?><span> 
 		</span>
 	</div>
 	<div class="div">
-		<span class="title"><?php echo Trans('app','Region'); ?></span>
+		<span class="title"><?php echo direction("Region","المنطقة"); ?></span>
 		<span class="data">
 			<span><?php echo $areaTitle; ?></span>
 		</span>
@@ -70,12 +70,12 @@ if ( isset($_POST) && isset($_POST["categoryId"]) && !empty($_POST["categoryId"]
 </div>
 
 <div class="search-title mb-3 mt-2">  
-	<h4><i class="bi bi-search"></i><?php echo Trans('app','Search Result'); ?><span><?php echo count($ads) . " " .Trans('app','Ad'); ?></span></h4>
+	<h4><i class="bi bi-search"></i><?php echo direction("Search Result","نتيجة البحث"); ?><span><?php echo count($ads) . " " .direction("Ad","إعلان"); ?></span></h4>
 </div>
 
 <div class="ads-section">
 	<?php include 'template/adsMainList.php'; ?>
 	<div class="d-block text-end mt-3">
-	<?php /*<a href="" class="btn btn-primary"><?php echo Trans('app','More'); ?> ...</a>*/?>
+	<?php /*<a href="" class="btn btn-primary"><?php echo direction("More","المزيد"); ?> ...</a>*/?>
 	</div>
 </div>

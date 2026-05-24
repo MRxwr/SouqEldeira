@@ -31,37 +31,37 @@ if( isset($_POST) && !empty($_POST) ){
 <div class="row"> 
 	<div class="main-contact with-white-bg p-4 pt-4 d-flex align-items-center">
 		<div class="col-lg-6 col-md-12">  
-			<h4 class="mb-3"><?php echo Trans('app','Contact Us'); ?></h4>
+			<h4 class="mb-3"><?php echo direction("Contact Us","اتصل بنا"); ?></h4>
 			<form class="contact-us-form" method="post" action="">
 				<div class="row row-fields d-flex align-items-stretch g-3">
 					<div class="col-md-6">
 						<div class="form-outline mb-4">
-						<input type="text" class="form-control" name="name" placeholder="<?php echo Trans('app','Name'); ?>" />
+						<input type="text" class="form-control" name="name" placeholder="<?php echo direction("Name","الاسم"); ?>" />
 						</div>
 						<div class="form-outline mb-4">
-						<input type="text" class="form-control" name="phone" placeholder="<?php echo Trans('app','Phone Number'); ?>" />
+						<input type="text" class="form-control" name="phone" placeholder="<?php echo direction("Phone Number","رقم الهاتف"); ?>" />
 						</div>
 						<div class="form-outline mb-4">
-						<input type="text" class="form-control" name="email" placeholder="<?php echo Trans('app','Email'); ?>" />
+						<input type="text" class="form-control" name="email" placeholder="<?php echo direction("Email","البريد الإلكتروني"); ?>" />
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-outline h-100 pb-4"> 
-							<textarea class="form-control h-100" name="message"  rows="3" placeholder="<?php echo Trans('app','Message'); ?>"></textarea>
+							<textarea class="form-control h-100" name="message"  rows="3" placeholder="<?php echo direction("Message","الرسالة"); ?>"></textarea>
 						</div>
 					</div>
 				</div>
 				<div class="row">	
 					<div class="col-md-12">
-						<button type="submit" class="btn btn-primary btn-block w-100 mb-3 py-2"><i class="bi bi-send"></i> <?php echo Trans('app','Send'); ?></button>
+						<button type="submit" class="btn btn-primary btn-block w-100 mb-3 py-2"><i class="bi bi-send"></i> <?php echo direction("Send","إرسال"); ?></button>
 					</div>
 				</div>
 			</form>
 			<div class="contact-details">
 				<div class="row align-items-center g-1 mt-2"> 
 					<div class="col-md-12">
-						<h3><?php echo Trans('app','Contact details'); ?></h3>
-						<h5 class="mb-3"><?php echo Trans('app','To communicate and inquire with customer service'); ?></h5>
+						<h3><?php echo direction("Contact details","تفاصيل الاتصال"); ?></h3>
+						<h5 class="mb-3"><?php echo direction("To communicate and inquire with customer service","للتواصل والاستفسار مع خدمة العملاء"); ?></h5>
 						<div class="data">
 							<a href="tel:66004080"><i class="bi bi-telephone-fill"></i>66004080</a> 
 							<a href="tel:222272077"><i class="bi bi-newspaper"></i>222272077</a>

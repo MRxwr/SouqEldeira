@@ -97,26 +97,26 @@
 				
 				<div class="col-md-12"> 
 					<div class="start-page-title with-white-bg text-center mb-4 py-3">
-						<h4 class="mb-0 fw-bold"><?php echo Trans('app','My Ads'); ?></h4>
+						<h4 class="mb-0 fw-bold"><?php echo direction("My Ads","إعلاناتي"); ?></h4>
 			 		</div>
 				</div>
 				<div class="col-md-12"> 
 					<div class="with-white-bg mb-4 p-4 px-2 px-md-4">
 						
-						<h4 class="mb-3 fw-bold"><?php echo Trans('app','My balance of ads'); ?></h4>
+						<h4 class="mb-3 fw-bold"><?php echo direction("My balance of ads","رصيد إعلاناتي"); ?></h4>
 						
 						
 						<div class="ads-balance">
 							<div>
-								<span class="title"><?php echo Trans('app','Regular Advertising'); ?></span>
+								<span class="title"><?php echo direction("Regular Advertising","الإعلانات العادية"); ?></span>
 								<span class="count"><?php echo $normalAds; ?></span>
 							</div> 
 							<div>
-								<span class="title"><?php echo Trans('app','Special Advertising'); ?></span>
+								<span class="title"><?php echo direction("Special Advertising","الإعلانات المميزة"); ?></span>
 								<span class="count"><?php echo $specialAds; ?></span>
 							</div>
 							<div class="recharge-balance"> 
-								<a href="#" class="btn btn-primary py-0 px-5" id="recharge-balance-btn"><?php echo Trans('app','Recharge Your Balance'); ?></a>
+								<a href="#" class="btn btn-primary py-0 px-5" id="recharge-balance-btn"><?php echo direction("Recharge Your Balance","إعادة شحن رصيدك"); ?></a>
 							</div> 
 						</div>
 						
@@ -126,24 +126,24 @@
 							<div class="col-md-4 col-lg-4 col-form">   
 								 
 								<div class="buy-ad">
-									<span><?php echo Trans('app','Buy Regular Ad'); ?></span>
+									<span><?php echo direction("Buy Regular Ad","شراء إعلان عادي"); ?></span>
 									<form class="buy-ad-form buy-ad-regular"> 
 								        <div class="form-outline">
 								        	<input type="number"  class="form-control" name="quantity" placeholder="<?php echo Trans('app','Qt'); ?>" />
 								        </div> 
-								        <div class="text-center">(x 1 <?php echo Trans('app','Dinar'); ?>)</div> 
-			      						<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Pay'); ?></button> 
+								        <div class="text-center">(x 1 <?php echo direction("KD", "دك"); ?>)</div> 
+			      						<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo direction("Pay","ادفع"); ?></button> 
 									</form>
 								</div>
 								
 								<div class="buy-ad mt-2">
-									<span><?php echo Trans('app','Buy Special Ad'); ?></span>
+									<span><?php echo direction("Buy Special Ad","شراء إعلان مميز"); ?></span>
 									<form class="buy-ad-form special-ad-regular">
 								        <div class="form-outline">
-								        	<input type="number"  class="form-control" name="quantity" placeholder="<?php echo Trans('app','Qt'); ?>" />
+								        	<input type="number"  class="form-control" name="quantity" placeholder="<?php echo direction("Qt","الكمية"); ?>" />
 								        </div> 
-								        <div class="text-center">(x 1 <?php echo Trans('app','Dinar'); ?>)</div> 
-			      						<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Pay'); ?></button>
+								        <div class="text-center">(x 1 <?php echo direction("KD", "دك"); ?>)</div> 
+			      						<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo direction("Pay","ادفع"); ?></button>
 									</form>
 								</div>
 								
@@ -167,16 +167,16 @@
 											</div>
 											<div class="data">
 												<span class="title"><?php echo direction($pkg['enTitle'],$pkg['arTitle']); ?></span>  
-												<span class="content"><?php echo Trans('app','Price'); ?> : <?php echo $pkg['price']; ?> <?php echo Trans('app','Dinar'); ?></span>
-												<span class="content"><?php echo Trans('app','Regular Ad'); ?> : <?php echo $pkg['quantity']; ?> </span>
-												<span class="content"><?php echo Trans('app','Special Ad'); ?> : <?php echo $pkg['quantitySP']; ?> </span> 
-												<span class="content"><?php echo Trans('app','Expire Data'); ?> : <?php echo $pkg['expirey']; ?> <?php echo Trans('app','Days'); ?></span>
+												<span class="content"><?php echo direction("Price","السعر"); ?> : <?php echo $pkg['price']; ?> <?php echo direction("Dinar","دينار"); ?></span>
+												<span class="content"><?php echo direction("Regular Ad","إعلان عادي"); ?> : <?php echo $pkg['quantity']; ?> </span>
+												<span class="content"><?php echo direction("Special Ad","إعلان مميز"); ?> : <?php echo $pkg['quantitySP']; ?> </span> 
+												<span class="content"><?php echo direction("Expire Data","تاريخ الانتهاء"); ?> : <?php echo $pkg['expirey']; ?> <?php echo direction("Days","أيام"); ?></span>
 											</div>
 											<div class="buy">
 												<form action="index.php?v=Payment" method="post">
 													<input type="hidden" name="process" value="1">
 													<input type="hidden" name="packageId" value="<?php echo $pkg['id']; ?>">
-													<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Buy'); ?></button>
+													<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo direction("Buy","شراء"); ?></button>
 												</form>
 												  
 											</div>
@@ -191,14 +191,14 @@
 										<img src="assets/img/packages/package-2.png" class="img-fluid" alt="...">
 									</div>
 									<div class="data">
-										<span class="title"><?php echo Trans('app','Golden Package'); ?> - 2</span>  
-										<span class="content"><?php echo Trans('app','Price'); ?> : 1000 <?php echo Trans('app','Dinar'); ?></span>
-										<span class="content"><?php echo Trans('app','Regular Ad'); ?> : 300 </span>
-										<span class="content"><?php echo Trans('app','Special Ad'); ?> : 200 </span> 
-										<span class="content"><?php echo Trans('app','Expire Data'); ?> : 60 <?php echo Trans('app','Day'); ?></span>
+										<span class="title"><?php echo direction("Golden Package","الباقة الذهبية"); ?> - 2</span>  
+										<span class="content"><?php echo direction("Price","السعر"); ?> : 1000 <?php echo direction("Dinar","دينار"); ?></span>
+										<span class="content"><?php echo direction("Regular Ad","إعلان عادي"); ?> : 300 </span>
+										<span class="content"><?php echo direction("Special Ad","إعلان مميز"); ?> : 200 </span> 
+										<span class="content"><?php echo direction("Expire Data","تاريخ الانتهاء"); ?> : 60 <?php echo direction("Day","يوم"); ?></span>
 									</div>
 									<div class="buy">
-										<a href="#!" class="btn btn-primary py-0 btn-sm"><?php echo Trans('app','Pay'); ?></a> 
+										<a href="#!" class="btn btn-primary py-0 btn-sm"><?php echo direction("Pay","ادفع"); ?></a> 
 									</div>
 								</div>
 							</div>  -->
@@ -216,19 +216,19 @@
 					<div class="with-white-bg mb-4 p-4 px-2 px-md-4">
 						
 						<div class="my-current-ad-head">
-							<h4 class="mb-4 fw-bold"><?php echo Trans('app','My Ads'); ?></h4>	
+							<h4 class="mb-4 fw-bold"><?php echo direction("My Ads","إعلاناتي"); ?></h4>	
 							<div class="ad-status">
 								<div>
 									<span class="published ad-status-type"><i class="bi bi-check"></i></span>
-									<span class="txt"><?php echo Trans('app','Published'); ?></span>
+									<span class="txt"><?php echo direction("Published","منشور"); ?></span>
 								</div>
 								<div>
 									<span class="waiting ad-status-type"><i class="bi bi-exclamation"></i></span>
-									<span class="txt"><?php echo Trans('app','Waiting'); ?></span>
+									<span class="txt"><?php echo direction("Waiting","في الانتظار"); ?></span>
 								</div>
 								<div>
 									<span class="refused ad-status-type"><i class="bi bi-x"></i></span> 
-									<span class="txt"><?php echo Trans('app','Refused'); ?></span> 
+									<span class="txt"><?php echo direction("Refused","مرفوض"); ?></span> 
 								</div>
 							</div>
 						</div>
@@ -275,7 +275,7 @@
 										<div class="data">
 											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
 											<h5><?php echo direction($gov['enTitle'],$gov['arTitle']); ?> - <?php echo direction($area['enTitle'],$area['arTitle']); ?></h5>
-											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 
+											<h6><?php echo direction("Created Date","تاريخ الإنشاء"); ?> &nbsp;&nbsp; 
 											<?php
 											$adDate = new DateTime($ad['date']);
 											$now = new DateTime();
@@ -307,7 +307,7 @@
 						</div> 
 						
 						<div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="?v=MyAdsList&type=active_ads&page=1" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="?v=MyAdsList&type=active_ads&page=1" class="view-all" style="text-decoration: underline"><?php echo direction("View All","عرض الكل"); ?></a>
 					    </div>
 						
 					</div>
@@ -317,7 +317,7 @@
 					<div class="with-white-bg mb-4 p-4 px-2 px-md-4">  
 						
 						<div class="my-ended-ad-head">
-							<h4 class="mb-4 fw-bold"><?php echo Trans('app','My Ended Ads'); ?><span></span></h4>
+							<h4 class="mb-4 fw-bold"><?php echo direction("My Ended Ads","إعلاناتي المنتهية"); ?><span></span></h4>
 						</div> 
 						
 						<div class="my-ad-list ended-ads">
@@ -352,7 +352,7 @@
 										<div class="data">
 											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
 											<h5><?php echo direction($gov['enTitle'],$gov['arTitle']); ?> - <?php echo direction($area['enTitle'],$area['arTitle']); ?></h5>
-											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 
+											<h6><?php echo direction("Created Date","تاريخ الإنشاء"); ?> &nbsp;&nbsp; 
 											<?php
 											$adDate = new DateTime($ad['date']);
 											$now = new DateTime();
@@ -368,7 +368,7 @@
 										<a href="#" 
 											class="republish" 
 											onclick="return confirmRepublish('?v=<?php echo $_GET['v']; ?>&republish=<?php echo $ad['id']; ?>');">
-											<i class="bi bi-arrow-repeat"></i> <?php //echo Trans('app', 'Republish'); ?>
+											<i class="bi bi-arrow-repeat"></i> <?php echo direction("Republish","إعادة النشر"); ?>
 										</a>
 										</div> 
 									</div>
@@ -378,7 +378,7 @@
 							<?php } ?>
 						</div> 
 						<div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="?v=MyAdsList&type=ended_ads&page=1" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="?v=MyAdsList&type=ended_ads&page=1" class="view-all" style="text-decoration: underline"><?php echo direction("View All","عرض الكل"); ?></a>
 					    </div>
 						
 						
@@ -394,7 +394,7 @@
 				<div class="col-md-12 col-lg-6 col-xl-6"> 
 					<div class="with-white-bg  p-4 px-2 px-md-4"> 
 						<div class="favourite-list ads-section">
-						  <h4 class="mb-4"><?php echo Trans('app','Favourite'); ?></h4>	  	  
+						  <h4 class="mb-4"><?php echo direction("Favourite","المفضلة"); ?></h4>	  	  
 						  <?php foreach( $myFevoriteAds as $ad ){ 
 								if( $ad["packageId"] == 2 ){
 									$feature = "card-feature";
@@ -426,7 +426,7 @@
 										<div class="data">
 											<h4><a href="?v=AdView&id=<?php echo $ad['id']; ?>"><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></a></h4>
 											<h5><?php echo direction($gov['enTitle'],$gov['arTitle']); ?> - <?php echo direction($area['enTitle'],$area['arTitle']); ?></h5>
-											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 
+											<h6><?php echo direction("Created Date","تاريخ الإنشاء"); ?> &nbsp;&nbsp; 
 											<?php
 											$adDate = new DateTime($ad['date']);
 											$now = new DateTime();
@@ -442,7 +442,7 @@
 										<a href="#" 
 											class="remove" 
 											onclick="return confirmRemove('?v=<?php echo $_GET['v']; ?>&remove=<?php echo $ad['id']; ?>');">
-											<i class="bi bi-trash3"></i> <?php //echo Trans('app', 'Republish'); ?>
+											<i class="bi bi-trash3"></i> <?php echo direction("Remove","إزالة"); ?>
 										</a>
 										</div> 
 									</div>
@@ -451,7 +451,7 @@
 
 							<?php } ?>
 						  <div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="?v=MyAdsList&type=favourite_ads&page=1" class="view-all"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="?v=MyAdsList&type=favourite_ads&page=1" class="view-all"><?php echo direction("View All","عرض الكل"); ?></a>
 						  </div>
 						</div>
 					</div> 

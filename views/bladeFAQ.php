@@ -8,7 +8,7 @@ $socialMedia = selectDB("s_media","`id` = '1'");
 			<img src="assets/img/logo-1.png" class="img-fluid" alt="...">
 		</div>
 		<div class="mb-4 text-center">
-			<h5 class="faq-title" ><?php echo Trans('app','Frequently asked questions about properties for rent or sale in Kuwait'); ?></h5> 
+			<h5 class="faq-title" ><?php echo direction("Frequently asked questions about properties for rent or sale in Kuwait","الأسئلة الشائعة حول العقارات للإيجار أو البيع في الكويت"); ?></h5> 
 		</div>
 		<div class="accordion accordion-flush" id="accordionFlushExample">
 			<?php
@@ -31,10 +31,10 @@ $socialMedia = selectDB("s_media","`id` = '1'");
 			?>
 		</div>
 			<div class="text-center mt-4"> 
-			<p class="add-ad-form-text fw-bold"><?php echo Trans('app','Send us message by'); ?>
-			<a href="https://wa.me/<?php echo $socialMedia[0]['mobile']; ?>"><?php echo Trans('app','WhatsApp'); ?></a>
-			<?php echo Trans('app','or'); ?>
-			<a href="?v=Contact"><?php echo Trans('app','call us'); ?></a> <?php echo Trans('app','for help'); ?></p>
+			<p class="add-ad-form-text fw-bold"><?php echo direction("Send us message by","أرسل لنا رسالة عبر"); ?>
+			<a href="https://wa.me/<?php echo $socialMedia[0]['mobile']; ?>"><?php echo direction("WhatsApp","واتساب"); ?></a>
+			<?php echo direction("or","أو"); ?>
+			<a href="?v=Contact"><?php echo direction("call us","اتصل بنا"); ?></a> <?php echo direction("for help","للمساعدة"); ?></p>
 			</div>
 	</div>
 </div>

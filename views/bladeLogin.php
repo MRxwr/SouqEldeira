@@ -76,7 +76,7 @@ if (isset($_POST["verify_otp"]) && !empty($_POST["otp_code"]) && isset($_SESSION
             
             // 2. Set Sessions and Cookies
             $_SESSION["timeout"] = time() + (86400 * 30);
-            $_SESSION[$cookieSession] = $phone;
+            $_SESSION[$cookieSession] = $GenerateNewCC;
             
             // Set cookie with security flags for better Safari/iOS compatibility
             $cookieOptions = [

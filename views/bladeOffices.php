@@ -2,7 +2,7 @@
 	<div class="row d-flex align-items-stretch gy-3 gx-2">
 		<div class="col-md-12"> 
 			<div class="start-page-title text-center mb-md-4 py-md-3 mt-1 mt-md-0">
-				<h4 class="mb-0"><?php echo Trans('app','Offices List'); ?></h4>
+				<h4 class="mb-0"><?php echo direction("Offices List","قائمة المكاتب"); ?></h4>
 			</div>
 		</div>
 		<?php 
@@ -33,7 +33,7 @@
 							</ul>
 						</div>
 						<div class="mx-0"> 
-							<a href="tel:<?php echo $offices[$i]["mobile"]; ?>" class="btn btn-primary w-100"><i class="bi bi-telephone-fill mx-2"></i><?php echo Trans('app','Call'); ?></a>
+							<a href="tel:<?php echo $offices[$i]["mobile"]; ?>" class="btn btn-primary w-100"><i class="bi bi-telephone-fill mx-2"></i><?php echo direction("Call","اتصل"); ?></a>
 						</div>
 						</div>
 					</div>

@@ -12,7 +12,7 @@
 				<a style="cursor: pointer" class="card card-ad <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" */?> href="?v=AdView&id=<?php echo $ad['id']; ?>">
 					<div class="row g-0 align-items-center"> 
 						<div class="col-4 col-sm-3 position-relative">
-							<?php if( $ad["adType"] == 2 ){ ?><span class="feature-label"><?php echo Trans('app','Feature'); ?></span> <?php } ?>
+							<?php if( $ad["adType"] == 2 ){ ?><span class="feature-label"><?php echo direction("Feature","مميز"); ?></span> <?php } ?>
 							<div id="carouselAdMainImages<?php echo $ad['id']; ?>" class="carousel slide h-100" data-bs-ride="carousel" style="height: 120px; overflow: hidden;">
 							<div class="carousel-indicators" style="position: absolute; bottom: 5px; left: 0; right: 0; margin: 0; padding: 0; z-index: 15; justify-content: center; display: flex;">
 								<?php 
@@ -108,7 +108,7 @@
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header"> 
-          <h5 class="modal-title text-center d-block w-100" id="exampleModalLabel"><?php echo Trans('app','A house for rent in Abu Fetera'); ?></h5>
+          <h5 class="modal-title text-center d-block w-100" id="exampleModalLabel"><?php echo direction("A house for rent in Abu Fetera","منزل للإيجار في أبو فطيرة"); ?></h5>
           <a class="btn-close-modal" data-bs-dismiss="modal" aria-label="Close"> <i class="bi bi-chevron-left"></i> </a>  
       </div>
       <div class="modal-body">

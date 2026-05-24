@@ -97,7 +97,7 @@
 				
 				<div class="col-md-12"> 
 					<div class="start-page-title with-white-bg text-center mb-4 py-3">
-						<h4 class="mb-0 fw-bold"><?php echo Trans('app','My Ads'); ?></h4>
+						<h4 class="mb-0 fw-bold"><?php echo direction("My Ads","إعلاناتي"); ?></h4>
 			 		</div>
 				</div>
 
@@ -108,19 +108,19 @@
 					<div class="with-white-bg mb-4 p-4 px-2 px-md-4">
 						
 						<div class="my-current-ad-head">
-							<h4 class="mb-4 fw-bold"><?php echo Trans('app','My Ads'); ?></h4>	
+							<h4 class="mb-4 fw-bold"><?php echo direction("My Ads","إعلاناتي"); ?></h4>	
 							<div class="ad-status">
 								<div>
 									<span class="published ad-status-type"><i class="bi bi-check"></i></span>
-									<span class="txt"><?php echo Trans('app','Published'); ?></span>
+									<span class="txt"><?php echo direction("Published","منشور"); ?></span>
 								</div>
 								<div>
 									<span class="waiting ad-status-type"><i class="bi bi-exclamation"></i></span>
-									<span class="txt"><?php echo Trans('app','Waiting'); ?></span>
+									<span class="txt"><?php echo direction("Waiting","في الانتظار"); ?></span>
 								</div>
 								<div>
 									<span class="refused ad-status-type"><i class="bi bi-x"></i></span> 
-									<span class="txt"><?php echo Trans('app','Refused'); ?></span> 
+									<span class="txt"><?php echo direction("Refused","مرفوض"); ?></span> 
 								</div>
 							</div>
 						</div>
@@ -209,7 +209,7 @@
 					<div class="with-white-bg mb-4 p-4 px-2 px-md-4">  
 						
 						<div class="my-ended-ad-head">
-							<h4 class="mb-4 fw-bold"><?php echo Trans('app','My Ended Ads'); ?><span></span></h4>
+							<h4 class="mb-4 fw-bold"><?php echo direction("My Ended Ads","إعلاناتي المنتهية"); ?><span></span></h4>
 						</div> 
 						
 						<div class="my-ad-list ended-ads">
@@ -279,7 +279,7 @@
 				<div class="col-md-12 col-lg-12 col-xl-12"> 
 					<div class="with-white-bg  p-4 px-2 px-md-4"> 
 						<div class="favourite-list ads-section">
-						  <h4 class="mb-4"><?php echo Trans('app','Favourite'); ?></h4>	  	  
+						  <h4 class="mb-4"><?php echo direction("Favourite","المفضلة"); ?></h4>	  	  
 						  <?php foreach( $myFevoriteAds as $ad ){ 
 								if( $ad["packageId"] == 2 ){
 									$feature = "card-feature";
@@ -327,7 +327,7 @@
 										<a href="#" 
 											class="remove" 
 											onclick="return confirmRemove('?v=<?php echo $_GET['v']; ?>&remove=<?php echo $ad['id']; ?>');">
-											<i class="bi bi-trash3"></i> <?php //echo Trans('app', 'Republish'); ?>
+											<i class="bi bi-trash3"></i> <?php //echo direction("Remove","إزالة"); ?>
 										</a>
 										</div> 
 									</div>
@@ -336,7 +336,7 @@
 
 							<?php } ?>
 						  <div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="index.php?v=MyAdsList&type=favourite_ads&page=2" class="view-all"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="index.php?v=MyAdsList&type=favourite_ads&page=2" class="view-all"><?php echo direction("View All","عرض الكل"); ?></a>
 						  </div>
 						</div>
 					</div> 

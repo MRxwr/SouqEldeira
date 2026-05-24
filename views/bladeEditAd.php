@@ -61,7 +61,7 @@
 			    <div class="form-container form-container-add">
 			    	
 		    	<div class="start-page-title text-center mb-4">
-					<h4><?php echo Trans('app','Edit Ad'); ?></h4>
+					<h4><?php echo direction("Edit Ad","تعديل الإعلان"); ?></h4>
 			 	</div>
 			 	
 			    <form id="add-ad-form" class="mt-4" name="add-ad-form" method="POST"  action="" enctype="multipart/form-data">
@@ -89,20 +89,20 @@
 						<?php if($product[0]["adType"] == 1){ ?>
 							<div class="radio-btn">
 					  		  <input type="radio" name="adType" id="aRegular" checked value="1" />
-					  		  <label for="aRegular"><?php echo Trans('app','Regular Ad'); ?> (<?php echo $normalAds; ?>)</label>
+					  		  <label for="aRegular"><?php echo direction("Regular Ad","إعلان عادي"); ?> (<?php echo $normalAds; ?>)</label>
 					  	   </div>
 						  <div class="radio-btn">
 					  		<input type="radio" name="adType" id="aSpecial"  value="2" disabled  />
-					  		<label for="aSpecial"><?php echo Trans('app','Special Ad'); ?> (<?php echo $specialAds; ?>)</label>  
+					  		<label for="aSpecial"><?php echo direction("Special Ad","إعلان مميز"); ?> (<?php echo $specialAds; ?>)</label>  
 					  	   </div>
 						<?php }else{ ?>
 							<div class="radio-btn">
 					  		  <input type="radio" name="adType" id="aRegular" value="1" disabled />
-					  		  <label for="aRegular"><?php echo Trans('app','Regular Ad'); ?> (<?php echo $normalAds; ?>)</label>
+					  		  <label for="aRegular"><?php echo direction("Regular Ad","إعلان عادي"); ?> (<?php echo $normalAds; ?>)</label>
 					  	   </div>
 						  <div class="radio-btn">
 					  		<input type="radio" name="adType" id="aSpecial" checked value="2"  />
-					  		<label for="aSpecial"><?php echo Trans('app','Special Ad'); ?> (<?php echo $specialAds; ?>)</label>  
+					  		<label for="aSpecial"><?php echo direction("Special Ad","إعلان مميز"); ?> (<?php echo $specialAds; ?>)</label>  
 					  	   </div>
 						<?php } ?>			  		
 				  		
@@ -113,7 +113,7 @@
 				  <!-- State input -->
 			      <div class="form-outline mb-4">
 			      	<select class="form-select form-control mb-3" name="adArea" required>
-					  <option value=""><i class="bi bi-geo-alt"></i> <?php echo Trans('app','Area or Region'); ?></option>
+					  <option value=""><i class="bi bi-geo-alt"></i> <?php echo direction("Area or Region","المنطقة أو الإقليم"); ?></option>
 					  <?php
 						$governateId = 0;
 						$directionOfArea = direction("enTitle","arTitle");
@@ -139,7 +139,7 @@
 			       <!-- Property type input -->
 			      <div class="form-outline mb-4">
 			      	<select class="form-select form-control mb-3" name="propertyType" required>
-					  <option value=""><i class="bi bi-building"></i> <?php echo Trans('app','Properity Type'); ?></option>
+					  <option value=""><i class="bi bi-building"></i> <?php echo direction("Property Type","نوع العقار"); ?></option>
 						<?php
 						if( $propertyType = selectDB("propertyType","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 							for( $i = 0; $i < sizeof($propertyType); $i++ ){
@@ -154,22 +154,22 @@
 
 			      <!-- Price input -->
 			      <div class="form-outline mb-4">
-			        <input type="number"  class="form-control" name="adPrice" placeholder="<?php echo Trans('app','Price'); ?>" value="<?php echo $product[0]["price"]; ?>" required />
+			        <input type="number"  class="form-control" name="adPrice" placeholder="<?php echo direction("Price","السعر"); ?>" value="<?php echo $product[0]["price"]; ?>" required />
 			      </div>
 			
 				  <!-- Title input -->
 			      <div class="form-outline mb-4">
-			        <input type="text"  class="form-control" name="adTitle" placeholder="<?php echo Trans('app','Title'); ?>" value="<?php echo $product[0]["enTitle"]; ?>"  required/>
+			        <input type="text"  class="form-control" name="adTitle" placeholder="<?php echo direction("Title","العنوان"); ?>" value="<?php echo $product[0]["enTitle"]; ?>"  required/>
 			      </div>
 			     
 				  <!-- Description input --> 
 			      <div class="form-outline mb-3">
-			         <textarea class="form-control" style="min-height:100px;"  rows="9" name="adDescription" placeholder="<?php echo Trans('app','Description'); ?>" required><?php echo $product[0]["enDetails"]; ?></textarea>
+			         <textarea class="form-control" style="min-height:100px;"  rows="9" name="adDescription" placeholder="<?php echo direction("Description","الوصف"); ?>" required><?php echo $product[0]["enDetails"]; ?></textarea>
 			      </div>
 			      
 			      <!-- Description input -->
 			      <div class="form-outline mb-4">
-			      	 <label class="mb-3"><?php echo Trans('app','Images'); ?></label>
+			      	 <label class="mb-3"><?php echo direction("Images","الصور"); ?></label>
 			      	 <div class="add-ad-images" for="fileInput" id="fileInputLabel">
 					   <?php
 								if( $images = selectDB("images","`productId` = '".$product[0]['id']."'") ){
@@ -203,12 +203,12 @@
 					   <input type="file" name="files[]" id="file3InputFld">
 					   <input type="file" name="files[]" id="file4InputFld">
 					</div>
-			      	 <span class="form-hint d-block mt-3"><?php echo Trans('app','Picture size is 1:1 square'); ?></span>
+			      	 <span class="form-hint d-block mt-3"><?php echo direction("Picture size is 1:1 square","حجم الصورة 1:1 مربع"); ?></span>
 			      </div>
 			      <!-- Submit button -->
-			      <button type="submit" class="btn btn-primary btn-block w-100 mb-3 py-2"><?php echo Trans('app','Update Ad'); ?></button>
+			      <button type="submit" class="btn btn-primary btn-block w-100 mb-3 py-2"><?php echo direction("Update Ad","تحديث الإعلان"); ?></button>
 			      <div class="text-center">  
-			      	<p class="add-ad-form-text fw-bold"><?php echo Trans('app','Send us message by'); ?> <a href=""><?php echo Trans('app','WhatsApp'); ?></a> <?php echo Trans('app','or'); ?> <a href="contact.php"><?php echo Trans('app','call us'); ?></a> <?php echo Trans('app','for help'); ?></p>
+			      	<p class="add-ad-form-text fw-bold"><?php echo direction("Send us message by","أرسل لنا رسالة عبر"); ?> <a href=""><?php echo direction("WhatsApp","واتساب"); ?></a> <?php echo direction("or","أو"); ?> <a href="contact.php"><?php echo direction("call us","اتصل بنا"); ?></a> <?php echo direction("for help","للمساعدة"); ?></p>
 			      </div> 
 			    </form>
 			 </div>

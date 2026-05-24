@@ -3,7 +3,7 @@
 	if( $topNotification = selectDB("notifications","`status` = '0' AND `hidden` = '0' ORDER BY `id` DESC LIMIT 1") ){
 		echo '<i class="bi bi-exclamation-circle"></i> <b>' . $topNotification[0]["title"] . ':</b> ' . $topNotification[0]["body"];
 	} else {
-		echo '<i class="bi bi-exclamation-circle"></i> ' . Trans('app','A message from the manager to manage the website');
+		echo '<i class="bi bi-exclamation-circle"></i> ' . direction("A message from the manager to manage the website","رسالة من المدير لإدارة الموقع");
 	}
 	?>
 </div>  
@@ -31,7 +31,7 @@
 					<div class="input-group input-group-select-with-icon">  
 						<label class="input-group-text labelIcon" for=""><i class="bi bi-geo-alt"></i></label>
 						<select class="form-select" name="areaId" aria-label="Property Region">
-						<option selected><i class="bi bi-geo-alt"></i> <?php echo Trans('app','Area or Region'); ?></option>
+						<option selected><i class="bi bi-geo-alt"></i> <?php echo direction("Area or Region","المنطقة أو الإقليم"); ?></option>
 						<?php
 						$governateId = 0;
 						$directionOfArea = direction("enTitle","arTitle");
@@ -59,7 +59,7 @@
 				<div class="input-group input-group-select-with-icon">  
 						<label class="input-group-text labelIcon" for=""><i class="bi bi-building"></i></label>
 						<select class="form-select" name="propertyType" aria-label="Properity Type">
-						<option selected><i class="bi bi-building"></i> <?php echo Trans('app','Properity Type'); ?></option>
+						<option selected><i class="bi bi-building"></i> <?php echo direction("Properity Type","نوع العقار"); ?></option>
 						<?php
 						if( $propertyType = selectDB("propertyType","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 							for( $i = 0; $i < sizeof($propertyType); $i++ ){
@@ -74,12 +74,12 @@
 			</div>
 				<div class="col-6 col-md-4">
 				<div class="form-outline mt-4">
-				<button type="submit" class="btn btn-primary btn-block w-100"> <?php echo Trans('app','Search Now'); ?> &nbsp; &nbsp; <i class="bi bi-search"></i></button>
+				<button type="submit" class="btn btn-primary btn-block w-100"> <?php echo direction("Search Now","ابحث الآن"); ?> &nbsp; &nbsp; <i class="bi bi-search"></i></button>
 				</div>
 			</div>
 			<div class="col-6 col-md-12">
 				<div class="form-outline mt-3 advanced-search">  
-				<a href="#!" class="advanced-search-a"><i class="bi bi-sliders"></i><span class="fw-bold"><?php echo Trans('app','Advanced Search'); ?></span></a>
+				<a href="#!" class="advanced-search-a"><i class="bi bi-sliders"></i><span class="fw-bold"><?php echo direction("Advanced Search","بحث متقدم"); ?></span></a>
 				</div>
 			</div>
 		</div>
@@ -87,12 +87,12 @@
 			<div class="row mt-3">   
 				<div class="col-6 col-md-6">
 					<div class="form-outline"> 
-					<input type="text" class="form-control" name="from" placeholder="<?php echo Trans('app','Price From'); ?>">
+					<input type="text" class="form-control" name="from" placeholder="<?php echo direction("Price From","السعر من"); ?>">
 					</div>
 				</div>
 				<div class="col-6 col-md-6">
 					<div class="form-outline">
-					<input type="text" class="form-control" name="to" placeholder="<?php echo Trans('app','Price To'); ?>">
+					<input type="text" class="form-control" name="to" placeholder="<?php echo direction("Price To","السعر إلى"); ?>">
 					</div> 
 				</div>
 			</div> 
@@ -127,7 +127,7 @@
 				echo "<h4 class='mb-3'>{$title}</h4>";
 				require('template/adsMainList.php');
 				echo "<div class='d-block text-end mt-3'>";
-				echo "<a href='?v=Search&type={$type}' class='btn btn-primary'>".Trans('app','More')." ...</a>";
+				echo "<a href='?v=Search&type={$type}' class='btn btn-primary'>".direction("More","المزيد")." ...</a>";
 				echo "</div>";
 				echo "</div>";
 			}
@@ -159,7 +159,7 @@
 <div class="demos">
 	<div class="container container-projectX">
 		<div class="mt-5">
-			<h3 class="fw-bold text-center mb-5"><?php echo Trans('app','Real estate offices in Kuwait'); ?></h3> 
+			<h3 class="fw-bold text-center mb-5"><?php echo direction("Real estate offices in Kuwait","مكاتب العقارات في الكويت"); ?></h3> 
 			<div class="owl-carousel owl-carousel-offices owl-theme">
 				<?php
 				if( $offices = selectDB("shops","`id` != '0' AND `status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")){

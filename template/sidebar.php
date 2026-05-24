@@ -1,5 +1,6 @@
 <?php
-if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` NOT LIKE '%{$userDetails['id']}%'") ){
+$_notifUserId = isset($userDetails['id']) ? $userDetails['id'] : '';
+if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` NOT LIKE '%{$_notifUserId}%'") ){
 	$totalNotSeen = sizeof($notifications);
 }else{
 	$totalNotSeen = 0;
@@ -78,7 +79,7 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 		        <?php } ?>
 		        <?php if($_SESSION['valid']){
 					if( isset($userDetails["id"]) && !empty($userDetails["id"]) ){
-						if( $myAds = selectDB("products","`userId` = '{$_SESSION['userId']}' AND `status` = '0' AND `hidden` != '2'") ){
+						if( $myAds = selectDB("products","`userId` = '{$userDetails["id"]}' AND `status` = '0' AND `hidden` != '2'") ){
 							$myAds = sizeof($myAds);
 						}else{
 							$myAds = 0;

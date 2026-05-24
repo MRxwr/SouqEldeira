@@ -5,7 +5,7 @@ if( $notifications = selectDB("notifications","`status` = '0' ORDER BY `id` DESC
 <div class="row">
 	<div class="col-md-12">  
 		<div class="start-page-title with-white-bg text-center mb-4 p-3">
-			<h4 class="mb-0 notication-page-title"><i class="bi bi-bell"></i> <?php echo Trans('app','Notifications'); ?> <span class="badge bg-secondary">0</span></h4> 
+			<h4 class="mb-0 notication-page-title"><i class="bi bi-bell"></i> <?php echo direction("Notifications","الإشعارات"); ?> <span class="badge bg-secondary">0</span></h4> 
 		</div>
 	</div>
 	<div class="col-md-12">
