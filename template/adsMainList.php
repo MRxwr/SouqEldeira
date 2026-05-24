@@ -1,4 +1,4 @@
-<div class="ads-main-list">
+<div class="listings-main-list">
 	<div class="row gy-3"> 
 	<?php
 		foreach( $ads as $ad ){
@@ -9,7 +9,7 @@
 			}
 	?>
 			<div class="col-lg-12">
-				<a style="cursor: pointer" class="card card-ad <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" */?> href="?v=AdView&id=<?php echo $ad['id']; ?>">
+				<a style="cursor: pointer" class="card listing-card <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" */?> href="?v=AdView&id=<?php echo $ad['id']; ?>">
 					<div class="row g-0 align-items-center"> 
 						<div class="col-4 col-sm-3 position-relative">
 							<?php if( $ad["adType"] == 2 ){ ?><span class="feature-label"><?php echo direction("Feature","مميز"); ?></span> <?php } ?>
@@ -62,7 +62,7 @@
 				</a>
 			</div>
 			<div class="col-lg-12 m-0 text-center">
-				<div class="card card-ad card-body-btn">
+				<div class="card listing-card card-body-btn">
 					<div class="row">
 						<div class="col-4">
 							<?php
