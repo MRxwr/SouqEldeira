@@ -5,6 +5,18 @@ if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 	}
 }
 
+if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
+	if( updateDB("products",array('hidden'=> '2'),"`id` = '{$_GET["hide"]}'") ){
+		header("LOCATION: ?v=Ads");
+	}
+}
+
+if( isset($_GET["show"]) && !empty($_GET["show"]) ){
+	if( updateDB("products",array('hidden'=> '1'),"`id` = '{$_GET["show"]}'") ){
+		header("LOCATION: ?v=Ads");
+	}
+}
+
 if( isset($_POST["enTitle"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
@@ -158,6 +170,11 @@ if( isset($_POST["updateRank"]) ){
 		<?php 
 		if( $packages = selectDB("packages","`status` = '0' ORDER BY `rank` ASC") ){
 			for( $i = 0; $i < sizeof($packages); $i++ ){
+				$hidden = array(
+					"text" => ($packages[$i]["hidden"] == 1) ? direction("Hide","أخفي") : direction("Show","أظهر"),
+					"icon" => ($packages[$i]["hidden"] == 1) ? "fa fa-eye text-success" : "fa fa-eye-slash text-danger",
+					"link" => "?v={$_GET["v"]}&" . (($packages[$i]["hidden"] == 1) ? "hide" : "show") . "={$packages[$i]["id"]}"
+				)
 				?>
 				<tr>
 				<td>
@@ -169,6 +186,9 @@ if( isset($_POST["updateRank"]) ){
 				<td class="text-nowrap">
 				
 				<a id="<?php echo $packages[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i>
+				</a>
+
+				<a href="<?php echo $hidden["link"] ?>"  class="mr-25" data-toggle="tooltip" data-original-title="<?php echo $hidden["text"] ?>"><i class="<?php echo $hidden["icon"] ?>"></i>
 				</a>
 
 				<a href="<?php echo "?v={$_GET["v"]}&delId={$packages[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger"></i>

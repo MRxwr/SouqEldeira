@@ -148,7 +148,7 @@
 								</div>
 								
 							</div>
-							<?php if( $packages = selectDB("packages","`status` = '0' ORDER BY `rank` ASC") ){ 
+							<?php if( $packages = selectDB("packages","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){ 
 								foreach( $packages as $pkg ){ 
 									$canBuy = true;
 									if( $pkg["price"] == 0 ){
