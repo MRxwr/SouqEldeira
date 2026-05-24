@@ -66,14 +66,11 @@
 					<div class="row">
 						<div class="col-4">
 							<?php
-							if( is_null($ad['listOfUsers']) ){
-								$color = "";
-							}else{
+							$color = "";
+							if( isset($userDetails["id"]) && !is_null($ad['listOfUsers']) ){
 								$listOfUsers = json_decode($ad['listOfUsers'],true);
-								if( in_array($userDetails["id"],$listOfUsers) ){
+								if( is_array($listOfUsers) && in_array($userDetails["id"],$listOfUsers) ){
 									$color = "color:red";
-								}else{
-									$color = "";
 								}
 							}
 							?>

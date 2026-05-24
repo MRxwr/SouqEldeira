@@ -62,4 +62,5 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
 }
 
 $now = date("Y-m-d H:i:s");
+updateDB("products", array("hidden" => "1"), "`hidden` = '0'");
 updateDB("products", array("hidden" => "2"), "`hidden` = '1' AND `expiryDate` < '{$now}'");
