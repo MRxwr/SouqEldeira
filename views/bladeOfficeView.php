@@ -1,6 +1,5 @@
 <?php
 if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'","")){
-
 }else{
 	$message = direction("Office not found","المكتب غير موجود");
 	?>
