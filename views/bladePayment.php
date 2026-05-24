@@ -103,17 +103,17 @@ if(!$_SESSION['valid']){
 			<div class="guest-form-action">
 				<div class="form-container form-container-add">
 					<div class="start-page-title text-center mb-4">
-						<h4><?php echo Trans('app','Payment'); ?></h4>
+						<h4><?php echo direction("Bill","الفاتورة"); ?></h4>
 					</div> 
 					<div class="form-outline mb-4">
 						<?php if(isset($_GET["finalstatus"]) && strtolower(base64_decode($_GET["finalstatus"])) == "success"){
 							if($_GET["merchantTxnId"]){
 								$gatewayId  = $_GET["merchantTxnId"];
-								$order = selectDBNew("orders2",[$gatewayId]," `orderId` = ?","`id` DESC LIMIT 1");
+								$order = selectDBNew("orders2",[$gatewayId],"`orderId` = ?","`id` DESC LIMIT 1");
 								if($order && $order[0]["status"] == "0"){
-									$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
+									$package = selectDBNew("packages",[$order[0]["packageId"]],"`id` = ?","`id` DESC LIMIT 1");
 									if($package){
-										$user = selectDB("users","`id` = '{$order[0]["userId"]}' ORDER BY `id` DESC LIMIT 1","");
+										$user = selectDBNew("users",[$order[0]["userId"]],"`id` = ?","`id` DESC LIMIT 1");
 										$normalAds = $user[0]["normalAd"] + $package[0]["quantity"]; //normalAds
 										$specialAds = $user[0]["specialAd"] + $package[0]["quantitySP"]; //specialAds
 										$data = array(
@@ -141,7 +141,7 @@ if(!$_SESSION['valid']){
 								}
 								
 							}else{
-								$order = selectDB("orders2","`userId` = '{$user[0]["id"]}' ORDER BY `id` DESC LIMIT 1","");
+								$order = selectDBNew("orders2",[$user[0]["id"]],"`userId` = ?","`id` DESC LIMIT 1");
 							}
 			
 						} else{
