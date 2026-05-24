@@ -76,7 +76,7 @@ if(!$_SESSION['valid']){
 						)
 					);
 					if ( $package[0]["price"] == 0 ){
-						header("LOCATION: index.php?v=Payment&finalstatus=success&merchantTxnId={$orderId}");die();
+						header("LOCATION: index.php?v=Payment&finalstatus=".base64_encode("success")."&merchantTxnId={$orderId}");die();
 					}
 					$bookeeyPipe->initiatePayment($transactionDetails);
 					exit;
