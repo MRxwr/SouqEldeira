@@ -15,7 +15,7 @@
 		  </div> 
 		  
 		  <div class="col-3 col-md-3 text-end navbar-area-btn">
-		  	<a href="?v=AddAd" class="btn btn-primary btn-border-radius-1 btn-new-ad"><i class="bi bi-plus-lg"></i> <span><?php echo Trans('app','Add Ad'); ?></span></a>
+		  	<a href="?v=AddAd" class="btn btn-primary btn-border-radius-1 btn-new-ad"><i class="bi bi-plus-lg"></i> <span><?php echo direction("Add Ad","إضافة إعلان"); ?></span></a>
 		  </div>
 		  
 		</div>

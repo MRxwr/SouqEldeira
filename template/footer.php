@@ -40,15 +40,15 @@
 		<div class="footer-sec3">
 			<div class="row mt-4">
 				<div class="col-6 col-md-4">
-					<h3><?php echo Trans('app','Contact Us'); ?></h3>
+					<h3><?php echo direction("Contact Us","اتصل بنا"); ?></h3>
 					<div class="contact-us">
 						<div>
-							<i class="bi bi-telephone"></i> <?php echo Trans('app','Phone'); ?>
+							<i class="bi bi-telephone"></i> <?php echo direction("Phone","هاتف"); ?>
 							<br>
 							<a href="tel:66004080">66004080</a>
 						</div>
 						<div>
-							<i class="bi bi-envelope"></i> <?php echo Trans('app','Email'); ?>
+							<i class="bi bi-envelope"></i> <?php echo direction("Email","البريد الإلكتروني"); ?>
 							<br>
 							<a href="mailto:info@souqeldeira.com">info@souqeldeira.com</a>
 						</div>
@@ -56,17 +56,17 @@
 				</div>
 				<div class="col-6 col-md-3 my-md-0 text-start text-md-center divApplications">  
 					
-					<h3><?php echo Trans('app','Applications'); ?></h3>
+					<h3><?php echo direction("Applications","التطبيقات"); ?></h3>
 					<div class="application-links text-center">
-						<a href="#"><i class="bi bi-google-play"></i><span><?php echo Trans('app','Google Store'); ?></span></a>
-						<a href="#"><i class="bi bi-apple"></i><span><?php echo Trans('app','Apple Store'); ?></span></a>
+						<a href="#"><i class="bi bi-google-play"></i><span><?php echo direction("Google Store","متجر جوجل"); ?></span></a>
+						<a href="#"><i class="bi bi-apple"></i><span><?php echo direction("Apple Store","متجر آبل"); ?></span></a>
 					</div>
 					<hr class="res"> 
 				</div>
 				<div class="col-md-1"></div>
 				<div class="col-md-4 divSocial">
 					<hr class="res"> 
-					<h3><?php echo Trans('app','Socila media platforms'); ?></h3>
+					<h3><?php echo direction("Social media platforms","منصات التواصل الاجتماعي"); ?></h3>
 					<ul class="socila-links list-unstyled my-4">
 						<?php
 						if( $sMedia = selectDB("s_media", "`id` = '1'") ){
@@ -84,8 +84,8 @@
 					<div class="copyright-text">
                         <p>
                         	<a href="https://www.createkuwait.com" target="_blank" class="copyright-icon">©</a> 
-                        	<?php echo Trans('app','All rights reserved to'); ?>
-                        	<a href="?v=Home" target="_blank"><?php echo Trans('app','Souq Al Deirah'); ?></a> 
+                        	<?php echo direction("All rights reserved to","جميع الحقوق محفوظة لـ"); ?>
+                        	<a href="?v=Home" target="_blank"><?php echo direction("Souq Al Deirah","سوق الديرة"); ?></a> 
                         </p> 
                     </div>
 				</div>	
@@ -100,17 +100,17 @@
 	        <i class="bi bi-chevron-up"></i>
 	    </a>
 		
-    	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
     	
 		<!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
         
         <!-- Owl JS -->
-        <script src="assets/components/owl-carousel/v-2.3.4/dist/owl.carousel.js"></script>
+        <script src="assets/components/owl-carousel/v-2.3.4/dist/owl.carousel.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
         
          <!-- lightbox JS --> 
-        <script src="assets/components/bs5-lightbox/v-1.8.3/dist/index.bundle.min.js"></script>
+        <script src="assets/components/bs5-lightbox/v-1.8.3/dist/index.bundle.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
         
         <!-- Core theme JS-->
         <script src="assets/js/scripts.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>

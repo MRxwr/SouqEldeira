@@ -33,13 +33,17 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 		    		</div>
 		    		<div class="details">
 		    			<h3 class="fullname"><?php echo $userDetails['name'] ?></h3>
-		    			<a href="?v=Profile"><?php echo Trans('app','My Profile'); ?></a>
+		    			<a href="?v=Profile"><?php echo direction("My Profile","ملفي الشخصي"); ?></a>
 		    		</div>
 		    	</div>
 		    	<div class="">
 		    		<a href="?v=Notifications" class="notifications">
-		    		 <i class="bi bi-bell"></i> 
+						<i class="bi bi-bell"></i> 
+		    		 <?php
+					 /*
 					 <span class="badge badge-light"><?php echo $totalNotSeen; ?></span>				  
+					*/
+					?>
 					</a> 
 		    	</div>
 		    </div>
@@ -60,16 +64,16 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 		    <?php } ?>
 		    <div class="sidebar-add-ad my-3">
 				<a href="?v=AddAd" class="btn btn-primary btn-border-radius-1 w-100">
-					<i class="bi bi-plus-lg"></i> <?php echo Trans('app','Add Ad'); ?>
+					<i class="bi bi-plus-lg"></i> <?php echo direction("Add Ad","إضافة إعلان"); ?>
 				</a>
 		    </div>
 		    <ul class="sidebar-menu list-unstyled mt-2">
 		        <li class="active">
-		            <a href="?v=Home"><i class="bi bi-house"></i><?php echo Trans('app','Home'); ?></a>
+		            <a href="?v=Home"><i class="bi bi-house"></i><?php echo direction("Home","الرئيسية"); ?></a>
 		        </li>
 		        <?php if(!$_SESSION['valid']){ ?>
 		        <li>
-		            <a href="?v=Login"><i class="bi bi-box-arrow-right"></i><?php echo Trans('app','Login'); ?></a>
+		            <a href="?v=Login"><i class="bi bi-box-arrow-right"></i><?php echo direction("Login","تسجيل الدخول"); ?></a>
 		        </li>
 		        <?php } ?>
 		        <?php if($_SESSION['valid']){
@@ -84,11 +88,11 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 					}
 					?>
 		        <li>
-		            <a href="?v=MyAds"><i class="bi bi-grid"></i><?php echo Trans('app','My Ads'); ?> <span class="badge"><?php echo $myAds; ?></span></a>
+		            <a href="?v=MyAds"><i class="bi bi-grid"></i><?php echo direction("My Ads","إعلاناتي"); ?> <span class="badge"><?php echo $myAds; ?></span></a>
 		        </li>
 		        <?php } ?>
 		        <li>
-            		<a class="have-sub-menu" data-bs-toggle="collapse" data-bs-target="#realState-collapse"aria-expanded="false"><i class="bi bi-houses"></i><?php echo Trans('app','Real Estate'); ?></a>
+            		<a class="have-sub-menu" data-bs-toggle="collapse" data-bs-target="#realState-collapse"aria-expanded="false"><i class="bi bi-houses"></i><?php echo direction("Real Estate","العقارات"); ?></a>
 		            <div class="collapse" id="realState-collapse">
 		              <ul class="sub-menu-ul">
 						<?php
@@ -103,20 +107,20 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 		            </div>
           		</li>
 		        <li>
-		            <a href="?v=Offices"><i class="bi bi-buildings"></i><?php echo Trans('app','Real Estate Offices'); ?></a>
+		            <a href="?v=Offices"><i class="bi bi-buildings"></i><?php echo direction("Real Estate Offices","مكاتب العقارات"); ?></a>
 		        </li>
 		        <li>
-		            <a href="?v=FAQ"><i class="bi bi-question-circle"></i><?php echo Trans('app','FAQ'); ?></a>
+		            <a href="?v=FAQ"><i class="bi bi-question-circle"></i><?php echo direction("FAQ","الأسئلة الشائعة"); ?></a>
 		        </li>
 		        <li>
-		            <a href="?v=Terms"><i class="bi bi-file-earmark-text"></i><?php echo Trans('app','Terms & Conditions'); ?></a>
+		            <a href="?v=Terms"><i class="bi bi-file-earmark-text"></i><?php echo direction("Terms & Conditions","الشروط والأحكام"); ?></a>
 		        </li>
 		        <li>
-		            <a href="?v=Contact"><i class="bi bi-envelope-arrow-up"></i><?php echo Trans('app','Contact Us'); ?></a>
+		            <a href="?v=Contact"><i class="bi bi-envelope-arrow-up"></i><?php echo direction("Contact Us","اتصل بنا"); ?></a>
 		        </li>
 		        <?php if($_SESSION['valid']){ ?>
 		        <li>
-		            <a class="logout" href="?v=Logout"><i class="bi bi-box-arrow-right"></i><?php echo Trans('app','Logout'); ?></a>
+		            <a class="logout" href="?v=Logout"><i class="bi bi-box-arrow-right"></i><?php echo direction("Logout","تسجيل الخروج"); ?></a>
 		        </li>
 		        <?php } ?>
 		    </ul>
@@ -125,7 +129,7 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 		<div class="sidebar-element2">
 			<div class="sidebar-contact-whatsapp mb-3">
 				<a href="https://wa.me/96566004080" class="btn btn-default btn-border-radius-1 w-100 py-2">
-					<i class="bi bi-whatsapp"></i> <?php echo Trans('app','Contact us via WhatsApp'); ?>
+					<i class="bi bi-whatsapp"></i> <?php echo direction("Contact us via WhatsApp","اتصل بنا عبر واتساب"); ?>
 				</a>
 		    </div>
 			<ul class="socila-links list-unstyled mb-3">
