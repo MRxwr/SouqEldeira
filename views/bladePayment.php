@@ -106,7 +106,8 @@ if(!$_SESSION['valid']){
 						<h4><?php echo direction("Bill","الفاتورة"); ?></h4>
 					</div> 
 					<div class="form-outline mb-4">
-						<?php if(isset($_GET["finalstatus"]) && strtolower(base64_decode($_GET["finalstatus"])) == "success"){
+						<?php 
+						if(isset($_GET["finalstatus"]) && strtolower(base64_decode($_GET["finalstatus"])) == "success"){
 							if( isset($_GET["merchantTxnId"]) && !empty($_GET["merchantTxnId"]) ){
 								$gatewayId  = $_GET["merchantTxnId"];
 								var_dump(selectDBNew("orders2",[$gatewayId],"`orderId` = ?","`id` DESC LIMIT 1"));
@@ -140,9 +141,8 @@ if(!$_SESSION['valid']){
 									echo "<div class='text-default'>".direction("Payment ID:". $gatewayId,"معرف الدفع:". $gatewayId)."</div>"; 
 									echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".direction("MyAds","إعلاناتي")."</a>";
 								}
-								
 							}else{
-								echo "<div class='alert alert-danger'>".direction("Payment failed","فشل الدفع")."</div>";
+								echo "<div class='alert alert-warning'>".direction("Missing Invoice Reference","مرجع الفاتورة مفقود")."</div>";
 								echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".direction("Try again","حاول مرة أخرى")."</a>";
 							}
 			
