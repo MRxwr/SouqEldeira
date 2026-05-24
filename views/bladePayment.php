@@ -107,7 +107,7 @@ if(!$_SESSION['valid']){
 					</div> 
 					<div class="form-outline mb-4">
 						<?php if(isset($_GET["finalstatus"]) && strtolower(base64_decode($_GET["finalstatus"])) == "success"){
-							if($_GET["merchantTxnId"]){
+							if( isset($_GET["merchantTxnId"]) && !empty($_GET["merchantTxnId"]) ){
 								$gatewayId  = $_GET["merchantTxnId"];
 								var_dump(selectDBNew("orders2",[$gatewayId],"`orderId` = ?","`id` DESC LIMIT 1"));
 								$order = selectDBNew("orders2",[$gatewayId],"`orderId` = ?","`id` DESC LIMIT 1");
@@ -128,30 +128,31 @@ if(!$_SESSION['valid']){
 										"status" => "1",
 									);
 									updateDB("orders2",$orderData,"`id` = '{$order[0]["id"]}'");
-									echo "<div class='alert alert-success'>".Trans('app','Payment completed successfully')."</div>";	
-									echo "<div class='text-default'>".Trans('app','Your ads have been activated')."</div>"; 
-									echo "<div class='text-default'>".Trans('app','Order ID:'. $order[0]["id"])."</div>"; 
-									echo "<div class='text-default'>".Trans('app','Payment ID:'. $gatewayId)."</div>";
-									echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".Trans('app','MyAds')."</a>";
+									echo "<div class='alert alert-success'>".direction("Payment completed successfully","تم إتمام الدفع بنجاح")."</div>";	
+									echo "<div class='text-default'>".direction("Your ads have been activated","تم تفعيل إعلاناتك")."</div>"; 
+									echo "<div class='text-default'>".direction("Order ID:". $order[0]["id"],"رقم الطلب:". $order[0]["id"])."</div>"; 
+									echo "<div class='text-default'>".direction("Payment ID:". $gatewayId,"معرف الدفع:". $gatewayId)."</div>";
+									echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".direction("MyAds","إعلاناتي")."</a>";
 								}else{
-									echo "<div class='alert alert-success'>".Trans('app','Payment completed successfully')."</div>";
-									echo "<div class='text-default'>".Trans('app','Your ads have been activated')."</div>"; 
-									echo "<div class='text-default'>".Trans('app','Order ID:'. $order[0]["id"])."</div>"; 
-									echo "<div class='text-default'>".Trans('app','Payment ID:'. $gatewayId)."</div>"; 
-									echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".Trans('app','MyAds')."</a>";
+									echo "<div class='alert alert-success'>".direction("Payment completed successfully","تم إتمام الدفع بنجاح")."</div>";
+									echo "<div class='text-default'>".direction("Your ads have been activated","تم تفعيل إعلاناتك")."</div>"; 
+									echo "<div class='text-default'>".direction("Order ID:". $order[0]["id"],"رقم الطلب:". $order[0]["id"])."</div>"; 
+									echo "<div class='text-default'>".direction("Payment ID:". $gatewayId,"معرف الدفع:". $gatewayId)."</div>"; 
+									echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".direction("MyAds","إعلاناتي")."</a>";
 								}
 								
 							}else{
-								$order = selectDBNew("orders2",[$user[0]["id"]],"`userId` = ?","`id` DESC LIMIT 1");
+								echo "<div class='alert alert-danger'>".direction("Payment failed","فشل الدفع")."</div>";
+								echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".direction("Try again","حاول مرة أخرى")."</a>";
 							}
 			
 						} else{
 							if($_GET["finalstatus"] && strtolower(base64_decode($_GET["finalstatus"])) == "failure"){
 								$gatewayId  = str_replace('?', '', $_GET["merchantTxnId"]);
-								echo "<div class='alert alert-danger'>".Trans('app','Payment failed')."</div>";
-								echo "<div class='text-default'>".Trans('app','Order ID:'. $order[0]["id"])."</div>"; 
-								echo "<div class='text-default'>".Trans('app','Payment ID:'. $gatewayId)."</div>"; 
-								echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".Trans('app','Try again')."</a>";
+								echo "<div class='alert alert-danger'>".direction("Payment failed","فشل الدفع")."</div>";
+								echo "<div class='text-default'>".direction("Order ID:". $order[0]["id"],"رقم الطلب:". $order[0]["id"])."</div>"; 
+								echo "<div class='text-default'>".direction("Payment ID:". $gatewayId,"معرف الدفع:". $gatewayId)."</div>"; 
+								echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".direction("Try again","حاول مرة أخرى")."</a>";
 							}
 							
 						} ?>
