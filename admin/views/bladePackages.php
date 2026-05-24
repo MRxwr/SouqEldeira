@@ -6,14 +6,14 @@ if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 }
 
 if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
-	if( updateDB("products",array('hidden'=> '2'),"`id` = '{$_GET["hide"]}'") ){
-		header("LOCATION: ?v=Ads");
+	if( updateDB("packages",array('hidden'=> '2'),"`id` = '{$_GET["hide"]}'") ){
+		header("LOCATION: ?v=Packages");
 	}
 }
 
 if( isset($_GET["show"]) && !empty($_GET["show"]) ){
-	if( updateDB("products",array('hidden'=> '1'),"`id` = '{$_GET["show"]}'") ){
-		header("LOCATION: ?v=Ads");
+	if( updateDB("packages",array('hidden'=> '1'),"`id` = '{$_GET["show"]}'") ){
+		header("LOCATION: ?v=Packages");
 	}
 }
 
