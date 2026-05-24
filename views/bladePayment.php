@@ -109,7 +109,7 @@ if(!$_SESSION['valid']){
 						<?php if(isset($_GET["finalstatus"]) && strtolower(base64_decode($_GET["finalstatus"])) == "success"){
 							if($_GET["merchantTxnId"]){
 								$gatewayId  = $_GET["merchantTxnId"];
-								$order = selectDBNew("orders2",[$gatewayId]," `orderId` = ? ORDER BY `id` DESC LIMIT 1","");
+								$order = selectDBNew("orders2",[$gatewayId]," `orderId` = ?","`id` DESC LIMIT 1");
 								if($order && $order[0]["status"] == "0"){
 									$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
 									if($package){
