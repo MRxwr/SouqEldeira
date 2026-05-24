@@ -1,18 +1,18 @@
 <?php 
 if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
-	if( updateDB('banner',array('hidden'=> '2'),"`id` = '{$_GET["hide"]}'") ){
+	if( updateDB('banners',array('hidden'=> '2'),"`id` = '{$_GET["hide"]}'") ){
 		header("LOCATION: ?v=Banners");
 	}
 }
 
 if( isset($_GET["show"]) && !empty($_GET["show"]) ){
-	if( updateDB('banner',array('hidden'=> '1'),"`id` = '{$_GET["show"]}'") ){
+	if( updateDB('banners',array('hidden'=> '1'),"`id` = '{$_GET["show"]}'") ){
 		header("LOCATION: ?v=Banners");
 	}
 }
 
 if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
-	if( updateDB('banner',array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
+	if( updateDB('banners',array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
 		header("LOCATION: ?v=Banners");
 	}
 }
