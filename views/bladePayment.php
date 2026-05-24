@@ -108,8 +108,9 @@ if(!$_SESSION['valid']){
 					<div class="form-outline mb-4">
 						<?php 
 						if(isset($_GET["finalstatus"]) && strtolower(base64_decode($_GET["finalstatus"])) == "success"){
+							var_dump($_GET);
 							if( isset($_GET["merchantTxnId"]) && !empty($_GET["merchantTxnId"]) ){
-								$gatewayId  = $_GET["merchantTxnId"];
+								echo $gatewayId  = $_GET["merchantTxnId"];
 								var_dump(selectDBNew("orders2",[$gatewayId],"`orderId` = ?","`id` DESC LIMIT 1"));
 								$order = selectDBNew("orders2",[$gatewayId],"`orderId` = ?","`id` DESC LIMIT 1");
 								if($order && $order[0]["status"] == "0"){
