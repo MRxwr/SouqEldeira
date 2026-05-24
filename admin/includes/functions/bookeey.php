@@ -657,6 +657,9 @@ class bookeey {
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $decodeOutput = json_decode($serverOutput, true);
         curl_close ($ch);
+        var_dump(json_encode($postParams));
+        var_dump($serverOutput);
+        die();
 
         if ($serverOutput === false) {
             echo "CURL Error: " . $curlError;
