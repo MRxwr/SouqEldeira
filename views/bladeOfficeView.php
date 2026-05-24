@@ -45,11 +45,11 @@ if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'",
 				
 				<div class="office-side-desc">  
 					<div class="office-description my-3"> 
-						<h3 class="mb-2"><?php echo Trans('app','Description'); ?></h3>
+						<h3 class="mb-2"><?php echo direction("Description","الوصف"); ?></h3>
 						<p><?php echo direction($offices[0]["enDetails"],$offices[0]["arDetails"]); ?></p> 
 					</div>
 					<div class="mx-0"> 
-						<a href="tel:<?php echo $offices[0]["mobile"]; ?>" class="btn btn-primary px-4"><i class="bi bi-telephone-fill mx-2"></i><?php echo Trans('app','Call'); ?></a>
+						<a href="tel:<?php echo $offices[0]["mobile"]; ?>" class="btn btn-primary px-4"><i class="bi bi-telephone-fill mx-2"></i><?php echo direction("Call","اتصل"); ?></a>
 					</div>
 				</div>
 				</div>
@@ -60,7 +60,7 @@ if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'",
 	<div class="col-lg-8">
 		<div class="with-white-bg px-md-4 px-2 py-4 mt-md-0 mt-4"> 
 			<div class="list-title mb-3"> 
-				<h4><?php echo Trans('app','Office Ads'); ?></h4> 
+				<h4><?php echo direction("Office Ads","إعلانات المكتب"); ?></h4> 
 			</div>
 			<div class="ads-section">
 				<?php
@@ -69,7 +69,7 @@ if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'",
 				}
 				?>
 				<div class="d-block text-end mt-3">
-				<?php /* <a href="?v=AdsList" class="btn btn-primary"><?php echo Trans('app','More'); ?> <i class="bi bi-three-dots"></i></a> */ ?>
+				<?php /* <a href="?v=AdsList" class="btn btn-primary"><?php echo direction("More","المزيد"); ?> <i class="bi bi-three-dots"></i></a> */ ?>
 				</div>
 			</div>
 		</div> 
