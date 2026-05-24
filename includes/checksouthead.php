@@ -18,7 +18,6 @@ if( isset($_GET["error"]) && $_GET["error"] == "blocked" ){
     }
 }
 if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
-	session_start ();
 	$svdva = $_COOKIE[$cookieSession];
 	if ( $user = selectDBNew("users", [$svdva], "`keepMeAlive` LIKE ?", "")){
         if( $user[0]["status"] != 0 ){
