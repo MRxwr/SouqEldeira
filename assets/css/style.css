@@ -1353,7 +1353,7 @@ color:var(--pt-main-color);
 }
 
 
-.ads-section
+.listings-section
 {
 	margin-bottom:1rem;
 }
@@ -1545,7 +1545,7 @@ color:var(--pt-main-color);
 	border-top: 30px solid #F3D60E; 
 }
  
-.favourite-list.ads-section
+.favourite-list.listings-section
 {
 	margin-bottom: 0rem;
 }

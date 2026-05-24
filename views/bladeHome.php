@@ -123,7 +123,7 @@
 			$title = direction("Latest ads for " . $categories[$x]["enTitle"]," أحدث الإعلانات لل" . $categories[$x]["arTitle"]);
 			$type1 = ( !empty($type) ) ? " AND `categoryId` = '{$type}' " : "";
 			if( $ads = selectDB("products","`status` = '0' AND `hidden` = '1' {$type1} ORDER BY `packageId` DESC,`id` DESC LIMIT 3") ){
-				echo "<div class='ads-section'>";
+				echo "<div class='listings-section'>";
 				echo "<h4 class='mb-3'>{$title}</h4>";
 				require('template/adsMainList.php');
 				echo "<div class='d-block text-end mt-3'>";

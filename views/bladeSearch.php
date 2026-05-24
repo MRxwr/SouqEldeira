@@ -73,7 +73,7 @@ if ( isset($_POST) && isset($_POST["categoryId"]) && !empty($_POST["categoryId"]
 	<h4><i class="bi bi-search"></i><?php echo direction("Search Result","نتيجة البحث"); ?><span><?php echo count($ads) . " " .direction("Ad","إعلان"); ?></span></h4>
 </div>
 
-<div class="ads-section">
+<div class="listings-section">
 	<?php include 'template/adsMainList.php'; ?>
 	<div class="d-block text-end mt-3">
 	<?php /*<a href="" class="btn btn-primary"><?php echo direction("More","المزيد"); ?> ...</a>*/?>

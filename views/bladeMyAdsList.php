@@ -278,7 +278,7 @@
 				<?php }else if(isset($_GET["type"]) && $_GET["type"] == "favourite_ads"){ ?>
 				<div class="col-md-12 col-lg-12 col-xl-12"> 
 					<div class="with-white-bg  p-4 px-2 px-md-4"> 
-						<div class="favourite-list ads-section">
+						<div class="favourite-list listings-section">
 						  <h4 class="mb-4"><?php echo direction("Favourite","المفضلة"); ?></h4>	  	  
 						  <?php foreach( $myFevoriteAds as $ad ){ 
 								if( $ad["packageId"] == 2 ){

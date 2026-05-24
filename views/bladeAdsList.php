@@ -1,7 +1,7 @@
 
 	        	
 		       
-				<div class="ads-section">
+				<div class="listings-section">
 					
 				  <h4 class="mb-md-5 mb-3 text-center"><?php echo direction("Ads List","قائمة الإعلانات"); ?></h4>
 				  <?php include 'themes/'.$config['theme'].'/sections/ads-main-list.php'; ?>
