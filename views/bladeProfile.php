@@ -118,10 +118,10 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 <div class="row"> 
 	<div class="col-md-12"> 
 		<div class="start-page-title with-white-bg text-center mb-4 py-3">
-			<h4 class="mb-0"><?php echo Trans('app','Profile'); ?></h4>
+			<h4 class="mb-0"><?php echo direction("Profile","الملف الشخصي"); ?></h4>
 		</div>
 	</div>
-	<div class="col-md-6"> 
+	<div class="col-md-12"> 
 		<div class="with-white-bg py-1 px-4">
 			<form id="profile-form" class="mt-4" method="post" action="index.php?v=Profile" enctype="multipart/form-data">		
 				<div class="mb-4 text-center">
@@ -129,28 +129,28 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 				</div>
 				<!-- Price input -->
 				<div class="form-outline mb-4">
-				<input type="text" class="form-control" name="username" value="<?php echo $userDetails["username"]; ?>" placeholder="<?php echo Trans('app','Username'); ?>" />
+				<input type="text" class="form-control" name="username" value="<?php echo $userDetails["username"]; ?>" placeholder="<?php echo direction("Username","اسم المستخدم"); ?>" />
 				</div>
 				<!-- Price input -->
 				<div class="form-outline mb-4">
-				<input type="text" class="form-control" name="phone" value="<?php echo $userDetails["phone"]; ?>" placeholder="<?php echo Trans('app','Phone Number'); ?>" />
+				<input type="text" class="form-control" name="phone" value="<?php echo $userDetails["phone"]; ?>" placeholder="<?php echo direction("Phone Number","رقم الهاتف"); ?>" />
 				</div>
 				<!-- Price input -->
 				<div class="form-outline mb-4">
-				<input type="text" class="form-control" name="email" value="<?php echo $userDetails["email"]; ?>" placeholder="<?php echo Trans('app','Email'); ?>" />
+				<input type="text" class="form-control" name="email" value="<?php echo $userDetails["email"]; ?>" placeholder="<?php echo direction("Email","البريد الإلكتروني"); ?>" />
 				</div>
 				<div class="form-outline mb-4">
-				<h5 class="fw-bold mb-3"><?php echo Trans('app','Update Profile Image'); ?></h5>
+				<h5 class="fw-bold mb-3"><?php echo direction("Update Profile Image","تحديث صورة الملف الشخصي"); ?></h5>
 				<div class="change-profile-image">
 				  <label for="profile-image-input">
-					<span><?php echo Trans('app','Click or drag an account image'); ?></span>
+					<span><?php echo direction("Click or drag an account image","انقر أو اسحب صورة الحساب"); ?></span>
 					<span><i class="bi bi-image"></i></span>
 				  </label>
 				  <input type="file" id="profile-image-input" name="logo"accept="image/*" style="display: none;">
 				</div>
 				</div>
 				<div class="form-outline mb-4">
-					<h5 class="fw-bold mb-3"><?php echo Trans('app','Social Media Accounts'); ?></h5>
+					<h5 class="fw-bold mb-3"><?php echo direction("Social Media Accounts","حسابات وسائل التواصل الاجتماعي"); ?></h5>
 					<div class="row align-items-center g-3">
 					<div class="col-md-6"> 
 						<div class="input-group mb-1">
@@ -189,29 +189,33 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 			</form>
 		</div>
 	</div>
+	<?php
+	/*
 	<div class="col-md-6"> 
 		<div class="with-white-bg px-4 py-5 mt-4 mt-md-0">    
 			<h4 class="mb-0"><?php echo Trans('app','Change Password'); ?></h4>		
 			<form id="change-password-form" class="mt-4" method="post" action="index.php?v=Profile">
 				<!-- Price input -->
 				<div class="form-outline mb-4">
-				<input type="text" class="form-control" name="password" placeholder="<?php echo Trans('app','Current Password'); ?>" /> 
+				<input type="text" class="form-control" name="password" placeholder="<?php echo direction("Current Password","كلمة المرور الحالية"); ?>" /> 
 				</div>
 				<!-- Price input -->
 				<div class="form-outline mb-4">
-				<input type="text" class="form-control" name="new-password" placeholder="<?php echo Trans('app','New Password'); ?>" />
+				<input type="text" class="form-control" name="new-password" placeholder="<?php echo direction("New Password","كلمة المرور الجديدة"); ?>" />
 				</div>
 				<!-- Price input -->
 				<div class="form-outline mb-4">
-				<span class="form-hint form-hint-confirm-new-password d-block mt-0"><?php echo Trans('app','The password is at least four letters, symbols or Numbers'); ?></span>
-				<input type="text" class="form-control" name="confirm-new-password" placeholder="<?php echo Trans('app','Confirm New Password'); ?>" />
+				<span class="form-hint form-hint-confirm-new-password d-block mt-0"><?php echo direction("The password is at least four letters, symbols or Numbers","كلمة المرور تتكون من أربعة أحرف على الأقل، رموز أو أرقام"); ?></span>
+				<input type="text" class="form-control" name="confirm-new-password" placeholder="<?php echo direction("Confirm New Password","تأكيد كلمة المرور الجديدة"); ?>" />
 				</div>
 				<!-- Submit button -->
 				<button type="submit" class="btn btn-primary btn-block w-100 mb-3 py-2"><?php echo direction("Change Password","تغيير كلمة المرور"); ?></button>
 				<a href="?v=Profile&deleteAccount=1" onclick='return confirm("<?php echo direction("Are you sure you want to delete your account?","هل أنت متأكد أنك تريد حذف حسابك؟")?>")' class="btn btn-danger btn-block w-100 mt-3 py-2"> 
-				<?php echo Trans('app','Delete Account'); ?>
+				<?php echo direction("Delete Account","حذف الحساب"); ?>
 				</a>
 			</form>
 		</div>
 	</div>
+	*/
+	?>
 </div>
