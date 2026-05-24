@@ -60,3 +60,6 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
 		header("Location: index.php?v=Login&error=login");die();
 	}
 }
+
+$now = date("Y-m-d H:i:s");
+updateDB("products", array("hidden" => "2"), "`hidden` = '1' AND `expiryDate` < '{$now}'");

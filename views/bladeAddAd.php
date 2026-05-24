@@ -22,6 +22,11 @@
 				// Handle default case, e.g., set expiryDate to current datetime
 				$expiryDate = date("Y-m-d H:i:s");
 			}
+
+			$governateId = 0;
+			if( $area = selectDB("areas","`id` = '{$_POST["adArea"]}'") ){
+				$governateId = $area[0]["governateId"];
+			}
 			
 			$data = array(
 				"userId" => "{$user[0]["id"]}",
@@ -29,6 +34,7 @@
 				"categoryId"	=>	$_POST["categoryId"],
 				"packageId" => "{$order[0]["packageId"]}",
 				"propertyType"	=>	$_POST["propertyType"],
+				"governateId"	=>	$governateId,
 				"areaId"	=>	$_POST["adArea"],
 				"adType"	=>	$_POST["adType"],
 				"enTitle"		=>	$_POST["adTitle"],
@@ -36,7 +42,9 @@
 				"price"		=>	$_POST["adPrice"],
 				"enDetails"	=>	$_POST["adDescription"],
 				"arDetails"	=>	$_POST["adDescription"],
-				"expiryDate" =>	$expiryDate
+				"expiryDate" =>	$expiryDate,
+				"status"	=>	"0",
+				"hidden"	=>	"1"
 			);
 			
 		if( insertDB("products", $data) ){
@@ -44,7 +52,6 @@
 			$lastId = selectDB("products","`id` != '0' ORDER BY `id` DESC LIMIT 1")[0]["id"];
 
 			if($_POST["adType"] == 1){
-				if($_POST["adType"] == 1){
 				$normalAds = $normalAds - 1;
 				$data = array(
 					"normalAd" => "{$normalAds}",
@@ -57,6 +64,7 @@
 				);
 				updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
 			}
+			
 			// Upload images
 			if ( isset($_FILES['files'])) {
 				for( $i = 0; $i < sizeof($_FILES['files']['tmp_name']); $i++ ){

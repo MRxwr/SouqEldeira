@@ -64,7 +64,7 @@ if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'",
 			</div>
 			<div class="ads-section">
 				<?php
-				if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' AND `shopId` = {$offices[0]["id"]} ORDER BY `packageId` DESC,`id` DESC") ){
+				if( $ads = selectDB("products","`status` = '0' AND `hidden` = '1' AND `shopId` = {$offices[0]["id"]} ORDER BY `packageId` DESC,`id` DESC") ){
 					include 'template/adsMainList.php';
 				}
 				?>

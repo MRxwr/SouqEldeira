@@ -114,7 +114,7 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 <div class="ads-section"> 
   <h4 class="text-start mt-2 mb-3"><?php echo Trans('app','From the same region'); ?></h4>
   <?php
-  if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' AND `areaId` = {$ad[0]["areaId"]} AND `id` != {$ad[0]["id"]} ORDER BY `packageId` DESC,`id` DESC LIMIT 3") ){
+  if( $ads = selectDB("products","`status` = '0' AND `hidden` = '1' AND `areaId` = {$ad[0]["areaId"]} AND `id` != {$ad[0]["id"]} ORDER BY `packageId` DESC,`id` DESC LIMIT 3") ){
   	include 'template/adsMainList.php';
   }
   ?>

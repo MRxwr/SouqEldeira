@@ -185,7 +185,7 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 					</div>
 				</div>
 				<!-- Submit button -->
-				<button type="submit" class="btn btn-primary btn-block w-100 mb-3 py-2"><?php echo Trans('app','Update Profile'); ?></button>
+				<button type="submit" class="btn btn-primary btn-block w-100 mb-3 py-2"><?php echo direction("Update Profile","تحديث الملف الشخصي"); ?></button>
 			</form>
 		</div>
 	</div>
@@ -193,7 +193,7 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 	/*
 	<div class="col-md-6"> 
 		<div class="with-white-bg px-4 py-5 mt-4 mt-md-0">    
-			<h4 class="mb-0"><?php echo Trans('app','Change Password'); ?></h4>		
+			<h4 class="mb-0"><?php echo direction("Change Password","تغيير كلمة المرور"); ?></h4>		
 			<form id="change-password-form" class="mt-4" method="post" action="index.php?v=Profile">
 				<!-- Price input -->
 				<div class="form-outline mb-4">

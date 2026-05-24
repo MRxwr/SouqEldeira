@@ -34,10 +34,10 @@ if ( isset($_POST) && isset($_POST["categoryId"]) && !empty($_POST["categoryId"]
 	}else{
 		$propertyType = "";
 	}
-	if( $ads = selectDBNew("products",[$_POST["categoryId"],$_POST["areaId"]],"`status` = '0' AND `hidden` != '2' AND `categoryId` = ? AND `areaId` = ? {$price} {$propertyType} ORDER BY `packageId` DESC,`id` DESC","") ){
+	if( $ads = selectDBNew("products",[$_POST["categoryId"],$_POST["areaId"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? AND `areaId` = ? {$price} {$propertyType} ORDER BY `packageId` DESC,`id` DESC","") ){
 	}
 }elseif( isset($_GET["type"]) && !empty($_GET["type"]) ){
-	if( $ads = selectDBNew("products",[$_GET["type"]],"`status` = '0' AND `hidden` != '2' AND `categoryId` = ? ORDER BY `packageId` DESC,`id` DESC","") ){
+	if( $ads = selectDBNew("products",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? ORDER BY `packageId` DESC,`id` DESC","") ){
 		$category = selectDBNew("categories",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","");
 		$categoyTitle = direction($category[0]["enTitle"],$category[0]["arTitle"]);
 		$areaTitle = "";
