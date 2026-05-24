@@ -25,6 +25,8 @@ if( isset($_POST["enTitle"]) ){
 		$_POST["logo"] = $filenewname;
 	}
 	if ( $id == 0 ){
+		$_POST["status"] = "0";
+		$_POST["hidden"] = "1";
 		if( insertDB("packages", $_POST) ){
 			header("LOCATION: ?v=Packages");
 		}else{
