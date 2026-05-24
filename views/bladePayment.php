@@ -69,15 +69,17 @@ if(!$_SESSION['valid']){
 
 					//if (isset($_REQUEST['initPayment'])) {
 						// Pass sub merchant id(s) and amount(s) in the below format.
-						$transactionDetails = array(
-							array(
-								"SubMerchUID" => "mer23000173",
-								"Txn_AMT" => $package[0]["price"]
-							)
-						);
-
-						$bookeeyPipe->initiatePayment($transactionDetails);
-						exit;
+					$transactionDetails = array(
+						array(
+							"SubMerchUID" => "mer23000173",
+							"Txn_AMT" => $package[0]["price"]
+						)
+					);
+					if ( $package[0]["price"] == 0 ){
+						header("LOCATION: index.php?v=Payment&finalstatus=success&merchantTxnId={$orderId}");die();
+					}
+					$bookeeyPipe->initiatePayment($transactionDetails);
+					exit;
 					//}
 					
 					/*
@@ -107,7 +109,7 @@ if(!$_SESSION['valid']){
 						<?php if(isset($_GET["finalstatus"]) && strtolower(base64_decode($_GET["finalstatus"])) == "success"){
 							if($_GET["merchantTxnId"]){
 								$gatewayId  = $_GET["merchantTxnId"];
-								$order = selectDB("orders2"," `gatewayId` = '{$gatewayId}' ORDER BY `id` DESC LIMIT 1","");
+								$order = selectDBNew("orders2",[$gatewayId]," `orderId` = ? ORDER BY `id` DESC LIMIT 1","");
 								if($order && $order[0]["status"] == "0"){
 									$package = selectDB("packages","`id` = '{$order[0]["packageId"]}' ORDER BY `id` DESC LIMIT 1","");
 									if($package){
