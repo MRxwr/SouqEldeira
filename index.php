@@ -1,4 +1,5 @@
-<?php 
+<?php
+ob_start();
 require_once 'template/header.php';
 if( isset($_GET["finalstatus"]) ){
 	if( strtolower(base64_decode($_GET["finalstatus"])) == "success" ){
@@ -18,4 +19,5 @@ if( isset($_GET["v"]) && searchFile("views","blade{$_GET["v"]}.php") ){
 }
 
 require_once 'template/footer.php';
+ob_end_flush();
 ?>
