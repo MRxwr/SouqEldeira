@@ -31,7 +31,7 @@
 					<div class="input-group input-group-select-with-icon">  
 						<label class="input-group-text labelIcon" for=""><i class="bi bi-geo-alt"></i></label>
 						<select class="form-select" name="areaId" aria-label="Property Region">
-						<option selected><i class="bi bi-geo-alt"></i> <?php echo direction("Area or Region","المنطقة أو الإقليم"); ?></option>
+						<option selected value=""><i class="bi bi-geo-alt"></i> <?php echo direction("Area or Region","المنطقة أو الإقليم"); ?></option>
 						<?php
 						$governateId = 0;
 						$directionOfArea = direction("enTitle","arTitle");
