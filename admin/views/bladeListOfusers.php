@@ -169,7 +169,7 @@ if( isset($_POST["name"]) ){
 					<a href="?v=ClientInfo&id=<?php echo $users[$i]["id"] ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo direction("More","المزيد") ?>"> <i class="fa fa-plus text-inverse m-r-10"></i></a>
 					<a href="<?php echo $link ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo $hide ?>"> <i class="<?php echo $icon ?> text-inverse m-r-10"></i>
 					</a>
-					<a href="<?php echo "?v={$_GET["v"]}&delId={$users[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i></a>
+					<?php /*<a href="<?php echo "?v={$_GET["v"]}&delId={$users[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i></a> */ ?>>
 					<div style="display:none">
 						<label id="name<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["name"] ?></label>
 						<label id="username<?php echo $users[$i]["id"]?>"><?php echo $users[$i]["username"] ?></label>
