@@ -34,6 +34,7 @@ if ( isset($_POST) && !empty($_POST) ) {
 	}else{
 		$propertyType = "";
 	}
+	var_dump($_POST);
 	if( $ads = selectDBNew("products",[$_POST["categoryId"],$_POST["areaId"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? AND `areaId` = ? {$price} {$propertyType} ORDER BY `packageId` DESC,`id` DESC","") ){
 	}
 }elseif( isset($_GET["type"]) && !empty($_GET["type"]) ){
