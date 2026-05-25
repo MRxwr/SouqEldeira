@@ -34,7 +34,7 @@ if ( isset($_POST) && !empty($_POST) ) {
 	}else{
 		$price = "";
 	}
-	if( $ads = selectDBNew("products",[$_POST["categoryId"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? AND {$areaId} {$price} {$propertyType} ","`packageId` DESC,`id` DESC") ){
+	if( $ads = selectDBNew("products",[$_POST["categoryId"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? {$areaId} {$price} {$propertyType} ","`packageId` DESC,`id` DESC") ){
 	}
 }elseif( isset($_GET["type"]) && !empty($_GET["type"]) ){
 	if( $ads = selectDBNew("products",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? ORDER BY `packageId` DESC,`id` DESC","") ){
