@@ -59,7 +59,7 @@
 				<div class="input-group input-group-select-with-icon">  
 						<label class="input-group-text labelIcon" for=""><i class="bi bi-building"></i></label>
 						<select class="form-select" name="propertyType" aria-label="Properity Type">
-						<option selected><i class="bi bi-building"></i> <?php echo direction("Properity Type","نوع العقار"); ?></option>
+						<option selected value=""><i class="bi bi-building"></i> <?php echo direction("Properity Type","نوع العقار"); ?></option>
 						<?php
 						if( $propertyType = selectDB("propertyType","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 							for( $i = 0; $i < sizeof($propertyType); $i++ ){
