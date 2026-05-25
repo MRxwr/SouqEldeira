@@ -5,7 +5,7 @@ if ( isset($_POST) && isset($_POST["categoryId"]) && !empty($_POST["categoryId"]
 	}else{
 		?>
 		<script>
-			alert('<?php echo direction("Could not process your request, Please try again","حدث خطأ أثناء عملية الطلب, يرجى المحاولة مرة أخرى"); ?>');
+			alert('<?php echo direction("Please select category","يرجى اختيار الفئة"); ?>');
 			window.location.href = 'index.php?v=Home';
 		</script>
 		<?php
@@ -15,7 +15,7 @@ if ( isset($_POST) && isset($_POST["categoryId"]) && !empty($_POST["categoryId"]
 	}else{
 		?>
 		<script>
-			alert('<?php echo direction("Could not process your request, Please try again","حدث خطأ أثناء عملية الطلب, يرجى المحاولة مرة أخرى"); ?>');
+			alert('<?php echo direction("Please select area","يرجى اختيار منطقة "); ?>');
 			window.location.href = 'index.php?v=Home';
 		</script>
 		<?php
@@ -45,7 +45,7 @@ if ( isset($_POST) && isset($_POST["categoryId"]) && !empty($_POST["categoryId"]
 }else{
 	?>
 	<script>
-		alert("error" + '<?php echo direction("Could not process your request, Please try again","حدث خطأ أثناء عملية الطلب, يرجى المحاولة مرة أخرى"); ?>');
+		alert('<?php echo direction("Could not process your request, Please try again","حدث خطأ أثناء عملية الطلب, يرجى المحاولة مرة أخرى"); ?>');
 		window.location.href = 'index.php?v=Home';
 	</script>
 	<?php
