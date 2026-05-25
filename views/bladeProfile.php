@@ -129,7 +129,7 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 				</div>
 				<!-- Price input -->
 				<div class="form-outline mb-4">
-				<input type="text" class="form-control" name="username" value="<?php echo $userDetails["username"]; ?>" placeholder="<?php echo direction("Username","اسم المستخدم"); ?>" />
+				<input type="text" class="form-control" name="name" value="<?php echo $userDetails["name"]; ?>" placeholder="<?php echo direction("Username","اسم المستخدم"); ?>" />
 				</div>
 				<!-- Price input -->
 				<div class="form-outline mb-4">
