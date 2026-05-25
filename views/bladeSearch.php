@@ -10,15 +10,15 @@ if ( isset($_POST) && !empty($_POST) ) {
 		</script>
 		<?php
 	}
-	if( $area = selectDBNew("areas",[$_POST["areaId"]],"`status` = '0' AND `hidden` = '0' AND `id` = ?","") ){
-		$areaTitle = direction($area[0]["enTitle"],$area[0]["arTitle"]);
+	if( isset($_POST["areaId"]) && !empty($_POST["areaId"]) ){
+		$areaId = " AND `areaId` = '{$_POST["areaId"]}' ";
 	}else{
-		?>
-		<script>
-			alert('<?php echo direction("Please select area","يرجى اختيار منطقة "); ?>');
-			window.location.href = 'index.php?v=Home';
-		</script>
-		<?php
+		$areaId = "";
+	}
+	if( isset($_POST["propertyType"]) && !empty($_POST["propertyType"]) ){
+		$propertyType = " AND `propertyType` = '{$_POST["propertyType"]}' ";
+	}else{
+		$propertyType = "";
 	}
 	if( isset($_POST["from"]) && !empty($_POST["from"]) && isset($_POST["to"]) && !empty($_POST["to"]) ){
 		$price = " AND `price` BETWEEN '{$_POST["from"]}' AND '{$_POST["to"]}' ";
@@ -29,13 +29,7 @@ if ( isset($_POST) && !empty($_POST) ) {
 	}else{
 		$price = "";
 	}
-	if( isset($_POST["propertyType"]) && !empty($_POST["propertyType"]) ){
-		$propertyType = " AND `propertyType` = '{$_POST["propertyType"]}' ";
-	}else{
-		$propertyType = "";
-	}
-	var_dump($_POST);
-	if( $ads = selectDBNew("products",[$_POST["categoryId"],$_POST["areaId"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? AND `areaId` = ? {$price} {$propertyType} ORDER BY `packageId` DESC,`id` DESC","") ){
+	if( $ads = selectDBNew("products",[$_POST["categoryId"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? AND {$areaId} {$price} {$propertyType} ORDER BY `packageId` DESC,`id` DESC","") ){
 	}
 }elseif( isset($_GET["type"]) && !empty($_GET["type"]) ){
 	if( $ads = selectDBNew("products",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? ORDER BY `packageId` DESC,`id` DESC","") ){
