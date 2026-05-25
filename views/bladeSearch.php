@@ -1,7 +1,9 @@
 <?php
 if ( isset($_POST) && !empty($_POST) ) {
+	$areaTitle = "";
+	$categoryTitle = "";
 	if( $category = selectDBNew("categories",[$_POST["categoryId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","") ){
-		$categoyTitle = direction($category[0]["enTitle"],$category[0]["arTitle"]);
+		$categoryTitle = direction($category[0]["enTitle"],$category[0]["arTitle"]);
 	}else{
 		?>
 		<script>
@@ -12,6 +14,9 @@ if ( isset($_POST) && !empty($_POST) ) {
 	}
 	if( isset($_POST["areaId"]) && !empty($_POST["areaId"]) ){
 		$areaId = " AND `areaId` = '{$_POST["areaId"]}' ";
+		if( $area = selectDBNew("areas",[$_POST["areaId"]],"`status` = '0' AND `hidden` = '0' AND `id` = ?","") ){
+			$areaTitle = direction($area[0]["enTitle"],$area[0]["arTitle"]);
+		}
 	}else{
 		$areaId = "";
 	}
@@ -29,12 +34,12 @@ if ( isset($_POST) && !empty($_POST) ) {
 	}else{
 		$price = "";
 	}
-	if( $ads = selectDBNew("products",[$_POST["categoryId"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? AND {$areaId} {$price} {$propertyType} ORDER BY `packageId` DESC,`id` DESC","") ){
+	if( $ads = selectDBNew("products",[$_POST["categoryId"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? AND {$areaId} {$price} {$propertyType} ","`packageId` DESC,`id` DESC") ){
 	}
 }elseif( isset($_GET["type"]) && !empty($_GET["type"]) ){
 	if( $ads = selectDBNew("products",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? ORDER BY `packageId` DESC,`id` DESC","") ){
 		$category = selectDBNew("categories",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","");
-		$categoyTitle = direction($category[0]["enTitle"],$category[0]["arTitle"]);
+		$categoryTitle = direction($category[0]["enTitle"],$category[0]["arTitle"]);
 		$areaTitle = "";
 	}
 }else{
@@ -53,7 +58,7 @@ if ( isset($_POST) && !empty($_POST) ) {
 	<div class="div">
 		<span class="title"><?php echo direction("Type","النوع"); ?></span>
 		<span class="data">
-			<span><?php echo $categoyTitle; ?><span> 
+			<span><?php echo $categoryTitle; ?><span> 
 		</span>
 	</div>
 	<div class="div">
