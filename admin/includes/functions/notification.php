@@ -177,7 +177,7 @@ function sendMails($orderId, $email){
 function contactUsMail($data){
 	GLOBAL $settingsEmail, $settingsTitle;
 	$subject = "Contact Us Form";
-	sendMailAPI($settingsEmail, $subject, $data["msg"], $data["email"], $settingsTitle);
+	sendMailAPI($settingsEmail, $subject, $data["msg"], null, $settingsTitle, $data["email"]);
 }
 
 function sendMailsAdmin($orderId){
