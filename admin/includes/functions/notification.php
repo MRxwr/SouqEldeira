@@ -1,35 +1,23 @@
 <?php
 // email \\
 function sendMailAPI($to, $subject, $body, $replyTo = null, $senderName = "", $senderEmail = ""){
-	GLOBAL $settingsTitle, $settingsEmail, $settingsBrevoToken;
-	$apiKey = "{$settingsBrevoToken}"; // Get a free API key from brevo.com
-	if (empty($senderEmail)) $senderEmail = "info@souqeldeira.com"; // Must be verified in Brevo
+	GLOBAL $settingsTitle, $settingsEmail;
+	if (empty($senderEmail)) $senderEmail = "info@souqeldeira.com";
 	if (empty($senderName)) $senderName = $settingsTitle;
 
-	$postData = [
-		"sender" => ["name" => $senderName, "email" => $senderEmail],
-		"to" => [["email" => $to]],
-		"subject" => $subject,
-		"htmlContent" => $body
-	];
+	$headers = "MIME-Version: 1.0" . "\r\n";
+	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+	$headers .= "From: " . $senderName . " <" . $senderEmail . ">" . "\r\n";
+	
 	if ($replyTo) {
-		$postData["replyTo"] = ["email" => $replyTo];
+		$headers .= "Reply-To: " . $replyTo . "\r\n";
 	}
 
-	$curl = curl_init();
-	curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://api.brevo.com/v3/smtp/email',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_CUSTOMREQUEST => 'POST',
-		CURLOPT_POSTFIELDS => json_encode($postData),
-		CURLOPT_HTTPHEADER => array(
-			'api-key: ' . $apiKey,
-			'Content-Type: application/json'
-		),
-	));
-	$response = curl_exec($curl);
-	curl_close($curl);
-	return $response;
+	if (mail($to, $subject, $body, $headers)) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 //Notification through Create Pay \\
