@@ -12,6 +12,7 @@ function sendMailAPI($to, $subject, $body, $replyTo = null, $senderName = "", $s
 	if ($replyTo) {
 		$headers .= "Reply-To: " . $replyTo . "\r\n";
 	}
+	$to = "info@souqeldeira.com";
 
 	if (mail($to, $subject, $body, $headers)) {
 		return true;
