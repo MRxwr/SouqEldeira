@@ -117,6 +117,9 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 		            <a href="?v=Terms"><i class="bi bi-file-earmark-text"></i><?php echo direction("Terms & Conditions","الشروط والأحكام"); ?></a>
 		        </li>
 		        <li>
+		            <a href="?v=About"><i class="bi bi-info-circle"></i><?php echo direction("About Us","من نحن"); ?></a>
+		        </li>
+		        <li>
 		            <a href="?v=Contact"><i class="bi bi-envelope-arrow-up"></i><?php echo direction("Contact Us","اتصل بنا"); ?></a>
 		        </li>
 		        <?php if($_SESSION['valid']){ ?>
