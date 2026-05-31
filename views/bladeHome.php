@@ -146,9 +146,11 @@
 				<img src="assets/img/logo-white.png" class="img-fluid logo">
 				<br>
 				<p><?php 
+				/*
 				if ( $settings = selectDB("settings","`id` = '1'") ){
 					echo direction($settings[0]["enAbout"],$settings[0]["arAbout"]);
 				}
+					*/
 				?></p>
 			</div>
 		</div>
