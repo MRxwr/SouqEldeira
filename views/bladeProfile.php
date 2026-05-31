@@ -52,12 +52,13 @@ if( isset($_POST["password"]) && !empty($_POST["password"]) ){
 		<?php
 	}
 }
-if( isset($_POST["email"]) && !empty($_POST["email"]) ){
-	if( $user = selectDBNew("users",[$_POST["email"]],"`email` = ?","") ){
+
+if( isset($_POST["phone"]) && !empty($_POST["phone"]) ){
+	if( $user = selectDBNew("users",[$_POST["phone"]],"`phone` = ?","") ){
 		if( $user[0]["id"] != $userDetails["id"] ){
 			?>
 			<script>
-				alert("<?php echo direction("This email is already in use","هذا البريد الإلكتروني مستخدم بالفعل"); ?>");
+				alert("<?php echo direction("This phone number is already in use","هذا الرقم مستخدم بالفعل"); ?>");
 				window.location = "index.php?v=Profile";
 			</script>
 			<?php
