@@ -1,6 +1,11 @@
 <div class="listings-main-list">
 	<div class="row gy-3"> 
 	<?php
+		usort($ads, function($a, $b) {
+			if ($a["adType"] == 2 && $b["adType"] != 2) return -1;
+			if ($a["adType"] != 2 && $b["adType"] == 2) return 1;
+			return 0;
+		});
 		foreach( $ads as $ad ){
 			if( $ad["adType"] == 2 ){
 				$feature = "card-feature";
