@@ -5,6 +5,7 @@ $settingsTitle = $settingsCookie[0]["title"];
 $settingslogo = $settingsCookie[0]["logo"];
 $settingsWebsite = $settingsCookie[0]["website"];
 $settingsEmail = $settingsCookie[0]["email"];
+$settingsBrevoToken = $settingsCookie[0]["brevoToken"];
 
 $settingsLang = (isset($_COOKIE["CREATEkwLANG"]) && $_COOKIE["CREATEkwLANG"] == "en") ? "en" : "ar";
 $directionHTML = (isset($_COOKIE["CREATEkwLANG"]) && $_COOKIE["CREATEkwLANG"] == "en") ? "" : "rtl";

@@ -1,5 +1,36 @@
 <?php
 // email \\
+function sendMailAPI($to, $subject, $body, $replyTo = null, $senderName = "", $senderEmail = ""){
+	GLOBAL $settingsTitle, $settingsEmail, $settingsBrevoToken;
+	$apiKey = "{$settingsBrevoToken}"; // Get a free API key from brevo.com
+	if (empty($senderEmail)) $senderEmail = "info@souqeldeira.com"; // Must be verified in Brevo
+	if (empty($senderName)) $senderName = $settingsTitle;
+
+	$postData = [
+		"sender" => ["name" => $senderName, "email" => $senderEmail],
+		"to" => [["email" => $to]],
+		"subject" => $subject,
+		"htmlContent" => $body
+	];
+	if ($replyTo) {
+		$postData["replyTo"] = ["email" => $replyTo];
+	}
+
+	$curl = curl_init();
+	curl_setopt_array($curl, array(
+		CURLOPT_URL => 'https://api.brevo.com/v3/smtp/email',
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_CUSTOMREQUEST => 'POST',
+		CURLOPT_POSTFIELDS => json_encode($postData),
+		CURLOPT_HTTPHEADER => array(
+			'api-key: ' . $apiKey,
+			'Content-Type: application/json'
+		),
+	));
+	$response = curl_exec($curl);
+	curl_close($curl);
+	return $response;
+}
 
 //Notification through Create Pay \\
 function sendNotification($data){
@@ -149,82 +180,23 @@ function emailBody($orderId){
 }
 
 function sendMails($orderId, $email){
-	GLOBAL $settingsEmail, $settingsTitle, $settingsWebsite, $settingslogo;
-			$sendEmail = $email;
-			$title = "Order From - {$settingsTitle}";
-			$msg = emailBody($orderId);
-		$curl = curl_init();
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://createid.link/api/v1/send/notify',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'POST',
-			CURLOPT_POSTFIELDS => array(
-				'site' => $title,
-				'subject' => "Order #{$orderId}",
-				'body' => $msg,
-				'from_email' => $settingsEmail,
-				'to_email' => $sendEmail
-			),
-		));
-		$response = curl_exec($curl);
-		curl_close($curl);
+	GLOBAL $settingsEmail, $settingsTitle;
+	$subject = "Order #{$orderId}";
+	$msg = emailBody($orderId);
+	sendMailAPI($email, $subject, $msg, null, $settingsTitle, $settingsEmail);
 }
 
 function contactUsMail($data){
 	GLOBAL $settingsEmail, $settingsTitle;
-		$title = "New Message - {$settingsTitle}";
-		$curl = curl_init();
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://createid.link/api/v1/send/notify',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'POST',
-			CURLOPT_POSTFIELDS => array(
-				'site' => $title,
-				'subject' => "Contact Us Form",
-				'body' => $data["msg"],
-				'from_email' => $data["email"],
-				'to_email' => $settingsEmail
-			),
-		));
-		$response = curl_exec($curl);
-		curl_close($curl);
+	$subject = "Contact Us Form";
+	sendMailAPI($settingsEmail, $subject, $data["msg"], $data["email"], $settingsTitle);
 }
 
 function sendMailsAdmin($orderId){
 	GLOBAL $settingsEmail, $settingsTitle;
-			$sendEmail = $settingsEmail;
-			$title = "New order - {$settingsTitle}";
-			$msg = emailBody($orderId);
-		$curl = curl_init();
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://createid.link/api/v1/send/notify',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'POST',
-			CURLOPT_POSTFIELDS => array(
-				'site' => $title,
-				'subject' => "Order #{$orderId}",
-				'body' => $msg,
-				'from_email' => $settingsEmail,
-				'to_email' => $sendEmail
-			),
-		));
-		$response = curl_exec($curl);
-		curl_close($curl);
+	$subject = "Order #{$orderId}";
+	$msg = emailBody($orderId);
+	sendMailAPI($settingsEmail, $subject, $msg, null, $settingsTitle, $settingsEmail);
 }
 
 function whatsappUltraMsgVerify($to, $code){
