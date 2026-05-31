@@ -208,7 +208,7 @@
 			      <!-- Submit button -->
 			      <button type="submit" class="btn btn-primary btn-block w-100 mb-3 py-2"><?php echo direction("Update Ad","تحديث الإعلان"); ?></button>
 			      <div class="text-center">  
-			      	<p class="add-ad-form-text fw-bold"><?php echo direction("Send us message by","أرسل لنا رسالة عبر"); ?> <a href=""><?php echo direction("WhatsApp","واتساب"); ?></a> <?php echo direction("or","أو"); ?> <a href="contact.php"><?php echo direction("call us","اتصل بنا"); ?></a> <?php echo direction("for help","للمساعدة"); ?></p>
+			      	<p class="add-ad-form-text fw-bold"><?php echo direction("Send us message by","أرسل لنا رسالة عبر"); ?> <a href="https://wa.me/96566004080"><?php echo direction("WhatsApp","واتساب"); ?></a> <?php echo direction("or","أو"); ?> <a href="tel:96566004080"><?php echo direction("call us","اتصل بنا"); ?></a> <?php echo direction("for help","للمساعدة"); ?></p>
 			      </div> 
 			    </form>
 			 </div>
