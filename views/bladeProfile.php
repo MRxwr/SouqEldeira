@@ -77,6 +77,7 @@ if( isset($_POST["email"]) && !empty($_POST["email"]) ){
 		"twitter" => $_POST["twitter"],
 		"instagram" => $_POST["instagram"],
 		"url" => $_POST["url"],
+		"snapchat" => $_POST["snapchat"],
 		"contactEmail" => $_POST["contactEmail"],
 		"logo" => $_POST["logo"],
 	);
@@ -168,6 +169,12 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 						<div class="input-group mb-1">
 							<span class="input-group-text"><i class="bi bi-instagram"></i></span>
 							<input type="text" name="instagram" class="form-control" value="<?php echo $userDetails["instagram"]; ?>">
+						</div>
+					</div>
+					<div class="col-md-6"> 
+						<div class="input-group mb-1">
+							<span class="input-group-text"><i class="bi bi-snapchat"></i></span>
+							<input type="text" name="snapchat" class="form-control" value="<?php echo $userDetails["snapchat"]; ?>">
 						</div>
 					</div>
 					<div class="col-md-6"> 
