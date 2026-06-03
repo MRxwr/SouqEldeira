@@ -1,7 +1,7 @@
 <?php
 if( isset($_POST["password"]) && !empty($_POST["password"]) ){
 	if( $user = selectDBNew("users",[$userDetails["id"],sha1($_POST["password"])],"`id` = ? AND `password` = ?","") ){
-		if( isset($_POST["new-password"]) && !empty($_POST["new-password"]) && isset($_POST["confirm-new-password"]) && !empty($_POST["confirm-new-password"]) ){
+		if( isset($_POST["new-password"]) && !empty($_POST["new-password"]) && isset($_POST["confirm-new-password"]) && !empty($_POST["confirm-new-password"]) ){ 
 			if( $_POST["new-password"] == $_POST["confirm-new-password"] ){
 				if( $user = selectDBNew("users",[$userDetails["id"],sha1($_POST["new-password"])],"`id` = ? AND `password` = ?","") ){
 					?>
