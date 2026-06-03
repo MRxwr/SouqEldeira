@@ -41,9 +41,10 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
             "name" => $user[0]["name"],
             "username" => $user[0]["username"],
             "phone" => $user[0]["phone"],
-            "facebook" => $user[0]["facebook"],
-            "twitter" => $user[0]["twitter"],
+            "facebook" => $user[0]["facebook"]
             "instagram" => $user[0]["instagram"],
+            "snapchat" => $user[0]["snapchat"],
+            "twitter" => $user[0]["twitter"],
             "url" => $user[0]["url"],
             "contactEmail" => $user[0]["contactEmail"],
             "logo" => $user[0]["logo"],
