@@ -41,7 +41,7 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
             "name" => $user[0]["name"],
             "username" => $user[0]["username"],
             "phone" => $user[0]["phone"],
-            "facebook" => $user[0]["facebook"]
+            "facebook" => $user[0]["facebook"],
             "instagram" => $user[0]["instagram"],
             "snapchat" => $user[0]["snapchat"],
             "twitter" => $user[0]["twitter"],
