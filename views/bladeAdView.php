@@ -55,7 +55,7 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
             <div class="contact">
             	<a href="https://wa.me/<?php 
 $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-$msg = urlencode("أريد أن أسأل عن هذا الإعلان\n$url");	echo "{$mobile}&text={$msg}"; ?>" class="btn btn-default btn-border-radius-1 py-2 btn-wts"><i class="bi bi-whatsapp"></i></a>
+$msg = urlencode("أريد أن أسأل عن هذا الإعلان\n$url");	echo "{$mobile}?text={$msg}"; ?>" class="btn btn-default btn-border-radius-1 py-2 btn-wts"><i class="bi bi-whatsapp"></i></a>
             	<a href="tel:<?php echo $mobile; ?>" class="btn btn-default btn-border-radius-1 py-2 btn-call"><i class="bi bi-telephone"></i> <?php echo direction("Call","اتصل"); ?></a>   
             </div>
         </div>
