@@ -11,7 +11,7 @@ include 'includes/checksouthead.php';
         <meta name="author" content="" />
         <title><?php echo direction("Souq Al Deerah","سوق الديرة"); ?></title>
         <!-- Favicon-->
-        <link rel="icon" type="assets/image/x-icon" href="assets/img/favicon.ico" />
+        <link rel="icon" type="assets/image/x-icon" href="assets/img/logo-1.png" />
         <!-- Core CSS -->
         <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='ltr') { ?>
         <link href="assets/components/bootstrap/v-5.2.3/css/bootstrap.min.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
