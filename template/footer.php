@@ -94,6 +94,23 @@
 	</div>
 </footer>
 
+<!-- PWA Install Banner -->
+<div id="install-pwa-banner" class="alert alert-light alert-dismissible shadow m-0 w-100" role="alert" style="display: none; position: fixed; bottom: 0; z-index: 9999; border-top: 1px solid #dee2e6; border-radius: 0;">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <img src="assets/img/logo-192.png" width="40" height="40" class="me-3" alt="Logo" style="border-radius: 8px;">
+            <div>
+                <strong class="d-block text-dark"><?php echo direction("Install Souq Al Deerah","تثبيت تطبيق سوق الديرة"); ?></strong>
+                <small class="text-muted"><?php echo direction("Add to your home screen for quick access.","أضفه إلى شاشتك الرئيسية للوصول السريع."); ?></small>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <button id="install-pwa-btn" class="btn btn-primary btn-sm mx-2"><?php echo direction("Install","تثبيت"); ?></button>
+            <button id="close-pwa-btn" type="button" class="btn-close position-static p-2" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
 <div class="main-overlay"></div>
 		<!-- ========================= scroll-top ========================= -->
 	    <a href="#" class="scroll-top">
@@ -122,6 +139,39 @@
                     }, function(err) {
                         console.log('ServiceWorker registration failed: ', err);
                     });
+                });
+            }
+
+            // PWA Install Prompt Logic
+            let deferredPrompt;
+            const installBanner = document.getElementById('install-pwa-banner');
+            const installBtn = document.getElementById('install-pwa-btn');
+            const closeBtn = document.getElementById('close-pwa-btn');
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                // Prevent the mini-infobar from appearing on mobile
+                e.preventDefault();
+                // Stash the event so it can be triggered later.
+                deferredPrompt = e;
+                // Update UI notify the user they can install the PWA
+                if(installBanner) installBanner.style.display = 'block';
+            });
+
+            if(installBtn) {
+                installBtn.addEventListener('click', async () => {
+                    installBanner.style.display = 'none';
+                    if (deferredPrompt !== null) {
+                        deferredPrompt.prompt();
+                        const { outcome } = await deferredPrompt.userChoice;
+                        console.log(`User response to the install prompt: ${outcome}`);
+                        deferredPrompt = null;
+                    }
+                });
+            }
+
+            if(closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    installBanner.style.display = 'none';
                 });
             }
         </script>
