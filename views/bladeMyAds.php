@@ -127,9 +127,11 @@
 								 
 								<div class="buy-ad">
 									<span><?php echo direction("Buy Regular Ad","شراء إعلان عادي"); ?></span>
-									<form class="buy-ad-form buy-ad-regular"> 
+									<form action="index.php?v=Payment" method="post" class="buy-ad-form buy-ad-regular"> 
+										<input type="hidden" name="process" value="2">
+										<input type="hidden" name="adType" value="normal">
 								        <div class="form-outline">
-								        	<input type="number"  class="form-control" name="quantity" placeholder="<?php echo Trans('app','Qt'); ?>" />
+								        	<input type="number" min="1" class="form-control" name="quantity" required placeholder="<?php echo Trans('app','Qt'); ?>" />
 								        </div> 
 								        <div class="text-center">(x 1 <?php echo direction("KD", "دك"); ?>)</div> 
 			      						<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo direction("Pay","ادفع"); ?></button> 
@@ -138,9 +140,11 @@
 								
 								<div class="buy-ad mt-2">
 									<span><?php echo direction("Buy Special Ad","شراء إعلان مميز"); ?></span>
-									<form class="buy-ad-form special-ad-regular">
+									<form action="index.php?v=Payment" method="post" class="buy-ad-form special-ad-regular">
+										<input type="hidden" name="process" value="2">
+										<input type="hidden" name="adType" value="special">
 								        <div class="form-outline">
-								        	<input type="number"  class="form-control" name="quantity" placeholder="<?php echo direction("Qt","الكمية"); ?>" />
+								        	<input type="number" min="1" class="form-control" name="quantity" required placeholder="<?php echo direction("Qt","الكمية"); ?>" />
 								        </div> 
 								        <div class="text-center">(x 2 <?php echo direction("KD", "دك"); ?>)</div> 
 			      						<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo direction("Pay","ادفع"); ?></button>

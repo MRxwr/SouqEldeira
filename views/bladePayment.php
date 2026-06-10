@@ -80,19 +80,69 @@ if(!$_SESSION['valid']){
 					}
 					$bookeeyPipe->initiatePayment($transactionDetails);
 					exit;
-					//}
-					
-					/*
-					if($link){
-						header("LOCATION: $link");die();
-					}else{
-						header("LOCATION: index.php?v=Payment&error=1");die();
-					}	
-					*/
 				}else{
 					header("LOCATION: index.php?v=Payment&error=1");die();
 				}
 
+			}
+		} elseif(isset($_POST["process"]) && $_POST["process"] == "2"){
+			$adType = $_POST["adType"];
+			$quantity = (int)$_POST["quantity"];
+
+			if($quantity > 0){
+				$pricePerAd = ($adType == "special") ? 2 : 1;
+				$totalPrice = $quantity * $pricePerAd;
+				
+				$infoData = array(
+					"name" => $user[0]["name"], 
+					"email" => $user[0]["email"], 
+					"phone" => $user[0]["phone"],
+					"adType" => $adType,
+					"quantity" => $quantity
+				);
+
+				$orderData = array(
+					"userId" => $user[0]["id"],
+					"orderId" => $orderId,
+					"packageId" => 0, // Using 0 for custom individual ad purchases
+					"price" => $totalPrice,
+					"date" => date("Y-m-d H:i:s"),
+					'info' => json_encode($infoData),
+					"status" => "0",
+				);
+
+				if(insertDB("orders2", $orderData)){
+					$bookeeyPipe = new bookeey;
+					$bookeeyPipe->setSuccessUrl('https://souqeldeira.com/index.php');
+					$bookeeyPipe->setFailureUrl('https://souqeldeira.com/index.php');
+					$bookeeyPipe->setMerchantID('mer23000173');    
+					$bookeeyPipe->setSecretKey('4653344');    
+					$bookeeyPipe->setIsTestModeEnable(0);  
+					$bookeeyPipe->setOrderId(time());  
+					$bookeeyPipe->setAmount($totalPrice);  
+					$bookeeyPipe->setPayerName($user[0]["name"]);  
+					$bookeeyPipe->setPayerPhone($user[0]["phone"]);  
+					
+					if (isset($_REQUEST['selectedPaymentOption'])) {
+						$selectedPaymentOption = $_REQUEST['selectedPaymentOption'];
+						$bookeeyPipe->setSelectedPaymentOption("knet");
+					}else {
+						$selectedPaymentOption = $bookeeyPipe->getDefaultPaymentOption();
+						$bookeeyPipe->setSelectedPaymentOption("knet");
+					}
+
+					$transactionDetails = array(
+						array(
+							"SubMerchUID" => "mer23000173",
+							"Txn_AMT" => $totalPrice
+						)
+					);
+					
+					$bookeeyPipe->initiatePayment($transactionDetails);
+					exit;
+				} else {
+					header("LOCATION: index.php?v=Payment&error=1");die();
+				}
 			}
 		}
  	}
@@ -112,17 +162,41 @@ if(!$_SESSION['valid']){
 								$gatewayId  = $_GET["merchantTxnId"];
 								$order = selectDBNew("orders2",[$gatewayId],"`orderId` = ?","`id` DESC LIMIT 1");
 								if($order && $order[0]["status"] == "0"){
-									$package = selectDBNew("packages",[$order[0]["packageId"]],"`id` = ?","`id` DESC LIMIT 1");
-									if($package){
-										$user = selectDBNew("users",[$order[0]["userId"]],"`id` = ?","`id` DESC LIMIT 1");
-										$normalAds = $user[0]["normalAd"] + $package[0]["quantity"]; //normalAds
-										$specialAds = $user[0]["specialAd"] + $package[0]["quantitySP"]; //specialAds
+									$user = selectDBNew("users",[$order[0]["userId"]],"`id` = ?","`id` DESC LIMIT 1");
+
+									if ($order[0]["packageId"] == 0) {
+										// Dynamic Ad Purchase handling
+										$infoText = json_decode($order[0]["info"], true);
+										$normalAds = $user[0]["normalAd"]; 
+										$specialAds = $user[0]["specialAd"]; 
+										
+										if (isset($infoText["adType"])) {
+											if ($infoText["adType"] == "normal") {
+												$normalAds += $infoText["quantity"];
+											} elseif ($infoText["adType"] == "special") {
+												$specialAds += $infoText["quantity"];
+											}
+										}
+										
 										$data = array(
 											"normalAd" => "{$normalAds}",
 											"specialAd" => "{$specialAds}",
 										);
 										updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
+									} else {
+										// Package handling
+										$package = selectDBNew("packages",[$order[0]["packageId"]],"`id` = ?","`id` DESC LIMIT 1");
+										if($package){
+											$normalAds = $user[0]["normalAd"] + $package[0]["quantity"]; 
+											$specialAds = $user[0]["specialAd"] + $package[0]["quantitySP"]; 
+											$data = array(
+												"normalAd" => "{$normalAds}",
+												"specialAd" => "{$specialAds}",
+											);
+											updateDB("users",$data,"`id` = '{$user[0]["id"]}'");
+										}
 									}
+
 									$orderData = array(
 										"gatewayId" => $_GET["merchantTxnId"],
 										"status" => "1",
