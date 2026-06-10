@@ -55,6 +55,8 @@ $ogUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'h
         <meta property="og:url" content="<?php echo $ogUrl; ?>" />
         <meta property="og:type" content="website" />
 
+        <link rel="manifest" href="manifest.json" />
+
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/img/logo-1.png" />
         <!-- Core CSS -->

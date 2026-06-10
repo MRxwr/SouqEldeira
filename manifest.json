@@ -1,0 +1,21 @@
+{
+  "name": "Souq Al Deerah",
+  "short_name": "Souq Al Deerah",
+  "start_url": "./index.php",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "description": "Souq Al Deerah website for ads",
+  "icons": [
+    {
+      "src": "./assets/img/logo-1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/img/logo-1.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
