@@ -142,7 +142,7 @@
 								        <div class="form-outline">
 								        	<input type="number"  class="form-control" name="quantity" placeholder="<?php echo direction("Qt","الكمية"); ?>" />
 								        </div> 
-								        <div class="text-center">(x 1 <?php echo direction("KD", "دك"); ?>)</div> 
+								        <div class="text-center">(x 2 <?php echo direction("KD", "دك"); ?>)</div> 
 			      						<button type="submit" class="btn btn-primary py-0 btn-sm"><?php echo direction("Pay","ادفع"); ?></button>
 									</form>
 								</div>
