@@ -101,7 +101,10 @@
             <img src="assets/img/logo-192.png" width="40" height="40" class="me-3" alt="Logo" style="border-radius: 8px;">
             <div>
                 <strong class="d-block text-dark"><?php echo direction("Install Souq Al Deerah","تثبيت تطبيق سوق الديرة"); ?></strong>
-                <small class="text-muted"><?php echo direction("Add to your home screen for quick access.","أضفه إلى شاشتك الرئيسية للوصول السريع."); ?></small>
+                <small class="text-muted d-block"><?php echo direction("Add to your home screen for quick access.","أضفه إلى شاشتك الرئيسية للوصول السريع."); ?></small>
+                <small id="ios-instruction" class="text-primary mt-1" style="display: none; font-size: 0.8rem; font-weight: bold;">
+                    <?php echo direction("To install, tap <i class='bi bi-box-arrow-up'></i> then 'Add to Home Screen'","للتثبيت، اضغط على <i class='bi bi-box-arrow-up'></i> ثم 'إضافة إلى الشاشة الرئيسية'"); ?>
+                </small>
             </div>
         </div>
         <div class="d-flex align-items-center">
@@ -147,15 +150,28 @@
             const installBanner = document.getElementById('install-pwa-banner');
             const installBtn = document.getElementById('install-pwa-btn');
             const closeBtn = document.getElementById('close-pwa-btn');
+            const iosInstruction = document.getElementById('ios-instruction');
 
+            // Detect iOS Safari
+            const isIos = () => {
+                const userAgent = window.navigator.userAgent.toLowerCase();
+                return /iphone|ipad|ipod/.test(userAgent);
+            };
+            const isStandalone = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+            // Handle Android / Chrome (natively supports beforeinstallprompt)
             window.addEventListener('beforeinstallprompt', (e) => {
-                // Prevent the mini-infobar from appearing on mobile
                 e.preventDefault();
-                // Stash the event so it can be triggered later.
                 deferredPrompt = e;
-                // Update UI notify the user they can install the PWA
                 if(installBanner) installBanner.style.display = 'block';
             });
+
+            // Handle iOS (does not support beforeinstallprompt)
+            if (isIos() && !isStandalone()) {
+                if (installBanner) installBanner.style.display = 'block';
+                if (installBtn) installBtn.style.display = 'none'; // Hide the install button because it won't work on iOS
+                if (iosInstruction) iosInstruction.style.display = 'block'; // Show iOS specific instructions
+            }
 
             if(installBtn) {
                 installBtn.addEventListener('click', async () => {
