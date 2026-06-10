@@ -45,7 +45,7 @@
 						<div>
 							<i class="bi bi-telephone"></i> <?php echo direction("Phone","هاتف"); ?>
 							<br>
-							<a href="tel:66004080">66004080</a>
+							<a href="tel:22281412">22281412</a>
 						</div>
 						<div>
 							<i class="bi bi-envelope"></i> <?php echo direction("Email","البريد الإلكتروني"); ?>
