@@ -28,16 +28,6 @@ if( isset($_POST["arTitle"]) ){
 	$id = $_POST["update"];
 	unset($_POST["update"]);
 	if ( $id == 0 ){
-		if (is_uploaded_file($_FILES['imageurl']['tmp_name'])) {
-			$_POST["imageurl"] = uploadImageBanner($_FILES['imageurl']['tmp_name']);
-		} else {
-			$_POST["imageurl"] = "";
-		}
-		if (is_uploaded_file($_FILES['header']['tmp_name'])) {
-			$_POST["imageurl"] = uploadImageBanner($_FILES['header']['tmp_name']);
-		} else {
-			$_POST["header"] = "";
-		}
 		if( insertDB("categories", $_POST) ){
 			header("LOCATION: ?v=Categories");
 		}else{
@@ -48,20 +38,6 @@ if( isset($_POST["arTitle"]) ){
 		<?php
 		}
 	}else{
-		if (is_uploaded_file($_FILES['imageurl']['tmp_name'])) {
-			$_POST["imageurl"] = uploadImageBanner($_FILES['imageurl']['tmp_name']);
-		} else {
-			$imageurl = selectDB("categories", "`id` = '{$id}'");
-			$_POST["imageurl"] = $imageurl[0]["imageurl"];
-		}
-		
-		if (is_uploaded_file($_FILES['header']['tmp_name'])) {
-			$_POST["header"] = uploadImageBanner($_FILES['header']['tmp_name']);
-		} else {
-			$header = selectDB("categories", "`id` = '{$id}'");
-			$_POST["header"] = $header[0]["header"];
-		}
-		
 		if( updateDB("categories", $_POST, "`id` = '{$id}'") ){
 			header("LOCATION: ?v=Categories");
 		}else{
