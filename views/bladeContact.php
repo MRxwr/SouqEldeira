@@ -63,8 +63,8 @@ if( isset($_POST) && !empty($_POST) ){
 						<h3><?php echo direction("Contact details","تفاصيل الاتصال"); ?></h3>
 						<h5 class="mb-3"><?php echo direction("To communicate and inquire with customer service","للتواصل والاستفسار مع خدمة العملاء"); ?></h5>
 						<div class="data">
-							<a href="tel:66004080"><i class="bi bi-telephone-fill"></i>66004080</a> 
-							<a href="tel:222272077"><i class="bi bi-newspaper"></i>222272077</a>
+							<a href="tel:22281412"><i class="bi bi-telephone-fill"></i>22281412</a> 
+							<a href="tel:22281412"><i class="bi bi-newspaper"></i>22281412</a>
 							<a href="mailto:info@souqeldeira.com"><i class="bi bi-envelope"></i>info@souqeldeira.com</a>
 						</div> 
 					</div>
