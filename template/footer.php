@@ -127,13 +127,13 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
         
         <!-- Owl JS -->
-        <script src="assets/components/owl-carousel/v-2.3.4/dist/owl.carousel.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
+        <script src="/assets/components/owl-carousel/v-2.3.4/dist/owl.carousel.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
         
          <!-- lightbox JS --> 
-        <script src="assets/components/bs5-lightbox/v-1.8.3/dist/index.bundle.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
+        <script src="/assets/components/bs5-lightbox/v-1.8.3/dist/index.bundle.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
         
         <!-- Core theme JS-->
-        <script src="assets/js/scripts.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
+        <script src="/assets/js/scripts.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
         <script>
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
