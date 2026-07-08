@@ -170,4 +170,52 @@ function str_lreplace($search, $replace, $subject){
     return $subject;
 }
 
+function readSlug(){
+	GLOBAL $_SERVER;
+	$request = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+	$segments = explode('/', $request);
+
+	switch ($segments[0]) {
+
+		case 'ad':
+			$_GET['v'] = 'AdView';
+			$_GET['id'] = (int)$segments[1];
+			break;
+
+		case 'office':
+			$_GET['v'] = 'OfficeView';
+			$_GET['id'] = (int)$segments[1];
+			break;
+
+		case 'search':
+			$_GET['v'] = 'Search';
+			$_GET['type'] = $segments[1] ?? '';
+			$_GET['area'] = $segments[2] ?? '';
+			break;
+
+		case 'about':
+			$_GET['v'] = 'About';
+			break;
+
+		case 'contact':
+			$_GET['v'] = 'Contact';
+			break;
+
+		case 'faq':
+			$_GET['v'] = 'FAQ';
+			break;
+
+		case '':
+			$_GET['v'] = 'Home';
+			break;
+	}
+}
+
+function slug($text){
+    $text = trim($text);
+    $text = preg_replace('/\s+/u', '-', $text);
+    $text = preg_replace('/[^\p{Arabic}\p{L}\p{N}\-]/u', '', $text);
+    return $text;
+}
+
 ?>
