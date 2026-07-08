@@ -80,6 +80,14 @@ $ogUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'h
     	<?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
      	<link href="assets/css/responsive-rtl.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
     	<?php } ?>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-N4243KZJ');</script>
+        <!-- End Google Tag Manager -->
+
     </head>
     <body>
 	<!-- Preloader -->
@@ -92,6 +100,11 @@ $ogUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'h
         </div>
     </div>
     <!-- /End Preloader -->
+     <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4243KZJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
         <?php include 'template/navbar.php'; ?> 
         <?php include 'template/sidebar.php'; ?> 
         <!-- Start page-content -->
