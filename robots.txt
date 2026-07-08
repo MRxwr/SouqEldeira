@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# منع زحف صفحات الإدارة والنظام
+Disallow: /?v=Login
+Disallow: /?v=AddAd
+Disallow: /?v=Admin
+
+# منع زحف النسخة الإنجليزية المكررة (أو السماح بها إن كانت محتوى مختلف)
+Disallow: /*?lang=en
+
+# رابط خريطة الموقع
+Sitemap: https://souqeldeira.com/sitemap.xml
