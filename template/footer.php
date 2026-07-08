@@ -7,7 +7,7 @@
 		<div class="row">
 		  <div class="col-md-12">
 		  	<div class="footer-sec1 text-center">
-				<a href="" class="logo"><img src="assets/img/logo-1.png"></a>
+				<a href="" class="logo"><img src="/assets/img/logo-1.png"></a>
 			</div>
 		  </div>
 		  <div class="col-md-12 mt-4">
@@ -17,10 +17,10 @@
 					for( $i = 0; $i < sizeof($categories); $i++ ){
 						$title = direction("Properties for " . $categories[$i]["enTitle"]. " in Kuwait","العقارات لل" . $categories[$i]["arTitle"] . " في كويت");
 						if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' AND `categoryId` = '{$categories[$i]["id"]}' ORDER BY RAND() LIMIT 5") ){
-							echo "<div class='category-menu'><h5 class='mb-2'><a href='?v=Search&type={$categories[$i]["id"]}' class='d-block text-start'>{$title}</a></h5><ul>";
+							echo "<div class='category-menu'><h5 class='mb-2'><a href='/search/type={$categories[$i]["id"]}' class='d-block text-start'>{$title}</a></h5><ul>";
 							for( $x = 0; $x < sizeof($ads); $x++ ){
 								$title = direction($ads[$x]["enTitle"],$ads[$x]["arTitle"]);
-								echo "<li><a href='?v=AdView&id={$ads[$x]["id"]}'>{$title}</a></li>";
+								echo "<li><a href='/ad/{$ads[$x]["id"]}/" . slug($ads[$x]["enTitle"]) . "-" . slug($ads[$x]["arTitle"]) . "'>{$title}</a></li>";
 							}
 							echo "</ul></div>";
 						}
@@ -98,7 +98,7 @@
 <div id="install-pwa-banner" class="alert alert-light alert-dismissible shadow m-0 w-100" role="alert" style="display: none; position: fixed; bottom: 0; z-index: 9999; border-top: 1px solid #dee2e6; border-radius: 0;">
     <div class="container d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
-            <img src="assets/img/logo-192.png" width="40" height="40" class="me-3" alt="Logo" style="border-radius: 8px;">
+            <img src="/assets/img/logo-192.png" width="40" height="40" class="me-3" alt="Logo" style="border-radius: 8px;">
             <div>
                 <strong class="d-block text-dark"><?php echo direction("Install Souq Al Deerah","تثبيت تطبيق سوق الديرة"); ?></strong>
                 <small class="text-muted d-block"><?php echo direction("Add to your home screen for quick access.","أضفه إلى شاشتك الرئيسية للوصول السريع."); ?></small>
