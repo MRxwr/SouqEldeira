@@ -2,7 +2,7 @@
 include 'includes/checksouthead.php';
 
 // Default OG values
-$ogTitle = direction("Souq Al Deerah","سوق الديرة");
+$ogTitle = direction("Souq Al Deerah | Properties for sale and rent in Kuwait","عقارات للبيع والإيجار في الكويت | سوق الديرة");
 $ogDescription = direction("Souq Al Deerah website for ads", "موقع سوق الديرة للإعلانات"); 
 $ogImage = $baseURL . "assets/img/logo-1.png";
 
@@ -46,7 +46,7 @@ $ogUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'h
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="<?php echo htmlspecialchars(strip_tags($ogDescription)); ?>" />
         <meta name="author" content="" />
-        <title><?php echo direction("Souq Al Deerah","سوق الديرة"); ?></title>
+        <title><?php echo htmlspecialchars($ogTitle); ?></title>
 
         <!-- Open Graph Meta Tags -->
         <meta property="og:title" content="<?php echo htmlspecialchars($ogTitle); ?>" />
