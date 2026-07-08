@@ -167,7 +167,7 @@
 				if( $offices = selectDB("shops","`id` != '0' AND `status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")){
 					for( $i = 0; $i < count($offices); $i++ ){
 						echo '<div class="item">';
-						echo '<a href="/office/' . $offices[$i]["id"] . '-' . slug(direction($offices[$i]["enTitle"],$offices[$i]["arTitle"])) . '"><img src="/logos/' . $offices[$i]["logo"] . '" style="width:157px;height:157px"></a>';
+						echo '<a href="/office/' . $offices[$i]["id"] . '/' . slug(direction($offices[$i]["enTitle"],$offices[$i]["arTitle"])) . '"><img src="/logos/' . $offices[$i]["logo"] . '" style="width:157px;height:157px"></a>';
 						echo '</div>';
 					}
 				}
