@@ -46,7 +46,7 @@
 										}
 										?>
 										<div class="carousel-item <?php echo $active ?> h-100">
-											<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" style="object-fit: cover; height: 120px;" alt="...">
+											<img src="/logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" style="object-fit: cover; height: 120px;" alt="...">
 										</div>
 										<?php
 									}
