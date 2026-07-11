@@ -178,3 +178,18 @@
 	</div>
 </div>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>",
+  "url": "https://souqeldeira.com/",
+  "description": "<?php echo direction("The leading real estate website in Kuwait","موقع العقارات الأول في الكويت"); ?>",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://souqeldeira.com/search/%D8%A8%D9%8A%D8%B9/1",
+    "query-input": "required name=بيع"
+  }
+}
+</script>
+
