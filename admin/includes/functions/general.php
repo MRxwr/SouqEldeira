@@ -186,6 +186,7 @@ function readSlug(){
 
 		case 'edit-ad':
 			$_GET['v'] = 'EditAd'; 
+			$_GET["id"] = (int)$segments[1];
 			break;
 
 		case 'ads-list':

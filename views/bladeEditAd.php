@@ -1,6 +1,6 @@
 
 <?php if(!$_SESSION['valid']){
-	echo "<script>window.location.href = '/index.php?v=Login';</script>";
+	echo "<script>window.location.href = '/login';</script>";
  } else {
 	$product = selectDB("products","`id` = '{$_GET["id"]}'");
 	$product_id = $product[0]["id"];
@@ -39,14 +39,14 @@
 					}
 				}
 			}	
-			header("LOCATION: index.php?v=MyAds");
+			header("LOCATION: /my-ads");
 		}else{
 			?>
 			<script>
 				alert("Could not process your request, Please try again.");
 			</script>
 			<?php
-			header("LOCATION: index.php?v=AddAd");
+			header("LOCATION: /add-ad");
 		}	
 	 
 	}
