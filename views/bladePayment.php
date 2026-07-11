@@ -19,7 +19,7 @@ if(!$_SESSION['valid']){
 				// Verify if it's a free package and if user already has it
 				if( $package[0]["price"] == 0 ){
 					if( selectDB("orders2","`userId` = '{$user[0]["id"]}' AND `packageId` = '{$packageId}' AND `status` = '1'") ){
-						header("LOCATION: /my-ads-error");die();
+						header("LOCATION: /my-ads-error/1");die();
 					}
 				}
 

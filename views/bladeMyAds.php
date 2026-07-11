@@ -1,5 +1,6 @@
-<?php if(!$_SESSION['valid']){
-	echo "<script>window.location.href = '/index.php?v=Login';</script>";
+<?php 
+if(!$_SESSION['valid']){
+	echo "<script>window.location.href = '/login';</script>";
  } else {
 
 	$settings = selectDB("settings","`id` = '1'");
@@ -61,10 +62,10 @@
 						insertDB("images",array("productId" => $lastId,"imageurl" => $image["imageurl"]));
 					}
 				}
-			header("LOCATION: index.php?v=MyAds&success=republish");die();	
+			header("LOCATION: /my-ads-success/republish");die();	
 		}
 		}else{
-			header("LOCATION: index.php?v=MyAds&error=republish");die();
+			header("LOCATION: /my-ads-error/republish");die();
 		}
 
 	 }
@@ -72,12 +73,12 @@
 
 	if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
 		updateDB("products",array("hidden" => 2),"`id` = '{$_GET["hide"]}'");
-		header("LOCATION: index.php?v=MyAds&success=hide");die();
+		header("LOCATION: /my-ads-success/hide");die();
 	}
 	
 	if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
 		updateDB("products",array("status" => 1),"`id` = '{$_GET["forceDelete"]}'");
-		header("LOCATION: index.php?v=MyAds&success=forceDelete");die();
+		header("LOCATION: /my-ads-success/forceDelete");die();
 	}
 	if(isset($_GET['remove']) && !empty($_GET['remove'])){
 		if(updateDB("products"," listOfUsers = JSON_REMOVE(
@@ -85,7 +86,7 @@
             JSON_UNQUOTE(JSON_SEARCH(listOfUsers, 'one', :{$user[0]['id']}))
         )
 		","`id` = '{$_GET['remove']}'")){
-			header("LOCATION: index.php?v=MyAds&success=remove");die();
+			header("LOCATION: /my-ads-success/remove");die();
 		}
 	}
 		//selectDB("products"," `status` = '0' AND `hidden` != '2'  AND `listOfUsers` LIKE '%{$id}%'");
@@ -294,12 +295,12 @@
 										<div class="actions">
 										<a href="#" 
 											class="update" 
-											onclick="return confirmUpdate('?v=EditAd&id=<?php echo $ad['id']; ?>');">
+											onclick="return confirmUpdate('/edit-ad/<?php echo $ad['id']; ?>');">
 											<i class="bi bi-pencil-square"></i>
 											</a>
 											<a href="#" 
 												class="delete" 
-												onclick="return confirmDelete('?v=<?php echo $_GET['v']; ?>&forceDelete=<?php echo $ad['id']; ?>');">
+												onclick="return confirmDelete('/my-ads-delete/<?php echo $ad['id']; ?>');">
 												<i class="bi bi-trash3"></i>
 											</a>
 										</div> 

@@ -233,7 +233,17 @@ function readSlug(){
 
 		case 'my-ads-error':
 			$_GET['v'] = 'MyAds'; 
-			$_GET["error"] = "already_owned";
+			$_GET["error"] = (int)$segments[1];
+			break;
+
+		case 'my-ads-delete':
+			$_GET['v'] = 'MyAds'; 
+			$_GET["forceDelete"] = (int)$segments[1];
+			break;
+
+		case 'my-ads-success':
+			$_GET['v'] = 'MyAds'; 
+			$_GET["success"] = (int)$segments[1];
 			break;
 
 		case 'notifications':
