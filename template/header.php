@@ -36,7 +36,7 @@ if (isset($_GET["v"])) {
     }
 }
 
-$ogUrl = urldecode(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http' . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+$ogUrl = urldecode((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +54,7 @@ $ogUrl = urldecode(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'ht
 
         <!-- Open Graph Meta Tags -->
         <meta property="og:title" content="<?php echo htmlspecialchars($ogTitle); ?>" />
-        <meta property="og:description" content="<?php echo htmlspecialchars(strip_tags($ogDescription)); ?>" />
+        <meta property="og:description" content="<?php echo substr(htmlspecialchars(strip_tags($ogDescription)), 0, 150); ?>" />
         <meta property="og:image" content="<?php echo $ogImage; ?>" />
         <meta property="og:url" content="<?php echo $ogUrl; ?>" />
         <meta property="og:type" content="website" />
