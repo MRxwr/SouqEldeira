@@ -46,14 +46,14 @@ $ogUrl = urldecode((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'h
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="<?php echo htmlspecialchars(strip_tags($ogDescription)); ?>" />
         <meta name="author" content="" />
-        <title><?php echo htmlspecialchars($ogTitle); ?></title>
+        <title><?php echo direction("Souq Al Deerah","سوق الديرة") . " | " . htmlspecialchars($ogTitle); ?></title>
         <link rel="canonical" href="<?php echo urldecode("http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}"); ?>" />
         <link rel="alternate" hreflang="ar-KW" href="<?php echo urldecode("http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=ar"); ?>" />
         <link rel="alternate" hreflang="en-KW" href="<?php echo urldecode("http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=en"); ?>" />
         <link rel="alternate" hreflang="x-default" href="<?php echo urldecode("http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=en"); ?>" />
 
         <!-- Open Graph Meta Tags -->
-        <meta property="og:title" content="<?php echo htmlspecialchars($ogTitle); ?>" />
+        <meta property="og:title" content="<?php echo direction("Souq Al Deerah","سوق الديرة") . " | " . htmlspecialchars($ogTitle); ?>" />
         <meta property="og:description" content="<?php echo substr(htmlspecialchars(strip_tags($ogDescription)), 0, 150); ?>" />
         <meta property="og:image" content="<?php echo $ogImage; ?>" />
         <meta property="og:url" content="<?php echo $ogUrl; ?>" />
