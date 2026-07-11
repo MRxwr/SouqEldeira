@@ -20,7 +20,7 @@
 							echo "<div class='category-menu'><h5 class='mb-2'><a href='/search/type={$categories[$i]["id"]}' class='d-block text-start'>{$title}</a></h5><ul>";
 							for( $x = 0; $x < sizeof($ads); $x++ ){
 								$title = direction($ads[$x]["enTitle"],$ads[$x]["arTitle"]);
-								echo "<li><a href='/ad/{$ads[$x]["id"]}/" . slug($ads[$x]["enTitle"]) . "-" . slug($ads[$x]["arTitle"]) . "'>{$title}</a></li>";
+								echo "<li><a href='/ad-view/{$ads[$x]["id"]}/" . slug($ads[$x]["enTitle"]) . "-" . slug($ads[$x]["arTitle"]) . "'>{$title}</a></li>";
 							}
 							echo "</ul></div>";
 						}

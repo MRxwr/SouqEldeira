@@ -192,7 +192,7 @@ function readSlug(){
 			$_GET['v'] = 'AdsList'; 
 			break;
 
-		case 'ad':
+		case 'ad-view':
 			$_GET['v'] = 'AdView';
 			$_GET['id'] = (int)$segments[1];
 			break;

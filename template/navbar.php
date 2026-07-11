@@ -11,11 +11,11 @@
 		  </div>  
 		  
 		  <div class="col-6 col-md-6 text-center">
-			<a href="/?v=Home" class="logo"><img src="/assets/img/logo-1.png"></a>
+			<a href="/home" class="logo"><img src="/assets/img/logo-1.png"></a>
 		  </div> 
 		  
 		  <div class="col-3 col-md-3 text-end navbar-area-btn">
-		  	<a href="/?v=AddAd" class="btn btn-primary btn-border-radius-1 btn-new-ad"><i class="bi bi-plus-lg"></i> <span><?php echo direction("Add Ad","إضافة إعلان"); ?></span></a>
+		  	<a href="/add-ad" class="btn btn-primary btn-border-radius-1 btn-new-ad"><i class="bi bi-plus-lg"></i> <span><?php echo direction("Add Ad","إضافة إعلان"); ?></span></a>
 		  </div>
 		  
 		</div>

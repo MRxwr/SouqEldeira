@@ -51,7 +51,7 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 		    <?php } else { ?> 
 			<div class="sidebar-header">
 		    	<div class="">
-		    		<a href="/?v=Home">
+		    		<a href="/home">
 		    			<img src="/assets/img/logo-1.png">
 		    		</a>
 		    	</div>
@@ -64,17 +64,17 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 		    </div>
 		    <?php } ?>
 		    <div class="sidebar-add-ad my-3">
-				<a href="/?v=AddAd" class="btn btn-primary btn-border-radius-1 w-100">
+				<a href="/add-ad" class="btn btn-primary btn-border-radius-1 w-100">
 					<i class="bi bi-plus-lg"></i> <?php echo direction("Add Ad","إضافة إعلان"); ?>
 				</a>
 		    </div>
 		    <ul class="sidebar-menu list-unstyled mt-2">
 		        <li class="active">
-		            <a href="/?v=Home"><i class="bi bi-house"></i><?php echo direction("Home","الرئيسية"); ?></a>
+		            <a href="/home"><i class="bi bi-house"></i><?php echo direction("Home","الرئيسية"); ?></a>
 		        </li>
 		        <?php if(!$_SESSION['valid']){ ?>
 		        <li>
-		            <a href="/?v=Login"><i class="bi bi-box-arrow-right"></i><?php echo direction("Login","تسجيل الدخول"); ?></a>
+		            <a href="/login"><i class="bi bi-box-arrow-right"></i><?php echo direction("Login","تسجيل الدخول"); ?></a>
 		        </li>
 		        <?php } ?>
 		        <?php if($_SESSION['valid']){
@@ -89,7 +89,7 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 					}
 					?>
 		        <li>
-		            <a href="/?v=MyAds"><i class="bi bi-grid"></i><?php echo direction("My Ads","إعلاناتي"); ?> <span class="badge"><?php echo $myAds; ?></span></a>
+		            <a href="/my-ads"><i class="bi bi-grid"></i><?php echo direction("My Ads","إعلاناتي"); ?> <span class="badge"><?php echo $myAds; ?></span></a>
 		        </li>
 		        <?php } ?>
 		        <li>
@@ -100,7 +100,7 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 						if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 							for( $x = 0; $x < sizeof($categories); $x++ ){
 								$title = direction($categories[$x]['enTitle'],$categories[$x]['arTitle']);
-								echo "<li><a class='rounded' href='/?v=Search&type={$categories[$x]['id']}'>{$title}</a></li>";
+								echo "<li><a class='rounded' href='/search/type={$categories[$x]['id']}'>{$title}</a></li>";
 							}
 						}
 						?>
@@ -108,26 +108,26 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 		            </div>
           		</li>
 		        <li>
-		            <a href="/?v=Offices"><i class="bi bi-buildings"></i><?php echo direction("Real Estate Offices","مكاتب العقارات"); ?></a>
+		            <a href="/offices"><i class="bi bi-buildings"></i><?php echo direction("Real Estate Offices","مكاتب العقارات"); ?></a>
 		        </li>
 		        <li>
-		            <a href="/?v=FAQ"><i class="bi bi-question-circle"></i><?php echo direction("FAQ","الأسئلة الشائعة"); ?></a>
+		            <a href="/faq"><i class="bi bi-question-circle"></i><?php echo direction("FAQ","الأسئلة الشائعة"); ?></a>
 		        </li>
 		        <li>
-		            <a href="/?v=Terms"><i class="bi bi-file-earmark-text"></i><?php echo direction("Terms & Conditions","الشروط والأحكام"); ?></a>
+		            <a href="/terms"><i class="bi bi-file-earmark-text"></i><?php echo direction("Terms & Conditions","الشروط والأحكام"); ?></a>
 		        </li>
 		        <li>
-		            <a href="/?v=Policy"><i class="bi bi-shield-lock"></i><?php echo direction("Privacy Policy","سياسة الخصوصية"); ?></a>
+		            <a href="/policy"><i class="bi bi-shield-lock"></i><?php echo direction("Privacy Policy","سياسة الخصوصية"); ?></a>
 		        </li>
 		        <li>
-		            <a href="/?v=About"><i class="bi bi-info-circle"></i><?php echo direction("About Us","من نحن"); ?></a>
+		            <a href="/about"><i class="bi bi-info-circle"></i><?php echo direction("About Us","من نحن"); ?></a>
 		        </li>
 		        <li>
-		            <a href="/?v=Contact"><i class="bi bi-envelope-arrow-up"></i><?php echo direction("Contact Us","اتصل بنا"); ?></a>
+		            <a href="/contact"><i class="bi bi-envelope-arrow-up"></i><?php echo direction("Contact Us","اتصل بنا"); ?></a>
 		        </li>
 		        <?php if($_SESSION['valid']){ ?>
 		        <li>
-		            <a class="logout" href="/?v=Logout"><i class="bi bi-box-arrow-right"></i><?php echo direction("Logout","تسجيل الخروج"); ?></a>
+		            <a class="logout" href="/logout"><i class="bi bi-box-arrow-right"></i><?php echo direction("Logout","تسجيل الخروج"); ?></a>
 		        </li>
 		        <?php } ?>
 		    </ul>

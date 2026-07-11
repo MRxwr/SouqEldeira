@@ -14,7 +14,7 @@
 			}
 	?>
 			<div class="col-lg-12">
-				<a style="cursor: pointer" class="card listing-card <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" */?> href="<?php echo "/ad/{$ad['id']}/". slug($ad['enTitle'])."-".slug($ad['arTitle']).""; ?>">
+				<a style="cursor: pointer" class="card listing-card <?php echo $feature; ?>" <?php /*data-bs-toggle="modal" data-bs-target="#ad_modal" */?> href="<?php echo "/ad-view/{$ad['id']}/". slug($ad['enTitle'])."-".slug($ad['arTitle']).""; ?>">
 					<div class="row g-0 align-items-center">
 						<div class="col-4 col-sm-3 position-relative">
 							<?php if( $ad["adType"] == 2 ){ ?><span class="feature-label"><?php echo direction("Feature","مميز"); ?></span> <?php } ?>
