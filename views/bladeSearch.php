@@ -8,7 +8,7 @@ if ( isset($_POST) && !empty($_POST) ) {
 		?>
 		<script>
 			alert('<?php echo direction("Please select category","يرجى اختيار الفئة"); ?>');
-			window.location.href = 'index.php?v=Home';
+			window.location.href = '/home';
 		</script>
 		<?php
 	}
@@ -46,7 +46,7 @@ if ( isset($_POST) && !empty($_POST) ) {
 	?>
 	<script>
 		alert('<?php echo direction("Could not process your request, Please try again","حدث خطأ أثناء عملية الطلب, يرجى المحاولة مرة أخرى"); ?>');
-		window.location.href = 'index.php?v=Home';
+		window.location.href = '/home';
 	</script>
 	<?php
 }
