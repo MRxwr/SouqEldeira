@@ -130,3 +130,21 @@ $msg = urlencode("أريد أن أسأل عن هذا الإعلان\n") . $url;
   	 <a href="/search/<?php echo $categoryTitle; ?>/<?php echo $ad[0]["categoryId"] ?>" class="btn btn-primary"><?php echo direction("More","المزيد"); ?> <i class="bi bi-three-dots"></i></a>
   </div> 
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateListing",
+  "name": "<?php echo direction($ad[0]['enTitle'], $ad[0]['arTitle']); ?>",
+  "description": "<?php echo direction($ad[0]['enDescription'], $ad[0]['arDescription']); ?>",
+  "image": "<?php echo $baseURL . "logos/" .$images[0]["imageurl"]; ?>",
+  "url": "<?php echo urldecode("http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}"); ?>",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "<?php echo direction($area[0]['enTitle'], $area[0]['arTitle']); ?>",
+    "addressCountry": "KW"
+  },
+  "price": "<?php echo $ad[0]['price']; ?>",
+  "priceCurrency": "KWD"
+}
+</script>
