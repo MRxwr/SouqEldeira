@@ -1,6 +1,6 @@
 
 <?php if(!$_SESSION['valid']){
-	echo "<script>window.location.href = '/index.php?v=Login';</script>";
+	echo "<script>window.location.href = '/login';</script>";
  } else {
 	$normalAds = 0;
 	$specialAds = 0;
@@ -75,21 +75,21 @@
 				}
 			}
 				
-			header("LOCATION: index.php?v=Home");
+			header("LOCATION: /home");
 		}else{
 			?>
 			<script>
 				alert("Could not process your request, Please try again.");
 			</script>
 			<?php
-			header("LOCATION: index.php?v=AddAd");
+			header("LOCATION: /add-ad"); 
 		}	
 	 }else{ ?>
 			<script>
 				alert("You don't have enough ads points to add ");
 			</script>
 			<?php
-			header("LOCATION: index.php?v=AddAd");
+			header("LOCATION: /add-ad");
 	
 	    }
 	}
