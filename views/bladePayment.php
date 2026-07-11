@@ -153,7 +153,7 @@ if(!$_SESSION['valid']){
 			<div class="guest-form-action">
 				<div class="form-container form-container-add">
 					<div class="start-page-title text-center mb-4">
-						<h4><?php echo direction("Bill","الفاتورة"); ?></h4>
+						<h1><?php echo direction("Bill","الفاتورة"); ?></h1>
 					</div> 
 					<div class="form-outline mb-4">
 						<?php 

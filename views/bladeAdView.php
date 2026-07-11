@@ -16,7 +16,7 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 	<?php
 }
 ?>
-<h4 class="mb-md-5 mb-3 text-center ad-title"><?php echo direction($ad[0]['enTitle'], $ad[0]['arTitle']); ?></h4>
+<h1 class="mb-md-5 mb-3 text-center ad-title"><?php echo direction($ad[0]['enTitle'], $ad[0]['arTitle']); ?></h1>
 	        
 <div class="ad-top-details p-3 mb-4">
 	<div class="row">

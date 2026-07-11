@@ -125,7 +125,7 @@
 			$type1 = ( !empty($type) ) ? " AND `categoryId` = '{$type}' " : "";
 			if( $ads = selectDB("products","`status` = '0' AND `hidden` = '1' {$type1} ORDER BY `packageId` DESC,`id` DESC LIMIT 3") ){
 				echo "<div class='listings-section'>";
-				echo "<h4 class='mb-3'>{$title}</h4>";
+				echo "<h1 class='mb-3'>{$title}</h1>";
 				require('template/adsMainList.php');
 				echo "<div class='d-block text-end mt-3'>";
 				echo "<a href='/search/" . $categoryTitle . "/{$type}' class='btn btn-primary'>".direction("More","المزيد")." ...</a>";

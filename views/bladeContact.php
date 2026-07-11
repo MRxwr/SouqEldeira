@@ -31,7 +31,7 @@ if( isset($_POST) && !empty($_POST) ){
 <div class="row"> 
 	<div class="main-contact with-white-bg p-4 pt-4 d-flex align-items-center">
 		<div class="col-lg-6 col-md-12">  
-			<h4 class="mb-3"><?php echo direction("Contact Us","اتصل بنا"); ?></h4>
+			<h1 class="mb-3"><?php echo direction("Contact Us","اتصل بنا"); ?></h1>
 			<form class="contact-us-form" method="post" action="">
 				<div class="row row-fields d-flex align-items-stretch g-3">
 					<div class="col-md-6">

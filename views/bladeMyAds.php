@@ -98,7 +98,7 @@ if(!$_SESSION['valid']){
 				
 				<div class="col-md-12"> 
 					<div class="start-page-title with-white-bg text-center mb-4 py-3">
-						<h4 class="mb-0 fw-bold"><?php echo direction("My Ads","إعلاناتي"); ?></h4>
+						<h1 class="mb-0 fw-bold"><?php echo direction("My Ads","إعلاناتي"); ?></h1>
 			 		</div>
 				</div>
 				<div class="col-md-12"> 

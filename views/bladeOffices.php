@@ -2,7 +2,7 @@
 	<div class="row d-flex align-items-stretch gy-3 gx-2">
 		<div class="col-md-12"> 
 			<div class="start-page-title text-center mb-md-4 py-md-3 mt-1 mt-md-0">
-				<h4 class="mb-0"><?php echo direction("Offices List","قائمة المكاتب"); ?></h4>
+				<h1 class="mb-0"><?php echo direction("Offices List","قائمة المكاتب"); ?></h1>
 			</div>
 		</div>
 		<?php 

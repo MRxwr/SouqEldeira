@@ -120,7 +120,7 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 <div class="row"> 
 	<div class="col-md-12"> 
 		<div class="start-page-title with-white-bg text-center mb-4 py-3">
-			<h4 class="mb-0"><?php echo direction("Profile","الملف الشخصي"); ?></h4>
+			<h1 class="mb-0"><?php echo direction("Profile","الملف الشخصي"); ?></h1>
 		</div>
 	</div>
 	<div class="col-md-12"> 

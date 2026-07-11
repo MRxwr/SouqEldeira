@@ -70,7 +70,7 @@ if ( isset($_POST) && !empty($_POST) ) {
 </div>
 
 <div class="search-title mb-3 mt-2">  
-	<h4><i class="bi bi-search"></i><?php echo direction("Search Result","نتيجة البحث"); ?><span><?php echo count($ads) . " " .direction("Ad","إعلان"); ?></span></h4>
+	<h1><i class="bi bi-search"></i><?php echo direction("Search Result","نتيجة البحث"); ?><span><?php echo count($ads) . " " .direction("Ad","إعلان"); ?></span></h1>
 </div>
 
 <div class="listings-section">

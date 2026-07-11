@@ -61,7 +61,7 @@
 			    <div class="form-container form-container-add">
 			    	
 		    	<div class="start-page-title text-center mb-4">
-					<h4><?php echo direction("Edit Ad","تعديل الإعلان"); ?></h4>
+					<h1><?php echo direction("Edit Ad","تعديل الإعلان"); ?></h1>
 			 	</div>
 			 	
 			    <form id="add-ad-form" class="mt-4" name="add-ad-form" method="POST"  action="" enctype="multipart/form-data">

@@ -8,7 +8,7 @@ $socialMedia = selectDB("s_media","`id` = '1'");
 			<img src="assets/img/logo-1.png" class="img-fluid" alt="...">
 		</div>
 		<div class="mb-4 text-center">
-			<h5 class="faq-title" ><?php echo direction("Frequently asked questions about properties for rent or sale in Kuwait","الأسئلة الشائعة حول العقارات للإيجار أو البيع في الكويت"); ?></h5> 
+			<h1 class="faq-title" ><?php echo direction("FAQ","الأسئلة الشائعة"); ?></h1> 
 		</div>
 		<div class="accordion accordion-flush" id="accordionFlushExample">
 			<?php

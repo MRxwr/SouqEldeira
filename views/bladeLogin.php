@@ -132,7 +132,7 @@ if( isset($_GET["error"]) ){
                     <?php if (!isset($_SESSION["pending_phone"])) { ?>
                         <!-- Step 1: Input Phone -->
                         <div class="form-outline mb-4">
-                            <label class="form-label"><?php echo direction("Phone Number (with country code)", "رقم الهاتف مع كود الدولة"); ?></label>
+                            <h1><?php echo direction("Phone Number (with country code)", "رقم الهاتف مع كود الدولة"); ?></h1>
                             <input type="text" class="form-control" name="phone" placeholder="96512345678" required />
                             <div class="form-text mt-2"><?php echo direction("Example: 965XXXXXXXX", "مثال: 965XXXXXXXX"); ?></div>
                         </div>
@@ -142,7 +142,7 @@ if( isset($_GET["error"]) ){
                     <?php } else { ?>
                         <!-- Step 2: Input OTP -->
                         <div class="form-outline mb-4">
-                            <label class="form-label"><?php echo direction("Enter Verification Code", "أدخل رمز التحقق"); ?></label>
+                            <h1><?php echo direction("Enter Verification Code", "أدخل رمز التحقق"); ?></h1>
                             <input type="text" class="form-control text-center" name="otp_code" maxlength="6" placeholder="000000" style="letter-spacing: 10px; font-size: 24px; font-weight: bold;" required />
                             <div class="form-text mt-2 text-center">
                                 <?php echo direction("Code sent to: ", "تم إرسال الرمز إلى: "); ?> <b><?php echo $_SESSION["pending_phone"]; ?></b>
