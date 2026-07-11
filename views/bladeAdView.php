@@ -117,20 +117,6 @@ $msg = urlencode("أريد أن أسأل عن هذا الإعلان\n") . $url;
     </div>
  </div>
 	 
-<hr>
-
-<div class="listings-section"> 
-  <h4 class="text-start mt-2 mb-3"><?php echo direction("From the same region","من نفس المنطقة"); ?></h4>
-  <?php
-  if( $ads = selectDB("products","`status` = '0' AND `hidden` = '1' AND `areaId` = {$ad[0]["areaId"]} AND `id` != {$ad[0]["id"]} ORDER BY `packageId` DESC,`id` DESC LIMIT 3") ){
-  	include 'template/adsMainList.php';
-  }
-  ?>
-  <div class="d-block text-end mt-3">
-  	 <a href="/search/<?php echo $categoryTitle; ?>/<?php echo $ad[0]["categoryId"] ?>" class="btn btn-primary"><?php echo direction("More","المزيد"); ?> <i class="bi bi-three-dots"></i></a>
-  </div> 
-</div>
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -148,3 +134,17 @@ $msg = urlencode("أريد أن أسأل عن هذا الإعلان\n") . $url;
   "priceCurrency": "KWD"
 }
 </script>
+
+<hr>
+
+<div class="listings-section"> 
+  <h4 class="text-start mt-2 mb-3"><?php echo direction("From the same region","من نفس المنطقة"); ?></h4>
+  <?php
+  if( $ads = selectDB("products","`status` = '0' AND `hidden` = '1' AND `areaId` = {$ad[0]["areaId"]} AND `id` != {$ad[0]["id"]} ORDER BY `packageId` DESC,`id` DESC LIMIT 3") ){
+  	include 'template/adsMainList.php';
+  }
+  ?>
+  <div class="d-block text-end mt-3">
+  	 <a href="/search/<?php echo $categoryTitle; ?>/<?php echo $ad[0]["categoryId"] ?>" class="btn btn-primary"><?php echo direction("More","المزيد"); ?> <i class="bi bi-three-dots"></i></a>
+  </div> 
+</div>
