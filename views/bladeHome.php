@@ -120,6 +120,7 @@
 	if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 		for( $x = 0; $x < sizeof($categories); $x++ ){
 			$type = $categories[$x]["id"];
+			$categoryTitle = str_replace(" ","-",direction($categories[$x]["enTitle"],$categories[$x]["arTitle"]));
 			$title = direction("Latest ads for " . $categories[$x]["enTitle"]," أحدث الإعلانات لل" . $categories[$x]["arTitle"]);
 			$type1 = ( !empty($type) ) ? " AND `categoryId` = '{$type}' " : "";
 			if( $ads = selectDB("products","`status` = '0' AND `hidden` = '1' {$type1} ORDER BY `packageId` DESC,`id` DESC LIMIT 3") ){
@@ -127,7 +128,7 @@
 				echo "<h4 class='mb-3'>{$title}</h4>";
 				require('template/adsMainList.php');
 				echo "<div class='d-block text-end mt-3'>";
-				echo "<a href='/search/" . str_replace(" ","-",$title) . "/{$type}' class='btn btn-primary'>".direction("More","المزيد")." ...</a>";
+				echo "<a href='/search/" . $categoryTitle . "/{$type}' class='btn btn-primary'>".direction("More","المزيد")." ...</a>";
 				echo "</div>";
 				echo "</div>";
 			}
