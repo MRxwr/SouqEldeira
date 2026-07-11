@@ -144,7 +144,7 @@
 	<div class="container container-project">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<img src="assets/img/logo-white.png" class="img-fluid logo">
+				<img src="assets/img/logo-white.png" class="img-fluid logo" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>">
 				<br>
 				<p><?php 
 				/*
@@ -168,7 +168,7 @@
 				if( $offices = selectDB("shops","`id` != '0' AND `status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")){
 					for( $i = 0; $i < count($offices); $i++ ){
 						echo '<div class="item">';
-						echo '<a href="/office-view/' . $offices[$i]["id"] . '/' . slug(direction($offices[$i]["enTitle"],$offices[$i]["arTitle"])) . '"><img src="/logos/' . $offices[$i]["logo"] . '" style="width:157px;height:157px"></a>';
+						echo '<a href="/office-view/' . $offices[$i]["id"] . '/' . slug(direction($offices[$i]["enTitle"],$offices[$i]["arTitle"])) . '"><img src="/logos/' . $offices[$i]["logo"] . '" style="width:157px;height:157px" alt="' . direction($offices[$i]["enTitle"],$offices[$i]["arTitle"]) . '"></a>';
 						echo '</div>';
 					}
 				}

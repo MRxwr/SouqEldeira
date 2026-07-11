@@ -46,7 +46,7 @@
 										}
 										?>
 										<div class="carousel-item <?php echo $active ?> h-100">
-											<img src="/logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" style="object-fit: cover; height: 120px;" alt="...">
+											<img src="/logos/<?php echo $images[$z]["imageurl"] ?>" class="d-block w-100 h-100" style="object-fit: cover; height: 120px;" alt="<?php echo direction($ad['enTitle'],$ad['arTitle']); ?>">
 										</div>
 										<?php
 									}
@@ -113,7 +113,7 @@
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header"> 
-          <h5 class="modal-title text-center d-block w-100" id="exampleModalLabel"><?php echo direction("A house for rent in Abu Fetera","منزل للإيجار في أبو فطيرة"); ?></h5>
+          <h1 class="modal-title text-center d-block w-100" id="exampleModalLabel"><?php echo direction("A house for rent in Abu Fetera","منزل للإيجار في أبو فطيرة"); ?></h1>
           <a class="btn-close-modal" data-bs-dismiss="modal" aria-label="Close"> <i class="bi bi-chevron-left"></i> </a>  
       </div>
       <div class="modal-body">

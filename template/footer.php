@@ -7,7 +7,7 @@
 		<div class="row">
 		  <div class="col-md-12">
 		  	<div class="footer-sec1 text-center">
-				<a href="" class="logo"><img src="/assets/img/logo-1.png"></a>
+				<a href="" class="logo"><img src="/assets/img/logo-1.png" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>"></a>
 			</div>
 		  </div>
 		  <div class="col-md-12 mt-4">
@@ -98,7 +98,7 @@
 <div id="install-pwa-banner" class="alert alert-light alert-dismissible shadow m-0 w-100" role="alert" style="display: none; position: fixed; bottom: 0; z-index: 9999; border-top: 1px solid #dee2e6; border-radius: 0;">
     <div class="container d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
-            <img src="/assets/img/logo-192.png" width="40" height="40" class="me-3" alt="Logo" style="border-radius: 8px;">
+            <img src="/assets/img/logo-192.png" width="40" height="40" class="me-3" alt="Logo" style="border-radius: 8px;" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>">
             <div>
                 <strong class="d-block text-dark"><?php echo direction("Install Souq Al Deerah","تثبيت تطبيق سوق الديرة"); ?></strong>
                 <small class="text-muted d-block"><?php echo direction("Add to your home screen for quick access.","أضفه إلى شاشتك الرئيسية للوصول السريع."); ?></small>

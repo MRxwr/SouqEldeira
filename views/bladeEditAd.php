@@ -176,7 +176,7 @@
 									//var_dump($images);
 									foreach( $images as $k=>$image ){ ?>
 										<label for="file<?php echo $k+1; ?>InputFld" class="fileInput images" id="file<?php echo $k+1; ?>Input">
-									 		<img src="logos/<?php echo $image["imageurl"] ?>" class="d-block w-100 h-100" alt="...">
+									 		<img src="logos/<?php echo $image["imageurl"] ?>" class="d-block w-100 h-100" alt="<?php echo direction($product[0]['enTitle'],$product[0]['arTitle']); ?>">
 									     </label>
 									<?php }
 									//echo sizeof($images);

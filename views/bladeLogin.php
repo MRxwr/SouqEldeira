@@ -114,7 +114,7 @@ if( isset($_GET["error"]) ){
             <div class="form-container mt-5">
                 <form id="login-form" method="post" action="/login">
                     <div class="mb-4 text-center">
-                        <img src="assets/img/logo-1.png" class="img-fluid" alt="...">
+                        <img src="assets/img/logo-1.png" class="img-fluid" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>">
                     </div>
 
                     <?php if (!empty($msg)) { ?>

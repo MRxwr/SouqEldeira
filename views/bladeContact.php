@@ -72,7 +72,7 @@ if( isset($_POST) && !empty($_POST) ){
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-12 text-center"> 
-			<img src="assets/img/logo-big.png" class="img-fluid p-5 img-fluid-logo" alt="...">		  		
+			<img src="assets/img/logo-big.png" class="img-fluid p-5 img-fluid-logo" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>">		  		
 		</div> 
 	</div>
 </div>

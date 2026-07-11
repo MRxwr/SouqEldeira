@@ -158,11 +158,11 @@ if(!$_SESSION['valid']){
 												}
 												?>
 												
-												<img src="/logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+												<img src="/logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="<?php echo direction($ad['enTitle'],$ad['arTitle']); ?>">
 												<?php
 											}
 										}else{ ?>
-									      <img src="/assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+									      <img src="/assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="<?php echo direction($ad['enTitle'],$ad['arTitle']); ?>">
 								       <?php } ?> 
 										
 										<div class="data">
@@ -235,11 +235,11 @@ if(!$_SESSION['valid']){
 													$active = "";
 												}
 												?>
-												<img src="/logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+												<img src="/logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="<?php echo direction($ad['enTitle'],$ad['arTitle']); ?>">
 												<?php
 											}
 										}else{ ?>
-									      <img src="/assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+									      <img src="/assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="<?php echo direction($ad['enTitle'],$ad['arTitle']); ?>">
 								       <?php } ?> 
 										<div class="data">
 											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
@@ -302,11 +302,11 @@ if(!$_SESSION['valid']){
 												}
 												?>
 												
-												<img src="/logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+												<img src="/logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="<?php echo direction($ad['enTitle'],$ad['arTitle']); ?>">
 												<?php
 											}
 										}else{ ?>
-									      <img src="/assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+									      <img src="/assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="<?php echo direction($ad['enTitle'],$ad['arTitle']); ?>">
 								       <?php } ?> 
 										<div class="data">
 											<h4><a href="/ad-view/<?php echo $ad['id']; ?>"><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></a></h4>
@@ -351,7 +351,7 @@ if(!$_SESSION['valid']){
 				 
 				<div class="col-md-12 col-myad-logo">   
 					<div class="with-white-bg  p-4 text-center h-100 d-flex align-items-center justify-content-center">
-						<img src="/assets/img/logo-big.png" class="img-fluid" alt="...">		 	
+						<img src="/assets/img/logo-big.png" class="img-fluid" alt="<?php echo direction($ad['enTitle'],$ad['arTitle']); ?>">		 	
 					</div>
 				</div>
 				

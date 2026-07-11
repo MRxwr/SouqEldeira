@@ -11,7 +11,7 @@
 		  </div>  
 		  
 		  <div class="col-6 col-md-6 text-center">
-			<a href="/home" class="logo"><img src="/assets/img/logo-1.png"></a>
+			<a href="/home" class="logo"><img src="/assets/img/logo-1.png" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>"></a>
 		  </div> 
 		  
 		  <div class="col-3 col-md-3 text-end navbar-area-btn">

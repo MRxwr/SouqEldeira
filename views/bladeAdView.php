@@ -77,7 +77,7 @@ $msg = urlencode("أريد أن أسأل عن هذا الإعلان\n$url");
 						?>
 						<div class="carousel-item <?php echo $active ?>">      
 					       <a href="/logos/<?php echo $images[$j]["imageurl"] ?>" data-toggle="lightbox" data-gallery="mixedgallery">
-					            <img src="/logos/<?php echo $images[$j]["imageurl"] ?>" class="d-block w-100 h-100" alt="...">
+					            <img src="/logos/<?php echo $images[$j]["imageurl"] ?>" class="d-block w-100 h-100" alt="<?php echo direction($ad[0]['enTitle'],$ad[0]['arTitle']); ?>" style="object-fit: cover; height: 300px;">
 					       </a>
 					    </div>
 						<?php
@@ -106,7 +106,7 @@ $msg = urlencode("أريد أن أسأل عن هذا الإعلان\n$url");
 							$active = "";
 						}
 						?>
-						<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $j ?>" class="<?php echo $active ?>" aria-current="true" aria-label="Slide <?php echo $j ?>"><img class="d-block w-100" src="/logos/<?php echo $images[$j]["imageurl"] ?>" class="img-fluid"></button>
+						<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $j ?>" class="<?php echo $active ?>" aria-current="true" aria-label="Slide <?php echo $j ?>"><img class="d-block w-100" src="/logos/<?php echo $images[$j]["imageurl"] ?>" class="img-fluid" alt="<?php echo direction($ad[0]['enTitle'],$ad[0]['arTitle']); ?>"></button>
 						<?php
 					}
 				}

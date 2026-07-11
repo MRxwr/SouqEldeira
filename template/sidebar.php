@@ -13,10 +13,10 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 			<div class="element1-start">
 				<div class="change-language">
 				    <?php if( $_SESSION['lang'] ==='en') { ?>   
-		        		<a class='language p-0' href='/<?php echo "http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=ar" ?>'><img src='/assets/img/lang/ar.png' class='img-fluid langimg'><span>عربى</span></a> 
+		        		<a class='language p-0' href='/<?php echo "http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=ar" ?>'><img src='/assets/img/lang/ar.png' class='img-fluid langimg' alt="<?php echo direction("Arabic","العربية"); ?>"><span>عربى</span></a> 
 					<?php } ?>
 					<?php if( $_SESSION['lang'] ==='ar') { ?> 	
-						<a class='language p-0' href='/<?php echo "http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=en" ?>'><img src='/assets/img/lang/en.png' class='img-fluid langimg'><span>English</span></a>
+						<a class='language p-0' href='/<?php echo "http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=en" ?>'><img src='/assets/img/lang/en.png' class='img-fluid langimg' alt="<?php echo direction("English","الإنجليزية"); ?>"><span>English</span></a>
 		        	<?php } ?>  
 			    </div>
 			    <div id="dismiss" class="siderbar-dismiss text-end">
@@ -29,7 +29,7 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 		    		
 		    		<div class="avatar">
 			    		<a href="/profile" class="d-block">
-			    			<img src="/logos/<?php echo $userDetails['logo'] ?>" class="img-fluid" alt="..." style="border-radius: 100%;height: 58px;width: 100%;">
+			    			<img src="/logos/<?php echo $userDetails['logo'] ?>" class="img-fluid" alt="<?php echo direction($userDetails['name'],$userDetails['name']); ?>" style="border-radius: 100%;height: 58px;width: 100%;">
 			    		</a>
 		    		</div>
 		    		<div class="details">
@@ -52,7 +52,7 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 			<div class="sidebar-header">
 		    	<div class="">
 		    		<a href="/home">
-		    			<img src="/assets/img/logo-1.png">
+		    			<img src="/assets/img/logo-1.png" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>">
 		    		</a>
 		    	</div>
 		    	<div class="">

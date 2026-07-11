@@ -5,7 +5,7 @@ $socialMedia = selectDB("s_media","`id` = '1'");
 <div class="col-md-11 mx-auto">
 	<div class="form-container form-container-faq">
 		<div class="mb-4 text-center">
-			<img src="assets/img/logo-1.png" class="img-fluid" alt="...">
+			<img src="assets/img/logo-1.png" class="img-fluid" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>">
 		</div>
 		<div class="mb-4 text-center">
 			<h1 class="faq-title" ><?php echo direction("FAQ","الأسئلة الشائعة"); ?></h1> 
