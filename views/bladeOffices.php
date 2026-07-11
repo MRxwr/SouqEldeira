@@ -11,11 +11,11 @@
 				?>
 				<div class="col-6 col-lg-4">
 					<div class="card card-office text-center">
-						<a class="card-img" href="?v=OfficeView&id=<?php echo $offices[$i]["id"]; ?>">
-						<img src="logos/<?php echo $offices[$i]["logo"]; ?>" class="img-fluid">
+						<a class="card-img" href="/office-view/<?php echo $offices[$i]["id"]; ?>">
+						<img src="/logos/<?php echo $offices[$i]["logo"]; ?>" class="img-fluid">
 						</a>
 						<div class="card-body">
-						<h5 class="card-title fw-bold"><a href="?v=OfficeView&id=<?php echo $offices[$i]["id"]; ?>"><?php echo direction($offices[$i]["enTitle"],$offices[$i]["arTitle"]); ?></a></h5>
+						<h5 class="card-title fw-bold"><a href="/office-view/<?php echo $offices[$i]["id"]; ?>"><?php echo direction($offices[$i]["enTitle"],$offices[$i]["arTitle"]); ?></a></h5>
 						<div class="card-social">
 							<ul>
 						<?php 

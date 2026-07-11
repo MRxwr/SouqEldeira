@@ -5,7 +5,7 @@ if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'",
 	?>
 	<script>
 		alert("<?php echo $message; ?>");
-		window.location = "?v=Offices";
+		window.location = "/offices";
 	</script>
 	<?php
 }

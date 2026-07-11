@@ -7,7 +7,7 @@ if( isset($_POST["password"]) && !empty($_POST["password"]) ){
 					?>
 					<script>
 						alert("<?php echo direction("This password is already in use","هذه كلمة المرور مستخدمة بالفعل"); ?>");
-						window.location = "index.php?v=Profile";
+						window.location = "/profile";
 					</script>
 					<?php
 				}else{
@@ -15,14 +15,14 @@ if( isset($_POST["password"]) && !empty($_POST["password"]) ){
 						?>
 						<script>
 							alert("<?php echo direction("Your password has been updated successfully","تم تغيير كلمة المرور بنجاح"); ?>");
-							window.location = "index.php?v=Profile";
+							window.location = "/profile";
 						</script>
 						<?php
 					}else{
 						?>
 						<script>
 							alert("<?php echo direction("An error occurred while updating your password","حدث خطأ أثناء تحديث كلمة المرور الخاصة بك"); ?>");
-							window.location = "index.php?v=Profile";
+							window.location = "/profile";
 						</script>
 						<?php
 					}
@@ -31,7 +31,7 @@ if( isset($_POST["password"]) && !empty($_POST["password"]) ){
 			?>
 			<script>
 				alert("<?php echo direction("Passwords do not match","كلمات المرور لا تتطابق"); ?>");	
-				window.location = "index.php?v=Profile";
+				window.location = "/profile";
 			</script>
 			<?php
 			}
@@ -39,7 +39,7 @@ if( isset($_POST["password"]) && !empty($_POST["password"]) ){
 			?>
 			<script>
 				alert("<?php echo direction("Please enter a new password","الرجاء إدخال كلمة مرور جديدة"); ?>");	
-				window.location = "index.php?v=Profile";
+				window.location = "/profile";
 			</script>
 			<?php
 		}
@@ -47,7 +47,7 @@ if( isset($_POST["password"]) && !empty($_POST["password"]) ){
 		?>
 		<script>
 			alert("<?php echo direction("The password you entered is incorrect","كلمة المرور التي أدخلتها غير صحيحة"); ?>");	
-			window.location = "index.php?v=Profile";
+			window.location = "/profile";
 		</script>
 		<?php
 	}
@@ -59,7 +59,7 @@ if( isset($_POST["phone"]) && !empty($_POST["phone"]) ){
 			?>
 			<script>
 				alert("<?php echo direction("This phone number is already in use","هذا الرقم مستخدم بالفعل"); ?>");
-				window.location = "index.php?v=Profile";
+				window.location = "/profile";
 			</script>
 			<?php
 		}
@@ -86,14 +86,14 @@ if( isset($_POST["phone"]) && !empty($_POST["phone"]) ){
 		?>
 		<script>
 			alert("<?php echo direction("Your details has been updated successfully","تم تحديث بياناتك بنجاح"); ?>");
-			window.location = "index.php?v=Profile";
+			window.location = "/profile";
 		</script>
 		<?php
 	}else{
 		?>
 		<script>
 			alert("<?php echo direction("An error occurred while updating your email","حدث خطأ أثناء تحديث بريدك الإلكتروني"); ?>");
-			window.location = "index.php?v=Profile";
+			window.location = "/profile";
 		</script>
 		<?php
 	}
@@ -104,14 +104,14 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 		?>
 		<script>
 			alert("<?php echo direction("Your account has been deleted successfully","تم حذف حسابك بنجاح"); ?>");
-			window.location = "index.php?v=Home";
+			window.location = "/home";
 		</script>
 		<?php
 	}else{
 		?>
 		<script>
 			alert("<?php echo direction("An error occurred while deleting your account","حدث خطأ أثناء حذف حسابك"); ?>");
-			window.location = "index.php?v=Profile";
+			window.location = "/profile";
 		</script>
 		<?php
 	}
@@ -125,9 +125,9 @@ if( isset($_GET["deleteAccount"]) && !empty($_GET["deleteAccount"]) ){
 	</div>
 	<div class="col-md-12"> 
 		<div class="with-white-bg py-1 px-4">
-			<form id="profile-form" class="mt-4" method="post" action="index.php?v=Profile" enctype="multipart/form-data">		
+			<form id="profile-form" class="mt-4" method="post" action="/profile" enctype="multipart/form-data">		
 				<div class="mb-4 text-center">
-				<img src="logos/<?php echo $userDetails["logo"]; ?>" style="border-radius:100%;height: 100px;width: 100px;" class="img-fluid" alt="...">
+				<img src="/logos/<?php echo $userDetails["logo"]; ?>" style="border-radius:100%;height: 100px;width: 100px;" class="img-fluid" alt="...">
 				</div>
 				<!-- Price input -->
 				<div class="form-outline mb-4">
