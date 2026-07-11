@@ -10,7 +10,7 @@ if( isset($_GET["finalstatus"]) ){
 		$_GET["error"] = 1;
 	}
 }
-readSlug();
+
 // get viewed page from pages folder \\
 if( isset($_GET["v"]) && searchFile("views","blade{$_GET["v"]}.php") ){
 	require_once("views/".searchFile("views","blade{$_GET["v"]}.php"));

@@ -1,6 +1,6 @@
 <?php
 include 'includes/checksouthead.php';
-
+readSlug();
 // Default OG values
 $ogTitle = direction("Souq Al Deerah | Properties for sale and rent in Kuwait","عقارات للبيع والإيجار في الكويت | سوق الديرة");
 $ogDescription = direction("Souq Al Deerah website for ads", "موقع سوق الديرة للإعلانات"); 
