@@ -176,25 +176,25 @@ function readSlug(){
 	$segments = explode('/', $request);
 
 	switch ($segments[0]) {
+		case 'about':
+			$_GET['v'] = 'About'; 
+			break;
+		
+		case 'add-ad':
+			$_GET['v'] = 'AddAd'; 
+			break;
+
+		case 'edit-ad':
+			$_GET['v'] = 'EditAd'; 
+			break;
+
+		case 'ads-list':
+			$_GET['v'] = 'AdsList'; 
+			break;
 
 		case 'ad':
 			$_GET['v'] = 'AdView';
 			$_GET['id'] = (int)$segments[1];
-			break;
-
-		case 'office':
-			$_GET['v'] = 'OfficeView';
-			$_GET['id'] = (int)$segments[1];
-			break;
-
-		case 'search':
-			$_GET['v'] = 'Search';
-			$_GET['type'] = $segments[1] ?? '';
-			$_GET['area'] = $segments[2] ?? '';
-			break;
-
-		case 'about':
-			$_GET['v'] = 'About';
 			break;
 
 		case 'contact':
@@ -203,6 +203,61 @@ function readSlug(){
 
 		case 'faq':
 			$_GET['v'] = 'FAQ';
+			break;
+
+		case 'home':
+			$_GET['v'] = 'Home';
+			break;
+
+		case 'login':
+			$_GET['v'] = 'Login';
+			break;
+
+		case 'logout':
+			$_GET['v'] = 'Logout';
+			break;
+
+		case 'my-ads':
+			$_GET['v'] = 'MyAds'; 
+			break;
+
+		case 'my-ads-list':
+			$_GET['v'] = 'MyAdsList'; 
+			break;
+
+		case 'notifications':
+			$_GET['v'] = 'Notifications'; 
+			break;
+
+		case 'offices':
+			$_GET['v'] = 'Offices'; 
+			break;
+
+		case 'office-view':
+			$_GET['v'] = 'OfficeView';
+			$_GET['id'] = (int)$segments[1];
+			break;
+
+		case 'payment':
+			$_GET['v'] = 'Payment'; 
+			break;
+
+		case 'policy':
+			$_GET['v'] = 'Policy'; 
+			break;
+
+		case 'profile':
+			$_GET['v'] = 'Profile'; 
+			break;
+			
+		case 'search':
+			$_GET['v'] = 'Search';
+			$_GET['type'] = $segments[1] ?? '';
+			$_GET['area'] = $segments[2] ?? '';
+			break;
+
+		case 'terms':
+			$_GET['v'] = 'Terms'; 
 			break;
 
 		case '':
