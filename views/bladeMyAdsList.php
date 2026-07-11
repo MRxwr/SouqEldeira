@@ -1,5 +1,6 @@
-<?php if(!$_SESSION['valid']){
-	echo "<script>window.location.href = '/index.php?v=Login';</script>";
+<?php 
+if(!$_SESSION['valid']){
+	echo "<script>window.location.href = '/login';</script>";
  } else {
     $page = $_GET["page"] ?? 1;
 	$settings = selectDB("settings","`id` = '1'");
@@ -61,10 +62,10 @@
 						insertDB("images",array("productId" => $lastId,"imageurl" => $image["imageurl"]));
 					}
 				}
-			header("LOCATION: index.php?v=MyAds&success=republish");die();	
+			header("LOCATION: /my-ads-success/republish");die();	
 		}
 		}else{
-			header("LOCATION: index.php?v=MyAds&error=republish");die();
+			header("LOCATION: /my-ads-error/republish");die();
 		}
 
 	 }
@@ -72,12 +73,12 @@
 
 	if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
 		updateDB("products",array("hidden" => 2),"`id` = '{$_GET["hide"]}'");
-		header("LOCATION: index.php?v=MyAds&success=hide");die();
+		header("LOCATION: /my-ads-success/hide");die();
 	}
 	
 	if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
 		updateDB("products",array("status" => 1),"`id` = '{$_GET["forceDelete"]}'");
-		header("LOCATION: index.php?v=MyAds&success=forceDelete");die();
+		header("LOCATION: /my-ads-success/forceDelete");die();
 	}
 	if(isset($_GET['remove']) && !empty($_GET['remove'])){
 		if(updateDB("products"," listOfUsers = JSON_REMOVE(
@@ -85,7 +86,7 @@
             JSON_UNQUOTE(JSON_SEARCH(listOfUsers, 'one', :{$user[0]['id']}))
         )
 		","`id` = '{$_GET['remove']}'")){
-			header("LOCATION: index.php?v=MyAds&success=remove");die();
+			header("LOCATION: /my-ads-success/remove");die();
 		}
 	}
 		//selectDB("products"," `status` = '0' AND `hidden` != '2'  AND `listOfUsers` LIKE '%{$id}%'");
@@ -157,11 +158,11 @@
 												}
 												?>
 												
-												<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+												<img src="/logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
 												<?php
 											}
 										}else{ ?>
-									      <img src="assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+									      <img src="/assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
 								       <?php } ?> 
 										
 										<div class="data">
@@ -182,12 +183,12 @@
 										<div class="actions">
 										<a href="#" 
 											class="update" 
-											onclick="return confirmUpdate('?v=EditAd&id=<?php echo $ad['id']; ?>');">
+											onclick="return confirmUpdate('/edit-ad/<?php echo $ad['id']; ?>');">
 											<i class="bi bi-pencil-square"></i>
 											</a>
 											<a href="#" 
 												class="delete" 
-												onclick="return confirmDelete('?v=<?php echo $_GET['v']; ?>&forceDelete=<?php echo $ad['id']; ?>');">
+												onclick="return confirmDelete('/my-ads-delete/<?php echo $ad['id']; ?>');">
 												<i class="bi bi-trash3"></i>
 											</a>
 										</div> 
@@ -199,7 +200,7 @@
 						</div> 
 						
 						<div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="index.php?v=MyAdsList&type=active_ads&page=2" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="/my-ads-list-type/active_ads/2" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
 					    </div>
 						
 					</div>
@@ -234,12 +235,11 @@
 													$active = "";
 												}
 												?>
-												
-												<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+												<img src="/logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
 												<?php
 											}
 										}else{ ?>
-									      <img src="assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+									      <img src="/assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
 								       <?php } ?> 
 										<div class="data">
 											<h4><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></h4>
@@ -259,8 +259,8 @@
 										<div class="actions"> 
 										<a href="#" 
 											class="republish" 
-											onclick="return confirmRepublish('?v=<?php echo $_GET['v']; ?>&republish=<?php echo $ad['id']; ?>');">
-											<i class="bi bi-arrow-repeat"></i> <?php //echo Trans('app', 'Republish'); ?>
+											onclick="return confirmRepublish('/my-ads-republish/<?php echo $ad['id']; ?>');">
+											<i class="bi bi-arrow-repeat"></i> <?php echo direction("Republish","إعادة النشر"); ?>
 										</a>
 										</div> 
 									</div>
@@ -270,7 +270,7 @@
 							<?php } ?>
 						</div> 
 						<div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="index.php?v=MyAdsList&type=ended_ads&page=2" class="view-all" style="text-decoration: underline"><?php echo Trans('app','View All'); ?></a>
+						  	<a href="/my-ads-list-type/ended_ads/2" class="view-all" style="text-decoration: underline"><?php echo direction("View All","عرض الكل"); ?></a>
 					    </div>
 
 					</div>
@@ -302,16 +302,16 @@
 												}
 												?>
 												
-												<img src="logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+												<img src="/logos/<?php echo $images[$z]["imageurl"] ?>" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
 												<?php
 											}
 										}else{ ?>
-									      <img src="assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
+									      <img src="/assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="...">
 								       <?php } ?> 
 										<div class="data">
-											<h4><a href="?v=AdView&id=<?php echo $ad['id']; ?>"><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></a></h4>
+											<h4><a href="/ad-view/<?php echo $ad['id']; ?>"><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></a></h4>
 											<h5><?php echo direction($gov['enTitle'],$gov['arTitle']); ?> - <?php echo direction($area['enTitle'],$area['arTitle']); ?></h5>
-											<h6><?php echo Trans('app','Created Date'); ?> &nbsp;&nbsp; 
+											<h6><?php echo direction("Created Date","تاريخ الإنشاء"); ?> &nbsp;&nbsp; 
 											<?php
 											$adDate = new DateTime($ad['date']);
 											$now = new DateTime();
@@ -326,8 +326,8 @@
 										<div class="actions"> 
 										<a href="#" 
 											class="remove" 
-											onclick="return confirmRemove('?v=<?php echo $_GET['v']; ?>&remove=<?php echo $ad['id']; ?>');">
-											<i class="bi bi-trash3"></i> <?php //echo direction("Remove","إزالة"); ?>
+											onclick="return confirmRemove('/my-ads-remove/<?php echo $ad['id']; ?>');">
+											<i class="bi bi-trash3"></i> <?php echo direction("Remove","إزالة"); ?>
 										</a>
 										</div> 
 									</div>
@@ -336,7 +336,7 @@
 
 							<?php } ?>
 						  <div class="d-block text-center text-xl-end mt-3"> 
-						  	<a href="index.php?v=MyAdsList&type=favourite_ads&page=2" class="view-all"><?php echo direction("View All","عرض الكل"); ?></a>
+						  	<a href="/my-ads-list-type/favourite_ads/2" class="view-all"><?php echo direction("View All","عرض الكل"); ?></a>
 						  </div>
 						</div>
 					</div> 
@@ -351,7 +351,7 @@
 				 
 				<div class="col-md-12 col-myad-logo">   
 					<div class="with-white-bg  p-4 text-center h-100 d-flex align-items-center justify-content-center">
-						<img src="assets/img/logo-big.png" class="img-fluid" alt="...">		 	
+						<img src="/assets/img/logo-big.png" class="img-fluid" alt="...">		 	
 					</div>
 				</div>
 				

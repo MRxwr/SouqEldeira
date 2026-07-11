@@ -4,7 +4,7 @@ if( isset($_POST) && !empty($_POST) ){
 		?>
 		<script>
 			alert("<?php echo direction("Please fill all the fields","الرجاء ملء جميع الحقول"); ?>");
-			window.location = "index.php?v=Contact";
+			window.location = "/contact";
 		</script>
 		<?php
 	}else{
@@ -22,7 +22,7 @@ if( isset($_POST) && !empty($_POST) ){
 		?>
 		<script>
 			alert("<?php echo direction("Your message has been sent successfully","تم إرسال رسالتك بنجاح"); ?>");
-			window.location = "index.php?v=Contact";
+			window.location = "/contact";
 		</script>
 		<?php
 	}
