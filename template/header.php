@@ -48,6 +48,10 @@ $ogUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'h
         <meta name="author" content="" />
         <title><?php echo htmlspecialchars($ogTitle); ?></title>
 
+        <link rel="alternate" hreflang="ar-KW" href="<?php echo "http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=ar"; ?>" />
+        <link rel="alternate" hreflang="en-KW" href="<?php echo "http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=en"; ?>" />
+        <link rel="alternate" hreflang="x-default" href="<?php echo "http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=en"; ?>" />
+
         <!-- Open Graph Meta Tags -->
         <meta property="og:title" content="<?php echo htmlspecialchars($ogTitle); ?>" />
         <meta property="og:description" content="<?php echo htmlspecialchars(strip_tags($ogDescription)); ?>" />
