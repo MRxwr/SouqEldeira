@@ -51,7 +51,7 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 
 <?php
 $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-$msg = urlencode("أريد أن أسأل عن هذا الإعلان\n$url");	
+$msg = urlencode("أريد أن أسأل عن هذا الإعلان\n") . $url;	
 				?>
 <div class="ad-details"> 
 	<div class="row">
