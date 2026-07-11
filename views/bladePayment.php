@@ -1,7 +1,7 @@
 
 <?php 
 if(!$_SESSION['valid']){
-	echo "<script>window.location.href = '/index.php?v=Login';</script>";
+	echo "<script>window.location.href = '/login';</script>";
  } else {
 	$normalAds = 0;
 	$specialAds = 0;
@@ -19,7 +19,7 @@ if(!$_SESSION['valid']){
 				// Verify if it's a free package and if user already has it
 				if( $package[0]["price"] == 0 ){
 					if( selectDB("orders2","`userId` = '{$user[0]["id"]}' AND `packageId` = '{$packageId}' AND `status` = '1'") ){
-						header("LOCATION: index.php?v=MyAds&error=already_owned");die();
+						header("LOCATION: /my-ads-error");die();
 					}
 				}
 
@@ -81,7 +81,7 @@ if(!$_SESSION['valid']){
 					$bookeeyPipe->initiatePayment($transactionDetails);
 					exit;
 				}else{
-					header("LOCATION: index.php?v=Payment&error=1");die();
+					header("LOCATION: /payment-error");die();
 				}
 
 			}
@@ -141,7 +141,7 @@ if(!$_SESSION['valid']){
 					$bookeeyPipe->initiatePayment($transactionDetails);
 					exit;
 				} else {
-					header("LOCATION: index.php?v=Payment&error=1");die();
+					header("LOCATION: /payment-error");die();
 				}
 			}
 		}
@@ -206,17 +206,17 @@ if(!$_SESSION['valid']){
 									echo "<div class='text-default'>".direction("Your ads have been activated","تم تفعيل إعلاناتك")."</div>"; 
 									echo "<div class='text-default'>".direction("Order ID:". $order[0]["id"],"رقم الطلب:". $order[0]["id"])."</div>"; 
 									echo "<div class='text-default'>".direction("Payment ID:". $gatewayId,"معرف الدفع:". $gatewayId)."</div>";
-									echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".direction("MyAds","إعلاناتي")."</a>";
+									echo "<a href='/my-ads' class='btn btn-primary'>".direction("MyAds","إعلاناتي")."</a>";
 								}else{
 									echo "<div class='alert alert-success'>".direction("Payment completed successfully","تم إتمام الدفع بنجاح")."</div>";
 									echo "<div class='text-default'>".direction("Your ads have been activated","تم تفعيل إعلاناتك")."</div>"; 
 									echo "<div class='text-default'>".direction("Order ID:". $order[0]["id"],"رقم الطلب:". $order[0]["id"])."</div>"; 
 									echo "<div class='text-default'>".direction("Payment ID:". $gatewayId,"معرف الدفع:". $gatewayId)."</div>"; 
-									echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".direction("MyAds","إعلاناتي")."</a>";
+									echo "<a href='/my-ads' class='btn btn-primary'>".direction("MyAds","إعلاناتي")."</a>";
 								}
 							}else{
 								echo "<div class='alert alert-warning'>".direction("Missing Invoice Reference","مرجع الفاتورة مفقود")."</div>";
-								echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".direction("Try again","حاول مرة أخرى")."</a>";
+								echo "<a href='/my-ads' class='btn btn-primary'>".direction("Try again","حاول مرة أخرى")."</a>";
 							}
 			
 						} else{
@@ -225,7 +225,7 @@ if(!$_SESSION['valid']){
 								echo "<div class='alert alert-danger'>".direction("Payment failed","فشل الدفع")."</div>";
 								echo "<div class='text-default'>".direction("Order ID:". $order[0]["id"],"رقم الطلب:". $order[0]["id"])."</div>"; 
 								echo "<div class='text-default'>".direction("Payment ID:". $gatewayId,"معرف الدفع:". $gatewayId)."</div>"; 
-								echo "<a href='index.php?v=MyAds' class='btn btn-primary'>".direction("Try again","حاول مرة أخرى")."</a>";
+								echo "<a href='/my-ads' class='btn btn-primary'>".direction("Try again","حاول مرة أخرى")."</a>";
 							}
 							
 						} ?>

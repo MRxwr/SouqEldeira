@@ -230,6 +230,11 @@ function readSlug(){
 			$_GET['v'] = 'MyAdsList'; 
 			break;
 
+		case 'my-ads-error':
+			$_GET['v'] = 'MyAds'; 
+			$_GET["error"] = "already_owned";
+			break;
+
 		case 'notifications':
 			$_GET['v'] = 'Notifications'; 
 			break;
@@ -245,6 +250,11 @@ function readSlug(){
 
 		case 'payment':
 			$_GET['v'] = 'Payment'; 
+			break;
+
+		case 'payment-error':
+			$_GET['v'] = 'Payment'; 
+			$_GET["error"] = "1";
 			break;
 
 		case 'policy':
