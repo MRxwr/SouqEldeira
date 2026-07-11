@@ -31,7 +31,7 @@ if( $notifications = selectDB("notifications","`status` = '0' ORDER BY `id` DESC
 						<div class="notification-list <?php echo $seen; ?>">
 							<div class="notification-list_content">
 								<div class="notification-list_img">
-									<img src="/logos/<?php echo $userDetails['logo']; ?>" class="img-fluid" alt="..." style="border-radius: 100%;height: 58px;width: 100%;">
+									<img src="/logos/<?php echo $userDetails['logo']; ?>" class="img-fluid" alt="<?php echo direction($notifications[$i]['title'],$notifications[$i]['title']); ?>" style="border-radius: 100%;height: 58px;width: 100%;">
 								</div>
 								<div class="notification-list_detail">
 									<p><b><?php echo $notifications[$i]['title']; ?></b></p>

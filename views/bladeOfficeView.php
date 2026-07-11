@@ -15,7 +15,7 @@ if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'",
 		<div class="office-profile-side with-white-bg px-md-4 py-md-4">
 			<div class="card card-office text-center">
 				<a class="card-img" href="#">
-				<img src="/logos/<?php echo $offices[0]["logo"]; ?>" class="img-fluid">
+				<img src="/logos/<?php echo $offices[0]["logo"]; ?>" class="img-fluid" alt="<?php echo direction($offices[0]["enTitle"],$offices[0]["arTitle"]); ?>">
 				</a>
 				<div class="card-body">
 				<h1 class="card-title fw-bold"><a href="#"><?php echo direction($offices[0]["enTitle"],$offices[0]["arTitle"]); ?></a></h1>
