@@ -122,7 +122,7 @@ $msg = urlencode("أريد أن أسأل عن هذا الإعلان\n") . $url;
   "@context": "https://schema.org",
   "@type": "RealEstateListing",
   "name": "<?php echo direction($ad[0]['enTitle'], $ad[0]['arTitle']); ?>",
-  "description": "<?php echo direction($ad[0]['enDescription'], $ad[0]['arDescription']); ?>",
+  "description": "<?php echo direction($ad[0]['enDetails'], $ad[0]['arDetails']); ?>",
   "image": "<?php echo $baseURL . "logos/" .$images[0]["imageurl"]; ?>",
   "url": "<?php echo urldecode("http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}"); ?>",
   "address": {
