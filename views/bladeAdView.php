@@ -4,6 +4,7 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 	$mobile = ( !empty($ad[0]["mobile"]) ) ? $ad[0]["mobile"] : $AdUser[0]["phone"];
 	$area = selectDBNew("areas",[$ad[0]['areaId']],"`id` = ?","");
 	$category = selectDBNew("categories",[$ad[0]['categoryId']],"`id` = ?","");
+	$categoryTitle = str_replace(" ","-",direction($category[0]['enTitle'], $category[0]['arTitle']));
 	updateDB("products",["views" => $ad[0]['views'] + 1],"`id` = {$_GET["id"]}");
 	$ad[0]["views"] = $ad[0]['views'] + 1;
 }else{
@@ -126,6 +127,6 @@ $msg = urlencode("أريد أن أسأل عن هذا الإعلان\n$url");
   }
   ?>
   <div class="d-block text-end mt-3">
-  	 <a href="/search/<?php echo str_replace(" ","-",$category[0]["enTitle"]); ?>/<?php echo $ad[0]["categoryId"] ?>" class="btn btn-primary"><?php echo direction("More","المزيد"); ?> <i class="bi bi-three-dots"></i></a>
+  	 <a href="/search/<?php echo str_replace(" ","-",$categoryTitle); ?>/<?php echo $ad[0]["categoryId"] ?>" class="btn btn-primary"><?php echo direction("More","المزيد"); ?> <i class="bi bi-three-dots"></i></a>
   </div> 
 </div>
