@@ -127,6 +127,6 @@ $msg = urlencode("أريد أن أسأل عن هذا الإعلان\n$url");
   }
   ?>
   <div class="d-block text-end mt-3">
-  	 <a href="/search/<?php echo str_replace(" ","-",$categoryTitle); ?>/<?php echo $ad[0]["categoryId"] ?>" class="btn btn-primary"><?php echo direction("More","المزيد"); ?> <i class="bi bi-three-dots"></i></a>
+  	 <a href="/search/<?php echo $categoryTitle; ?>/<?php echo $ad[0]["categoryId"] ?>" class="btn btn-primary"><?php echo direction("More","المزيد"); ?> <i class="bi bi-three-dots"></i></a>
   </div> 
 </div>
