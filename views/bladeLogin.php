@@ -2,7 +2,7 @@
 // Handle "Change phone number" manual reset
 if (isset($_GET["reset"]) && $_GET["reset"] == "phone") {
     unset($_SESSION["pending_phone"]);
-    header("Location: index.php?v=Login");
+    header("Location: /login");
     die();
 }
 
@@ -89,7 +89,7 @@ if (isset($_POST["verify_otp"]) && !empty($_POST["otp_code"]) && isset($_SESSION
             setcookie($cookieSession, $GenerateNewCC, $cookieOptions);
             
             unset($_SESSION["pending_phone"]);
-            header("Location: index.php?v=Home");
+            header("Location: /home");
             die();
         }
     } else {
@@ -112,7 +112,7 @@ if( isset($_GET["error"]) ){
     <div class="col-md-11 mx-auto">
         <div class="guest-form-action">
             <div class="form-container mt-5">
-                <form id="login-form" method="post" action="?v=Login">
+                <form id="login-form" method="post" action="/login">
                     <div class="mb-4 text-center">
                         <img src="assets/img/logo-1.png" class="img-fluid" alt="...">
                     </div>
