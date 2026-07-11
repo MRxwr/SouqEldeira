@@ -8,7 +8,7 @@
 	?>
 </div>  
 
-<form class="search-area" action="?v=Search" method="POST">
+<form class="search-area" action="/search" method="POST">
 	<div class="search-area-row"> 
 		<div class="row">
 			<div class="main-radio-btn">
@@ -127,7 +127,7 @@
 				echo "<h4 class='mb-3'>{$title}</h4>";
 				require('template/adsMainList.php');
 				echo "<div class='d-block text-end mt-3'>";
-				echo "<a href='?v=Search&type={$type}' class='btn btn-primary'>".direction("More","المزيد")." ...</a>";
+				echo "<a href='/search/$title/{$type}' class='btn btn-primary'>".direction("More","المزيد")." ...</a>";
 				echo "</div>";
 				echo "</div>";
 			}
@@ -167,7 +167,7 @@
 				if( $offices = selectDB("shops","`id` != '0' AND `status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")){
 					for( $i = 0; $i < count($offices); $i++ ){
 						echo '<div class="item">';
-						echo '<a href="/office/' . $offices[$i]["id"] . '/' . slug(direction($offices[$i]["enTitle"],$offices[$i]["arTitle"])) . '"><img src="/logos/' . $offices[$i]["logo"] . '" style="width:157px;height:157px"></a>';
+						echo '<a href="/office-view/' . $offices[$i]["id"] . '/' . slug(direction($offices[$i]["enTitle"],$offices[$i]["arTitle"])) . '"><img src="/logos/' . $offices[$i]["logo"] . '" style="width:157px;height:157px"></a>';
 						echo '</div>';
 					}
 				}

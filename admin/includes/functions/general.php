@@ -289,8 +289,8 @@ function readSlug(){
 			
 		case 'search':
 			$_GET['v'] = 'Search';
-			$_GET['type'] = $segments[1] ?? '';
-			$_GET['area'] = $segments[2] ?? '';
+			$_GET['title'] = $segments[1] ?? '';
+			$_GET['type'] = $segments[2] ?? '';
 			break;
 
 		case 'terms':
