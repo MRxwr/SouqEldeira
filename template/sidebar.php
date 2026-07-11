@@ -28,17 +28,17 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 		    	<div class="profile">
 		    		
 		    		<div class="avatar">
-			    		<a href="/?v=Profile" class="d-block">
+			    		<a href="/profile" class="d-block">
 			    			<img src="/logos/<?php echo $userDetails['logo'] ?>" class="img-fluid" alt="..." style="border-radius: 100%;height: 58px;width: 100%;">
 			    		</a>
 		    		</div>
 		    		<div class="details">
 		    			<h3 class="fullname"><?php echo $userDetails['name'] ?></h3>
-		    			<a href="/?v=Profile"><?php echo direction("My Profile","ملفي الشخصي"); ?></a>
+		    			<a href="/profile"><?php echo direction("My Profile","ملفي الشخصي"); ?></a>
 		    		</div>
 		    	</div>
 		    	<div class="">
-		    		<a href="/?v=Notifications" class="notifications">
+		    		<a href="/notifications" class="notifications">
 						<i class="bi bi-bell"></i> 
 		    		 <?php
 					 /*
