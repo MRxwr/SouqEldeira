@@ -85,7 +85,7 @@
                         <p>
                         	<a href="https://www.createkuwait.com" target="_blank" class="copyright-icon">©</a> 
                         	<?php echo direction("All rights reserved to","جميع الحقوق محفوظة لـ"); ?>
-                        	<a href="?v=Home" target="_blank"><?php echo direction("Souq Al Deirah","سوق الديرة"); ?></a> 
+                        	<a href="/home" target="_blank"><?php echo direction("Souq Al Deirah","سوق الديرة"); ?></a> 
                         </p> 
                     </div>
 				</div>	
