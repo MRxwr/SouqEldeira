@@ -152,7 +152,7 @@ if( isset($_GET["error"]) ){
                             <?php echo direction("Verify and Login", "تحقق وتسجيل الدخول"); ?>
                         </button>
                         <div class="text-center">
-                            <a href="?v=Login&reset=phone" class="text-muted"><?php echo direction("Change phone number", "تغيير رقم الهاتف"); ?></a>
+                            <a href="/reset-phone" class="text-muted"><?php echo direction("Change phone number", "تغيير رقم الهاتف"); ?></a>
                         </div>
                     <?php } ?>
                 </form>

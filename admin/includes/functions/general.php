@@ -213,6 +213,11 @@ function readSlug(){
 			$_GET['v'] = 'Login';
 			break;
 
+		case 'reset-phone':
+			$_GET['v'] = 'Login';
+			$_GET['reset'] = 'phone';
+			break;
+
 		case 'logout':
 			$_GET['v'] = 'Logout';
 			break;
