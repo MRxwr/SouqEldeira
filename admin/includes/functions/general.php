@@ -332,7 +332,7 @@ function updateSitemap() {
             $slugTitle = slug($cat["arTitle"]);
             if (empty($slugTitle)) $slugTitle = slug($cat["enTitle"]);
             $xml .= '  <url>' . PHP_EOL;
-            $xml .= '    <loc>' . $base . 'search/' . urlencode($slugTitle) . '/' . $cat["id"] . '</loc>' . PHP_EOL;
+            $xml .= '    <loc>' . $base . 'search/' . urldecode($slugTitle) . '/' . $cat["id"] . '</loc>' . PHP_EOL;
             $xml .= '    <changefreq>daily</changefreq>' . PHP_EOL;
             $xml .= '    <priority>0.9</priority>' . PHP_EOL;
             $xml .= '  </url>' . PHP_EOL;
@@ -345,7 +345,7 @@ function updateSitemap() {
             $slugTitle = slug($type["arTitle"]);
             if (empty($slugTitle)) $slugTitle = slug($type["enTitle"]);
             $xml .= '  <url>' . PHP_EOL;
-            $xml .= '    <loc>' . $base . 'search/' . urlencode($slugTitle) . '/' . $type["id"] . '</loc>' . PHP_EOL;
+            $xml .= '    <loc>' . $base . 'search/' . urldecode($slugTitle) . '/' . $type["id"] . '</loc>' . PHP_EOL;
             $xml .= '    <changefreq>daily</changefreq>' . PHP_EOL;
             $xml .= '    <priority>0.8</priority>' . PHP_EOL;
             $xml .= '  </url>' . PHP_EOL;
@@ -358,7 +358,7 @@ function updateSitemap() {
             $slugTitle = slug($office["arTitle"]);
             if (empty($slugTitle)) $slugTitle = slug($office["enTitle"]);
             $xml .= '  <url>' . PHP_EOL;
-            $xml .= '    <loc>' . $base . 'office-view/' . $office["id"] . '/' . urlencode($slugTitle) . '</loc>' . PHP_EOL;
+            $xml .= '    <loc>' . $base . 'office-view/' . $office["id"] . '/' . urldecode($slugTitle) . '</loc>' . PHP_EOL;
             $xml .= '    <changefreq>weekly</changefreq>' . PHP_EOL;
             $xml .= '    <priority>0.7</priority>' . PHP_EOL;
             $xml .= '  </url>' . PHP_EOL;
@@ -372,7 +372,7 @@ function updateSitemap() {
             if (empty($slugTitle)) $slugTitle = slug($product["enTitle"]);
             $lastmod = date("Y-m-d", strtotime($product["date"]));
             $xml .= '  <url>' . PHP_EOL;
-            $xml .= '    <loc>' . $base . 'ad-view/' . $product["id"] . '/' . urlencode($slugTitle) . '</loc>' . PHP_EOL;
+            $xml .= '    <loc>' . $base . 'ad-view/' . $product["id"] . '/' . urldecode($slugTitle) . '</loc>' . PHP_EOL;
             $xml .= '    <lastmod>' . $lastmod . '</lastmod>' . PHP_EOL;
             $xml .= '    <changefreq>weekly</changefreq>' . PHP_EOL;
             $xml .= '    <priority>0.6</priority>' . PHP_EOL;
