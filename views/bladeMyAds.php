@@ -62,6 +62,7 @@ if(!$_SESSION['valid']){
 						insertDB("images",array("productId" => $lastId,"imageurl" => $image["imageurl"]));
 					}
 				}
+			updateSitemap();
 			header("LOCATION: /my-ads-success/republish");die();	
 		}
 		}else{
@@ -73,11 +74,13 @@ if(!$_SESSION['valid']){
 
 	if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
 		updateDB("products",array("hidden" => 2),"`id` = '{$_GET["hide"]}'");
+		updateSitemap();
 		header("LOCATION: /my-ads-success/hide");die();
 	}
 	
 	if( isset($_GET["forceDelete"]) && !empty($_GET["forceDelete"]) ){
 		updateDB("products",array("status" => 1),"`id` = '{$_GET["forceDelete"]}'");
+		updateSitemap();
 		header("LOCATION: /my-ads-success/forceDelete");die();
 	}
 	if(isset($_GET['remove']) && !empty($_GET['remove'])){
@@ -86,6 +89,7 @@ if(!$_SESSION['valid']){
             JSON_UNQUOTE(JSON_SEARCH(listOfUsers, 'one', :{$user[0]['id']}))
         )
 		","`id` = '{$_GET['remove']}'")){
+			updateSitemap();
 			header("LOCATION: /my-ads-success/remove");die();
 		}
 	}

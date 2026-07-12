@@ -64,3 +64,9 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
 $now = date("Y-m-d H:i:s");
 updateDB("products", array("hidden" => "1"), "`hidden` = '0'");
 updateDB("products", array("hidden" => "2"), "`hidden` = '1' AND `expiryDate` < '{$now}'");
+
+// Sitemap daily update
+$sitemapFile = "sitemap.xml";
+if ( !file_exists($sitemapFile) || (time() - filemtime($sitemapFile) > 86400) ){
+    updateSitemap();
+}

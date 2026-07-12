@@ -74,7 +74,8 @@
 					}
 				}
 			}
-				
+			
+			updateSitemap();
 			header("LOCATION: /home");
 		}else{
 			?>

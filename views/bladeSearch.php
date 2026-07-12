@@ -37,9 +37,18 @@ if ( isset($_POST) && !empty($_POST) ) {
 	if( $ads = selectDBNew("products",[$_POST["categoryId"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? {$areaId} {$price} {$propertyType} ","`packageId` DESC,`id` DESC") ){
 	}
 }elseif( isset($_GET["type"]) && !empty($_GET["type"]) ){
-	if( $ads = selectDBNew("products",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? ORDER BY `packageId` DESC,`id` DESC","") ){
-		$category = selectDBNew("categories",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","");
+	// Check if the type ID belongs to a category or propertyType
+	if( $category = selectDBNew("categories",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","") ){
 		$categoryTitle = direction($category[0]["enTitle"],$category[0]["arTitle"]);
+		$ads = selectDBNew("products",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? ORDER BY `packageId` DESC,`id` DESC","");
+		$areaTitle = "";
+	}elseif( $pType = selectDBNew("propertyType",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","") ){
+		$categoryTitle = direction($pType[0]["enTitle"],$pType[0]["arTitle"]);
+		$ads = selectDBNew("products",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `propertyType` = ? ORDER BY `packageId` DESC,`id` DESC","");
+		$areaTitle = "";
+	}else{
+		$categoryTitle = "";
+		$ads = array();
 		$areaTitle = "";
 	}
 }else{

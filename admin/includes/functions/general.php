@@ -310,4 +310,81 @@ function slug($text){
     return $text;
 }
 
+function updateSitemap() {
+    global $dbconnect, $baseURL;
+    
+    // Ensure baseURL ends with /
+    $base = rtrim($baseURL, "/") . "/";
+    
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
+
+    // Home Page
+    $xml .= '  <url>' . PHP_EOL;
+    $xml .= '    <loc>' . $base . '</loc>' . PHP_EOL;
+    $xml .= '    <changefreq>daily</changefreq>' . PHP_EOL;
+    $xml .= '    <priority>1.0</priority>' . PHP_EOL;
+    $xml .= '  </url>' . PHP_EOL;
+
+    // Categories
+    if ($categories = selectDB("categories", "`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")) {
+        foreach ($categories as $cat) {
+            $slugTitle = slug($cat["arTitle"]);
+            if (empty($slugTitle)) $slugTitle = slug($cat["enTitle"]);
+            $xml .= '  <url>' . PHP_EOL;
+            $xml .= '    <loc>' . $base . 'search/' . urlencode($slugTitle) . '/' . $cat["id"] . '</loc>' . PHP_EOL;
+            $xml .= '    <changefreq>daily</changefreq>' . PHP_EOL;
+            $xml .= '    <priority>0.9</priority>' . PHP_EOL;
+            $xml .= '  </url>' . PHP_EOL;
+        }
+    }
+    
+    // Property Types
+    if ($propertyTypes = selectDB("propertyType", "`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")) {
+        foreach ($propertyTypes as $type) {
+            $slugTitle = slug($type["arTitle"]);
+            if (empty($slugTitle)) $slugTitle = slug($type["enTitle"]);
+            $xml .= '  <url>' . PHP_EOL;
+            $xml .= '    <loc>' . $base . 'search/' . urlencode($slugTitle) . '/' . $type["id"] . '</loc>' . PHP_EOL;
+            $xml .= '    <changefreq>daily</changefreq>' . PHP_EOL;
+            $xml .= '    <priority>0.8</priority>' . PHP_EOL;
+            $xml .= '  </url>' . PHP_EOL;
+        }
+    }
+
+    // Offices
+    if ($offices = selectDB("shops", "`status` = '0'")) {
+        foreach ($offices as $office) {
+            $slugTitle = slug($office["arTitle"]);
+            if (empty($slugTitle)) $slugTitle = slug($office["enTitle"]);
+            $xml .= '  <url>' . PHP_EOL;
+            $xml .= '    <loc>' . $base . 'office-view/' . $office["id"] . '/' . urlencode($slugTitle) . '</loc>' . PHP_EOL;
+            $xml .= '    <changefreq>weekly</changefreq>' . PHP_EOL;
+            $xml .= '    <priority>0.7</priority>' . PHP_EOL;
+            $xml .= '  </url>' . PHP_EOL;
+        }
+    }
+
+    // Individual Ads
+    if ($products = selectDB("products", "`status` = '0' AND `hidden` = '1' ORDER BY `id` DESC")) {
+        foreach ($products as $product) {
+            $slugTitle = slug($product["arTitle"]);
+            if (empty($slugTitle)) $slugTitle = slug($product["enTitle"]);
+            $lastmod = date("Y-m-d", strtotime($product["date"]));
+            $xml .= '  <url>' . PHP_EOL;
+            $xml .= '    <loc>' . $base . 'ad-view/' . $product["id"] . '/' . urlencode($slugTitle) . '</loc>' . PHP_EOL;
+            $xml .= '    <lastmod>' . $lastmod . '</lastmod>' . PHP_EOL;
+            $xml .= '    <changefreq>weekly</changefreq>' . PHP_EOL;
+            $xml .= '    <priority>0.6</priority>' . PHP_EOL;
+            $xml .= '  </url>' . PHP_EOL;
+        }
+    }
+
+    $xml .= '</urlset>';
+
+    // Determine root directory to save sitemap.xml
+    $sitemapPath = dirname(__DIR__, 2) . "/sitemap.xml";
+    file_put_contents($sitemapPath, $xml);
+}
+
 ?>

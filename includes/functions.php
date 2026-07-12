@@ -112,6 +112,7 @@ function uploadImageBannerown($imageLocation){
 		return "";
 	}
 }
+
 function doPaymant($data , $price){
     if ( $price <= 0 ) {
         return "https://{$_SERVER['HTTP_HOST']}/index.php?v=Payment&result=CAPTURED&payment_id=0&requested_order_id={$data["orderId"]}";

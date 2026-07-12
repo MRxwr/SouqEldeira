@@ -1,18 +1,21 @@
 <?php
 if( isset($_GET["hide"]) && !empty($_GET["hide"]) ){
 	if( updateDB("products",array('hidden'=> '2'),"`id` = '{$_GET["hide"]}'") ){
+		updateSitemap();
 		header("LOCATION: ?v=Ads");
 	}
 }
 
 if( isset($_GET["show"]) && !empty($_GET["show"]) ){
 	if( updateDB("products",array('hidden'=> '1'),"`id` = '{$_GET["show"]}'") ){
+		updateSitemap();
 		header("LOCATION: ?v=Ads");
 	}
 }
 
 if( isset($_GET["delId"]) && !empty($_GET["delId"]) ){
 	if( updateDB("products",array('status'=> '1'),"`id` = '{$_GET["delId"]}'") ){
+		updateSitemap();
 		header("LOCATION: ?v=Ads");
 	}
 }
