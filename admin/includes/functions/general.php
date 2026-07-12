@@ -383,7 +383,11 @@ function updateSitemap() {
     $xml .= '</urlset>';
 
     // Determine root directory to save sitemap.xml
+    // admin/includes/functions/general.php -> goes up 3 levels to reach root
     $sitemapPath = dirname(__DIR__, 2) . "/sitemap.xml";
+    if (!file_exists($sitemapPath)) {
+        $sitemapPath = dirname(__DIR__, 3) . "/sitemap.xml";
+    }
     file_put_contents($sitemapPath, $xml);
 }
 
