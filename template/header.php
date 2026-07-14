@@ -3,7 +3,7 @@ include 'includes/checksouthead.php';
 readSlug();
 // Default OG values
 $ogTitle = direction("Properties for sale and rent in Kuwait","عقارات للبيع والإيجار في الكويت");
-$ogTitle .= (!empty($pageTitle) ? " | " . $pageTitle : "");
+$ogTitle .= (!empty($pageTitle) ? " | " . $pageTitle : ""); 
 $ogDescription = direction("Souq Al Deerah website for ads", "موقع سوق الديرة للإعلانات"); 
 $ogImage = $baseURL . "assets/img/logo-1.png";
 

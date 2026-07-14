@@ -171,10 +171,10 @@ function str_lreplace($search, $replace, $subject){
 }
 
 function readSlug(){
-	GLOBAL $_SERVER;
+	GLOBAL $_SERVER, $pageTitle;
 	$request = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 	$segments = explode('/', $request);
-
+	$pageTitle = "";
 	switch ($segments[0]) {
 		case 'about':
 			$_GET['v'] = 'About';
@@ -200,7 +200,7 @@ function readSlug(){
 
 		case 'ad-view':
 			$_GET['v'] = 'AdView';
-			$pageTitle = "";
+			$pageTitle = direction("Ad View","عرض الإعلان");
 			$_GET['id'] = (int)$segments[1];
 			break;
 
@@ -288,7 +288,7 @@ function readSlug(){
 
 		case 'office-view':
 			$_GET['v'] = 'OfficeView';
-			$pageTitle = "";
+			$pageTitle = direction("Office View","عرض المكتب");
 			$_GET['id'] = (int)$segments[1];
 			break;
 
