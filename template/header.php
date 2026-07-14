@@ -45,6 +45,7 @@ $ogUrl = urldecode((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'h
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="<?php echo htmlspecialchars(strip_tags($ogDescription)); ?>" />
+        <meta name="google-site-verification" content="uQF2UV0lQo1EKZCrPXcX_zUidNG_Zh8SIY3tctlP34M" />
         <meta name="author" content="" />
         <title><?php echo direction("Souq Al Deerah","سوق الديرة") . " | " . htmlspecialchars($ogTitle); ?></title>
         <link rel="canonical" href="<?php echo urldecode("http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}"); ?>" />
