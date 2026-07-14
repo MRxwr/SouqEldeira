@@ -34,7 +34,7 @@ $socialMedia = selectDB("s_media","`id` = '1'");
 			<p class="add-ad-form-text fw-bold"><?php echo direction("Send us message by","أرسل لنا رسالة عبر"); ?>
 			<a href="https://wa.me/<?php echo $socialMedia[0]['mobile']; ?>"><?php echo direction("WhatsApp","واتساب"); ?></a>
 			<?php echo direction("or","أو"); ?>
-			<a href="?v=Contact"><?php echo direction("call us","اتصل بنا"); ?></a> <?php echo direction("for help","للمساعدة"); ?></p>
+			<a href="/contact"><?php echo direction("call us","اتصل بنا"); ?></a> <?php echo direction("for help","للمساعدة"); ?></p>
 			</div>
 	</div>
 </div>
