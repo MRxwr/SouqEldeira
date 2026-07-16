@@ -100,20 +100,19 @@
 	</div>
 </form>
  
-
-<div class="homePageSecondContent my-3">
-	<div class="container container-project">
-		<?php
+<?php
 		if( $homeNotification = selectDB("notifications","`status` = '0' AND `hidden` = '0' ORDER BY `id` DESC LIMIT 1") ){
 			?>
-			<div class="alert alert-primary welcome-message" role="alert">
-				<i class="bi bi-exclamation-circle"></i> <b><?php echo $homeNotification[0]["title"]; ?>:</b> <?php echo $homeNotification[0]["body"]; ?>
-			</div>
+<div class="homePageSecondContent my-3">
+	<div class="container container-project">
+		<div class="alert alert-primary welcome-message" role="alert">
+			<i class="bi bi-exclamation-circle"></i> <b><?php echo $homeNotification[0]["title"]; ?>:</b> <?php echo $homeNotification[0]["body"]; ?>
+		</div>
+	</div>
+</div>	
 			<?php
 		}
 		?>
-	</div>
-</div>	
 
 <div class="homePageSecondContent my-3">
 	<div class="container container-project">
