@@ -114,7 +114,7 @@
 		}
 		?>
 
-<div class="homePageSecondContent my-3">
+<div class="homePageSecondContent my-3" style="display: flex; justify-content: center;">
 	<div class="container container-project">
 		<?php echo "<h1>" . direction("Latest ads on Souq Al Deirah","أحدث الإعلانات في سوق الديرة") . "</h1>"; ?>
 	</div>
