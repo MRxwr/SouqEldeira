@@ -107,20 +107,3 @@
 	?>
 </div>
 </div>
-
-
-<div class="modal modal-bottom fade" id="ad_modal" tabindex="-1" aria-labelledby="ad_modal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header"> 
-          <h1 class="modal-title text-center d-block w-100" id="exampleModalLabel"><?php echo direction("A house for rent in Abu Fetera","منزل للإيجار في أبو فطيرة"); ?></h1>
-          <a class="btn-close-modal" data-bs-dismiss="modal" aria-label="Close"> <i class="bi bi-chevron-left"></i> </a>  
-      </div>
-      <div class="modal-body">
-      	<div class="container container-project">
-        <?php /*require_once 'views/bladeAdView.php'; */ ?>   
-        </div>  
-      </div>
-    </div> 
-  </div>
-</div>
