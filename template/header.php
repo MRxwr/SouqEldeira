@@ -37,7 +37,12 @@ if (isset($_GET["v"])) {
     }
 }
 
-$ogUrl = urldecode((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+$ogUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+// Clean URL for hreflang to avoid duplicate lang parameters
+$cleanUrl = preg_replace('/([?&])lang=[^&]*(&|$)/', '$1', $ogUrl);
+$cleanUrl = preg_replace('/[?&]$/', '', $cleanUrl);
+$hreflangSign = (strpos($cleanUrl, '?') !== false) ? '&' : '?';
 ?>
 
 <!DOCTYPE html>
@@ -49,10 +54,10 @@ $ogUrl = urldecode((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'h
         <meta name="google-site-verification" content="uQF2UV0lQo1EKZCrPXcX_zUidNG_Zh8SIY3tctlP34M" />
         <meta name="author" content="" />
         <title><?php echo direction("Souq Al Deerah","سوق الديرة") . " | " . htmlspecialchars($ogTitle); ?></title>
-        <link rel="canonical" href="<?php echo urldecode("http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}"); ?>" />
-        <link rel="alternate" hreflang="ar-KW" href="<?php echo urldecode("http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=ar"); ?>" />
-        <link rel="alternate" hreflang="en-KW" href="<?php echo urldecode("http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=en"); ?>" />
-        <link rel="alternate" hreflang="x-default" href="<?php echo urldecode("http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}" . getSign() . "lang=en"); ?>" />
+        <link rel="canonical" href="<?php echo $ogUrl; ?>" />
+        <link rel="alternate" hreflang="ar-KW" href="<?php echo $cleanUrl . $hreflangSign . "lang=ar"; ?>" />
+        <link rel="alternate" hreflang="en-KW" href="<?php echo $cleanUrl . $hreflangSign . "lang=en"; ?>" />
+        <link rel="alternate" hreflang="x-default" href="<?php echo $cleanUrl . $hreflangSign . "lang=en"; ?>" />
 
         <!-- Open Graph Meta Tags -->
         <meta property="og:title" content="<?php echo direction("Souq Al Deerah","سوق الديرة") . " | " . htmlspecialchars($ogTitle); ?>" />

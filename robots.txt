@@ -6,8 +6,8 @@ Disallow: /?v=Login
 Disallow: /?v=AddAd
 Disallow: /?v=Admin
 
-# منع زحف النسخة الإنجليزية المكررة (أو السماح بها إن كانت محتوى مختلف)
-Disallow: /*?lang=en
+# السماح بزحف النسخة الإنجليزية
+Allow: /*?lang=en
 
 # رابط خريطة الموقع
 Sitemap: https://souqeldeira.com/sitemap.xml

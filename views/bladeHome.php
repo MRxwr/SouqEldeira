@@ -79,7 +79,7 @@
 			</div>
 			<div class="col-6 col-md-12">
 				<div class="form-outline mt-3 advanced-search">  
-				<a href="#!" class="advanced-search-a"><i class="bi bi-sliders"></i><span class="fw-bold"><?php echo direction("Advanced Search","بحث متقدم"); ?></span></a>
+				<a href="javascript:void(0)" class="advanced-search-a"><i class="bi bi-sliders"></i><span class="fw-bold"><?php echo direction("Advanced Search","بحث متقدم"); ?></span></a>
 				</div>
 			</div>
 		</div>

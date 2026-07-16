@@ -207,7 +207,7 @@ if(!$_SESSION['valid']){
 										<span class="content"><?php echo direction("Expire Data","تاريخ الانتهاء"); ?> : 60 <?php echo direction("Day","يوم"); ?></span>
 									</div>
 									<div class="buy">
-										<a href="#!" class="btn btn-primary py-0 btn-sm"><?php echo direction("Pay","ادفع"); ?></a> 
+										<a href="javascript:void(0)" class="btn btn-primary py-0 btn-sm"><?php echo direction("Pay","ادفع"); ?></a> 
 									</div>
 								</div>
 							</div>  -->
