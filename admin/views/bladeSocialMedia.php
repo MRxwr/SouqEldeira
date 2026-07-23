@@ -11,6 +11,7 @@ $instagram = $sMedia[0]["instagram"];
 $location = $sMedia[0]["location"];
 $twitter = $sMedia[0]["twitter"];
 $email = $sMedia[0]["email"];
+$tiktok = $sMedia[0]["tiktok"];
 ?>
 <div class="row">
 <div class="col-md-12">
@@ -61,6 +62,13 @@ $email = $sMedia[0]["email"];
 <div class="form-group">
 <label class="control-label mb-10"><?php echo direction("Twitter","تويتر") ?></label><br>
 <input type="text" name="twitter" class="form-control" value="<?php echo $twitter ?>"  >
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label mb-10"><?php echo direction("TikTok","تيك توك") ?></label><br>
+<input type="text" name="tiktok" class="form-control" value="<?php echo $tiktok ?>"  >
 </div>
 </div>
 
