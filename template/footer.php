@@ -72,7 +72,7 @@
 						if( $sMedia = selectDB("s_media", "`id` = '1'") ){
 							$sMediaArray = ["facebook", "twitter", "instagram", "tiktok", "email", "mobile"];
 							$sMediaIcons = ["bi bi-facebook","bi bi-twitter-x","bi bi-instagram","bi bi-tiktok","bi bi-envelope", "bi bi-telephone-fill"];
-							$sMediaLinks = ["https://www.facebook.com/","https://www.twitter.com/","https://www.instagram.com/","https://www.tiktok.com/","mailto:", "tel:"];
+							$sMediaLinks = ["https://www.facebook.com/","https://www.twitter.com/","https://www.instagram.com/","https://www.tiktok.com/@","mailto:", "tel:"];
 							for ($i = 0; $i < count($sMediaArray); $i++) {
 								if( !empty($sMedia[0]["$sMediaArray[$i]"]) ){
 								echo '<li><a href="' . $sMediaLinks[$i] . $sMedia[0]["$sMediaArray[$i]"] . '"><i class="' . $sMediaIcons[$i] . '"></i></a></li>';
