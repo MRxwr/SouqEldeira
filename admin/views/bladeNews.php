@@ -60,7 +60,7 @@ if( isset($_POST["enTitle"]) ){
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-	<h6 class="panel-title txt-dark"><?php echo direction("News Details","تفاصيل القسم") ?></h6>
+	<h6 class="panel-title txt-dark"><?php echo direction("News Details","تفاصيل الخبر") ?></h6>
 </div>
 	<div class="clearfix"></div>
 </div>
@@ -89,7 +89,7 @@ if( isset($_POST["enTitle"]) ){
 			</div>
 			
 			<div class="col-md-6">
-			<label><?php echo direction("Hide News","أخفي القسم") ?></label>
+			<label><?php echo direction("Hide News","أخفي الخبر") ?></label>
 			<select name="hidden" class="form-control">
 				<option value="1">No</option>
 				<option value="2">Yes</option>
@@ -127,7 +127,7 @@ if( isset($_POST["enTitle"]) ){
 <div class="panel panel-default card-view">
 <div class="panel-heading">
 <div class="pull-left">
-<h6 class="panel-title txt-dark"><?php echo direction("Categories List","قائمة الأقسام") ?></h6>
+<h6 class="panel-title txt-dark"><?php echo direction("News List","قائمة الأخبار") ?></h6>
 </div>
 <div class="clearfix"></div>
 </div>
@@ -150,39 +150,39 @@ if( isset($_POST["enTitle"]) ){
 		
 		<tbody>
 		<?php 
-		if( $categories = selectDB("news","`status` = '0' ORDER BY `rank` ASC") ){
-			for( $i = 0; $i < sizeof($categories); $i++ ){
+		if( $newsList = selectDB("news","`status` = '0' ORDER BY `rank` ASC") ){
+			for( $i = 0; $i < sizeof($newsList); $i++ ){
 				$counter = $i + 1;
-			if ( $categories[$i]["hidden"] == 2 ){
+			if ( $newsList[$i]["hidden"] == 2 ){
 				$icon = "fa fa-eye";
-				$link = "?v={$_GET["v"]}&show={$categories[$i]["id"]}";
+				$link = "?v={$_GET["v"]}&show={$newsList[$i]["id"]}";
 				$hide = direction("Show","إظهار");
 			}else{
 				$icon = "fa fa-eye-slash";
-				$link = "?v={$_GET["v"]}&hide={$categories[$i]["id"]}";
+				$link = "?v={$_GET["v"]}&hide={$newsList[$i]["id"]}";
 				$hide = direction("Hide","إخفاء");
 			}
 			?>
 			<tr>
 			<td>
 			<input name="rank[]" class="form-control" type="number" value="<?php echo $counter ?>">
-			<input name="id[]" class="form-control" type="hidden" value="<?php echo $categories[$i]["id"] ?>">
+			<input name="id[]" class="form-control" type="hidden" value="<?php echo $newsList[$i]["id"] ?>">
 			</td>
-			<td id="enTitle<?php echo $categories[$i]["id"]?>" ><?php echo $categories[$i]["enTitle"] ?></td>
-			<td id="arTitle<?php echo $categories[$i]["id"]?>" ><?php echo $categories[$i]["arTitle"] ?></td>
+			<td id="enTitle<?php echo $newsList[$i]["id"]?>" ><?php echo $newsList[$i]["enTitle"] ?></td>
+			<td id="arTitle<?php echo $newsList[$i]["id"]?>" ><?php echo $newsList[$i]["arTitle"] ?></td>
 			<td class="text-nowrap">
 			
-			<a id="<?php echo $categories[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
+			<a id="<?php echo $newsList[$i]["id"] ?>" class="mr-25 edit" data-toggle="tooltip" data-original-title="<?php echo direction("Edit","تعديل") ?>"> <i class="fa fa-pencil text-inverse m-r-10"></i>
 			</a>
 			<a href="<?php echo $link ?>" class="mr-25" data-toggle="tooltip" data-original-title="<?php echo $hide ?>"> <i class="<?php echo $icon ?> text-inverse m-r-10"></i>
 			</a>
-			<a href="<?php echo "?v={$_GET["v"]}&delId={$categories[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i>
+			<a href="<?php echo "?v={$_GET["v"]}&delId={$newsList[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i>
 			</a>
 			<div style="display:none">
-                <label id="hidden<?php echo $categories[$i]["id"]?>"><?php echo $categories[$i]["hidden"] ?></label>
-			    <label id="logo<?php echo $categories[$i]["id"]?>"><?php echo $categories[$i]["imageurl"] ?></label>
-                <label id="enDetails<?php echo $categories[$i]["id"]?>"><?php echo $categories[$i]["enDetails"] ?></label>
-				<label id="arDetails<?php echo $categories[$i]["id"]?>"><?php echo $categories[$i]["arDetails"] ?></label>
+                <label id="hidden<?php echo $newsList[$i]["id"]?>"><?php echo $newsList[$i]["hidden"] ?></label>
+			    <label id="logo<?php echo $newsList[$i]["id"]?>"><?php echo $newsList[$i]["imageurl"] ?></label>
+                <label id="enDetails<?php echo $newsList[$i]["id"]?>"><?php echo $newsList[$i]["enDetails"] ?></label>
+				<label id="arDetails<?php echo $newsList[$i]["id"]?>"><?php echo $newsList[$i]["arDetails"] ?></label>
             </div>			
 			</td>
 			</tr>
