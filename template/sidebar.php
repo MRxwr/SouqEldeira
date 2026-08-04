@@ -110,6 +110,9 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 		        <li>
 		            <a href="/offices"><i class="bi bi-buildings"></i><?php echo direction("Real Estate Offices","مكاتب العقارات"); ?></a>
 		        </li>
+				<li>
+		            <a href="/news-list/1"><i class="bi bi-newspaper"></i><?php echo direction("News","الأخبار"); ?></a>
+		        </li>
 		        <li>
 		            <a href="/faq"><i class="bi bi-question-circle"></i><?php echo direction("FAQ","الأسئلة الشائعة"); ?></a>
 		        </li>
