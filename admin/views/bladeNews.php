@@ -96,7 +96,7 @@ if( isset($_POST["enTitle"]) ){
 			</select>
 			</div>
 			
-			<div class="col-md-6" style="display: none;">
+			<div class="col-md-6">
 			<label><?php echo direction("Logo","الشعار") ?></label>
 			<input type="file" name="imageurl" class="form-control" >
 			</div>
