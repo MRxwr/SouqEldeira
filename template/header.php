@@ -34,6 +34,17 @@ if (isset($_GET["v"])) {
                 $ogImage = $baseURL . "logos/" . $offices[0]["logo"];
             }
         }
+    } elseif ($_GET["v"] == "NewsView" && isset($_GET["id"])) {
+        if ($news = selectDBNew("news", [$_GET['id']], "`id` = ? AND `status` = '0' AND `hidden` = '1'", "")) {
+            $ogTitle = direction($news[0]['enTitle'], $news[0]['arTitle']);
+            $ogDescription = direction($news[0]['enDetails'], $news[0]['arDetails']);
+            if (!empty($news[0]['imageurl'])) {
+                $ogImage = $baseURL . "logos/" . $news[0]['imageurl'];
+            }
+        }
+    } elseif ($_GET["v"] == "NewsList") {
+        $ogTitle = direction("News","الأخبار");
+        $ogDescription = direction("Latest news on Souq Al Deirah","أحدث الأخبار في سوق الديرة");
     }
 }
 

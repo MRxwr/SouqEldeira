@@ -142,6 +142,20 @@
 	?>
 </div> 
 
+<div class="container container-project">
+	<?php
+	if( $latestNews = selectDB("news","`status` = '0' AND `hidden` = '1' ORDER BY `id` DESC LIMIT 3") ){
+		$newsList = $latestNews;
+		echo "<div class='listings-section'>";
+		echo "<h2 class='mb-3'>" . direction("Latest News","أحدث الأخبار") . "</h2>";
+		require('template/newsMainList.php');
+		echo "<div class='d-block text-end mt-3'>";
+		echo "<a href='/news-list/1' class='btn btn-primary'>".direction("More","المزيد")." ...</a>";
+		echo "</div>";
+		echo "</div>";
+	}
+	?>
+</div>
 
 <div class="home-about">
 	<div class="left-bg"></div>

@@ -204,6 +204,18 @@ function readSlug(){
 			$_GET['id'] = (int)$segments[1];
 			break;
 
+		case 'news-list':
+			$_GET['v'] = 'NewsList';
+			$pageTitle = direction("News List","قائمة الأخبار");
+			$_GET['page'] = (int)($segments[1] ?? 1);
+			break;
+
+		case 'news-view':
+			$_GET['v'] = 'NewsView';
+			$pageTitle = direction("News View","عرض الأخبار");
+			$_GET['id'] = (int)$segments[1];
+			break;
+		
 		case 'contact':
 			$_GET['v'] = 'Contact';
 			$pageTitle = direction("Contact Us","اتصل بنا");
