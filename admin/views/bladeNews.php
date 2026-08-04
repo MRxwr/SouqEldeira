@@ -68,17 +68,27 @@ if( isset($_POST["enTitle"]) ){
 <div class="panel-body">
 	<form class="" method="POST" action="" enctype="multipart/form-data">
 		<div class="row m-0">
-			<div class="col-md-4">
+			<div class="col-md-6">
 			<label><?php echo direction("Arabic Title","العنوان بالعربي") ?></label>
 			<input type="text" name="arTitle" class="form-control" required>
 			</div>
 			
-			<div class="col-md-4">
+			<div class="col-md-6">
 			<label><?php echo direction("English Title","العنوان بالإنجليزي") ?></label>
 			<input type="text" name="enTitle" class="form-control" required>
 			</div>
+
+            <div class="col-md-6">
+			<label><?php echo direction("English Details","التفاصيل بالإنجليزي") ?></label>
+			<textarea name="enDetails" class="tinymce"></textarea>
+			</div>
+
+			<div class="col-md-6">
+			<label><?php echo direction("Arabic Details","التفاصيل بالعربي") ?></label>
+			<textarea name="arDetails" class="tinymce"></textarea>
+			</div>
 			
-			<div class="col-md-4">
+			<div class="col-md-6">
 			<label><?php echo direction("Hide News","أخفي القسم") ?></label>
 			<select name="hidden" class="form-control">
 				<option value="1">No</option>
@@ -86,13 +96,14 @@ if( isset($_POST["enTitle"]) ){
 			</select>
 			</div>
 			
-			<div class="col-md-12" style="display: none;">
+			<div class="col-md-6" style="display: none;">
 			<label><?php echo direction("Logo","الشعار") ?></label>
 			<input type="file" name="imageurl" class="form-control" >
 			</div>
 			
 			<div id="images" style="margin-top: 10px; display:none">
-				<div class="col-md-12">
+                <div class="col-md-6"></div>
+				<div class="col-md-6">
 				<img id="logoImg" src="" style="width:250px;height:250px">
 				</div>
 			</div>
@@ -167,8 +178,12 @@ if( isset($_POST["enTitle"]) ){
 			</a>
 			<a href="<?php echo "?v={$_GET["v"]}&delId={$categories[$i]["id"]}" ?>" data-toggle="tooltip" data-original-title="<?php echo direction("Delete","حذف") ?>"><i class="fa fa-close text-danger"></i>
 			</a>
-			<div style="display:none"><label id="hidden<?php echo $categories[$i]["id"]?>"><?php echo $categories[$i]["hidden"] ?></label></div>
-			<div style="display:none"><label id="logo<?php echo $categories[$i]["id"]?>"><?php echo $categories[$i]["imageurl"] ?></label></div>			
+			<div style="display:none">
+                <label id="hidden<?php echo $categories[$i]["id"]?>"><?php echo $categories[$i]["hidden"] ?></label>
+			    <label id="logo<?php echo $categories[$i]["id"]?>"><?php echo $categories[$i]["imageurl"] ?></label>
+                <label id="enDetails<?php echo $categories[$i]["id"]?>"><?php echo $categories[$i]["enDetails"] ?></label>
+				<label id="arDetails<?php echo $categories[$i]["id"]?>"><?php echo $categories[$i]["arDetails"] ?></label>
+            </div>			
 			</td>
 			</tr>
 			<?php
@@ -194,6 +209,8 @@ if( isset($_POST["enTitle"]) ){
 		$("input[type=file]").prop("required",false);
         $("input[name=enTitle]").val($("#enTitle"+id).html()).focus();
 		$("input[name=arTitle]").val($("#arTitle"+id).html());
+        tinymce.get('enDetails').setContent($("#enDetails"+id).html());
+		tinymce.get('arDetails').setContent($("#arDetails"+id).html());
 		$("select[name=hidden]").val($("#hidden"+id).html());
 		$("#logoImg").attr("src","../logos/"+$("#logo"+id).html());
 		$("#images").attr("style","margin-top:10px;display:block");
