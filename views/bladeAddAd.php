@@ -12,6 +12,15 @@
 	//var_dump($user);
 	
 	if(isset($_POST["addAds"])){
+		if( mb_strlen($_POST["adDescription"], "UTF-8") < 300 ){
+			?>
+			<script>
+				alert("<?php echo direction('Description must be at least 300 characters.', 'يجب أن يكون الوصف 300 حرف على الأقل.'); ?>");
+				window.history.back();
+			</script>
+			<?php
+			exit();
+		}
 		//var_dump($user);
 		if( ($_POST["adType"] == 1 && $user[0]["normalAd"] > 1 ) || ($_POST["adType"] == 2 && $user[0]["specialAd"] > 0 )){
 		    $days = intval($package[0]["expirey"]); // Default to 0 if invalid
@@ -141,7 +150,7 @@
 				  
 				  <!-- State input -->
 			      <div class="form-outline mb-4">
-			      	<select class="form-select form-control mb-3" name="adArea" required>
+			      	<select class="form-select form-control mb-3 select2-area" name="adArea" required>
 					  <option value=""><i class="bi bi-geo-alt"></i> <?php echo direction("Area or Region","المنطقة أو الإقليم"); ?></option>
 					  <?php
 						$governateId = 0;
@@ -196,7 +205,7 @@
 			     
 				  <!-- Description input --> 
 			      <div class="form-outline mb-3">
-			         <textarea class="form-control" style="min-height:100px;"  rows="9" name="adDescription" placeholder="<?php echo direction("Description","الوصف"); ?>" required></textarea>
+			         <textarea class="form-control" style="min-height:100px;"  rows="9" name="adDescription" minlength="300" placeholder="<?php echo direction("Description","الوصف"); ?>" required></textarea>
 			      </div>
 			      
 			      <!-- Description input -->

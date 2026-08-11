@@ -70,9 +70,9 @@
 					<ul class="socila-links list-unstyled my-4">
 						<?php
 						if( $sMedia = selectDB("s_media", "`id` = '1'") ){
-							$sMediaArray = ["facebook", "twitter", "instagram", "tiktok", "email", "mobile"];
-							$sMediaIcons = ["bi bi-facebook","bi bi-twitter-x","bi bi-instagram","bi bi-tiktok","bi bi-envelope", "bi bi-telephone-fill"];
-							$sMediaLinks = ["","https://www.twitter.com/","https://www.instagram.com/","https://www.tiktok.com/@","mailto:", "tel:"];
+							$sMediaArray = ["facebook", "twitter", "instagram", "tiktok", "youtube", "email", "mobile"];
+							$sMediaIcons = ["bi bi-facebook","bi bi-twitter-x","bi bi-instagram","bi bi-tiktok","bi bi-youtube","bi bi-envelope", "bi bi-telephone-fill"];
+							$sMediaLinks = ["","https://www.twitter.com/","https://www.instagram.com/","https://www.tiktok.com/@","https://www.youtube.com/","mailto:", "tel:"];
 							for ($i = 0; $i < count($sMediaArray); $i++) {
 								if( !empty($sMedia[0]["$sMediaArray[$i]"]) ){
 								echo '<li><a href="' . $sMediaLinks[$i] . $sMedia[0]["$sMediaArray[$i]"] . '"><i class="' . $sMediaIcons[$i] . '"></i></a></li>';
@@ -126,6 +126,9 @@
 		<!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
         
+        <!-- Select2 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
         <!-- Owl JS -->
         <script src="/assets/components/owl-carousel/v-2.3.4/dist/owl.carousel.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
         
@@ -190,6 +193,14 @@
                     installBanner.style.display = 'none';
                 });
             }
+
+            $(document).ready(function() {
+                $('.select2-area').select2({
+                    theme: 'bootstrap-5',
+                    width: '100%',
+                    dir: "<?php echo $_SESSION['dir']; ?>"
+                });
+            });
         </script>
     </body>
 </html>
