@@ -12,6 +12,8 @@ $location = $sMedia[0]["location"];
 $twitter = $sMedia[0]["twitter"];
 $email = $sMedia[0]["email"];
 $tiktok = $sMedia[0]["tiktok"];
+$youtube = $sMedia[0]["youtube"];
+
 ?>
 <div class="row">
 <div class="col-md-12">
@@ -83,6 +85,13 @@ $tiktok = $sMedia[0]["tiktok"];
 <div class="form-group">
 <label class="control-label mb-10"><?php echo direction("Location","الموقع") ?></label><br>
 <input type="text" name="location" class="form-control" value="<?php echo $location ?>"  >
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label mb-10"><?php echo direction("Youtube","يوتيوب") ?></label><br>
+<input type="text" name="youtube" class="form-control" value="<?php echo $youtube ?>"  >
 </div>
 </div>
 
