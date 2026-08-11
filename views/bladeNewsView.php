@@ -32,7 +32,7 @@ if( isset($_GET['id']) && $news = selectDBNew("news",[$_GET['id']],"`id` = ? AND
 				<h4 class="text-start mt-2 mb-3"><?php echo direction("More News","المزيد من الأخبار"); ?></h4>
 				<?php
 				if( $newsList = selectDB("news","`status` = '0' AND `hidden` = '1' AND `id` != {$news[0]['id']} ORDER BY `id` DESC LIMIT 3") ){
-					include 'template/newsMainList.php';
+					include 'template/newsListInsideView.php';
 				}
 				?>
 				<div class="d-block text-end mt-3">
