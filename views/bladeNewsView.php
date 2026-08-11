@@ -18,10 +18,10 @@ if( isset($_GET['id']) && $news = selectDBNew("news",[$_GET['id']],"`id` = ? AND
 				<div class="col-12 mb-3">
 					<h1 class="fw-bold"><?php echo direction($news[0]['enTitle'], $news[0]['arTitle']); ?></h1>
 				</div>
-				<div class="col-sm-12">
+				<div class="col-sm-12  mb-3">
 					<img src="/logos/<?php echo $news[0]['imageurl']; ?>" class="img-fluid w-100" style="object-fit: cover; height: 300px; border-radius: 10px;" alt="<?php echo direction($news[0]['enTitle'], $news[0]['arTitle']); ?>">
 				</div>
-				<div class="col-sm-12">
+				<div class="col-sm-12  mb-3">
 					<h5 class="fw-bold"><?php echo direction("Description","الوصف"); ?></h5>
 					<p><?php echo direction($news[0]['enDetails'], $news[0]['arDetails']); ?></p>
 				</div>
