@@ -50,23 +50,4 @@ if( isset($_GET['id']) && $news = selectDBNew("news",[$_GET['id']],"`id` = ? AND
 	</div>
 </div>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "NewsArticle",
-  "headline": "<?php echo direction($news[0]['enTitle'], $news[0]['arTitle']); ?>",
-  "description": "<?php echo htmlspecialchars(strip_tags(direction($news[0]['enDetails'], $news[0]['arDetails']))); ?>",
-  "image": "<?php echo $baseURL . "logos/" . $news[0]['imageurl']; ?>",
-  "url": "<?php echo urldecode("http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}"); ?>",
-  "publisher": {
-    "@type": "Organization",
-    "name": "<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "<?php echo $baseURL . "assets/img/logo-1.png"; ?>"
-    }
-  }
-}
-</script>
-
 <hr>
