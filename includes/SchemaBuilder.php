@@ -28,10 +28,25 @@ class SchemaBuilder {
         return null;
     }
 
+    private static function formatDate($value) {
+        if (empty($value)) {
+            return null;
+        }
+        try {
+            $timezone = new DateTimeZone('Asia/Kuwait');
+            $date = new DateTime((string)$value, $timezone);
+            $date->setTimezone($timezone);
+            return $date->format(DateTime::ATOM);
+        } catch (Exception $e) {
+            return $value;
+        }
+    }
+
     private static function currentUrl() {
         $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
         $host = $_SERVER['HTTP_HOST'] ?? 'souqeldeira.com';
-        return $scheme . '://' . $host . ($_SERVER['REQUEST_URI'] ?? '/');
+        $requestUri = rawurldecode($_SERVER['REQUEST_URI'] ?? '/');
+        return $scheme . '://' . $host . $requestUri;
     }
 
     private static function baseUrl(array $context = []) {
@@ -239,14 +254,14 @@ class SchemaBuilder {
             $fullDescription = self::localized($news['enDetails'] ?? '', $news['arDetails'] ?? '');
             $description = self::truncate($fullDescription, 160);
 
-            $published = self::firstValue($news, [
+            $published = self::formatDate(self::firstValue($news, [
                 'datePublished', 'publishedAt', 'published_at', 'publishDate', 'publish_date',
                 'createdAt', 'created_at', 'created', 'date'
-            ]);
-            $modified = self::firstValue($news, [
+            ]));
+            $modified = self::formatDate(self::firstValue($news, [
                 'dateModified', 'updatedAt', 'updated_at', 'modifiedAt', 'modified_at',
                 'updated', 'modified'
-            ]);
+            ]));
             if (!$modified) {
                 $modified = $published;
             }
