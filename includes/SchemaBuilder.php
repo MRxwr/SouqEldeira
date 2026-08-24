@@ -4,6 +4,30 @@ class SchemaBuilder {
         return trim(preg_replace('/\s+/u', ' ', strip_tags((string)$value)));
     }
 
+    private static function truncate($value, $length = 160) {
+        $value = self::clean($value);
+        if ($value === '') {
+            return '';
+        }
+        if (function_exists('mb_strlen') && function_exists('mb_substr')) {
+            return mb_strlen($value, 'UTF-8') > $length
+                ? rtrim(mb_substr($value, 0, $length - 1, 'UTF-8')) . '…'
+                : $value;
+        }
+        return strlen($value) > $length
+            ? rtrim(substr($value, 0, $length - 3)) . '...'
+            : $value;
+    }
+
+    private static function firstValue(array $data, array $keys) {
+        foreach ($keys as $key) {
+            if (isset($data[$key]) && $data[$key] !== '' && $data[$key] !== null) {
+                return $data[$key];
+            }
+        }
+        return null;
+    }
+
     private static function currentUrl() {
         $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
         $host = $_SERVER['HTTP_HOST'] ?? 'souqeldeira.com';
@@ -212,7 +236,21 @@ class SchemaBuilder {
         if ($view === 'NewsView' && !empty($context['news'][0])) {
             $news = $context['news'][0];
             $title = self::localized($news['enTitle'] ?? '', $news['arTitle'] ?? '');
-            $description = self::localized($news['enDetails'] ?? '', $news['arDetails'] ?? '');
+            $fullDescription = self::localized($news['enDetails'] ?? '', $news['arDetails'] ?? '');
+            $description = self::truncate($fullDescription, 160);
+
+            $published = self::firstValue($news, [
+                'datePublished', 'publishedAt', 'published_at', 'publishDate', 'publish_date',
+                'createdAt', 'created_at', 'created', 'date'
+            ]);
+            $modified = self::firstValue($news, [
+                'dateModified', 'updatedAt', 'updated_at', 'modifiedAt', 'modified_at',
+                'updated', 'modified'
+            ]);
+            if (!$modified) {
+                $modified = $published;
+            }
+
             $article = [
                 '@id' => $currentUrl . '#article',
                 'headline' => $title,
@@ -220,19 +258,28 @@ class SchemaBuilder {
                 'url' => $currentUrl,
                 'mainEntityOfPage' => $currentUrl,
                 'image' => !empty($news['imageurl']) ? $base . 'logos/' . $news['imageurl'] : $base . 'assets/img/logo-1.png',
+                'author' => [
+                    '@type' => 'Organization',
+                    'name' => $siteName,
+                    'url' => $homeUrl
+                ],
                 'publisher' => [
                     '@type' => 'Organization',
                     'name' => $siteName,
+                    'url' => $homeUrl,
                     'logo' => [
                         '@type' => 'ImageObject',
                         'url' => $base . 'assets/img/logo-1.png'
                     ]
                 ]
             ];
-            if (!empty($news['date'])) {
-                $article['datePublished'] = $news['date'];
-                $article['dateModified'] = $news['date'];
+            if ($published) {
+                $article['datePublished'] = $published;
             }
+            if ($modified) {
+                $article['dateModified'] = $modified;
+            }
+
             $schemas[] = self::article($article);
             $schemas[] = self::breadcrumb([
                 ['name' => self::localized('Home', 'الرئيسية'), 'url' => $homeUrl],
