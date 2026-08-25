@@ -37,7 +37,6 @@ if ( isset($_POST) && !empty($_POST) ) {
 	if( $ads = selectDBNew("products",[$_POST["categoryId"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? {$areaId} {$price} {$propertyType} ","`packageId` DESC,`id` DESC") ){
 	}
 }elseif( isset($_GET["type"]) && !empty($_GET["type"]) ){
-	// Check if the type ID belongs to a category or propertyType
 	if( $category = selectDBNew("categories",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","") ){
 		$categoryTitle = direction($category[0]["enTitle"],$category[0]["arTitle"]);
 		$ads = selectDBNew("products",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? ORDER BY `packageId` DESC,`id` DESC","");
@@ -60,6 +59,12 @@ if ( isset($_POST) && !empty($_POST) ) {
 	<?php
 }
 ?>
+<nav aria-label="breadcrumb" class="mb-3">
+	<ol class="breadcrumb mb-0">
+		<li class="breadcrumb-item"><a href="/"><?php echo direction("Home","الرئيسية"); ?></a></li>
+		<li class="breadcrumb-item active" aria-current="page"><?php echo $categoryTitle ?: direction("Search Results","نتائج البحث"); ?></li>
+	</ol>
+</nav>
 <div class="search-ads-options mb-3">
 	<div class="div">
 		<span class="title"><?php echo direction("Search Options","خيارات البحث"); ?></span>
