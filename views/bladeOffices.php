@@ -1,3 +1,9 @@
+<nav aria-label="breadcrumb" class="mb-3">
+	<ol class="breadcrumb mb-0">
+		<li class="breadcrumb-item"><a href="/"><?php echo direction("Home","الرئيسية"); ?></a></li>
+		<li class="breadcrumb-item active" aria-current="page"><?php echo direction("Real Estate Offices","المكاتب العقارية"); ?></li>
+	</ol>
+</nav>
 <div class="offices-list"> 
 	<div class="row d-flex align-items-stretch gy-3 gx-2">
 		<div class="col-md-12"> 
