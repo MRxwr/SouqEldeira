@@ -10,6 +10,13 @@ if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'",
 	<?php
 }
 ?>
+<nav aria-label="breadcrumb" class="mb-3">
+	<ol class="breadcrumb mb-0">
+		<li class="breadcrumb-item"><a href="/"><?php echo direction("Home","الرئيسية"); ?></a></li>
+		<li class="breadcrumb-item"><a href="/offices"><?php echo direction("Real Estate Offices","المكاتب العقارية"); ?></a></li>
+		<li class="breadcrumb-item active" aria-current="page"><?php echo direction($offices[0]["enTitle"],$offices[0]["arTitle"]); ?></li>
+	</ol>
+</nav>
 <div class="row">
 	<div class="col-lg-4">
 		<div class="office-profile-side with-white-bg px-md-4 py-md-4">
@@ -41,7 +48,6 @@ if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'",
 						<span><?php echo $offices[0]["url"]; ?></span>
 					</a>
 				</div>
-				
 				<div class="office-side-desc">  
 					<div class="office-description my-3"> 
 						<h3 class="mb-2"><?php echo direction("Description","الوصف"); ?></h3>
@@ -55,7 +61,6 @@ if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'",
 			</div> 
 		</div>
 	</div>
-	
 	<div class="col-lg-8">
 		<div class="with-white-bg px-md-4 px-2 py-4 mt-md-0 mt-4"> 
 			<div class="list-title mb-3"> 
@@ -67,9 +72,7 @@ if ( $offices = selectDBNew("shops",[$_GET["id"]],"`id` = ? AND `status` = '0'",
 					include 'template/adsMainList.php';
 				}
 				?>
-				<div class="d-block text-end mt-3">
-				<?php /* <a href="?v=AdsList" class="btn btn-primary"><?php echo direction("More","المزيد"); ?> <i class="bi bi-three-dots"></i></a> */ ?>
-				</div>
+				<div class="d-block text-end mt-3"></div>
 			</div>
 		</div> 
 	</div>
