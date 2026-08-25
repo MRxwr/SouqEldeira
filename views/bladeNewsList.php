@@ -14,6 +14,12 @@ $offset = ($page - 1) * $perPage;
 
 $newsList = selectDB("news","`status` = '0' AND `hidden` = '1' ORDER BY `id` DESC LIMIT {$offset},{$perPage}");
 ?>
+<nav aria-label="breadcrumb" class="mb-3">
+	<ol class="breadcrumb mb-0">
+		<li class="breadcrumb-item"><a href="/"><?php echo direction("Home","الرئيسية"); ?></a></li>
+		<li class="breadcrumb-item active" aria-current="page"><?php echo direction("News","الأخبار"); ?></li>
+	</ol>
+</nav>
 <div class="row">
 	<div class="col-md-12">
 		<div class="start-page-title with-white-bg text-center mb-4 py-3">
@@ -49,27 +55,3 @@ $newsList = selectDB("news","`status` = '0' AND `hidden` = '1' ORDER BY `id` DES
 	</nav>
 	<?php } ?>
 </div>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "<?php echo direction("News","الأخبار"); ?>",
-  "url": "<?php echo urldecode("http://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}"); ?>",
-  "mainEntity": {
-    "@type": "ItemList",
-    "itemListElement": [
-	<?php
-	if( $newsList ){
-		$itemsSchema = array();
-		foreach( $newsList as $i => $newsItem ){
-			$itemUrl = $baseURL . "news-view/" . $newsItem["id"] . "/" . slug($newsItem["enTitle"]) . "-" . slug($newsItem["arTitle"]);
-			$itemsSchema[] = '{"@type":"ListItem","position":' . ($offset + $i + 1) . ',"url":"' . $itemUrl . '","name":' . json_encode(direction($newsItem["enTitle"], $newsItem["arTitle"]), JSON_UNESCAPED_UNICODE) . '}';
-		}
-		echo implode(",", $itemsSchema);
-	}
-	?>
-    ]
-  }
-}
-</script>
