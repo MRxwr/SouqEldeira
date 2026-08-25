@@ -1,6 +1,12 @@
 <?php
 $socialMedia = selectDB("s_media","`id` = '1'");
 ?>
+<nav aria-label="breadcrumb" class="mb-3">
+	<ol class="breadcrumb mb-0">
+		<li class="breadcrumb-item"><a href="/"><?php echo direction("Home","الرئيسية"); ?></a></li>
+		<li class="breadcrumb-item active" aria-current="page"><?php echo direction("FAQ","الأسئلة الشائعة"); ?></li>
+	</ol>
+</nav>
 <div class="row">
 <div class="col-md-11 mx-auto">
 	<div class="form-container form-container-faq">
@@ -30,12 +36,12 @@ $socialMedia = selectDB("s_media","`id` = '1'");
 			}
 			?>
 		</div>
-			<div class="text-center mt-4"> 
+		<div class="text-center mt-4"> 
 			<p class="add-ad-form-text fw-bold"><?php echo direction("Send us message by","أرسل لنا رسالة عبر"); ?>
 			<a href="https://wa.me/<?php echo $socialMedia[0]['mobile']; ?>"><?php echo direction("WhatsApp","واتساب"); ?></a>
 			<?php echo direction("or","أو"); ?>
 			<a href="/contact"><?php echo direction("call us","اتصل بنا"); ?></a> <?php echo direction("for help","للمساعدة"); ?></p>
-			</div>
+		</div>
 	</div>
 </div>
 </div>
