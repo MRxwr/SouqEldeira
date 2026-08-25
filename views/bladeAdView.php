@@ -16,6 +16,13 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 	<?php
 }
 ?>
+<nav aria-label="breadcrumb" class="mb-3">
+	<ol class="breadcrumb mb-0">
+		<li class="breadcrumb-item"><a href="/"><?php echo direction("Home","الرئيسية"); ?></a></li>
+		<li class="breadcrumb-item"><a href="/search/<?php echo $categoryTitle; ?>/<?php echo $ad[0]["categoryId"]; ?>"><?php echo direction($category[0]['enTitle'], $category[0]['arTitle']); ?></a></li>
+		<li class="breadcrumb-item active" aria-current="page"><?php echo direction($ad[0]['enTitle'], $ad[0]['arTitle']); ?></li>
+	</ol>
+</nav>
 <h1 class="mb-md-5 mb-3 text-center ad-title"><?php echo direction($ad[0]['enTitle'], $ad[0]['arTitle']); ?></h1>
 	        
 <div class="ad-top-details p-3 mb-4">
@@ -52,7 +59,7 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 <?php
 $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $msg = urlencode("أريد أن أسأل عن هذا الإعلان\n") . $url;	
-				?>
+?>
 <div class="ad-details"> 
 	<div class="row">
         <div class="col-sm-6"> 
@@ -69,11 +76,7 @@ $msg = urlencode("أريد أن أسأل عن هذا الإعلان\n") . $url;
 			  	<?php
 			  	if( $images = selectDB("images","`productId` = '".$ad[0]['id']."'") ){
 					for( $j = 0; $j < sizeof($images); $j++ ){
-						if( $j == 0 ){
-							$active = "active";
-						}else{
-							$active = "";
-						}
+						$active = ($j == 0) ? "active" : "";
 						?>
 						<div class="carousel-item <?php echo $active ?>">      
 					       <a href="/logos/<?php echo $images[$j]["imageurl"] ?>" data-toggle="lightbox" data-gallery="mixedgallery">
@@ -85,8 +88,6 @@ $msg = urlencode("أريد أن أسأل عن هذا الإعلان\n") . $url;
 				}
 				?>
 			  </div>
-			  
-			  <!-- Slider Buttons-->
 			  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
 			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			    <span class="visually-hidden">Previous</span>
@@ -95,16 +96,11 @@ $msg = urlencode("أريد أن أسأل عن هذا الإعلان\n") . $url;
 			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 			    <span class="visually-hidden">Next</span>
 			  </button>
-			  <!--Slider Thumbnails-->
 			  <div class="carousel-indicators">
 				<?php
 				if( $images = selectDB("images","`productId` = '".$ad[0]['id']."'") ){
 					for( $j = 0; $j < sizeof($images); $j++ ){
-						if( $j == 0 ){
-							$active = "active";
-						}else{
-							$active = "";
-						}
+						$active = ($j == 0) ? "active" : "";
 						?>
 						<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $j ?>" class="<?php echo $active ?>" aria-current="true" aria-label="Slide <?php echo $j ?>"><img class="d-block w-100" src="/logos/<?php echo $images[$j]["imageurl"] ?>" class="img-fluid" alt="<?php echo direction($ad[0]['enTitle'],$ad[0]['arTitle']); ?>"></button>
 						<?php
