@@ -7,7 +7,7 @@
 		<div class="row">
 		  <div class="col-md-12">
 		  	<div class="footer-sec1 text-center">
-				<a href="" class="logo"><img src="/assets/img/logo-1.png" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>"></a>
+				<a href="/" class="logo"><img src="/assets/img/logo-1.png" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>"></a>
 			</div>
 		  </div>
 		  <div class="col-md-12 mt-4">
@@ -17,7 +17,7 @@
 					for( $i = 0; $i < sizeof($categories); $i++ ){
 						$title = direction("Properties for " . $categories[$i]["enTitle"]. " in Kuwait","العقارات لل" . $categories[$i]["arTitle"] . " في كويت");
 						if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' AND `categoryId` = '{$categories[$i]["id"]}' ORDER BY RAND() LIMIT 5") ){
-							echo "<div class='category-menu'><h5 class='mb-2'><a href='/search/type={$categories[$i]["id"]}' class='d-block text-start'>{$title}</a></h5><ul>";
+							echo "<div class='category-menu'><h5 class='mb-2'><a href='/search/" . slug(direction($categories[$i]["enTitle"],$categories[$i]["arTitle"])) . "/{$categories[$i]["id"]}' class='d-block text-start'>{$title}</a></h5><ul>";
 							for( $x = 0; $x < sizeof($ads); $x++ ){
 								$title = direction($ads[$x]["enTitle"],$ads[$x]["arTitle"]);
 								echo "<li><a href='/ad-view/{$ads[$x]["id"]}/" . slug($ads[$x]["enTitle"]) . "-" . slug($ads[$x]["arTitle"]) . "'>{$title}</a></li>";
@@ -30,6 +30,61 @@
 		  	</div>
 		  </div>
 		</div>	
+
+		<div class="row mt-4 footer-main-links">
+			<div class="col-6 col-md-4 mb-4 mb-md-0">
+				<h3><?php echo direction("Properties","العقارات"); ?></h3>
+				<ul class="list-unstyled mb-0">
+					<?php
+					$footerCategoryLinks = [
+						'sale' => ['en' => 'For Sale', 'ar' => 'للبيع', 'keywords' => '/بيع|للبيع|sale/i'],
+						'rent' => ['en' => 'For Rent', 'ar' => 'للإيجار', 'keywords' => '/أجار|اجار|إيجار|ايجار|rent/i'],
+						'exchange' => ['en' => 'For Exchange', 'ar' => 'للبدل', 'keywords' => '/بدل|للبدل|exchange|swap/i'],
+						'wanted' => ['en' => 'Wanted', 'ar' => 'مطلوب', 'keywords' => '/مطلوب|طلب|wanted|request/i']
+					];
+					$footerCategories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC");
+					foreach ($footerCategoryLinks as $footerLink) {
+						$matchedCategory = null;
+						if ($footerCategories) {
+							foreach ($footerCategories as $footerCategory) {
+								$categorySearchText = ($footerCategory['enTitle'] ?? '') . ' ' . ($footerCategory['arTitle'] ?? '');
+								if (preg_match($footerLink['keywords'], $categorySearchText)) {
+									$matchedCategory = $footerCategory;
+									break;
+								}
+							}
+						}
+						if ($matchedCategory) {
+							$footerSlug = slug(direction($matchedCategory['enTitle'],$matchedCategory['arTitle']));
+							echo '<li class="mb-2"><a href="/search/' . $footerSlug . '/' . $matchedCategory['id'] . '">' . direction($footerLink['en'],$footerLink['ar']) . '</a></li>';
+						}
+					}
+					?>
+				</ul>
+			</div>
+
+			<div class="col-6 col-md-8">
+				<h3><?php echo direction("Information","الصفحات التعريفية"); ?></h3>
+				<div class="row">
+					<div class="col-md-6">
+						<ul class="list-unstyled mb-0">
+							<li class="mb-2"><a href="/about"><?php echo direction("About Us","من نحن"); ?></a></li>
+							<li class="mb-2"><a href="/contact"><?php echo direction("Contact Us","اتصل بنا"); ?></a></li>
+							<li class="mb-2"><a href="/offices"><?php echo direction("Real Estate Offices","مكاتب العقارات"); ?></a></li>
+							<li class="mb-2"><a href="/terms"><?php echo direction("Terms of Use","شروط الاستخدام"); ?></a></li>
+						</ul>
+					</div>
+					<div class="col-md-6">
+						<ul class="list-unstyled mb-0">
+							<li class="mb-2"><a href="/policy"><?php echo direction("Privacy Policy","سياسة الخصوصية"); ?></a></li>
+							<li class="mb-2"><a href="/terms"><?php echo direction("Advertising Policy","سياسة الإعلانات"); ?></a></li>
+							<li class="mb-2"><a href="/faq"><?php echo direction("FAQ","الأسئلة الشائعة"); ?></a></li>
+							<li class="mb-2"><a href="/news-list/1"><?php echo direction("News","الأخبار"); ?></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		<div class="row mt-1">
 		<div class="col-md-12">
@@ -55,7 +110,6 @@
 					</div>
 				</div>
 				<div class="col-6 col-md-3 my-md-0 text-start text-md-center divApplications">  
-					
 					<h3><?php echo direction("Applications","التطبيقات"); ?></h3>
 					<div class="application-links text-center">
 						<a href="#"><i class="bi bi-google-play"></i><span><?php echo direction("Google Store","متجر جوجل"); ?></span></a>
@@ -115,27 +169,16 @@
 </div>
 
 <div class="main-overlay"></div>
-		<!-- ========================= scroll-top ========================= -->
-	    <a href="#" class="scroll-top">
+		<a href="#" class="scroll-top">
 	        <i class="bi bi-chevron-up"></i>
 	    </a>
 		
     	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
-    	
-		<!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
-        
-        <!-- Select2 JS -->
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-        <!-- Owl JS -->
         <script src="/assets/components/owl-carousel/v-2.3.4/dist/owl.carousel.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
-        
-         <!-- lightbox JS --> 
         <script src="/assets/components/bs5-lightbox/v-1.8.3/dist/index.bundle.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
-        
-        <!-- Core theme JS-->
         <script src="/assets/js/scripts.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
         <script>
             if ('serviceWorker' in navigator) {
@@ -148,32 +191,28 @@
                 });
             }
 
-            // PWA Install Prompt Logic
             let deferredPrompt;
             const installBanner = document.getElementById('install-pwa-banner');
             const installBtn = document.getElementById('install-pwa-btn');
             const closeBtn = document.getElementById('close-pwa-btn');
             const iosInstruction = document.getElementById('ios-instruction');
 
-            // Detect iOS Safari
             const isIos = () => {
                 const userAgent = window.navigator.userAgent.toLowerCase();
                 return /iphone|ipad|ipod/.test(userAgent);
             };
             const isStandalone = () => ('standalone' in window.navigator) && (window.navigator.standalone);
 
-            // Handle Android / Chrome (natively supports beforeinstallprompt)
             window.addEventListener('beforeinstallprompt', (e) => {
                 e.preventDefault();
                 deferredPrompt = e;
                 if(installBanner) installBanner.style.display = 'block';
             });
 
-            // Handle iOS (does not support beforeinstallprompt)
             if (isIos() && !isStandalone()) {
                 if (installBanner) installBanner.style.display = 'block';
-                if (installBtn) installBtn.style.display = 'none'; // Hide the install button because it won't work on iOS
-                if (iosInstruction) iosInstruction.style.display = 'block'; // Show iOS specific instructions
+                if (installBtn) installBtn.style.display = 'none';
+                if (iosInstruction) iosInstruction.style.display = 'block';
             }
 
             if(installBtn) {
