@@ -15,6 +15,79 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 	</script>
 	<?php
 }
+
+$propertyTypeRow = (!empty($ad[0]['propertyType'])) ? selectDBNew("propertyType",[$ad[0]['propertyType']],"`id` = ?","") : false;
+$propertyTypeName = $propertyTypeRow ? direction($propertyTypeRow[0]['enTitle'],$propertyTypeRow[0]['arTitle']) : '';
+$propertyTypeSearch = mb_strtolower($propertyTypeName, 'UTF-8');
+$schemaPropertyType = 'Residence';
+if ( preg_match('/شقة|apartment|flat/u', $propertyTypeSearch) ) {
+	$schemaPropertyType = 'Apartment';
+} elseif ( preg_match('/فيلا|villa|بيت|house|منزل|home|شاليه|chalet/u', $propertyTypeSearch) ) {
+	$schemaPropertyType = 'SingleFamilyResidence';
+} elseif ( preg_match('/أرض|ارض|land/u', $propertyTypeSearch) ) {
+	$schemaPropertyType = 'Landform';
+} elseif ( preg_match('/مكتب|office|محل|shop|تجاري|commercial|عمارة|building/u', $propertyTypeSearch) ) {
+	$schemaPropertyType = 'Place';
+}
+
+$governate = (!empty($ad[0]['governateId'])) ? selectDBNew("governates",[$ad[0]['governateId']],"`id` = ?","") : false;
+$governateName = $governate ? direction($governate[0]['enTitle'],$governate[0]['arTitle']) : '';
+$propertyImages = selectDB("images","`productId` = '".$ad[0]['id']."'");
+$schemaImages = array();
+if ($propertyImages) {
+	foreach ($propertyImages as $propertyImage) {
+		if (!empty($propertyImage['imageurl'])) {
+			$schemaImages[] = $baseURL . 'logos/' . $propertyImage['imageurl'];
+		}
+	}
+}
+if (!$schemaImages) {
+	$schemaImages[] = $baseURL . 'assets/img/logo-1.png';
+}
+
+$schemaUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . rawurldecode($_SERVER['REQUEST_URI']);
+$schemaDescription = trim(preg_replace('/\s+/u', ' ', strip_tags(direction($ad[0]['enDetails'],$ad[0]['arDetails']))));
+if (mb_strlen($schemaDescription, 'UTF-8') > 160) {
+	$schemaDescription = rtrim(mb_substr($schemaDescription, 0, 159, 'UTF-8')) . '…';
+}
+
+$schemaOffer = array(
+	'@type' => 'Offer',
+	'url' => $schemaUrl,
+	'priceCurrency' => 'KWD',
+	'availability' => 'https://schema.org/InStock'
+);
+if (isset($ad[0]['price']) && $ad[0]['price'] !== '') {
+	$schemaOffer['price'] = (string)$ad[0]['price'];
+}
+
+$propertySchema = array(
+	'@context' => 'https://schema.org',
+	'@type' => $schemaPropertyType,
+	'@id' => $schemaUrl . '#property',
+	'name' => direction($ad[0]['enTitle'],$ad[0]['arTitle']),
+	'description' => $schemaDescription,
+	'url' => $schemaUrl,
+	'image' => $schemaImages,
+	'offers' => $schemaOffer,
+	'address' => array(
+		'@type' => 'PostalAddress',
+		'addressCountry' => array(
+			'@type' => 'Country',
+			'name' => direction('Kuwait','الكويت')
+		),
+		'addressLocality' => !empty($area[0]) ? direction($area[0]['enTitle'],$area[0]['arTitle']) : '',
+		'addressRegion' => $governateName
+	)
+);
+if (!empty($mobile)) {
+	$propertySchema['telephone'] = $mobile;
+}
+if (!empty($propertyTypeName)) {
+	$propertySchema['additionalType'] = $propertyTypeName;
+}
+
+echo '<script type="application/ld+json">' . json_encode($propertySchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</script>';
 ?>
 <nav aria-label="breadcrumb" class="mb-3">
 	<ol class="breadcrumb mb-0">
