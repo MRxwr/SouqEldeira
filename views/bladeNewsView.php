@@ -28,8 +28,8 @@ window.location = "/news-list/1";
                     <h1 class="fw-bold"><?php echo direction($news[0]['enTitle'], $news[0]['arTitle']); ?></h1>
                 </div>
                 <div class="col-sm-12 mb-3">
-                    <img src="/logos/<?php echo $news[0]['imageurl']; ?>" class="img-fluid w-100"
-                        style="border-radius: 10px;"
+                    <img src="/logos/<?php echo direction($news[0]['enImageurl'], $news[0]['imageurl']); ?>"
+                        class="img-fluid w-100" style="border-radius: 10px;"
                         alt="<?php echo direction($news[0]['enTitle'], $news[0]['arTitle']); ?>">
                 </div>
                 <div class="col-sm-12 mb-3">
