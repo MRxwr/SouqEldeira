@@ -1,15 +1,18 @@
-</div> 
- 
- </div> 
+</div>
 
- <footer class="mt-5x">
-	<div class="container container-projectX">
-		<div class="row">
-		  <div class="col-md-12">
-		  	<div class="footer-sec1 text-center">
-				<a href="/" class="logo"><img src="/assets/img/logo-1.png" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>"></a>
-			</div>
-		  </div>
+</div>
+
+<footer class="mt-5x">
+    <div class="container container-projectX">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="footer-sec1 text-center">
+                    <a href="/" class="logo"><img src="/assets/img/logo-1.png"
+                            alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>"></a>
+                </div>
+            </div>
+            <?php 
+		  /*
 		  <div class="col-md-12 mt-4">
 		  	<div class="footer-sec2 text-start">
 				<?php
@@ -27,15 +30,17 @@
 					}
 				}
 				?>
-		  	</div>
-		  </div>
-		</div>	
+        </div>
+    </div>
+    */
+    ?>
+    </div>
 
-		<div class="row mt-4 footer-main-links">
-			<div class="col-6 col-md-4 mb-4 mb-md-0">
-				<h3><?php echo direction("Properties","العقارات"); ?></h3>
-				<ul class="list-unstyled mb-0">
-					<?php
+    <div class="row mt-4 footer-main-links">
+        <div class="col-6 col-md-4 mb-4 mb-md-0">
+            <h3><?php echo direction("Properties","العقارات"); ?></h3>
+            <ul class="list-unstyled mb-0">
+                <?php
 					$footerCategoryLinks = [
 						'sale' => ['en' => 'For Sale', 'ar' => 'للبيع', 'keywords' => '/بيع|للبيع|sale/i'],
 						'rent' => ['en' => 'For Rent', 'ar' => 'للإيجار', 'keywords' => '/أجار|اجار|إيجار|ايجار|rent/i'],
@@ -60,69 +65,69 @@
 						}
 					}
 					?>
-				</ul>
-			</div>
+            </ul>
+        </div>
 
-			<div class="col-6 col-md-8">
-				<h3><?php echo direction("Information","الصفحات التعريفية"); ?></h3>
-				<div class="row">
-					<div class="col-md-6">
-						<ul class="list-unstyled mb-0">
-							<li class="mb-2"><a href="/about"><?php echo direction("About Us","من نحن"); ?></a></li>
-							<li class="mb-2"><a href="/contact"><?php echo direction("Contact Us","اتصل بنا"); ?></a></li>
-							<li class="mb-2"><a href="/offices"><?php echo direction("Real Estate Offices","مكاتب العقارات"); ?></a></li>
-							<li class="mb-2"><a href="/terms"><?php echo direction("Terms of Use","شروط الاستخدام"); ?></a></li>
-						</ul>
-					</div>
-					<div class="col-md-6">
-						<ul class="list-unstyled mb-0">
-							<li class="mb-2"><a href="/policy"><?php echo direction("Privacy Policy","سياسة الخصوصية"); ?></a></li>
-							<li class="mb-2"><a href="/terms"><?php echo direction("Advertising Policy","سياسة الإعلانات"); ?></a></li>
-							<li class="mb-2"><a href="/faq"><?php echo direction("FAQ","الأسئلة الشائعة"); ?></a></li>
-							<li class="mb-2"><a href="/news-list/1"><?php echo direction("News","الأخبار"); ?></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row mt-1">
-		<div class="col-md-12">
-			<hr>
-		</div>
-		</div>
-		
-		<div class="footer-sec3">
-			<div class="row mt-4">
-				<div class="col-6 col-md-4">
-					<h3><?php echo direction("Contact Us","اتصل بنا"); ?></h3>
-					<div class="contact-us">
-						<div>
-							<i class="bi bi-telephone"></i> <?php echo direction("Phone","هاتف"); ?>
-							<br>
-							<a href="tel:22281412">22281412</a>
-						</div>
-						<div>
-							<i class="bi bi-envelope"></i> <?php echo direction("Email","البريد الإلكتروني"); ?>
-							<br>
-							<a href="mailto:info@souqeldeira.com">info@souqeldeira.com</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-6 col-md-3 my-md-0 text-start text-md-center divApplications">  
-					<h3><?php echo direction("Applications","التطبيقات"); ?></h3>
-					<div class="application-links text-center">
-						<a href="#"><i class="bi bi-google-play"></i><span><?php echo direction("Google Store","متجر جوجل"); ?></span></a>
-						<a href="#"><i class="bi bi-apple"></i><span><?php echo direction("Apple Store","متجر آبل"); ?></span></a>
-					</div>
-					<hr class="res"> 
-				</div>
-				<div class="col-md-1"></div>
-				<div class="col-md-4 divSocial">
-					<hr class="res"> 
-					<h3><?php echo direction("Social media platforms","منصات التواصل الاجتماعي"); ?></h3>
-					<ul class="socila-links list-unstyled my-4">
-						<?php
+        <div class="col-6 col-md-8">
+            <h3><?php echo direction("Information","الصفحات التعريفية"); ?></h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="/about"><?php echo direction("About Us","من نحن"); ?></a></li>
+                        <li class="mb-2"><a href="/contact"><?php echo direction("Contact Us","اتصل بنا"); ?></a></li>
+                        <li class="mb-2"><a
+                                href="/offices"><?php echo direction("Real Estate Offices","مكاتب العقارات"); ?></a>
+                        </li>
+                        <li class="mb-2"><a href="/terms"><?php echo direction("Terms of Use","شروط الاستخدام"); ?></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a
+                                href="/policy"><?php echo direction("Privacy Policy","سياسة الخصوصية"); ?></a></li>
+                        <li class="mb-2"><a
+                                href="/terms"><?php echo direction("Advertising Policy","سياسة الإعلانات"); ?></a></li>
+                        <li class="mb-2"><a href="/faq"><?php echo direction("FAQ","الأسئلة الشائعة"); ?></a></li>
+                        <li class="mb-2"><a href="/news-list/1"><?php echo direction("News","الأخبار"); ?></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-1">
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+
+    <div class="footer-sec3">
+        <div class="row mt-4">
+            <div class="col-6 col-md-4">
+                <h3><?php echo direction("Contact Us","اتصل بنا"); ?></h3>
+                <div class="contact-us">
+                    <div>
+                        <i class="bi bi-telephone"></i> <?php echo direction("Phone","هاتف"); ?>
+                        <br>
+                        <a href="tel:22281412">22281412</a>
+                    </div>
+                    <div>
+                        <i class="bi bi-envelope"></i> <?php echo direction("Email","البريد الإلكتروني"); ?>
+                        <br>
+                        <a href="mailto:info@souqeldeira.com">info@souqeldeira.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 my-md-0 text-start text-md-center divApplications">
+
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-4 divSocial">
+                <hr class="res">
+                <h3><?php echo direction("Social media platforms","منصات التواصل الاجتماعي"); ?></h3>
+                <ul class="socila-links list-unstyled my-4">
+                    <?php
 						if( $sMedia = selectDB("s_media", "`id` = '1'") ){
 							$sMediaArray = ["facebook", "twitter", "instagram", "tiktok", "youtube", "email", "mobile"];
 							$sMediaIcons = ["bi bi-facebook","bi bi-twitter-x","bi bi-instagram","bi bi-tiktok","bi bi-youtube","bi bi-envelope", "bi bi-telephone-fill"];
@@ -134,112 +139,130 @@
 							}
 						}
 						?>
-				    </ul>
-					<div class="copyright-text">
-                        <p>
-                        	<a href="https://www.createkuwait.com" target="_blank" class="copyright-icon">©</a> 
-                        	<?php echo direction("All rights reserved to","جميع الحقوق محفوظة لـ"); ?>
-                        	<a href="/home" target="_blank"><?php echo direction("Souq Al Deirah","سوق الديرة"); ?></a> 
-                        </p> 
-                    </div>
-				</div>	
-			</div>	
-		</div>	
-	</div>
+                </ul>
+                <div class="copyright-text">
+                    <p>
+                        <a href="https://www.createkuwait.com" target="_blank" class="copyright-icon">©</a>
+                        <?php echo direction("All rights reserved to","جميع الحقوق محفوظة لـ"); ?>
+                        <a href="/home" target="_blank"><?php echo direction("Souq Al Deirah","سوق الديرة"); ?></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </footer>
 
 <!-- PWA Install Banner -->
-<div id="install-pwa-banner" class="alert alert-light alert-dismissible shadow m-0 w-100" role="alert" style="display: none; position: fixed; bottom: 0; z-index: 9999; border-top: 1px solid #dee2e6; border-radius: 0;">
+<div id="install-pwa-banner" class="alert alert-light alert-dismissible shadow m-0 w-100" role="alert"
+    style="display: none; position: fixed; bottom: 0; z-index: 9999; border-top: 1px solid #dee2e6; border-radius: 0;">
     <div class="container d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
-            <img src="/assets/img/logo-192.png" width="40" height="40" class="me-3" alt="Logo" style="border-radius: 8px;" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>">
+            <img src="/assets/img/logo-192.png" width="40" height="40" class="me-3" alt="Logo"
+                style="border-radius: 8px;" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>">
             <div>
-                <strong class="d-block text-dark"><?php echo direction("Install Souq Al Deerah","تثبيت تطبيق سوق الديرة"); ?></strong>
-                <small class="text-muted d-block"><?php echo direction("Add to your home screen for quick access.","أضفه إلى شاشتك الرئيسية للوصول السريع."); ?></small>
-                <small id="ios-instruction" class="text-primary mt-1" style="display: none; font-size: 0.8rem; font-weight: bold;">
+                <strong
+                    class="d-block text-dark"><?php echo direction("Install Souq Al Deerah","تثبيت تطبيق سوق الديرة"); ?></strong>
+                <small
+                    class="text-muted d-block"><?php echo direction("Add to your home screen for quick access.","أضفه إلى شاشتك الرئيسية للوصول السريع."); ?></small>
+                <small id="ios-instruction" class="text-primary mt-1"
+                    style="display: none; font-size: 0.8rem; font-weight: bold;">
                     <?php echo direction("To install, tap <i class='bi bi-box-arrow-up'></i> then 'Add to Home Screen'","للتثبيت، اضغط على <i class='bi bi-box-arrow-up'></i> ثم 'إضافة إلى الشاشة الرئيسية'"); ?>
                 </small>
             </div>
         </div>
         <div class="d-flex align-items-center">
-            <button id="install-pwa-btn" class="btn btn-primary btn-sm mx-2"><?php echo direction("Install","تثبيت"); ?></button>
+            <button id="install-pwa-btn"
+                class="btn btn-primary btn-sm mx-2"><?php echo direction("Install","تثبيت"); ?></button>
             <button id="close-pwa-btn" type="button" class="btn-close position-static p-2" aria-label="Close"></button>
         </div>
     </div>
 </div>
 
 <div class="main-overlay"></div>
-		<a href="#" class="scroll-top">
-	        <i class="bi bi-chevron-up"></i>
-	    </a>
-		
-    	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-        <script src="/assets/components/owl-carousel/v-2.3.4/dist/owl.carousel.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
-        <script src="/assets/components/bs5-lightbox/v-1.8.3/dist/index.bundle.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
-        <script src="/assets/js/scripts.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
-        <script>
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                    navigator.serviceWorker.register('sw.js').then(function(registration) {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    }, function(err) {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-                });
-            }
+<a href="#" class="scroll-top">
+    <i class="bi bi-chevron-up"></i>
+</a>
 
-            let deferredPrompt;
-            const installBanner = document.getElementById('install-pwa-banner');
-            const installBtn = document.getElementById('install-pwa-btn');
-            const closeBtn = document.getElementById('close-pwa-btn');
-            const iosInstruction = document.getElementById('ios-instruction');
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>">
+</script>
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>">
+</script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script
+    src="/assets/components/owl-carousel/v-2.3.4/dist/owl.carousel.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>">
+</script>
+<script
+    src="/assets/components/bs5-lightbox/v-1.8.3/dist/index.bundle.min.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>">
+</script>
+<script src="/assets/js/scripts.js?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"></script>
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('sw.js').then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+}
 
-            const isIos = () => {
-                const userAgent = window.navigator.userAgent.toLowerCase();
-                return /iphone|ipad|ipod/.test(userAgent);
-            };
-            const isStandalone = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+let deferredPrompt;
+const installBanner = document.getElementById('install-pwa-banner');
+const installBtn = document.getElementById('install-pwa-btn');
+const closeBtn = document.getElementById('close-pwa-btn');
+const iosInstruction = document.getElementById('ios-instruction');
 
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                if(installBanner) installBanner.style.display = 'block';
-            });
+const isIos = () => {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    return /iphone|ipad|ipod/.test(userAgent);
+};
+const isStandalone = () => ('standalone' in window.navigator) && (window.navigator.standalone);
 
-            if (isIos() && !isStandalone()) {
-                if (installBanner) installBanner.style.display = 'block';
-                if (installBtn) installBtn.style.display = 'none';
-                if (iosInstruction) iosInstruction.style.display = 'block';
-            }
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (installBanner) installBanner.style.display = 'block';
+});
 
-            if(installBtn) {
-                installBtn.addEventListener('click', async () => {
-                    installBanner.style.display = 'none';
-                    if (deferredPrompt !== null) {
-                        deferredPrompt.prompt();
-                        const { outcome } = await deferredPrompt.userChoice;
-                        console.log(`User response to the install prompt: ${outcome}`);
-                        deferredPrompt = null;
-                    }
-                });
-            }
+if (isIos() && !isStandalone()) {
+    if (installBanner) installBanner.style.display = 'block';
+    if (installBtn) installBtn.style.display = 'none';
+    if (iosInstruction) iosInstruction.style.display = 'block';
+}
 
-            if(closeBtn) {
-                closeBtn.addEventListener('click', () => {
-                    installBanner.style.display = 'none';
-                });
-            }
+if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+        installBanner.style.display = 'none';
+        if (deferredPrompt !== null) {
+            deferredPrompt.prompt();
+            const {
+                outcome
+            } = await deferredPrompt.userChoice;
+            console.log(`User response to the install prompt: ${outcome}`);
+            deferredPrompt = null;
+        }
+    });
+}
 
-            $(document).ready(function() {
-                $('.select2-area').select2({
-                    theme: 'bootstrap-5',
-                    width: '100%',
-                    dir: "<?php echo $_SESSION['dir']; ?>"
-                });
-            });
-        </script>
-    </body>
+if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+        installBanner.style.display = 'none';
+    });
+}
+
+$(document).ready(function() {
+    $('.select2-area').select2({
+        theme: 'bootstrap-5',
+        width: '100%',
+        dir: "<?php echo $_SESSION['dir']; ?>"
+    });
+});
+</script>
+</body>
+
 </html>
