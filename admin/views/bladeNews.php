@@ -84,8 +84,11 @@ alert("Could not process your request, Please try again.");
                             </div>
 
                             <div class="col-md-4">
-                                <label><?php echo direction("Logo","الشعار") ?></label>
-                                <input type="file" name="imageurl" class="form-control">
+                                <label><?php echo direction("Hide News","أخفي الخبر") ?></label>
+                                <select name="hidden" class="form-control">
+                                    <option value="1">No</option>
+                                    <option value="2">Yes</option>
+                                </select>
                             </div>
 
                             <div class="col-md-6">
@@ -99,11 +102,8 @@ alert("Could not process your request, Please try again.");
                             </div>
 
                             <div class="col-md-6">
-                                <label><?php echo direction("Hide News","أخفي الخبر") ?></label>
-                                <select name="hidden" class="form-control">
-                                    <option value="1">No</option>
-                                    <option value="2">Yes</option>
-                                </select>
+                                <label><?php echo direction("Logo","الشعار") ?></label>
+                                <input type="file" name="imageurl" class="form-control">
                             </div>
 
                             <div class="col-md-6">
@@ -113,10 +113,10 @@ alert("Could not process your request, Please try again.");
 
                             <div id="images" style="margin-top: 10px; display:none">
                                 <div class="col-md-6">
-                                    <img id="logoEnImg" src="" style="width:250px;height:250px">
+                                    <img id="logoImg" src="" style="width:250px;height:250px">
                                 </div>
                                 <div class="col-md-6">
-                                    <img id="logoImg" src="" style="width:250px;height:250px">
+                                    <img id="logoEnImg" src="" style="width:250px;height:250px">
                                 </div>
                             </div>
 
