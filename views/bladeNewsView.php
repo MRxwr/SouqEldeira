@@ -34,7 +34,7 @@ window.location = "/news-list/1";
                 </div>
                 <div class="col-sm-12 mb-3">
                     <h5 class="fw-bold"><?php echo direction("Description","الوصف"); ?></h5>
-                    <p><?php echo direction($news[0]['enDetails'], $news[0]['arDetails']); ?></p>
+                    <p><?php echo str_replace("../","/",direction($news[0]['enDetails'], $news[0]['arDetails'])); ?></p>
                 </div>
             </div>
         </div>
