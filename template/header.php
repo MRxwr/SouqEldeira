@@ -58,68 +58,96 @@ $hreflangSign = (strpos($cleanUrl, '?') !== false) ? '&' : '?';
 
 <!DOCTYPE html>
 <html lang="<?php echo $_SESSION['lang']; ?>" dir="<?php echo $_SESSION['dir']; ?>">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="<?php echo htmlspecialchars(strip_tags($ogDescription)); ?>" />
-        <meta name="google-site-verification" content="uQF2UV0lQo1EKZCrPXcX_zUidNG_Zh8SIY3tctlP34M" />
-        <meta name="author" content="" />
-        <title><?php echo direction("Souq Al Deerah","سوق الديرة") . " | " . htmlspecialchars($ogTitle); ?></title>
-        <link rel="canonical" href="<?php echo $ogUrl; ?>" />
-        <link rel="alternate" hreflang="ar-KW" href="<?php echo $cleanUrl . $hreflangSign . "lang=ar"; ?>" />
-        <link rel="alternate" hreflang="en-KW" href="<?php echo $cleanUrl . $hreflangSign . "lang=en"; ?>" />
-        <link rel="alternate" hreflang="x-default" href="<?php echo $cleanUrl . $hreflangSign . "lang=en"; ?>" />
 
-        <!-- Open Graph Meta Tags -->
-        <meta property="og:title" content="<?php echo direction("Souq Al Deerah","سوق الديرة") . " | " . htmlspecialchars($ogTitle); ?>" />
-        <meta property="og:description" content="<?php echo substr(htmlspecialchars(strip_tags($ogDescription)), 0, 150); ?>" />
-        <meta property="og:image" content="<?php echo $ogImage; ?>" />
-        <meta property="og:url" content="<?php echo $ogUrl; ?>" />
-        <meta property="og:type" content="website" />
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="<?php echo substr(htmlspecialchars(strip_tags($ogDescription)), 0, 150); ?>" />
+    <meta name="google-site-verification" content="uQF2UV0lQo1EKZCrPXcX_zUidNG_Zh8SIY3tctlP34M" />
+    <meta name="author" content="" />
+    <title><?php echo direction("Souq Al Deerah","سوق الديرة") . " | " . htmlspecialchars($ogTitle); ?></title>
+    <link rel="canonical" href="<?php echo $ogUrl; ?>" />
+    <link rel="alternate" hreflang="ar-KW" href="<?php echo $cleanUrl . $hreflangSign . "lang=ar"; ?>" />
+    <link rel="alternate" hreflang="en-KW" href="<?php echo $cleanUrl . $hreflangSign . "lang=en"; ?>" />
+    <link rel="alternate" hreflang="x-default" href="<?php echo $cleanUrl . $hreflangSign . "lang=en"; ?>" />
 
-        <link rel="manifest" href="/manifest.json" />
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title"
+        content="<?php echo direction("Souq Al Deerah","سوق الديرة") . " | " . htmlspecialchars($ogTitle); ?>" />
+    <meta property="og:description"
+        content="<?php echo substr(htmlspecialchars(strip_tags($ogDescription)), 0, 150); ?>" />
+    <meta property="og:image" content="<?php echo $ogImage; ?>" />
+    <meta property="og:url" content="<?php echo $ogUrl; ?>" />
+    <meta property="og:type" content="website" />
 
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="/assets/img/logo-1.png" />
-        <!-- Core CSS -->
-        <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='ltr') { ?>
-        <link href="/assets/components/bootstrap/v-5.2.3/css/bootstrap.min.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
-        <?php } ?>
-         <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
-        <link href="/assets/components/bootstrap/v-5.2.3/css/bootstrap.rtl.min.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
-        <?php } ?>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
-        <link href="/assets/components/bootstrap-modal/dist/bootstrap-side-modals.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
-        <!-- Select2 -->
-        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-        <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
-        <?php } else { ?>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
-        <?php } ?>
-        <!-- Owl Stylesheets -->
-    	<link rel="stylesheet" href="/assets/components/owl-carousel/v-2.3.4/dist/assets/owl.carousel.min.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>">
-    	<link rel="stylesheet" href="/assets/components/owl-carousel/v-2.3.4/dist/assets/owl.theme.default.min.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>">
-        <!-- Theme Css  -->
-		<link href="/assets/css/style.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
-        <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
-     	<link href="/assets/css/style-rtl.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
-    	<?php } ?>
-    	<link href="/assets/css/responsive.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
-    	<?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
-     	<link href="/assets/css/responsive-rtl.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
-    	<?php } ?>
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-N4243KZJ');</script>
-        <!-- End Google Tag Manager -->
+    <link rel="manifest" href="/manifest.json" />
 
-    </head>
-    <body>
-	<!-- Preloader -->
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="/assets/img/logo-1.png" />
+    <!-- Core CSS -->
+    <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='ltr') { ?>
+    <link
+        href="/assets/components/bootstrap/v-5.2.3/css/bootstrap.min.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"
+        rel="stylesheet" />
+    <?php } ?>
+    <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
+    <link
+        href="/assets/components/bootstrap/v-5.2.3/css/bootstrap.rtl.min.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"
+        rel="stylesheet" />
+    <?php } ?>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"
+        rel="stylesheet" />
+    <link
+        href="/assets/components/bootstrap-modal/dist/bootstrap-side-modals.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"
+        rel="stylesheet" />
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+    <?php } else { ?>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <?php } ?>
+    <!-- Owl Stylesheets -->
+    <link rel="stylesheet"
+        href="/assets/components/owl-carousel/v-2.3.4/dist/assets/owl.carousel.min.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>">
+    <link rel="stylesheet"
+        href="/assets/components/owl-carousel/v-2.3.4/dist/assets/owl.theme.default.min.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>">
+    <!-- Theme Css  -->
+    <link href="/assets/css/style.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
+    <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
+    <link href="/assets/css/style-rtl.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
+    <?php } ?>
+    <link href="/assets/css/responsive.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" rel="stylesheet" />
+    <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='rtl') { ?>
+    <link href="/assets/css/responsive-rtl.css?<?php echo randLetter() ?>=<?php echo $config['v'] ?>"
+        rel="stylesheet" />
+    <?php } ?>
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-N4243KZJ');
+    </script>
+    <!-- End Google Tag Manager -->
+
+</head>
+
+<body>
+    <!-- Preloader -->
     <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
@@ -129,14 +157,14 @@ $hreflangSign = (strpos($cleanUrl, '?') !== false) ? '&' : '?';
         </div>
     </div>
     <!-- /End Preloader -->
-     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4243KZJ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4243KZJ" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-        <?php include 'template/navbar.php'; ?> 
-        <?php include 'template/sidebar.php'; ?> 
-        <!-- Start page-content -->
-		<div class="page-content my-5">
-            <div class="home page-header"></div>
-	        <div class="container container-project">
+    <?php include 'template/navbar.php'; ?>
+    <?php include 'template/sidebar.php'; ?>
+    <!-- Start page-content -->
+    <div class="page-content my-5">
+        <div class="home page-header"></div>
+        <div class="container container-project">
