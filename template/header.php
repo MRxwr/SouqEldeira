@@ -57,7 +57,11 @@ $hreflangSign = (strpos($cleanUrl, '?') !== false) ? '&' : '?';
 $description = strip_tags($ogDescription);
 $description = html_entity_decode($description, ENT_QUOTES, 'UTF-8');
 $description = preg_replace('/\s+/u', ' ', trim($description));
-$description = mb_substr($description, 0, 160, 'UTF-8');
+if (mb_strlen($description, 'UTF-8') > 160) {
+    $description = mb_substr($description, 0, 160, 'UTF-8');
+    $description = preg_replace('/\s+\S*$/u', '', $description);
+    $description .= '...';
+}
 $description = htmlspecialchars($description, ENT_QUOTES, 'UTF-8');
 ?>
 
