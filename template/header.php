@@ -54,6 +54,11 @@ $ogUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'h
 $cleanUrl = preg_replace('/([?&])lang=[^&]*(&|$)/', '$1', $ogUrl);
 $cleanUrl = preg_replace('/[?&]$/', '', $cleanUrl);
 $hreflangSign = (strpos($cleanUrl, '?') !== false) ? '&' : '?';
+$description = strip_tags($ogDescription);
+$description = html_entity_decode($description, ENT_QUOTES, 'UTF-8');
+$description = preg_replace('/\s+/u', ' ', trim($description));
+$description = mb_substr($description, 0, 160, 'UTF-8');
+$description = htmlspecialchars($description, ENT_QUOTES, 'UTF-8');
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +67,7 @@ $hreflangSign = (strpos($cleanUrl, '?') !== false) ? '&' : '?';
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="<?php echo substr(htmlspecialchars(strip_tags($ogDescription)), 0, 150); ?>" />
+    <meta name="description" content="<?php echo $description; ?>" />
     <meta name="google-site-verification" content="uQF2UV0lQo1EKZCrPXcX_zUidNG_Zh8SIY3tctlP34M" />
     <meta name="author" content="" />
     <title><?php echo direction("Souq Al Deerah","سوق الديرة") . " | " . htmlspecialchars($ogTitle); ?></title>
@@ -74,8 +79,7 @@ $hreflangSign = (strpos($cleanUrl, '?') !== false) ? '&' : '?';
     <!-- Open Graph Meta Tags -->
     <meta property="og:title"
         content="<?php echo direction("Souq Al Deerah","سوق الديرة") . " | " . htmlspecialchars($ogTitle); ?>" />
-    <meta property="og:description"
-        content="<?php echo substr(htmlspecialchars(strip_tags($ogDescription)), 0, 150); ?>" />
+    <meta property="og:description" content="<?php echo $description; ?>" />
     <meta property="og:image" content="<?php echo $ogImage; ?>" />
     <meta property="og:url" content="<?php echo $ogUrl; ?>" />
     <meta property="og:type" content="website" />
