@@ -91,6 +91,11 @@ class SeoUrls {
 			foreach ( array("ar","en") as $lang ) {
 				$paths[$lang] = self::titleUrl("ad-view", $ad[0]["id"], $ad[0]["enTitle"], $ad[0]["arTitle"], $lang);
 			}
+		}elseif ( $view == "OfficeView" && $id > 0 ) {
+			if ( !$office = selectDBNew("shops",[$id],"`id` = ? AND `status` = '0'","") ) { return null; }
+			foreach ( array("ar","en") as $lang ) {
+				$paths[$lang] = self::titleUrl("office-view", $office[0]["id"], $office[0]["enTitle"], $office[0]["arTitle"], $lang);
+			}
 		}elseif ( $view == "Search" ) {
 			$filters = self::searchFilters();
 			if ( $filters["categoryId"] < 1 ) { return null; }

@@ -9,7 +9,7 @@ $servername = "localhost";
 $usernameDB = "u671249433_souqeldeiraU";
 $password = "N@b$90949089";
 $dbname = "u671249433_souqeldeiraD";
-$baseURL = "https://souqeldeira.createkwservers.com/";
+$baseURL = "https://souqeldeira.com/";
 $printImageUrl = "https://souqeldeira.createkwservers.com/";
 $dbconnect = new MySQLi($servername,$usernameDB,$password,$dbname);
 if ( $dbconnect->connect_error ){

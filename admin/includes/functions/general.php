@@ -353,85 +353,109 @@ function slug($text){
     return $text;
 }
 
+// Date of a row for <lastmod>, or an empty string when the row has none \\\
+function sitemapLastmod($date) {
+    $time = !empty($date) ? strtotime($date) : false;
+    return $time ? date("Y-m-d", $time) : "";
+}
+
+// One <url> block of the sitemap. $alternates holds hreflang => absolute url \\\
+function sitemapUrlBlock($loc, $alternates = array(), $lastmod = "", $changefreq = "weekly", $priority = "0.5") {
+    $xml = '  <url>' . PHP_EOL;
+    $xml .= '    <loc>' . htmlspecialchars($loc, ENT_QUOTES, 'UTF-8') . '</loc>' . PHP_EOL;
+    if (!empty($lastmod)) {
+        $xml .= '    <lastmod>' . $lastmod . '</lastmod>' . PHP_EOL;
+    }
+    $xml .= '    <changefreq>' . $changefreq . '</changefreq>' . PHP_EOL;
+    $xml .= '    <priority>' . $priority . '</priority>' . PHP_EOL;
+    foreach ($alternates as $hreflang => $href) {
+        $xml .= '    <xhtml:link rel="alternate" hreflang="' . $hreflang . '" href="' . htmlspecialchars($href, ENT_QUOTES, 'UTF-8') . '" />' . PHP_EOL;
+    }
+    $xml .= '  </url>' . PHP_EOL;
+    return $xml;
+}
+
+/**
+ * Both language versions of a page that has its own url per language.
+ * $paths holds the path of the page for every language, each url is written
+ * with the same set of alternates so the search engines pair them together.
+ */
+function sitemapLanguageUrls($base, $paths, $lastmod = "", $changefreq = "weekly", $priority = "0.5") {
+    $links = array(
+        "ar-KW"     => $base . ltrim($paths["ar"], "/"),
+        "en-KW"     => $base . ltrim($paths["en"], "/"),
+        "x-default" => $base . ltrim($paths["en"], "/")
+    );
+    $xml = "";
+    foreach (array("ar", "en") as $lang) {
+        $xml .= sitemapUrlBlock($base . ltrim($paths[$lang], "/"), $links, $lastmod, $changefreq, $priority);
+    }
+    return $xml;
+}
+
 function updateSitemap() {
-    global $dbconnect, $baseURL;
-    
+    global $baseURL;
+
+    // The urls of the pages that carry a title inside them are built in one place
+    if (!class_exists("SeoUrls")) {
+        require_once dirname(__DIR__, 3) . "/includes/SeoUrls.php";
+    }
+
     // Ensure baseURL ends with /
     $base = rtrim($baseURL, "/") . "/";
-    
+
     $xml = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
-    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">' . PHP_EOL;
 
-    // Home Page
-    $xml .= '  <url>' . PHP_EOL;
-    $xml .= '    <loc>' . $base . '</loc>' . PHP_EOL;
-    $xml .= '    <changefreq>daily</changefreq>' . PHP_EOL;
-    $xml .= '    <priority>1.0</priority>' . PHP_EOL;
-    $xml .= '  </url>' . PHP_EOL;
+    // Pages keeping a single url, the visitor language comes from the cookie
+    $xml .= sitemapUrlBlock($base, array(), "", "daily", "1.0");
+    $xml .= sitemapUrlBlock($base . "news-list/1", array(), "", "daily", "0.8");
+    $xml .= sitemapUrlBlock($base . "offices", array(), "", "weekly", "0.7");
 
-    // Categories
+    // Search result pages: one url per category and language
     if ($categories = selectDB("categories", "`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")) {
-        foreach ($categories as $cat) {
-            $slugTitle = slug($cat["arTitle"]);
-            if (empty($slugTitle)) $slugTitle = slug($cat["enTitle"]);
-            $xml .= '  <url>' . PHP_EOL;
-            $xml .= '    <loc>' . $base . 'search/' . urldecode($slugTitle) . '/' . $cat["id"] . '</loc>' . PHP_EOL;
-            $xml .= '    <changefreq>daily</changefreq>' . PHP_EOL;
-            $xml .= '    <priority>0.9</priority>' . PHP_EOL;
-            $xml .= '  </url>' . PHP_EOL;
-        }
-    }
-    
-    // Property Types
-    if ($propertyTypes = selectDB("propertyType", "`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC")) {
-        foreach ($propertyTypes as $type) {
-            $slugTitle = slug($type["arTitle"]);
-            if (empty($slugTitle)) $slugTitle = slug($type["enTitle"]);
-            $xml .= '  <url>' . PHP_EOL;
-            $xml .= '    <loc>' . $base . 'search/' . urldecode($slugTitle) . '/' . $type["id"] . '</loc>' . PHP_EOL;
-            $xml .= '    <changefreq>daily</changefreq>' . PHP_EOL;
-            $xml .= '    <priority>0.8</priority>' . PHP_EOL;
-            $xml .= '  </url>' . PHP_EOL;
+        foreach ($categories as $category) {
+            $xml .= sitemapLanguageUrls($base, array(
+                "ar" => SeoUrls::searchUrl($category, 0, "", "", "", "ar"),
+                "en" => SeoUrls::searchUrl($category, 0, "", "", "", "en")
+            ), "", "daily", "0.9");
         }
     }
 
-    // Offices
-    if ($offices = selectDB("shops", "`status` = '0'")) {
+    // Real estate offices
+    if ($offices = selectDB("shops", "`status` = '0' ORDER BY `rank` ASC")) {
         foreach ($offices as $office) {
-            $slugTitle = slug($office["arTitle"]);
-            if (empty($slugTitle)) $slugTitle = slug($office["enTitle"]);
-            $xml .= '  <url>' . PHP_EOL;
-            $xml .= '    <loc>' . $base . 'office-view/' . $office["id"] . '/' . urldecode($slugTitle) . '</loc>' . PHP_EOL;
-            $xml .= '    <changefreq>weekly</changefreq>' . PHP_EOL;
-            $xml .= '    <priority>0.7</priority>' . PHP_EOL;
-            $xml .= '  </url>' . PHP_EOL;
+            $xml .= sitemapLanguageUrls($base, array(
+                "ar" => SeoUrls::titleUrl("office-view", $office["id"], $office["enTitle"], $office["arTitle"], "ar"),
+                "en" => SeoUrls::titleUrl("office-view", $office["id"], $office["enTitle"], $office["arTitle"], "en")
+            ), "", "weekly", "0.7");
         }
     }
 
-    // Individual Ads
+    // Individual ads
     if ($products = selectDB("products", "`status` = '0' AND `hidden` = '1' ORDER BY `id` DESC")) {
         foreach ($products as $product) {
-            $slugTitle = slug($product["arTitle"]);
-            if (empty($slugTitle)) $slugTitle = slug($product["enTitle"]);
-            $lastmod = date("Y-m-d", strtotime($product["date"]));
-            $xml .= '  <url>' . PHP_EOL;
-            $xml .= '    <loc>' . $base . 'ad-view/' . $product["id"] . '/' . urldecode($slugTitle) . '</loc>' . PHP_EOL;
-            $xml .= '    <lastmod>' . $lastmod . '</lastmod>' . PHP_EOL;
-            $xml .= '    <changefreq>weekly</changefreq>' . PHP_EOL;
-            $xml .= '    <priority>0.6</priority>' . PHP_EOL;
-            $xml .= '  </url>' . PHP_EOL;
+            $xml .= sitemapLanguageUrls($base, array(
+                "ar" => SeoUrls::titleUrl("ad-view", $product["id"], $product["enTitle"], $product["arTitle"], "ar"),
+                "en" => SeoUrls::titleUrl("ad-view", $product["id"], $product["enTitle"], $product["arTitle"], "en")
+            ), sitemapLastmod($product["date"]), "weekly", "0.6");
         }
     }
 
-    $xml .= '</urlset>';
-
-    // Determine root directory to save sitemap.xml
-    // admin/includes/functions/general.php -> goes up 3 levels to reach root
-    $sitemapPath = dirname(__DIR__, 2) . "/sitemap.xml";
-    if (!file_exists($sitemapPath)) {
-        $sitemapPath = dirname(__DIR__, 3) . "/sitemap.xml";
+    // News
+    if ($newsList = selectDB("news", "`status` = '0' AND `hidden` = '1' ORDER BY `id` DESC")) {
+        foreach ($newsList as $news) {
+            $xml .= sitemapLanguageUrls($base, array(
+                "ar" => SeoUrls::titleUrl("news-view", $news["id"], $news["enTitle"], $news["arTitle"], "ar"),
+                "en" => SeoUrls::titleUrl("news-view", $news["id"], $news["enTitle"], $news["arTitle"], "en")
+            ), sitemapLastmod($news["date"]), "weekly", "0.8");
+        }
     }
-    file_put_contents($sitemapPath, $xml);
+
+    $xml .= '</urlset>' . PHP_EOL;
+
+    // admin/includes/functions/general.php -> goes up 3 levels to reach the site root
+    file_put_contents(dirname(__DIR__, 3) . "/sitemap.xml", $xml);
 }
 
 ?>
