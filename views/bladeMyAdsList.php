@@ -309,7 +309,7 @@ if(!$_SESSION['valid']){
 									      <img src="/assets/img/logo-big.png" class="img-fluid" style="width: 60px; height: 60px;" alt="<?php echo direction($ad['enTitle'],$ad['arTitle']); ?>">
 								       <?php } ?> 
 										<div class="data">
-											<h4><a href="/ad-view/<?php echo $ad['id']; ?>"><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></a></h4>
+											<h4><a href="<?php echo SeoUrls::titleUrl("ad-view", $ad['id'], $ad['enTitle'], $ad['arTitle']); ?>"><?php echo direction($ad['enTitle'],$ad['arTitle']); ?></a></h4>
 											<h5><?php echo direction($gov['enTitle'],$gov['arTitle']); ?> - <?php echo direction($area['enTitle'],$area['arTitle']); ?></h5>
 											<h6><?php echo direction("Created Date","تاريخ الإنشاء"); ?> &nbsp;&nbsp; 
 											<?php

@@ -48,12 +48,24 @@ if (isset($_GET["v"])) {
     }
 }
 
-$ogUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$siteRoot = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+$ogUrl = $siteRoot . $_SERVER['REQUEST_URI'];
 
 // Clean URL for hreflang to avoid duplicate lang parameters
 $cleanUrl = preg_replace('/([?&])lang=[^&]*(&|$)/', '$1', $ogUrl);
 $cleanUrl = preg_replace('/[?&]$/', '', $cleanUrl);
 $hreflangSign = (strpos($cleanUrl, '?') !== false) ? '&' : '?';
+
+// Pages holding a title inside their url announce their own language versions
+$alternateUrls = array(
+    'ar' => $cleanUrl . $hreflangSign . 'lang=ar',
+    'en' => $cleanUrl . $hreflangSign . 'lang=en'
+);
+if ($seoPage = SeoUrls::currentPage()) {
+    $ogUrl = $siteRoot . $seoPage['canonical'];
+    $alternateUrls['ar'] = $siteRoot . $seoPage['alternates']['ar'];
+    $alternateUrls['en'] = $siteRoot . $seoPage['alternates']['en'];
+}
 $description = strip_tags($ogDescription);
 $description = html_entity_decode($description, ENT_QUOTES, 'UTF-8');
 $description = preg_replace('/\s+/u', ' ', trim($description));
@@ -76,9 +88,9 @@ $description = htmlspecialchars($description, ENT_QUOTES, 'UTF-8');
     <meta name="author" content="" />
     <title><?php echo direction("Souq Al Deerah","سوق الديرة") . " | " . htmlspecialchars($ogTitle); ?></title>
     <link rel="canonical" href="<?php echo $ogUrl; ?>" />
-    <link rel="alternate" hreflang="ar-KW" href="<?php echo $cleanUrl . $hreflangSign . "lang=ar"; ?>" />
-    <link rel="alternate" hreflang="en-KW" href="<?php echo $cleanUrl . $hreflangSign . "lang=en"; ?>" />
-    <link rel="alternate" hreflang="x-default" href="<?php echo $cleanUrl . $hreflangSign . "lang=en"; ?>" />
+    <link rel="alternate" hreflang="ar-KW" href="<?php echo htmlspecialchars($alternateUrls['ar']); ?>" />
+    <link rel="alternate" hreflang="en-KW" href="<?php echo htmlspecialchars($alternateUrls['en']); ?>" />
+    <link rel="alternate" hreflang="x-default" href="<?php echo htmlspecialchars($alternateUrls['en']); ?>" />
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title"

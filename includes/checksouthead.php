@@ -7,6 +7,7 @@ require ("admin/includes/functions.php");
 require ("admin/includes/language.php");
 require ("admin/includes/translate.php");
 require ("includes/functions.php");
+require ("includes/SeoUrls.php");
 if( isset($_GET["error"]) && $_GET["error"] == "status" && (!isset($_GET["v"]) || $_GET["v"] != "Login") ){
     header("Location: index.php?v=Login&error=status");
     die();

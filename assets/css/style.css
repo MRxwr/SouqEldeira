@@ -653,6 +653,13 @@ footer .copyright-icon,footer .copyright-icon:hover
 	padding:2rem 2rem 1rem 2rem;
 }
 
+/* The search form reused inside a page (search results) stays in the flow */
+.search-area.in-page-content
+{
+	top: 0;
+	margin-bottom: 1.5rem;
+}
+
 .homePageSecondContent { 
       margin-top: -90px;
 }

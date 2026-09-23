@@ -4,7 +4,6 @@ if( isset($_GET['id']) && $ad = selectDBNew("products",[$_GET['id']],"`id` = ?",
 	$mobile = ( !empty($ad[0]["mobile"]) ) ? $ad[0]["mobile"] : $AdUser[0]["phone"];
 	$area = selectDBNew("areas",[$ad[0]['areaId']],"`id` = ?","");
 	$category = selectDBNew("categories",[$ad[0]['categoryId']],"`id` = ?","");
-	$categoryTitle = str_replace(" ","-",direction($category[0]['enTitle'], $category[0]['arTitle']));
 	updateDB("products",["views" => $ad[0]['views'] + 1],"`id` = {$_GET["id"]}");
 	$ad[0]["views"] = $ad[0]['views'] + 1;
 }else{
@@ -92,7 +91,7 @@ echo '<script type="application/ld+json">' . json_encode($propertySchema, JSON_U
 <nav aria-label="breadcrumb" class="mb-3">
 	<ol class="breadcrumb mb-0">
 		<li class="breadcrumb-item"><a href="/"><?php echo direction("Home","الرئيسية"); ?></a></li>
-		<li class="breadcrumb-item"><a href="/search/<?php echo $categoryTitle; ?>/<?php echo $ad[0]["categoryId"]; ?>"><?php echo direction($category[0]['enTitle'], $category[0]['arTitle']); ?></a></li>
+		<li class="breadcrumb-item"><a href="<?php echo SeoUrls::searchUrl($category[0]); ?>"><?php echo direction($category[0]['enTitle'], $category[0]['arTitle']); ?></a></li>
 		<li class="breadcrumb-item active" aria-current="page"><?php echo direction($ad[0]['enTitle'], $ad[0]['arTitle']); ?></li>
 	</ol>
 </nav>
@@ -196,6 +195,6 @@ $msg = urlencode("أريد أن أسأل عن هذا الإعلان\n") . $url;
   }
   ?>
   <div class="d-block text-end mt-3">
-  	 <a href="/search/<?php echo $categoryTitle; ?>/<?php echo $ad[0]["categoryId"] ?>" class="btn btn-primary"><?php echo direction("More","المزيد"); ?> <i class="bi bi-three-dots"></i></a>
+  	 <a href="<?php echo SeoUrls::searchUrl($category[0]); ?>" class="btn btn-primary"><?php echo direction("More","المزيد"); ?> <i class="bi bi-three-dots"></i></a>
   </div> 
 </div>

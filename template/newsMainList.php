@@ -2,7 +2,7 @@
     <div class="row gy-3">
         <?php
 		foreach( $newsList as $newsItem ){
-			$newsUrl = "/news-view/{$newsItem['id']}/" . slug($newsItem['enTitle']) . "-" . slug($newsItem['arTitle']);
+			$newsUrl = SeoUrls::titleUrl("news-view", $newsItem['id'], $newsItem['enTitle'], $newsItem['arTitle']);
 			$snippet = mb_substr(strip_tags(direction($newsItem['enDetails'], $newsItem['arDetails'])), 0, 150);
 	?>
         <div class="col-lg-12">

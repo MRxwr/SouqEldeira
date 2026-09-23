@@ -1,59 +1,49 @@
 <?php
-if ( isset($_POST) && !empty($_POST) ) {
-	$areaTitle = "";
-	$categoryTitle = "";
-	if( $category = selectDBNew("categories",[$_POST["categoryId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","") ){
-		$categoryTitle = direction($category[0]["enTitle"],$category[0]["arTitle"]);
-	}else{
-		?>
-		<script>
-			alert('<?php echo direction("Please select category","يرجى اختيار الفئة"); ?>');
-			window.location.href = '/home';
-		</script>
-		<?php
+/*
+ * Search results page.
+ *
+ * The filters live inside the url (/search/{category-title}/{categoryId}/{areaId})
+ * so a result page can be shared and crawled, and the same form as the home
+ * page is rendered again, pre-filled with the filters being searched.
+ */
+$searchFilters        = SeoUrls::searchFilters();
+$searchCategoryId     = $searchFilters["categoryId"];
+$searchAreaId         = $searchFilters["areaId"];
+$searchPropertyTypeId = $searchFilters["propertyTypeId"];
+$searchFrom           = $searchFilters["from"];
+$searchTo             = $searchFilters["to"];
+
+$categoryTitle = "";
+$areaTitle = "";
+$propertyTypeTitle = "";
+$ads = array();
+
+if ( $searchCategoryId > 0 && $category = selectDBNew("categories",[$searchCategoryId],"`status` = '0' AND `hidden` = '1' AND `id` = ?","") ){
+	$categoryTitle = direction($category[0]["enTitle"],$category[0]["arTitle"]);
+	if ( $searchAreaId > 0 && $area = selectDBNew("areas",[$searchAreaId],"`status` = '0' AND `hidden` = '0' AND `id` = ?","") ){
+		$areaTitle = direction($area[0]["enTitle"],$area[0]["arTitle"]);
 	}
-	if( isset($_POST["areaId"]) && !empty($_POST["areaId"]) ){
-		$areaId = " AND `areaId` = '{$_POST["areaId"]}' ";
-		if( $area = selectDBNew("areas",[$_POST["areaId"]],"`status` = '0' AND `hidden` = '0' AND `id` = ?","") ){
-			$areaTitle = direction($area[0]["enTitle"],$area[0]["arTitle"]);
-		}
-	}else{
-		$areaId = "";
+	if ( $searchPropertyTypeId > 0 && $propertyType = selectDBNew("propertyType",[$searchPropertyTypeId],"`status` = '0' AND `hidden` = '1' AND `id` = ?","") ){
+		$propertyTypeTitle = direction($propertyType[0]["enTitle"],$propertyType[0]["arTitle"]);
 	}
-	if( isset($_POST["propertyType"]) && !empty($_POST["propertyType"]) ){
-		$propertyType = " AND `propertyType` = '{$_POST["propertyType"]}' ";
+	$searchAreaQuery = ( $searchAreaId > 0 ) ? " AND `areaId` = '{$searchAreaId}' " : "";
+	$searchPropertyTypeQuery = ( $searchPropertyTypeId > 0 ) ? " AND `propertyType` = '{$searchPropertyTypeId}' " : "";
+	if ( $searchFrom !== "" && $searchTo !== "" ){
+		$searchPriceQuery = " AND `price` BETWEEN '{$searchFrom}' AND '{$searchTo}' ";
+	}elseif ( $searchFrom !== "" ){
+		$searchPriceQuery = " AND `price` >= '{$searchFrom}' ";
+	}elseif ( $searchTo !== "" ){
+		$searchPriceQuery = " AND `price` <= '{$searchTo}' ";
 	}else{
-		$propertyType = "";
+		$searchPriceQuery = "";
 	}
-	if( isset($_POST["from"]) && !empty($_POST["from"]) && isset($_POST["to"]) && !empty($_POST["to"]) ){
-		$price = " AND `price` BETWEEN '{$_POST["from"]}' AND '{$_POST["to"]}' ";
-	}elseif( isset($_POST["from"]) && !empty($_POST["from"]) ){
-		$price = " AND `price` >= '{$_POST["from"]}' ";
-	}elseif( isset($_POST["to"]) && !empty($_POST["to"]) ){
-		$price = " AND `price` <= '{$_POST["to"]}' ";
-	}else{
-		$price = "";
-	}
-	if( $ads = selectDBNew("products",[$_POST["categoryId"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? {$areaId} {$price} {$propertyType} ","`packageId` DESC,`id` DESC") ){
-	}
-}elseif( isset($_GET["type"]) && !empty($_GET["type"]) ){
-	if( $category = selectDBNew("categories",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","") ){
-		$categoryTitle = direction($category[0]["enTitle"],$category[0]["arTitle"]);
-		$ads = selectDBNew("products",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? ORDER BY `packageId` DESC,`id` DESC","");
-		$areaTitle = "";
-	}elseif( $pType = selectDBNew("propertyType",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","") ){
-		$categoryTitle = direction($pType[0]["enTitle"],$pType[0]["arTitle"]);
-		$ads = selectDBNew("products",[$_GET["type"]],"`status` = '0' AND `hidden` = '1' AND `propertyType` = ? ORDER BY `packageId` DESC,`id` DESC","");
-		$areaTitle = "";
-	}else{
-		$categoryTitle = "";
-		$ads = array();
-		$areaTitle = "";
+	if( $searchResult = selectDBNew("products",[$searchCategoryId],"`status` = '0' AND `hidden` = '1' AND `categoryId` = ? {$searchAreaQuery} {$searchPriceQuery} {$searchPropertyTypeQuery} ","`packageId` DESC,`id` DESC") ){
+		$ads = $searchResult;
 	}
 }else{
 	?>
 	<script>
-		alert('<?php echo direction("Could not process your request, Please try again","حدث خطأ أثناء عملية الطلب, يرجى المحاولة مرة أخرى"); ?>');
+		alert('<?php echo direction("Please select category","يرجى اختيار الفئة"); ?>');
 		window.location.href = '/home';
 	</script>
 	<?php
@@ -81,7 +71,29 @@ if ( isset($_POST) && !empty($_POST) ) {
 			<span><?php echo $areaTitle; ?></span>
 		</span>
 	</div>
+	<?php if( $propertyTypeTitle !== "" ){ ?>
+	<div class="div">
+		<span class="title"><?php echo direction("Property Type","نوع العقار"); ?></span>
+		<span class="data">
+			<span><?php echo $propertyTypeTitle; ?></span>
+		</span>
+	</div>
+	<?php } ?>
+	<?php if( $searchFrom !== "" || $searchTo !== "" ){ ?>
+	<div class="div">
+		<span class="title"><?php echo direction("Price","السعر"); ?></span>
+		<span class="data">
+			<span><?php echo ( $searchFrom !== "" ? $searchFrom : "-" ) . " / " . ( $searchTo !== "" ? $searchTo : "-" ); ?></span>
+		</span>
+	</div>
+	<?php } ?>
 </div>
+
+<?php
+/* Same search form as the home page, pre-filled with the filters of this search */
+$searchFormClass = "search-area in-page-content";
+include 'template/searchForm.php';
+?>
 
 <div class="search-title mb-3 mt-2">  
 	<h1><i class="bi bi-search"></i><?php echo direction("Search Result","نتيجة البحث"); ?><span><?php echo count($ads) . " " .direction("Ad","إعلان"); ?></span></h1>

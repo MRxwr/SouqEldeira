@@ -328,8 +328,10 @@ function readSlug(){
 		case 'search':
 			$_GET['v'] = 'Search';
 			$pageTitle = direction("Search","بحث");
+			// /search/{category-title}/{categoryId}/{areaId}
 			$_GET['title'] = $segments[1] ?? '';
 			$_GET['type'] = $segments[2] ?? '';
+			$_GET['area'] = $segments[3] ?? '';
 			break;
 
 		case 'terms':

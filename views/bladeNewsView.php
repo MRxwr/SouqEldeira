@@ -1,6 +1,6 @@
 <?php
 if( isset($_GET['id']) && $news = selectDBNew("news",[$_GET['id']],"`id` = ? AND `status` = '0' AND `hidden` = '1'","" ) ){
-	$newsTitleForSlug = slug($news[0]['enTitle']) . "-" . slug($news[0]['arTitle']);
+	$newsTitleForSlug = SeoUrls::slugFor($news[0]['enTitle'], $news[0]['arTitle']);
 }else{
 	?>
 <script>

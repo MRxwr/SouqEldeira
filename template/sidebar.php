@@ -100,7 +100,7 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 						if( $categories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 							for( $x = 0; $x < sizeof($categories); $x++ ){
 								$title = direction($categories[$x]['enTitle'],$categories[$x]['arTitle']);
-								echo "<li><a class='rounded' href='/search/type={$categories[$x]['id']}'>{$title}</a></li>";
+								echo "<li><a class='rounded' href='" . SeoUrls::searchUrl($categories[$x]) . "'>{$title}</a></li>";
 							}
 						}
 						?>

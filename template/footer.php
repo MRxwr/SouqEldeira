@@ -20,10 +20,10 @@
 					for( $i = 0; $i < sizeof($categories); $i++ ){
 						$title = direction("Properties for " . $categories[$i]["enTitle"]. " in Kuwait","العقارات لل" . $categories[$i]["arTitle"] . " في كويت");
 						if( $ads = selectDB("products","`status` = '0' AND `hidden` != '2' AND `categoryId` = '{$categories[$i]["id"]}' ORDER BY RAND() LIMIT 5") ){
-							echo "<div class='category-menu'><h5 class='mb-2'><a href='/search/" . slug(direction($categories[$i]["enTitle"],$categories[$i]["arTitle"])) . "/{$categories[$i]["id"]}' class='d-block text-start'>{$title}</a></h5><ul>";
+							echo "<div class='category-menu'><h5 class='mb-2'><a href='" . SeoUrls::searchUrl($categories[$i]) . "' class='d-block text-start'>{$title}</a></h5><ul>";
 							for( $x = 0; $x < sizeof($ads); $x++ ){
 								$title = direction($ads[$x]["enTitle"],$ads[$x]["arTitle"]);
-								echo "<li><a href='/ad-view/{$ads[$x]["id"]}/" . slug($ads[$x]["enTitle"]) . "-" . slug($ads[$x]["arTitle"]) . "'>{$title}</a></li>";
+								echo "<li><a href='" . SeoUrls::titleUrl("ad-view", $ads[$x]["id"], $ads[$x]["enTitle"], $ads[$x]["arTitle"]) . "'>{$title}</a></li>";
 							}
 							echo "</ul></div>";
 						}
@@ -60,8 +60,7 @@
 							}
 						}
 						if ($matchedCategory) {
-							$footerSlug = slug(direction($matchedCategory['enTitle'],$matchedCategory['arTitle']));
-							echo '<li class="mb-2"><a href="/search/' . $footerSlug . '/' . $matchedCategory['id'] . '">' . direction($footerLink['en'],$footerLink['ar']) . '</a></li>';
+							echo '<li class="mb-2"><a href="' . SeoUrls::searchUrl($matchedCategory) . '">' . direction($footerLink['en'],$footerLink['ar']) . '</a></li>';
 						}
 					}
 					?>
