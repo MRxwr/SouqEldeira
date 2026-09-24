@@ -15,5 +15,5 @@ $dbconnect = new MySQLi($servername,$usernameDB,$password,$dbname);
 if ( $dbconnect->connect_error ){
 	die("Connection Failed: " .$dbconnect->connect_error );
 }
-$dbconnect->set_charset("utf8mb4");
+$dbconnect->set_charset("utf8mb4");  
 ?>
