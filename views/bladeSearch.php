@@ -2,9 +2,9 @@
 /*
  * Search results page.
  *
- * The filters live inside the url (/search/{category-title}/{categoryId}/{areaId})
- * so a result page can be shared and crawled, and the same form as the home
- * page is rendered again, pre-filled with the filters being searched.
+ * The filters live inside the url as titles (/search/بيع/العدان/بيت) so a result
+ * page can be shared and crawled in the language being read, and the same form
+ * as the home page is rendered again, pre-filled with the filters being searched.
  */
 $searchFilters        = SeoUrls::searchFilters();
 $searchCategoryId     = $searchFilters["categoryId"];

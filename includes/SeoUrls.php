@@ -35,41 +35,140 @@ class SeoUrls {
 		return "/" . trim($path, "/") . "/" . rawurlencode((string)$id) . "/" . rawurlencode(self::slugFor($enTitle, $arTitle, $lang));
 	}
 
-	// Url of a search result page: /search/{category-slug}/{categoryId}/{areaId}
+	// Rows of a table, loaded once per request
+	private static function rowsOf($table, $where) {
+		static $cache = array();
+		$key = $table . "|" . $where;
+		if ( !isset($cache[$key]) ) {
+			$rows = function_exists("selectDB") ? selectDB($table, $where) : 0;
+			$cache[$key] = is_array($rows) ? $rows : array();
+		}
+		return $cache[$key];
+	}
+
+	// The very rows the search form offers, so every choice can be written as a title
+	private static function searchCategories() {
+		return self::rowsOf("categories", "`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC");
+	}
+
+	private static function searchAreas() {
+		return self::rowsOf("areas", "`status` = '0'");
+	}
+
+	private static function searchPropertyTypes() {
+		return self::rowsOf("propertyType", "`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC");
+	}
+
+	private static function lower($text) {
+		$text = (string)$text;
+		return function_exists("mb_strtolower") ? mb_strtolower($text, "UTF-8") : strtolower($text);
+	}
+
+	private static function rowById($rows, $id) {
+		$id = (int)$id;
+		if ( $id < 1 ) { return null; }
+		foreach ( $rows as $row ) {
+			if ( (int)($row["id"] ?? 0) === $id ) { return $row; }
+		}
+		return null;
+	}
+
+	// Title slug a row answers to in the given language
+	private static function rowSlug($row, $lang = null) {
+		return self::slugFor($row["enTitle"] ?? "", $row["arTitle"] ?? "", $lang);
+	}
+
+	// Row whose title slug, in either language, matches the part of the url
+	private static function rowBySlug($rows, $slug) {
+		$slug = self::lower(rawurldecode((string)$slug));
+		if ( $slug === "" ) { return null; }
+		foreach ( $rows as $row ) {
+			foreach ( array("en","ar") as $lang ) {
+				if ( self::lower(self::rowSlug($row, $lang)) === $slug ) { return $row; }
+			}
+		}
+		return null;
+	}
+
+	/*
+	 * Url of a search result page: /search/{category}/{area}/{property-type}, every
+	 * part the title of the language being rendered, so the url never shows an id.
+	 * A price range has no title, so it is the only thing left in the query string.
+	 */
 	public static function searchUrl($category, $areaId = 0, $propertyTypeId = "", $from = "", $to = "", $lang = null) {
-		$categoryId = (int)($category["id"] ?? 0);
-		$url = "/search/" . rawurlencode(self::slugFor($category["enTitle"] ?? "", $category["arTitle"] ?? "", $lang)) . "/" . $categoryId;
-		if ( (int)$areaId > 0 ) { $url .= "/" . (int)$areaId; }
+		$lang = empty($lang) ? self::currentLang() : $lang;
+		if ( !is_array($category) ) { $category = self::rowById(self::searchCategories(), $category); }
+		if ( empty($category) ) { return "/search"; }
+		$url = "/search";
+		if ( ($slug = self::rowSlug($category, $lang)) !== "" ) { $url .= "/" . rawurlencode($slug); }
+		if ( $area = self::rowById(self::searchAreas(), $areaId) ) {
+			if ( ($slug = self::rowSlug($area, $lang)) !== "" ) { $url .= "/" . rawurlencode($slug); }
+		}
+		if ( $propertyType = self::rowById(self::searchPropertyTypes(), $propertyTypeId) ) {
+			if ( ($slug = self::rowSlug($propertyType, $lang)) !== "" ) { $url .= "/" . rawurlencode($slug); }
+		}
 		$query = array();
-		if ( (int)$propertyTypeId > 0 ) { $query[] = "propertyType=" . (int)$propertyTypeId; }
-		if ( is_numeric($from) ) { $query[] = "from=" . rawurlencode($from); }
-		if ( is_numeric($to) ) { $query[] = "to=" . rawurlencode($to); }
+		if ( $from !== "" && is_numeric($from) ) { $query[] = "from=" . rawurlencode($from); }
+		if ( $to !== "" && is_numeric($to) ) { $query[] = "to=" . rawurlencode($to); }
 		if ( $query ) { $url .= "?" . implode("&", $query); }
 		return $url;
 	}
 
-	// Filters of the request being handled, from the pretty url, the query string or a legacy post
+	/*
+	 * Filters of the request being handled. The pretty url carries the titles, the
+	 * plain search form still sends ids and is cleaned up by the canonical redirect.
+	 * A price range has no title, so it rides along in the query string.
+	 */
 	public static function searchFilters() {
 		$request = array_merge($_GET, $_POST);
-		$categoryId = 0;
-		if ( isset($request["type"]) && $request["type"] !== "" ) {
-			$categoryId = (int)$request["type"];
-		}elseif ( isset($request["categoryId"]) ) {
-			$categoryId = (int)$request["categoryId"];
-		}
-		$areaId = 0;
-		if ( isset($request["area"]) && $request["area"] !== "" ) {
-			$areaId = (int)$request["area"];
-		}elseif ( isset($request["areaId"]) ) {
-			$areaId = (int)$request["areaId"];
-		}
-		return array(
-			"categoryId"     => $categoryId,
-			"areaId"         => $areaId,
-			"propertyTypeId" => ( isset($request["propertyType"]) && $request["propertyType"] !== "" ) ? (int)$request["propertyType"] : "",
-			"from"           => ( isset($request["from"]) && is_numeric($request["from"]) ) ? $request["from"] : "",
-			"to"             => ( isset($request["to"]) && is_numeric($request["to"]) ) ? $request["to"] : ""
+		$filters = array(
+			"categoryId"     => 0,
+			"areaId"         => 0,
+			"propertyTypeId" => "",
+			"from"           => ( isset($request["from"]) && $request["from"] !== "" && is_numeric($request["from"]) ) ? $request["from"] : "",
+			"to"             => ( isset($request["to"]) && $request["to"] !== "" && is_numeric($request["to"]) ) ? $request["to"] : ""
 		);
+
+		$path = trim((string)($request["searchPath"] ?? ""), "/");
+		if ( $path !== "" ) {
+			$categories = self::searchCategories();
+			$areas = self::searchAreas();
+			$propertyTypes = self::searchPropertyTypes();
+			foreach ( explode("/", $path) as $index => $segment ) {
+				$segment = trim(rawurldecode($segment));
+				if ( $segment === "" ) { continue; }
+				$numeric = ctype_digit($segment);
+				if ( $index === 0 ) {
+					// first part is always the category, by title or by an old numeric id
+					$row = $numeric ? self::rowById($categories, $segment) : self::rowBySlug($categories, $segment);
+					if ( $row ) { $filters["categoryId"] = (int)$row["id"]; }
+					continue;
+				}
+				if ( $numeric && $filters["categoryId"] > 0 && (int)$segment === $filters["categoryId"] ) {
+					continue; // numeric id of an old /search/{title}/{id}/{id} url
+				}
+				// then the area, then the property type, both optional
+				if ( $filters["areaId"] < 1 ) {
+					$row = $numeric ? self::rowById($areas, $segment) : self::rowBySlug($areas, $segment);
+					if ( $row ) { $filters["areaId"] = (int)$row["id"]; continue; }
+				}
+				if ( $filters["propertyTypeId"] === "" ) {
+					$row = $numeric ? self::rowById($propertyTypes, $segment) : self::rowBySlug($propertyTypes, $segment);
+					if ( $row ) { $filters["propertyTypeId"] = (int)$row["id"]; continue; }
+				}
+			}
+			if ( $filters["categoryId"] > 0 ) {
+				// ids sent by the form still fill whatever the url left out
+				if ( $filters["areaId"] < 1 && isset($request["areaId"]) && $request["areaId"] !== "" ) { $filters["areaId"] = (int)$request["areaId"]; }
+				if ( $filters["propertyTypeId"] === "" && isset($request["propertyType"]) && $request["propertyType"] !== "" ) { $filters["propertyTypeId"] = (int)$request["propertyType"]; }
+				return $filters;
+			}
+		}
+
+		if ( isset($request["categoryId"]) && $request["categoryId"] !== "" ) { $filters["categoryId"] = (int)$request["categoryId"]; }
+		if ( isset($request["areaId"]) && $request["areaId"] !== "" ) { $filters["areaId"] = (int)$request["areaId"]; }
+		if ( isset($request["propertyType"]) && $request["propertyType"] !== "" ) { $filters["propertyTypeId"] = (int)$request["propertyType"]; }
+		return $filters;
 	}
 
 	/**
@@ -98,13 +197,11 @@ class SeoUrls {
 			}
 		}elseif ( $view == "Search" ) {
 			$filters = self::searchFilters();
-			if ( $filters["categoryId"] < 1 ) { return null; }
-			if ( !$category = selectDBNew("categories",[$filters["categoryId"]],"`status` = '0' AND `hidden` = '1' AND `id` = ?","") ) { return null; }
-			$areaId = $filters["areaId"];
-			// Keep the url clean, only a real area is part of the canonical url
-			if ( $areaId > 0 && !selectDBNew("areas",[$areaId],"`id` = ?","") ) { $areaId = 0; }
+			// only a real category, area and property type reach the canonical url
+			$category = self::rowById(self::searchCategories(), $filters["categoryId"]);
+			if ( !$category ) { return null; }
 			foreach ( array("ar","en") as $lang ) {
-				$paths[$lang] = self::searchUrl($category[0], $areaId, $filters["propertyTypeId"], $filters["from"], $filters["to"], $lang);
+				$paths[$lang] = self::searchUrl($category, $filters["areaId"], $filters["propertyTypeId"], $filters["from"], $filters["to"], $lang);
 			}
 		}else{
 			return null;
@@ -118,9 +215,15 @@ class SeoUrls {
 	// Send a permanent redirect so every page keeps a single, language correct url
 	private static function redirect($canonical) {
 		if ( headers_sent() ) { return; }
-		$requestedPath = parse_url($_SERVER["REQUEST_URI"] ?? "/", PHP_URL_PATH);
+		$requested = $_SERVER["REQUEST_URI"] ?? "/";
+		$requestedPath = parse_url($requested, PHP_URL_PATH);
+		$requestedQuery = (string)parse_url($requested, PHP_URL_QUERY);
 		$canonicalPath = parse_url($canonical, PHP_URL_PATH);
-		if ( rawurldecode(rtrim($requestedPath, "/")) === rawurldecode(rtrim($canonicalPath, "/")) ) { return; }
+		$canonicalQuery = (string)parse_url($canonical, PHP_URL_QUERY);
+		$samePath = rawurldecode(rtrim($requestedPath, "/")) === rawurldecode(rtrim($canonicalPath, "/"));
+		// only a price range lives in the query string, everything else is a title
+		$sameQuery = ( $canonicalQuery === "" || $requestedQuery === $canonicalQuery );
+		if ( $samePath && $sameQuery ) { return; }
 		header("HTTP/1.1 301 Moved Permanently");
 		header("Location: " . $canonical);
 		exit;

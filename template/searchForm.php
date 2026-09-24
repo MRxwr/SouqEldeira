@@ -10,6 +10,8 @@ $formPropertyTypeId = isset($searchPropertyTypeId) ? (int)$searchPropertyTypeId 
 $formFrom           = isset($searchFrom) ? (string)$searchFrom : "";
 $formTo             = isset($searchTo) ? (string)$searchTo : "";
 $formClass          = isset($searchFormClass) ? $searchFormClass : "search-area";
+// Titles the form turns into the url, so no id ever reaches the address bar
+$formSlugOf         = function($enTitle,$arTitle){ return slug(direction($enTitle,$arTitle)); };
 ?>
 <form class="<?php echo $formClass; ?>" action="/search" method="GET">
 	<div class="search-area-row"> 
@@ -19,9 +21,10 @@ $formClass          = isset($searchFormClass) ? $searchFormClass : "search-area"
 				if( $formCategories = selectDB("categories","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 					for( $x = 0; $x < sizeof($formCategories); $x++ ){
 						$formCategoryTitle = direction($formCategories[$x]["enTitle"],$formCategories[$x]["arTitle"]);
+						$formCategorySlug = $formSlugOf($formCategories[$x]["enTitle"],$formCategories[$x]["arTitle"]);
 						$formCategoryChecked = ( (int)$formCategories[$x]["id"] === $formCategoryId ) ? "checked" : "";
 						echo "<div class='radio-btn'>
-							<input type='radio' id='a{$formCategories[$x]["id"]}' name='categoryId' value='{$formCategories[$x]["id"]}' {$formCategoryChecked} />
+							<input type='radio' id='a{$formCategories[$x]["id"]}' name='categoryId' value='{$formCategories[$x]["id"]}' data-slug='{$formCategorySlug}' {$formCategoryChecked} />
 							<label for='a{$formCategories[$x]["id"]}'>{$formCategoryTitle}</label>
 						</div>";
 					}
@@ -44,9 +47,10 @@ $formClass          = isset($searchFormClass) ? $searchFormClass : "search-area"
 								echo "<optgroup label='{$formGovernateTitle}'>";
 								if( $formAreas = selectDB("areas","`status` = '0' AND `governateId` = '{$formGovernates[$g]["id"]}' ORDER BY `{$formAreaOrderBy}` ASC") ){
 									for( $a = 0; $a < sizeof($formAreas); $a++ ){
-										$formAreaTitle = direction($formAreas[$a]["enTitle"],$formAreas[$a]["arTitle"]);
-										$formAreaSelected = ( (int)$formAreas[$a]["id"] === $formAreaId ) ? "selected" : "";
-										echo "<option value='{$formAreas[$a]["id"]}' {$formAreaSelected}>{$formAreaTitle}</option>";
+									$formAreaTitle = direction($formAreas[$a]["enTitle"],$formAreas[$a]["arTitle"]);
+									$formAreaSlug = $formSlugOf($formAreas[$a]["enTitle"],$formAreas[$a]["arTitle"]);
+									$formAreaSelected = ( (int)$formAreas[$a]["id"] === $formAreaId ) ? "selected" : "";
+									echo "<option value='{$formAreas[$a]["id"]}' data-slug='{$formAreaSlug}' {$formAreaSelected}>{$formAreaTitle}</option>";
 									}
 								}
 							}
@@ -67,8 +71,9 @@ $formClass          = isset($searchFormClass) ? $searchFormClass : "search-area"
 						if( $formPropertyTypes = selectDB("propertyType","`status` = '0' AND `hidden` = '1' ORDER BY `rank` ASC") ){
 							for( $p = 0; $p < sizeof($formPropertyTypes); $p++ ){
 								$formPropertyTypeTitle = direction($formPropertyTypes[$p]["enTitle"],$formPropertyTypes[$p]["arTitle"]);
+								$formPropertyTypeSlug = $formSlugOf($formPropertyTypes[$p]["enTitle"],$formPropertyTypes[$p]["arTitle"]);
 								$formPropertyTypeSelected = ( (int)$formPropertyTypes[$p]["id"] === $formPropertyTypeId ) ? "selected" : "";
-								echo "<option value='{$formPropertyTypes[$p]["id"]}' {$formPropertyTypeSelected}>{$formPropertyTypeTitle}</option>";
+								echo "<option value='{$formPropertyTypes[$p]["id"]}' data-slug='{$formPropertyTypeSlug}' {$formPropertyTypeSelected}>{$formPropertyTypeTitle}</option>";
 							}
 						}
 						?>

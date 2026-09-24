@@ -46,15 +46,24 @@ $(document).ready(function () {
         $('.main-overlay').addClass('active');
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-    });
-    
-    
-    
-    $('.advanced-search-a').on('click', function() { 
+    });	$('.advanced-search-a').on('click', function() { 
 	    $('.advanced-search-view').slideToggle('', function() {  
 	       // if ($(this).css('display') == 'block') $(this).css('display', 'flex'); // enter desired display type
 	    });
 	});
+	
+	/*
+	 * The search form holds ids while the site wants titles in the url
+	 * (/search/بيع/العدان/بيت), so the address is built here before sending.
+	 * Without javascript the form still submits and the server cleans the url.
+	 */
+	$('form.search-area').on('submit', function (event) {
+		var url = searchFormUrl(this);
+		if (!url) return; // no category chosen, the server asks for one
+		event.preventDefault();
+		window.location.href = url;
+	});
+
 	
 	$('#recharge-balance-btn').on('click', function() { 
 	    $('.add-ads-balance-big').slideToggle('', function() {  
@@ -152,6 +161,29 @@ function timer(remaining) {
 }
 
 timer(120);
+
+/*
+ * Title url of a search form: /search/{category}/{area}/{property-type}, keeping
+ * only a price range after the path because it has no title to show.
+ * Returns an empty string when the form cannot be turned into a title url.
+ */
+function searchFormUrl(form) {
+  var $form = $(form || 'form.search-area');
+  var $category = $form.find('input[name="categoryId"]:checked');
+  if (!$category.length || !$category.data('slug')) return '';
+  var parts = [$category.data('slug')];
+  $.each(['areaId', 'propertyType'], function (index, name) {
+    var $selected = $form.find('select[name="' + name + '"] option:selected');
+    if ($selected.val() && $selected.data('slug')) parts.push($selected.data('slug'));
+  });
+  var url = '/search/' + $.map(parts, encodeURIComponent).join('/');
+  var query = [];
+  $.each(['from', 'to'], function (index, name) {
+    var value = String($form.find('input[name="' + name + '"]').val() || '').trim();
+    if (value !== '') query.push(name + '=' + encodeURIComponent(value));
+  });
+  return query.length ? url + '?' + query.join('&') : url;
+}
 
   function displaySelectedFiles(input,preview) {
     var filePreview  = $('#'+preview);
