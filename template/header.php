@@ -100,7 +100,7 @@ $description = htmlspecialchars($description, ENT_QUOTES, 'UTF-8');
     <meta property="og:url" content="<?php echo $ogUrl; ?>" />
     <meta property="og:type" content="website" />
 
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="/manifest.json?<?php echo randLetter() ?>=<?php echo $config['v'] ?>" />
 
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="/assets/img/newlogo-1.png" />
