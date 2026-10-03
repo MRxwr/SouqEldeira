@@ -193,7 +193,7 @@ function whatsappUltraMsgVerify($to, $code){
 		$data = array(
 			'token' => "{$whatsappNoti[0]["whatsappToken"]}",
 			'to' => "{$to}",
-			'image' => 'https://souqeldeira.com/assets/img/logo-1.png',
+			'image' => 'https://souqeldeira.com/assets/img/newlogo-1.png',
 			'caption' => "Hello, your verification code is: {$code}. Please use it to complete your profile verification in Souq Eldeira. \n\nThis is an automated message from Souq Eldeira.\n\nBest Regards, \nhttps://souqeldeira.com/",
 		);
 		$curl = curl_init();

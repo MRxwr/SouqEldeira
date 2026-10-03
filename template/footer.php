@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="footer-sec1 text-center">
-                    <a href="/" class="logo"><img src="/assets/img/logo-1.png"
+                    <a href="/" class="logo"><img src="/assets/img/newlogo-1.png"
                             alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>"></a>
                 </div>
             </div>

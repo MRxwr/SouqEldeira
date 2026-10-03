@@ -41,7 +41,7 @@ if ($propertyImages) {
 	}
 }
 if (!$schemaImages) {
-	$schemaImages[] = $baseURL . 'assets/img/logo-1.png';
+	$schemaImages[] = $baseURL . 'assets/img/newlogo-1.png';
 }
 
 $schemaUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . rawurldecode($_SERVER['REQUEST_URI']);

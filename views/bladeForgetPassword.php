@@ -21,7 +21,7 @@ if (isset($_POST['forget']) && !empty($_POST['email'])){
 <div class="guest-form-action">
     <div class="form-container">
 		<div class="mb-4 text-center">
-			<img src="assets/img/logo-1.png" class="img-fluid" alt="...">
+			<img src="assets/img/newlogo-1.png" class="img-fluid" alt="...">
 		</div>
 	    <?php if($verify === 0) { ?>  
 		<form id="forget-password-form" method="post" action="?v=ForgetPassword">

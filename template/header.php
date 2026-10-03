@@ -5,7 +5,7 @@ readSlug();
 $ogTitle = direction("Properties for sale and rent in Kuwait","عقارات للبيع والإيجار في الكويت");
 $ogTitle .= (!empty($pageTitle) ? " | " . $pageTitle : ""); 
 $ogDescription = direction("Souq Al Deerah website for ads", "موقع سوق الديرة للإعلانات"); 
-$ogImage = $baseURL . "assets/img/logo-1.png";
+$ogImage = $baseURL . "assets/img/newlogo-1.png";
 
 if ( $settings = selectDB("settings","`id` = '1'") ){
     if (!empty($settings[0]["OgDescription"])) {
@@ -103,7 +103,7 @@ $description = htmlspecialchars($description, ENT_QUOTES, 'UTF-8');
     <link rel="manifest" href="/manifest.json" />
 
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="/assets/img/logo-1.png" />
+    <link rel="icon" type="image/x-icon" href="/assets/img/newlogo-1.png" />
     <!-- Core CSS -->
     <?php if(isset($_SESSION["dir"]) && $_SESSION["dir"]==='ltr') { ?>
     <link

@@ -51,7 +51,7 @@ if ( isset($_COOKIE[$cookieSession]) && !empty($_COOKIE[$cookieSession]) ){
             "logo" => $user[0]["logo"],
         );
         if( $user[0]["logo"] == "" ){
-            $userDetails["logo"] = "assets/img/logo-1.png";
+            $userDetails["logo"] = "assets/img/newlogo-1.png";
         }
 		$_SESSION[$cookieSession] = $user[0]["email"];	
 	}else{

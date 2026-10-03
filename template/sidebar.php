@@ -52,7 +52,7 @@ if( $notifications = selectDB("notifications","`status` = '0' AND `listOfUsers` 
 			<div class="sidebar-header">
 		    	<div class="">
 		    		<a href="/home">
-		    			<img src="/assets/img/logo-1.png" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>">
+		    			<img src="/assets/img/newlogo-1.png" alt="<?php echo direction("Souq Al Deirah","سوق الديرة"); ?>">
 		    		</a>
 		    	</div>
 		    	<div class="">

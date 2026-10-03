@@ -190,7 +190,7 @@ class SchemaBuilder {
 
         if ($view === 'Home') {
             $schemas[] = self::organization($siteName, $homeUrl, [
-                'logo' => $base . 'assets/img/logo-1.png',
+                'logo' => $base . 'assets/img/newlogo-1.png',
                 'email' => 'info@souqeldeira.com',
                 'telephone' => '22281412',
                 'address' => [
@@ -212,7 +212,7 @@ class SchemaBuilder {
             if (!$images && function_exists('selectDB') && !empty($ad['id'])) {
                 $images = selectDB('images', "`productId` = '" . (int)$ad['id'] . "'");
             }
-            $image = !empty($images[0]['imageurl']) ? $base . 'logos/' . $images[0]['imageurl'] : $base . 'assets/img/logo-1.png';
+            $image = !empty($images[0]['imageurl']) ? $base . 'logos/' . $images[0]['imageurl'] : $base . 'assets/img/newlogo-1.png';
 
             $listing = [
                 '@id' => $currentUrl . '#listing',
@@ -272,7 +272,7 @@ class SchemaBuilder {
                 'description' => $description,
                 'url' => $currentUrl,
                 'mainEntityOfPage' => $currentUrl,
-                'image' => !empty($news['imageurl']) ? $base . 'logos/' . $news['imageurl'] : $base . 'assets/img/logo-1.png',
+                'image' => !empty($news['imageurl']) ? $base . 'logos/' . $news['imageurl'] : $base . 'assets/img/newlogo-1.png',
                 'author' => [
                     '@type' => 'Organization',
                     'name' => $siteName,
@@ -284,7 +284,7 @@ class SchemaBuilder {
                     'url' => $homeUrl,
                     'logo' => [
                         '@type' => 'ImageObject',
-                        'url' => $base . 'assets/img/logo-1.png'
+                        'url' => $base . 'assets/img/newlogo-1.png'
                     ]
                 ]
             ];
@@ -350,7 +350,7 @@ class SchemaBuilder {
                 'name' => self::localized($office['enTitle'] ?? '', $office['arTitle'] ?? ''),
                 'url' => $currentUrl,
                 'description' => self::localized($office['enDetails'] ?? '', $office['arDetails'] ?? ''),
-                'image' => !empty($office['logo']) ? $base . 'logos/' . $office['logo'] : $base . 'assets/img/logo-1.png',
+                'image' => !empty($office['logo']) ? $base . 'logos/' . $office['logo'] : $base . 'assets/img/newlogo-1.png',
                 'address' => [
                     '@type' => 'PostalAddress',
                     'addressCountry' => 'KW'
