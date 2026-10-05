@@ -8,13 +8,13 @@
     "description": "Souq Al Deerah website for ads",
     "icons": [
         {
-            "src": "./assets/img/newlogo-192.png",
+            "src": "./assets/img/logo20261005-192.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "./assets/img/newlogo-512.png",
+            "src": "./assets/img/logo20261005-512.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
